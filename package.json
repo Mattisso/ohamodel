@@ -1,0 +1,20 @@
+{
+  "name": "ohamodel",
+  "version": "1.0.0",
+  "description": "create models",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mattisso/ohamodel.git"
+  },
+  "author": "mensah attisso",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "mongoose": "^5.9.4",
+    "rxjs": "^6.5.4"
+  }
+}

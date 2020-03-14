@@ -1,5 +1,5 @@
 'use strict'
-const ocompte = (function () {
+const OcompteClass = (function () {
   class OcompteClass {
     constructor(CompteNumber) {
       this._comptenumber = CompteNumber;
@@ -28,5 +28,5 @@ const ocompte = (function () {
   };
 })();
 module.exports = {
-  toinit: ocompte.toinit
+  toinit: OcompteClass.toinit
 };

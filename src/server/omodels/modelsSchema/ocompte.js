@@ -41,7 +41,7 @@ const obj = {
 small.save(function (err) {
 if (err) return handleError(err);
 // saved!
-});  */ 
+}) */;   
 ocompte.toinit().Ocompte.find({}, function (err, data) {
   if (err)
     throw err;

@@ -5,6 +5,7 @@ let mongoose = require('mongoose');
 //Schema = mongoose.Schema;
 // const Schema = mongoose.Schema;
 const odabaseSchema = (function () {
+ const currentDate = new Date();
 const extendSchema =  function(Schema, definition, options) {
 return new mongoose.Schema(Object.assign({}, Schema.obj, definition), options);
 }
@@ -27,7 +28,12 @@ toJSON: { virtuals:true }
     }
 
     const auditEntityPlugin= function (schema, options) {
-        const currentDate = new Date();
+    schema.set('toObject', {
+        getters: true
+        });
+        schema.set('toJSON', {
+        getters: true
+        });
       //  let self = this;
     schema.pre(['save','create'], function(next) {        
         if (!this.CreatedOn)

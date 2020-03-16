@@ -1,64 +1,16 @@
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
-let ObjectId = mongoose.SchemaTypes.ObjectId;
-const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin, getbaseBalancesheet} = require('../omodels/helpers/odabaseSchema').toinit();
-const {getFullNameById}= require('../omodels/helpers/helpers').toinit();
- 
-
+const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin, getbaseBalancesheet} = require('../helpers/odabaseSchema').toinit();
+const {getFullNameById}= require('../helpers/utils').toinit();
+const {nstbalanceClass,nstbalanceObject}=require('../staticModels/staticNstbalance').toinit(); 
+const {oReference}=require('./oreference').toinit();
 const nstbalance= (function(){
-  const modelObject={
-    OexercComptaKey:{ type: ObjectId, ref: 'oExercCompta'},
-    OtableauposteKey: { type: ObjectId, ref: 'oTableauPoste'},
-    OreferenceKey:{ type: ObjectId, ref: 'oReference' },  
-    OcompteKey: { type: ObjectId, ref: 'oCompte'}}
 
   const balanceSheetBaseSchema = new Schema(Object.assign({},getbaseBalancesheet,getauditentity),gettoObject);
-  const nstBalanceSchema = extendSchema(balanceSheetBaseSchema, modelObject);
-  class nstbalanceClass {
-    constructor(OexercComptaKey,OtableauposteKey,OreferenceKey,OcompteKey) { 
-      this._oexerccomptaKey=OexercComptaKey,
-      this._otableauposteKey=OtableauposteKey,
-      this._oreferenceKey=OreferenceKey,
-      this._ocompteKey=OcompteKey
-    }
-    get oexerccomptakey() {
-      return this._oexerccomptaKey;
-    }  
-    set oexerccomptakey(OexercComptaKey) {
-      this._oexerccomptaKey = OexercComptaKey;
-      return this;
-    }
-    get otableauposteKey() {
-      return this._otableauposteKey;
-    }  
-    set otableauposteKey(OtableauposteKey) {
-      this._otableauposteKey = OtableauposteKey;
-      return this;
-    }
-    get oreferenceKey() {
-      return this._oreferenceKey;
-    }  
-    set oreferenceKey(OreferenceKey) {
-      this._oreferenceKey = OreferenceKey;
-      return this;
-    }
-    get ocompteKey() {
-      return this._ocompteKey;
-    }  
-    set ocompteKey(OcompteKey) {
-      this._ocompteKey = OcompteKey;
-      return this;
-    }
-  }
+  const nstBalanceSchema = extendSchema(balanceSheetBaseSchema, nstbalanceObject);
 
   nstBalanceSchema.loadClass(nstbalanceClass);
   nstBalanceSchema.plugin(auditEntityPlugin);
-  nstBalanceSchema.set('toObject', {
-    getters: true
-  });
-  nstBalanceSchema.set('toJSON', {
-    getters: true
-  });
   nstBalanceSchema.index(
     {
       OexercComptaKey: 1,
@@ -102,26 +54,29 @@ const nstbalance= (function(){
     toinit: nstbalance.toinit
     };
 
-    require('../config/ohadb').connectserver();
+    require('../../config/ohadb').connectserver();
 const obj ={
   "OexercComptaKey": "5aee0f0023b8a2227003e7b0",
   "OtableauposteKey": "5aee0eff23b8a2227003e7ab",
-  "OreferenceKey": '5aee0efe23b8a2227003e728',
+  "OreferenceKey": '5e6ec287d1f2dd27e8b54eff',
   "NumCompte": "431200",
   "IntitulCompte": "Dotation CENTRAFRIQUE",
   "SoldeCredit": 41326938
 }
 /*   nstbalance.toinit().nstBalance.create(obj); */ 
 // const obj={ CompteNumber: '86'}
-let small = new  nstbalance.toinit().nstBalance(obj);
-//.getFullNameById()
+/*let small = new  nstbalance.toinit().nstBalance(obj);
 small.save(function (err) {
 if (err) return handleError(err);
 // saved!
-}); 
-/*  nstbalance.toinit().nstBalance.find({}, function (err, data) {
+});
+small.getoreference(oReference,function(err,data){
+  if(err) console.log(err)
+  console.log(data);
+}) */
+ nstbalance.toinit().nstBalance.find({}, function (err, data) {
   if (err)
     throw err;
   console.log(data);
 });
-   */
+   

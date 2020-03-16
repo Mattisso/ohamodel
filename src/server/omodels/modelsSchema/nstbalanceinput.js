@@ -1,26 +1,18 @@
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
-const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin, getbaseBalancesheet} = require('../omodels/helpers/odabaseSchema').toinit();
-const {replaceString}= require('../omodels/helpers/helpers').toinit();
- require('../config/ohadb').connectserver();
+const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin, getbaseBalancesheet} = require('../helpers/odabaseSchema').toinit();
+const {replaceString}= require('../helpers/utils').toinit();
+const {nstbalanceinputClass}=require('../staticModels/staticNstbalanceinput').toinit();
 
 const nstbalanceinput= (function(){
   const balanceSheetBaseSchema = new Schema(Object.assign({},getbaseBalancesheet,getauditentity),gettoObject);
   const nstBalanceInputSchema = extendSchema(balanceSheetBaseSchema, {});
-  class nstbalanceinputClass {
-    constructor() { }
-  }
 
   nstBalanceInputSchema.loadClass(nstbalanceinputClass);
   nstBalanceInputSchema.plugin(auditEntityPlugin);
-  nstBalanceInputSchema.set('toObject', {
-    getters: true
-  });
-  nstBalanceInputSchema.set('toJSON', {
-    getters: true
-  });
+
   nstBalanceInputSchema.index({
-    CompteNumber: 1
+    NumCompte: 1
   });
   nstBalanceInputSchema.virtual('CompteNumber')
 .get(function () {
@@ -44,21 +36,24 @@ const nstbalanceinput= (function(){
   module.exports = {
     toinit: nstbalanceinput.toinit
     };
+
+    require('../../config/ohadb').connectserver();
 const obj ={
-  "NumCompte": "431200",
-  "IntitulCompte": "Dotation CENTRAFRIQUE",
+  "NumCompte": "431287",
+  "IntitulCompte": "mensah tesing",
   "SoldeCredit": 41326938
 }
-/*   nstbalanceinput.toinit().nstBalanceInput.create(obj); */ 
+ /// nstbalanceinput.toinit().nstBalanceInput.create(obj); 
 // const obj={ CompteNumber: '86'}
-/*   var small = new nstbalanceinputC(obj);
+  var small = new  nstbalanceinput.toinit().nstBalanceInput(obj);
+ //  small.toBuildBalanceinput(obj);
 small.save(function (err) {
 if (err) return handleError(err);
 // saved!
-}); */
- nstbalanceinput.toinit().nstBalanceInput.find({}, function (err, data) {
+});  
+/*  nstbalanceinput.toinit().nstBalanceInput.find({}, function (err, data) {
   if (err)
     throw err;
   console.log(data);
 });
-  
+   */

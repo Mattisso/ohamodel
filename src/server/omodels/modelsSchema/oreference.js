@@ -1,77 +1,14 @@
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
-const ObjectId = mongoose.SchemaTypes.ObjectId;
-const { getauditentity, gettoObject, extendSchema, auditEntityPlugin} = require('../omodels/helpers/odabaseSchema').toinit();
-const {toLower,toUpper} = require('lodash');
-require('../config/ohadb').connectserver();
-function ocapitalize (val) {
-	if (typeof val !== 'string') val = '';
-	return val.charAt(0).toUpperCase() + val.substring(1);
-  }
-function otolowercase(v) {
-  return toLower(v);
-}
-
-function otoUppercase(v) {
-  return toUpper(v);
-}
+const { getauditentity, gettoObject, extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
+const {initObjOreference,oreferenceClass}=require('../staticModels/staticOreference').toinit();
 
 const oreference = (function () {
-  const modelObject = {
-    RefCode: {
-      type: String,
-      required: true,
-      unique: true,
-      set: otolowercase,
-      get: otoUppercase
-    },
-    Description:
-		{
-			type: String,
-			set: otolowercase,
-			get:ocapitalize
-		},
-    ocomptes: [{
-			_ocompte: {
-				type: ObjectId,
-				ref: 'oCompte'
-			}
-		}]
-  }
   const auditBaseSchema = new Schema(getauditentity, gettoObject);
-  const oReferenceSchema = extendSchema(auditBaseSchema, modelObject);
-  class oreferenceClass {
-    constructor(RefCode, Description) {
-      this._refcode = RefCode;
-      this._description = Description;
-    }
-    get refcode() {
-      return this._refcode;
-    }
-
-    set refcode(RefCode) {
-      this._refcode = RefCode;
-      return this;
-    }
-
-    get description() {
-      return this._description;
-    }
-
-    set refcode(Description) {
-      this._description = Description;
-      return this;
-    }
-  }
-
+  const oReferenceSchema = extendSchema(auditBaseSchema, initObjOreference);
+ 
   oReferenceSchema.loadClass(oreferenceClass);
   oReferenceSchema.plugin(auditEntityPlugin);
-  oReferenceSchema.set('toObject', {
-    getters: true
-  });
-  oReferenceSchema.set('toJSON', {
-    getters: true
-  });
   oReferenceSchema.index({
     RefCode: 1
     //	ocomptes: 1
@@ -104,6 +41,8 @@ const oreference = (function () {
 module.exports = {
   toinit: oreference.toinit
 };
+
+require('../../config/ohadb').connectserver();
 const obj = {
   "RefCode": "AC",
   "Description": "Primes de remboursement des obligations"
@@ -114,9 +53,10 @@ const obj = {
 small.save(function (err) {
 if (err) return handleError(err);
 // saved!
-}); */ 
+});  */
 oreference.toinit().oReference.find({}, function (err, data) {
   if (err)
     throw err;
   console.log(data);
 });
+

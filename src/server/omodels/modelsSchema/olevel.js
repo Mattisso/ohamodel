@@ -1,34 +1,17 @@
 "use strict";
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
-const {getauditentity,gettoObject, extendSchema, auditEntityPlugin} = require('../omodels/helpers/odabaseSchema').toinit();
-require('../config/ohadb').connectserver();
+const {getauditentity,gettoObject, extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
+const {olevelClass, modelObject}=require('../staticModels/staticOlevel').toinit();
+
 const olevel = (function () {
-  const modelObject = {
-    olevelNum: {
-      type: String
-    },
-    olevelDescption: {
-      type: String
-    }
-  }
+
   const auditBaseSchema = new Schema(getauditentity, gettoObject);
   const olevelSchema = extendSchema(auditBaseSchema, modelObject);
-  class olevelClass {
-    constructor(olevelNum, olevelDescption) {
-      this._olevelNum = olevelNum
-        this._olevelDescption = olevelDescption
-    }
-  }
+
   olevelSchema.loadClass(olevelClass);
   olevelSchema.plugin(auditEntityPlugin);
-  olevelSchema.set('toObject', {
-    getters: true
-  });
-  olevelSchema.set('toJSON', {
-    getters: true
-  });
-
+ 
   olevelSchema.index({
     olevelNum: 1
   });
@@ -46,8 +29,10 @@ const olevel = (function () {
 module.exports = {
   toinit: olevel.toinit
 };
+
+require('../../config/ohadb').connectserver();
 const obj = {
-  olevelNum: '2000'
+  olevelNum: '1'
 }
 // oexercice.toinit().oExercice.create(obj);
 // const obj={ olevelNum: '86'}

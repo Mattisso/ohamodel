@@ -1,68 +1,13 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var ObjectId = mongoose.SchemaTypes.ObjectId;
+const mongoose = require('mongoose'),
+Schema = mongoose.Schema;
+const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
+const {ostblareaClass, modelObject}=require('../staticModels/staticOstblarea').toinit()
 
-
-var oStblAreaSchema = new Schema(
-	{
-		AreaShortName:
-		{
-			type: String,
-			required: true,
-			unique: true
-		},
-		AreaLongName:
-		{
-			type: String
-		},
-		OstableauposteKey:
-		{
-			type: ObjectId,
-			ref: 'oStableauPoste',
-			alias: 'ostableauposte_id'
-		}
-	,
-	ocomptes: [{
-		_ocompte: {
-			type: ObjectId,
-			ref: 'oCompte',
-			alias: ''
-		}
-	}
-
-	],
-		CreatedOn:
-		{
-			type: Date,
-			default:
-			Date.now
-		},
-		CreatedBy:
-		{
-			type: String
-		},
-		ModifiedOn:
-		{
-			type: Date,
-			default:
-			Date.now
-		},
-		ModifiedBy:
-		{
-			type: String
-		},
-		isActive:
-		{
-			type: Boolean,
-			default:
-			true
-		}
-	}, { toJSON: { virtuals: true } }
-);
-oStblAreaSchema.set('toObject', { getters: true });
-oStblAreaSchema.set('toJSON', { getters: true });
-
-
+const ostblarea=(function(){
+	const auditBaseSchema = new Schema(getauditentity,gettoObject);
+const oStblAreaSchema = extendSchema(auditBaseSchema, modelObject);
+oStblAreaSchema.loadClass(ostblareaClass);
+oStblAreaSchema.plugin(auditEntityPlugin);
 oStblAreaSchema.index({AreaShortName:1});
 
 oStblAreaSchema.virtual('suboreferences', {
@@ -88,26 +33,17 @@ oStblAreaSchema.virtual('suboreferences', {
   .get(function() {
     return this._ocompte;
   });
-
-
-
-oStblAreaSchema.pre('save',
-function (next) {
-
-
-	var currentDate = new Date();
-
-	if (!this.CreatedOn)
-		this.CreatedOn = currentDate;
-	if (!this.ModifiedOn)
-		this.ModifiedOn = currentDate;
-	if (!this.CreatedBy)
-		this.CreatedBy = 'Admin';
-	if (!this.ModifiedBy)
-		this.ModifiedBy = 'Admin';
-	next();
+  let  oStblArea = mongoose.model('oStblArea', oStblAreaSchema);
+function toinit() {
+	return {
+		oStblArea:oStblArea
+	}
 }
-);
+return {
+	toinit:toinit
+}
 
-var oStblArea = mongoose.model('oStblArea', oStblAreaSchema);
-    module.exports = oStblArea;
+})()
+module.exports = {
+    toinit: ostblarea.toinit
+    };

@@ -105,6 +105,7 @@ const odaStats = (function () {
     };
     function toinit() {
         return {
+            
             gettotalSoldDebit$: gettotalSoldDebit$,
             gettotalSoldeCredit$: gettotalSoldeCredit$,
             odagetObserver: odagetObserver,

@@ -4,7 +4,7 @@ const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin} = require('
 const {ostblareaClass, modelObject}=require('../staticModels/staticOstblarea').toinit()
 
 const ostblarea=(function(){
-	const auditBaseSchema = new Schema(getauditentity,gettoObject);
+const auditBaseSchema = new Schema(getauditentity,gettoObject);
 const oStblAreaSchema = extendSchema(auditBaseSchema, modelObject);
 oStblAreaSchema.loadClass(ostblareaClass);
 oStblAreaSchema.plugin(auditEntityPlugin);
@@ -32,7 +32,7 @@ oStblAreaSchema.virtual('suboreferences', {
   })
   .get(function() {
     return this._ocompte;
-  });
+  }); 
   let  oStblArea = mongoose.model('oStblArea', oStblAreaSchema);
 function toinit() {
 	return {
@@ -44,6 +44,34 @@ return {
 }
 
 })()
-module.exports = {
+module.exports =  {
     toinit: ostblarea.toinit
-    };
+     };
+	require('../../config/ohadb').connectserver();
+	const obj = {
+		"AreaShortName": "ActifCircul",
+		"AreaLongName": "ActifCircul",
+		"ocomptes": [{
+			"CompteNumber": "485"
+		},
+		{
+			"CompteNumber": "486"
+		},
+		{
+			"CompteNumber": "488"
+		}]
+	}
+
+
+// ostblarea.toinit().oStblArea.create(obj);
+// const obj={ olevelNum: '86'}
+ /* var small = ostblarea.toinit().oStblArea(obj);
+small.save(function (err) {
+if (err) return handleError(err);
+// saved!
+}); */
+ostblarea.toinit().oStblArea.find({}, function (err, data) {
+  if (err)
+    throw err;
+  console.log(JSON.stringify(data));
+});

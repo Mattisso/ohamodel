@@ -1,9 +1,50 @@
 "use strict";
-const { find, map, assign, filter, forEach,uniqBy } = require('lodash');
-const { isValid, odauditObj, getStringValue, odareduceArray ,odaExclude} = require('../../SharedKernel/odaUtility').toinit();
+const mongoose = require('mongoose'),
+ ObjectId = mongoose.SchemaTypes.ObjectId;
+const { find, map, assign, filter, forEach } = require('lodash');
+const { isValid, odauditObj, getStringValue, odareduceArray ,odaExclude } = require('../../SharedKernel/odaUtility').toinit();
 const { odaByarg} = require('../../SharedKernel/odaFiltered').toinit();
+const {getTotalCount} = require('../../sharedkernel/odaStats').toinit();
 
 const staticOtableauposte = (function () {
+  const modelObject = {
+    TableauName: {
+      type: String
+    },
+    tableauLongName: {
+      type: String
+    },
+    ostableaupostes: [{
+        OstableauposteKey: {
+          type: ObjectId,
+          ref: 'oStableauPoste'
+        }  
+      }  
+    ]
+  }
+  
+  class otableauposteClass {
+    constructor(TableauName, tableauLongName) {
+  
+      this._TableauName = TableauName;
+      this._tableauLongName = tableauLongName;
+    }
+  
+    get tableauname() {
+      return this._TableauName;
+    }
+    get tableaulongname() {
+      return this._tableauLongName;
+    }
+    set tableauname(TableauName) {
+      this._TableauName = TableauName;
+      return this;
+    }
+    set tableaulongname(tableauLongName) {
+      this._tableauLongName = tableauLongName;
+      return this;
+    }
+  }
   const toOtableauposte = function (o) {
     return ({
       "TableauName": o.TableauName,
@@ -95,6 +136,8 @@ const staticOtableauposte = (function () {
 
   function toinit() {
     return {
+      modelObject:modelObject,
+      otableauposteClass:otableauposteClass,
       toUpdateOtableauposte: toUpdateOtableauposte,
       toOtableauposte: toOtableauposte,
       togetotableauposte: togetotableauposte,

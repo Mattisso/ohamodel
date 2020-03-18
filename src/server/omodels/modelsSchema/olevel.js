@@ -32,15 +32,17 @@ module.exports = {
 
 require('../../config/ohadb').connectserver();
 const obj = {
-  olevelNum: '1'
+	"olevelNum": "1",
+	"olevelDescption": "Grand Total Reference Level 1"
 }
-// oexercice.toinit().oExercice.create(obj);
+
+// olevel.toinit().Olevel.create(obj);
 // const obj={ olevelNum: '86'}
-/*   var small = new oExercice(obj);
+/*   var small = olevel.toinit().Olevel(obj);
 small.save(function (err) {
 if (err) return handleError(err);
 // saved!
-}); */
+}); */ 
 olevel.toinit().Olevel.find({}, function (err, data) {
   if (err)
     throw err;

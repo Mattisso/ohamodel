@@ -1,17 +1,65 @@
-//  async = require('async')
+"use strict";
+const mongoose = require('mongoose'),
+ ObjectId = mongoose.SchemaTypes.ObjectId;
 const { find, map, assign, filter, forEach } = require('lodash');
 const { isValid, odauditObj, getStringValue, odareduceArray } = require('../../SharedKernel/odaUtility').toinit();
-
+const {getTotalCount} = require('../../sharedkernel/odaStats').toinit();
 const staticOstableauposte = (function () {
+  const modelObject = {
+    StableauName: {
+      type: String,
+      unique: true
+    },
+    StbleauLongName: {
+      type: String
+  
+    },
+    OtableauposteKey: {
+      type: ObjectId,
+      ref: 'oTableauPoste'
+    },
+    ostblareas: [{
+        OstblareaKey: {
+          type: ObjectId,
+          ref: 'oStblArea'
+        }
+      }]
+  }
+class ostableauposteClass {
+  constructor(StableauName,StbleauLongName){
+    this._StableauName = StableauName;
+    this._StbleauLongName = StbleauLongName;
+  }
+  
+  get stableauname() {
+    return this._StableauName;
+  }
+  set stableauname(StableauName) {
+    this._StableauName = StableauName;
+    return this;
+  }
+  get stbleaulongname() {
+    return this._StbleauLongName;
+  }
+  set stbleaulongname(StbleauLongName) {
+    this._StbleauLongName = StbleauLongName;
+    return this;
+  }
+}
   const toOstableauposte = function (o) {
-
-    return (
-      {
+    let  _arrOstableaupostes =[];
+    if (isValid(o) === true) {
+      _arrOstableaupostes.push({       
         "StableauName": o.StableauName,
         "StbleauLongName": o.StbleauLongName,
         "ostblareas": o.ostblareaids
 
       });
+      return {
+        "getodaAggreateData":  getTotalCount(_arrOstableaupostes),
+        "_arrOstableaupostes":_arrOstableaupostes.slice()        
+       } 
+    }
   };
   const togetostableauposte = function (argOne) {
     let initObj, odauditobj;
@@ -64,6 +112,8 @@ const staticOstableauposte = (function () {
   function toinit() {
 
     return {
+      modelObject:modelObject,
+      ostableauposteClass:ostableauposteClass,
       toUpdateOstableauposte: toUpdateOstableauposte,
       toOstableauposte: toOstableauposte,
       getobjOstableauposte: getobjOstableauposte,
@@ -75,11 +125,8 @@ const staticOstableauposte = (function () {
   return {
     toinit: toinit
   };
-
-
-
-
 })();
 module.exports = {
   toinit: staticOstableauposte.toinit
 };
+

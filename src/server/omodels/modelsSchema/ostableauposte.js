@@ -1,102 +1,65 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var ObjectId = mongoose.SchemaTypes.ObjectId;
+const mongoose = require('mongoose'),
+Schema = mongoose.Schema;
+const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
+const {ostableauposteClass, modelObject}=require('../staticModels/staticOstableauposte').toinit()
 
-var oStableauPosteSchema = new Schema(
-	{
-		StableauName:
-		{
-			type: String,
-			unique: true
-		},
-		StbleauLongName:
-		{
-			type: String
+const ostableauposte = (function () {
+	const auditBaseSchema = new Schema(getauditentity, gettoObject);
+	const oStableauPosteSchema = extendSchema(auditBaseSchema, modelObject);
+	oStableauPosteSchema.loadClass(ostableauposteClass);
+	oStableauPosteSchema.plugin(auditEntityPlugin);
+	oStableauPosteSchema.index({
+		StableauName: 1
+	});
 
-		},
-		OtableauposteKey:
-		{
-			type: ObjectId,
-			ref: 'oTableauPoste'
-		}
-		,
-		ostblareas: [{
-			OstblareaKey: {
-				type: ObjectId,
-				ref: 'oStblArea'
-			}
-		}
+	oStableauPosteSchema.virtual('ostblarea').set(function (ostblarea) {
+		this.OstblareaKey = ostblarea;
+	}).get(function () {
+		return this.OstblareaKey;
+	});
 
-		],
-		CreatedOn:
-		{
-			type: Date,
-			default:
-				Date.now
-		},
-		CreatedBy:
-		{
-			type: String
-		},
-		ModifiedOn:
-		{
-			type: Date,
-			default:
-				Date.now
-		},
-		ModifiedBy:
-		{
-			type: String
-		},
-		isActive:
-		{
-			type: Boolean,
-			default:
-				true
-		}
-	}, { toJSON: { virtuals: true } }
-);
+	let oStableauPoste = mongoose.model('oStableauPoste', oStableauPosteSchema);
 
-
-oStableauPosteSchema.index({ StableauName: 1 });
-
-oStableauPosteSchema.virtual('ostblarea').set(function (ostblarea) {
-	this.OstblareaKey = ostblarea;
-}).get(function () {
-	return this.OstblareaKey;
-});
-
-/*
+	/*
 	oStableauPosteSchema.virtual('subostblareas', {
-		ref: 'oStblArea', // The model to use
-		localField: '_id', // Find people where `localField`
-		foreignField: 'OstableauposteKey', // is equal to `foreignField`
-		// If `justOne` is true, 'members' will be a single doc as opposed to
-		// an array. `justOne` is false by default.
-		justOne: false
-	  });*/
+	ref: 'oStblArea', // The model to use
+	localField: '_id', // Find people where `localField`
+	foreignField: 'OstableauposteKey', // is equal to `foreignField`
+	// If `justOne` is true, 'members' will be a single doc as opposed to
+	// an array. `justOne` is false by default.
+	justOne: false
+	});*/
 
-
-
-oStableauPosteSchema.pre('save',
-	function (next) {
-
-
-		var currentDate = new Date();
-
-		if (!this.CreatedOn)
-			this.CreatedOn = currentDate;
-		if (!this.ModifiedOn)
-			this.ModifiedOn = currentDate;
-		if (!this.CreatedBy)
-			this.CreatedBy = 'Admin';
-		if (!this.ModifiedBy)
-			this.ModifiedBy = 'Admin';
-		next();
+	function toinit() {
+		return {
+			oStableauPoste: oStableauPoste
+		}
 	}
-);
+
+	return {
+		toinit: toinit
+	}
+
+})()
+module.exports = {
+	toinit: ostableauposte.toinit
+};
+require('../../config/ohadb').connectserver();
+const obj = {
+  "StableauName": "tblAmortImmo",
+  "StbleauLongName": "Amortissements",
+  "ostblareas": [{ "AreaShortName": "AmortImmo" }]}
 
 
-
-var oStableauPoste = mongoose.model('oStableauPoste', oStableauPosteSchema);
-module.exports = oStableauPoste;
+// ostableauposte.toinit().oStableauPoste.create(obj);
+// const obj={ olevelNum: '86'}
+/*var small = ostableauposte.toinit().oStableauPoste(obj);
+small.save(function (err) {
+if (err) return handleError(err);
+// saved!
+}); */
+ostableauposte.toinit().oStableauPoste.find({}, function (err, data) {
+if (err)
+  throw err;
+console.log(JSON.stringify(data));
+});

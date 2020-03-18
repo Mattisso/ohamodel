@@ -4,7 +4,7 @@ const mongoose = require('mongoose'),
  ObjectId = mongoose.SchemaTypes.ObjectId;
 const { find, map, assign, filter, forEach } = require('lodash');
 const { isValid, odauditObj, getStringValue, odareduceArray } = require('../../SharedKernel/odaUtility').toinit();
-const { odauditObj, getStringValue,getTotalCount} = require('../../sharedkernel/odaStats').toinit();
+const {getTotalCount} = require('../../sharedkernel/odaStats').toinit();
 const staticOstblarea= (function () {
   const modelObject = {
     AreaShortName: {
@@ -26,7 +26,7 @@ const staticOstblarea= (function () {
     ]
   }
   class ostblareaClass {
-    constructor(AreaShortName, AreaLongName ='undefined', ocomptes = []) {
+    constructor(AreaShortName, AreaLongName ='undefined') {
   
       this._AreaShortName = AreaShortName;
       this._AreaLongName = AreaLongName;
@@ -38,10 +38,10 @@ const staticOstblarea= (function () {
     get arealongname() {
       return this._AreaLongName;
     }
-    get ocomptes() {
+  /*   get ocomptes() {
       return this._ocomptes;
     }
-  
+   */
     set areashortname(AreaShortName) {
       this._AreaShortName = AreaShortName;
       return this;
@@ -50,10 +50,10 @@ const staticOstblarea= (function () {
       this._AreaLongName = AreaLongName;
       return this;
     }
-    set ocomptes(ocomptes) {
+   /*  set ocomptes(ocomptes) {
       this._ocomptes = ocomptes;
       return this;
-    }
+    } */
   }
   let  _arrOstblareas =[];
   const toOstblarea = function (o) {
@@ -141,9 +141,6 @@ function toinit() {
 return {
   toinit: toinit
 };
-
-
-
 
 })();
 module.exports= {

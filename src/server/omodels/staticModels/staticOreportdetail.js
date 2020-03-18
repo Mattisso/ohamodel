@@ -1,10 +1,72 @@
 
 "use strict";
-const { find, map, assign, filter, forEach,maxBy,ary,toString,toNumber} = require('lodash');
-const {staticObjects} =require('../../SharedKernel/index').toinit();
-const { isValid, odauditObj, getStringValue} = require('../../SharedKernel/odaUtility').toinit();
+const mongoose = require('mongoose'),
+ ObjectId = mongoose.SchemaTypes.ObjectId;
+const { find, map, assign, filter, forEach } = require('lodash');
+const { isValid, odauditObj, getStringValue } = require('../../SharedKernel/odaUtility').toinit();
+const {getTotalCount} = require('../../sharedkernel/odaStats').toinit();
 
-const staticOreportdetail = (function () {
+
+const staticOreportdetail = (function () { 
+const modelObject = {
+	OtableauposteKey: {
+		type: ObjectId,
+		ref: 'oTableauPoste'
+	},
+	OreferenceKey: {
+		type: ObjectId,
+		ref: 'oReference'
+	},
+	olevelKey: {
+		type: ObjectId,
+		ref: 'olevel'
+	},
+	SortOrder: {
+		type: Number,
+	default:
+		1
+	}
+}
+
+class oreportDetailClass {
+	constructor(OtableauposteKey, OreferenceKey, olevelKey, SortOrder) {
+
+		this._SortOrder = SortOrder;
+		this._OtableauposteKey = OtableauposteKey;
+		this._OreferenceKey = OreferenceKey;
+		this._olevelKey = olevelKey;
+	}
+
+	get sortorder() {
+		return this._SortOrder;
+	}
+	set sortorder(SortOrder) {
+		this._SortOrder = SortOrder;
+		return this;
+	}
+	get otableaupostekey() {
+		return this._OtableauposteKey;
+	}
+	set otableaupostekey(OtableauposteKey) {
+		this._OtableauposteKey = OtableauposteKey;
+		return this;
+	}
+	get oreferencekey() {
+		return this._OreferenceKey;
+	}
+	set oreferencekey(OreferenceKey) {
+		this._OreferenceKey = OreferenceKey;
+		return this;
+	}
+	get olevelkey() {
+		return this._olevelKey;
+	}
+	set olevelkey(olevelKey) {
+		this._olevelKey = olevelKey;
+		return this;
+	}
+}
+
   const toOreportDetail = function (o) {
     return ({
       "OtableauposteKey": o.OtableauposteKey,
@@ -71,6 +133,8 @@ const staticOreportdetail = (function () {
   }
   function toinit() {
     return {
+      modelObject:modelObject,
+      oreportDetailClass:oreportDetailClass,
       toOreportDetail: toOreportDetail,
       togetoreportdetail: togetoreportdetail,
       getObjoreportdetail: getObjoreportdetail,

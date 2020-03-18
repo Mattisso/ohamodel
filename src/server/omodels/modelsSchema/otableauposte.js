@@ -13,8 +13,7 @@ const otableauposte = (function(){
 		this.OstableauposteKey = ostableauposte;
 		}).get(function() {
 		return this.OstableauposteKey;
-		});
-	
+		});	
 /*
 	otableauPosteSchema.virtual('subtableaupostes', {
 		ref: 'oStableauPoste', // The model to use

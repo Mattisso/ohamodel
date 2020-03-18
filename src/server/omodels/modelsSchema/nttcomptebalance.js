@@ -59,10 +59,7 @@ nttCompteBalanceSchema.method('addBalanceDetail', function (obj) {
 const requestparamid= this.id;
 nttcomptebalancedetails.push(toCompteBalanceDetail(requestparamid,obj)
   );
-  //const odasum =getodaAggreateData(nttcomptebalancedetails);
- /*  console.log(odasum);
-  return odasum; */
-  // return this.model('Animal').find({ type: this.type }, cb);
+
 });
 
 

@@ -1,65 +1,15 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var ObjectId = mongoose.SchemaTypes.ObjectId;
+const mongoose = require('mongoose'),
+Schema = mongoose.Schema;
+const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
+const {oreportDetailClass, modelObject}=require('../staticModels/staticOreportdetail').toinit();
 
-var oReportDetailSchema = new Schema({
+const  oreportdetail = (function(){
+  const auditBaseSchema = new Schema(getauditentity, gettoObject);
+	const oReportDetailSchema = extendSchema(auditBaseSchema, modelObject);
+	oReportDetailSchema.loadClass(oreportDetailClass);
+	oReportDetailSchema.plugin(auditEntityPlugin);
 
-  OtableauposteKey:
-  {
-    type: ObjectId,
-    ref: 'oTableauPoste',
-    default: '000000000000000000000000'
-
-  },
-  OreferenceKey:
-  {
-    type: ObjectId,
-    ref: 'oReference',
-    default: '000000000000000000000000'
-  },
-  olevelKey:
-  {
-    type: ObjectId,
-    ref: 'olevel',
-    default: '000000000000000000000000'
-  },
-  SortOrder:
-  {
-    type: Number,
-    default: 1
-  },
-
-  CreatedOn:
-  {
-    type: Date,
-    default:
-      Date.now
-  },
-  CreatedBy:
-  {
-    type: String
-  },
-  ModifiedOn:
-  {
-    type: Date,
-    default:
-      Date.now
-  },
-  ModifiedBy:
-  {
-    type: String
-  },
-  isActive:
-  {
-    type: Boolean,
-    default:
-      true
-  }
-}, { toJSON: { virtuals: true } }
-);
-
-oReportDetailSchema.set('toObject', { getters: true });
-oReportDetailSchema.set('toJSON', { getters: true });
+  let oReportDetail = mongoose.model('oReportDetail', oReportDetailSchema);
 
 oReportDetailSchema.index(
   {
@@ -69,8 +19,6 @@ oReportDetailSchema.index(
   }
 );
 
-
-
 oReportDetailSchema.virtual('otableauposte')
   .set(function (otableauposte) {
     this._otableauposte = otableauposte;
@@ -79,23 +27,17 @@ oReportDetailSchema.virtual('otableauposte')
     return this._otableauposte;
   });
 
-oReportDetailSchema.pre('save',
-  function (next) {
-
-    var currentDate = new Date();
-
-    if (!this.CreatedOn)
-      this.CreatedOn = currentDate;
-    if (!this.ModifiedOn)
-      this.ModifiedOn = currentDate;
-    if (!this.CreatedBy)
-      this.CreatedBy = 'Admin';
-    if (!this.ModifiedBy)
-      this.ModifiedBy = 'Admin';
-    next();
+  function toinit(){
+   return {
+    oReportDetail:oReportDetail
+   } 
   }
-);
+  return {
+    toinit:toinit
+  }
+})()
+module.exports={
+  toinit:oreportdetail.toinit
+}
 
-var oReportDetail = mongoose.model('oReportDetail', oReportDetailSchema);
 
-module.exports = oReportDetail;

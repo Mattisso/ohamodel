@@ -10,7 +10,6 @@ const {queryselector, getSoldeDebit,getSoldeCredit}=require('./objQryParams').to
 const {getodaAggreateData} = require('../../SharedKernel/odaStats').toinit();
 const {queryselector, getSoldeDebit,getSoldeCredit}=require('./objQryParams').toinit();
 
-
 const staticNttcomptebalance = (function () {
 	const modelObject = {
 		OexercComptaKey: {

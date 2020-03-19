@@ -1,7 +1,6 @@
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin, getbaseBalancesheet} = require('../helpers/odabaseSchema').toinit();
-const {replaceString}= require('../helpers/utils').toinit();
 const {nttcomptebalanceDetailClass,modelObject}=require('../staticModels/staticNttcomptebalanceDetail').toinit();
 
 const nttcomptebalancedetail=(function(){
@@ -28,8 +27,6 @@ nttcomptebalanceDetailSchema.index(
 }
 );
 
-
-
 let  nttCompteBalanceDetail = mongoose.model('nttCompteBalanceDetail', nttcomptebalanceDetailSchema);
   function toinit(){
     return {
@@ -43,7 +40,3 @@ let  nttCompteBalanceDetail = mongoose.model('nttCompteBalanceDetail', nttcompte
 module.exports={
 toinit:nttcomptebalancedetail.toinit
 }
-
-//makethisavailabletoourusersinourNodeapplications
-//if (typeofmodule != "undefined" && module.exports)
-module.exports = nttCompteBalanceDetail;

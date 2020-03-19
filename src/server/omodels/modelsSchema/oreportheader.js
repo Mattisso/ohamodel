@@ -2,10 +2,7 @@ const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
 const {oreportHeaderClass, modelObject}=require('../staticModels/staticOreportheader').toinit()
-
-c
 const  oreportheader=(function(){
-
 	const auditBaseSchema = new Schema(getauditentity, gettoObject);
 	const oReportHeaderSchema = extendSchema(auditBaseSchema, modelObject);
 	oReportHeaderSchema.loadClass(oreportHeaderClass);
@@ -37,7 +34,7 @@ const  oreportheader=(function(){
 		toinit:toinit
 	}
 })();
-model.exports={
-	toinit:oreportheader.toinit()
+module.exports = {
+	toinit:oreportheader.toinit
 
 }

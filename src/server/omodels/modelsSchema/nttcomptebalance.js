@@ -2,21 +2,15 @@
 "use strict";
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const ObjectId = mongoose.SchemaTypes.ObjectId;
-const {toCompteBalanceDetail} = require('../features/nttcomptebalancedetail/staticNttcomptebalanceDetail').toinit();
-const {assign} = require('lodash');
-const {auditObj}=require('./odaAudit').toinit();
-//const {getodaAggreateData}=require('../SharedKernel/odaStats').toinit();
+const {toCompteBalanceDetail} = require('../staticModels/staticNttcomptebalanceDetail').toinit();
 const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
 const {nttcomptebalanceClass, modelObject}=require('../staticModels/staticNttcomptebalance').toinit();
 
 const nttcomptebalance = (function () {
- 
   const auditBaseSchema = new Schema(getauditentity, gettoObject);
 	const nttCompteBalanceSchema = extendSchema(auditBaseSchema, modelObject);
 	nttCompteBalanceSchema.loadClass(nttcomptebalanceClass);
 	nttCompteBalanceSchema.plugin(auditEntityPlugin);
-
 nttCompteBalanceSchema.index(
 	{
 	OexercComptaKey: 1,
@@ -33,8 +27,6 @@ nttcomptebalancedetails.push(toCompteBalanceDetail(requestparamid,obj)
   );
 
 });
-
-
 
 nttCompteBalanceSchema.method('hasitem', function (obj) {
   return this.nttcomptebalancedetails.indexOf(obj) !== -1;

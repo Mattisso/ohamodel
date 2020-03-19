@@ -19,8 +19,8 @@ isActive: {type: Boolean, default:true }
 const getbaseBalancesheet={    
         NumCompte: {type: String, required: true },
         IntitulCompte:{type: String, required: true },
-        SoldeDebit: {type: Number},
-        SoldeCredit: {type: Number }
+        SoldeDebit: {type: Number, default:0},
+        SoldeCredit: {type: Number, default:0 }
 }
 const gettoObject = {toObject: {
 virtuals: true  },

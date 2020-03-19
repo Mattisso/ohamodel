@@ -1,10 +1,63 @@
 "use strict";
 const { find, map, assign, filter, forEach } = require('lodash');
-const { isValid, odauditObj, getStringValue, replaceNullToZero } = require('../../SharedKernel/odaUtility').toinit();
-const { getodafilter } = require('../../SharedKernel/odaFiltered').toinit();
-const { combineLatest, Observable, of, pipe, from } = require('rxjs');
+const { odauditObj, getStringValue, replaceNullToZero,getodaAggreateData} = require('../../sharedkernel/odaStats').toinit();
+const {isValid}=require('../../sharedkernel/odaUtility').toinit();
 
 const staticNttcomptebalance = (function () {
+
+  const modelObject = {
+
+    nttcomptebalanceKey:
+      {
+        type: ObjectId,
+        ref: 'nttCompteBalance'
+      }
+  }
+  
+  class nttcomptebalanceDetailClass {
+    constructor(NumCompte, IntitulCompte, SoldeCredit, SoldeDebit) {
+        this._NumCompte = NumCompte;
+        this._IntitulCompte = IntitulCompte;
+        this._SoldeCredit = SoldeCredit;
+        this._SoldeDebit = SoldeDebit;   
+      }
+      get numcompte() {
+        this._NumCompte;
+      }
+      set numcompte(NumCompte) {
+        this._NumCompte = NumCompte;
+        return this;
+      }
+      get intitulcompte() {
+        this._IntitulCompte;
+      }
+      set intitulcompte(IntitulCompte) {
+        this._IntitulCompte = IntitulCompte;
+        return this;
+      }
+      get soldecredit() {
+        this._SoldeCredit;
+      }
+      set soldecredit(SoldeCredit) {
+        this._SoldeCredit = SoldeCredit;
+        return this;
+      }
+      get comptenumber() {
+        this._CompteNumber;
+      }
+      set comptenumber(CompteNumber) {
+        this._CompteNumber = CompteNumber;
+        return this;
+      }
+      get soldedebit() {
+        this._SoldeDebit;
+      }
+      set soldedebit(SoldeDebit) {
+        this._SoldeDebit = SoldeDebit;
+        return this;
+      }  
+  
+  }
   const togetnttcomptebalancedetail = function (argOne) {
     let initObj,
     odauditobj;
@@ -33,11 +86,13 @@ const staticNttcomptebalance = (function () {
     }
     return selector;
   }
+
   const toCompteBalanceDetail = function (requestparamid, obj) {
-    let isvalid = queryselector(obj);
+    let isvalid = queryselector(obj),
+     _arrbalanceDetails =[];
     if (isvalid === true  && replaceNullToZero(obj.SoldeDebit)!==0
     || isvalid === true  && replaceNullToZero(obj.SoldeCredit)!==0 ) {
-      return ({
+      _arrbalanceDetails.push({
         "nttcomptebalanceKey": requestparamid,
         "NumCompte": obj.NumCompte,
         "IntitulCompte": obj.IntitulCompte,
@@ -45,6 +100,11 @@ const staticNttcomptebalance = (function () {
         "SoldeDebit": replaceNullToZero(obj.SoldeDebit)
       });
     }
+    return {
+      "getodaAggreateData":  getodaAggreateData(_arrbalanceDetails),
+      "_arrbalanceDetails":_arrbalanceDetails.slice()
+      
+      };
   };
   const toLoadCompteBalanceDetail = function (obj) {
     let isvalid = queryselector(obj);
@@ -95,6 +155,8 @@ const staticNttcomptebalance = (function () {
   };
   function toinit() {
     return {
+      modelObject:modelObject,
+      nttcomptebalanceDetailClass:nttcomptebalanceDetailClass,
       toCompteBalanceDetail: toCompteBalanceDetail,
       togetnttcomptebalancedetail: togetnttcomptebalancedetail,
       toLoadCompteBalanceDetail:toLoadCompteBalanceDetail,

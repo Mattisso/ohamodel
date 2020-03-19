@@ -7,43 +7,15 @@ const {toCompteBalanceDetail} = require('../features/nttcomptebalancedetail/stat
 const {assign} = require('lodash');
 const {auditObj}=require('./odaAudit').toinit();
 //const {getodaAggreateData}=require('../SharedKernel/odaStats').toinit();
+const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
+const {nttcomptebalanceClass, modelObject}=require('../staticModels/staticNttcomptebalance').toinit();
 
 const nttcomptebalance = (function () {
-  const _nttcomptebalance=  {    
-      OexercComptaKey:
-      {
-          type: ObjectId,
-          ref: 'oExercCompta',
-      },
-      OtableauposteKey:
-      {
-          type: ObjectId,
-          ref: 'oTableauPoste',
-      },
-      OreferenceKey:
-      {
-          type: ObjectId,
-          ref: 'oReference'
-      },
-     totalSoldeDebit: {
-        type: Number, default:0},
-  
-      totalSoldeCredit: {
-        type: Number, default:0},
-   // AmortProvAmnt: Number,
-      //provamnt:Number,
-      amntNet: Number,
-    }
-    function createOdaObj() {
-      return assign({},_nttcomptebalance,auditObj);
-    }
-  
-  let  nttCompteBalanceSchema = new Schema(
-  createOdaObj()
-);
-
-nttCompteBalanceSchema.set('toObject', { getters: true });
-nttCompteBalanceSchema.set('toJSON', { getters: true });
+ 
+  const auditBaseSchema = new Schema(getauditentity, gettoObject);
+	const nttCompteBalanceSchema = extendSchema(auditBaseSchema, modelObject);
+	nttCompteBalanceSchema.loadClass(nttcomptebalanceClass);
+	nttCompteBalanceSchema.plugin(auditEntityPlugin);
 
 nttCompteBalanceSchema.index(
 	{
@@ -125,22 +97,6 @@ nttCompteBalanceSchema.virtual('comptebalancedetail')
     return this._comptebalancedetail;
   });
  
-nttCompteBalanceSchema.pre('save',
-    function (next) {
-        // get the current date
-        var currentDate = new Date();
-
-        if (!this.CreatedOn)
-            this.CreatedOn = currentDate;
-        if (!this.ModifiedOn)
-            this.ModifiedOn = currentDate;
-        if (!this.CreatedBy)
-            this.CreatedBy = 'Admin';
-        if (!this.ModifiedBy)
-            this.ModifiedBy = 'Admin';
-        next();
-    } 
-);
 
 let nttCompteBalance = mongoose.model('nttCompteBalance', nttCompteBalanceSchema);
 

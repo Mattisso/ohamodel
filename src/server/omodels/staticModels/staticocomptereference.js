@@ -1,11 +1,109 @@
 
 "use strict";
+const mongoose = require('mongoose'),
+ObjectId = mongoose.SchemaTypes.ObjectId;
 const { find, map, assign } = require('lodash');
-
 const { isValid, getStringValue, odauditObj } = require('../../SharedKernel/odaUtility').toinit();
+const {find,  map,  assign,  filter,  forEach} = require('lodash');
+const {  odauditObj,  getStringValue,  replaceNullToZero,  getodaAggreateData} = require('../../sharedkernel/odaStats').toinit();
 
-var staticocomptereference = (function () {
+const staticOcomptereference = (function () {
+  const modelObject = {
 
+    OcompteKey: {
+      type: ObjectId,
+      ref: 'oCompte'
+    },
+    OstblareaKey: {
+      type: ObjectId,
+      ref: 'oStblArea'
+  
+    },
+    OreferenceKey: {
+      type: ObjectId,
+      ref: 'oReference'
+    },
+    OtableauposteKey: {
+      type: ObjectId,
+      ref: 'oTableauPoste'
+    },
+    OstableauposteKey: {
+      type: ObjectId,
+      ref: 'oStableauPoste'
+    },
+    Exception: {
+      type: Number,
+    default:
+      0
+    },
+    Taux: {
+      type: Number,
+    default:
+      1
+    }
+  
+  }
+  
+  class ocompteReferenceClass {
+    constructor(OcompteKey, OstblareaKey, OreferenceKey, OtableauposteKey, OstableauposteKey, Exception, Taux) {
+      this._OcompteKey = OcompteKey;
+      this._OstblareaKey = OstblareaKey;
+      this._OreferenceKey = OreferenceKey;
+      this._OstableauposteKey = OstableauposteKey;
+      this._OtableauposteKey = OtableauposteKey;
+      this._Exception = Exception;
+      this._Taux = Taux;
+    }
+  
+    get ostableaupostekey() {
+      return this._OstableauposteKey;
+    }
+    set ostableaupostekey(OstableauposteKey) {
+      this._OstableauposteKey = OstableauposteKey;
+      return this;
+    }
+  
+    get ocomptekey() {
+      return this._OcompteKey;
+    }
+    set ocomptekey(OcompteKey) {
+      this._OcompteKey = OcompteKey;
+      return this;
+    }
+  
+    get ostblareakey() {
+      return this._OstblareaKey;
+    }
+    set ostblareakey(OstblareaKey) {
+      this._OstblareaKey = OstblareaKey;
+      return this;
+    }
+  
+    get otableaupostekey() {
+      return this._OtableauposteKey;
+    }
+    set otableaupostekey(OtableauposteKey) {
+      this._OtableauposteKey = OtableauposteKey;
+      return this;
+    }
+  
+    get exception() {
+      return this._Exception;
+    }
+    set exception(Exception) {
+      this._Exception = Exception;
+      return this;
+    }
+  
+    get taux() {
+      return this._Taux;
+    }
+    set taux(Taux) {
+      this._Taux = Taux;
+      return this;
+    }
+  
+  }
   const toOcomptereference = function (o) {
     return (
       {
@@ -116,6 +214,8 @@ var staticocomptereference = (function () {
   };
   function toinit() {
     return {
+      modelObject:modelObject,
+      ocompteReferenceClass:ocompteReferenceClass,
       toOcomptereference: toOcomptereference,
       getObjOcomptereference:getObjOcomptereference,
       getObjOcomptereferenceCombined:getObjOcomptereferenceCombined,
@@ -129,10 +229,11 @@ var staticocomptereference = (function () {
 }
 )();
 module.exports = {
-  toinit: staticocomptereference.toinit
+  toinit: staticOcomptereference.toinit
 };
 
 
 
 
 
+ 

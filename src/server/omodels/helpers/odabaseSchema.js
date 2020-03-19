@@ -27,65 +27,70 @@ virtuals: true  },
 toJSON: { virtuals:true }
     }
 
-    const auditEntityPlugin= function (schema, options) {
-    schema.set('toObject', {
-        getters: true
-        });
-        schema.set('toJSON', {
-        getters: true
-        });
-      //  let self = this;
-    schema.pre(['save','create'], function(next) {        
-        if (!this.CreatedOn)
-        this.CreatedOn = currentDate;
-    if (!this.ModifiedOn)
-        this.ModifiedOn = currentDate;
-    if (!this.CreatedBy)
-        this.CreatedBy = 'Admin';
-    if (!this.ModifiedBy)
-        this.ModifiedBy = 'Admin';
-    next();        
-        });
-    };
-
-    const auditUserEntityPlugin= function (schema, options) {
+    const auditEntityPlugin = function (schema, options) {
         schema.set('toObject', {
             getters: true
-            });
-            schema.set('toJSON', {
+        });
+        schema.set('toJSON', {
             getters: true
-            });
-          //  let self = this;
-        schema.pre(['save','create'], function(next) {     
-            let user = this;   
+        });
+        //  let self = this;
+        schema.pre(['save', 'create'], function (next) {
             if (!this.CreatedOn)
-            this.CreatedOn = currentDate;
-        if (!this.ModifiedOn)
-            this.ModifiedOn = currentDate;
-        if (!this.CreatedBy)
-            this.CreatedBy = 'Admin';
-        if (!this.ModifiedBy)
-            this.ModifiedBy = 'Admin';
-        next(); 
-        
-        // only hash the password if it has been modified (or is new)
-  if (!user.isModified('password')) return next();
+                this.CreatedOn = currentDate;
+            if (!this.ModifiedOn)
+                this.ModifiedOn = currentDate;
+            if (!this.CreatedBy)
+                this.CreatedBy = 'Admin';
+            if (!this.ModifiedBy)
+                this.ModifiedBy = 'Admin';
+            next();
+        });
+    };
+    
 
-  // generate a salt
-  bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
-    if (err) return next(err);
-
-    // hash the password using our new salt
-    bcrypt.hash(user.password, salt, function (err, hash) {
-      if (err) return next(err);
-
-      // override the cleartext password with the hashed one
-      user.password = hash;
-      next();
-    });
-  });
+    const auditUserEntityPlugin = function (schema, options) {
+        schema.set('toObject', {
+            getters: true
+        });
+        schema.set('toJSON', {
+            getters: true
+        });
+        //  let self = this;
+        schema.pre(['save', 'create'], function (next) {
+            let user = this;
+            if (!this.CreatedOn)
+                this.CreatedOn = currentDate;
+            if (!this.ModifiedOn)
+                this.ModifiedOn = currentDate;
+            if (!this.CreatedBy)
+                this.CreatedBy = 'Admin';
+            if (!this.ModifiedBy)
+                this.ModifiedBy = 'Admin';
+            next();
+    
+            // only hash the password if it has been modified (or is new)
+            if (!user.isModified('password'))
+                return next();
+    
+            // generate a salt
+            bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+                if (err)
+                    return next(err);
+    
+                // hash the password using our new salt
+                bcrypt.hash(user.password, salt, function (err, hash) {
+                    if (err)
+                        return next(err);
+    
+                    // override the cleartext password with the hashed one
+                    user.password = hash;
+                    next();
+                });
             });
-        };
+        });
+    };
+    
 
 function toinit() {
 return {
@@ -95,7 +100,8 @@ extendSchema: extendSchema,
 getauditentity:getauditentity,
 getbaseBalancesheet:getbaseBalancesheet,
 gettoObject:gettoObject,
-auditEntityPlugin:auditEntityPlugin
+auditEntityPlugin:auditEntityPlugin,
+auditUserEntityPlugin:auditUserEntityPlugin
 };
 }
 return {

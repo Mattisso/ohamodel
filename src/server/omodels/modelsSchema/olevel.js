@@ -5,7 +5,6 @@ const {getauditentity,gettoObject, extendSchema, auditEntityPlugin} = require('.
 const {olevelClass, modelObject}=require('../staticModels/staticOlevel').toinit();
 
 const olevel = (function () {
-
   const auditBaseSchema = new Schema(getauditentity, gettoObject);
   const olevelSchema = extendSchema(auditBaseSchema, modelObject);
 
@@ -15,6 +14,21 @@ const olevel = (function () {
   olevelSchema.index({
     olevelNum: 1
   });
+  let DetailCount = 0,
+  arrArg = [];
+  olevelSchema.static('BuildnttBalanceinput', function (body) {
+    arrArg.push(
+    {
+      "olevelNum" : body.olevelNum,
+      "olevelDescption": body.olevelDescption 
+    });  
+     
+  DetailCount = arrArg.length;  
+  return {  
+  DetailCount: DetailCount,
+  arrArg:arrArg.slice()  
+  };
+  })
 
   let Olevel = mongoose.model('Olevel', olevelSchema)
   function toinit() {
@@ -38,11 +52,13 @@ const obj = {
 
 // olevel.toinit().Olevel.create(obj);
 // const obj={ olevelNum: '86'}
-/*   var small = olevel.toinit().Olevel(obj);
-small.save(function (err) {
+var small = olevel.toinit().Olevel(obj);
+   var small = olevel.toinit().Olevel;
+   console.log(small.BuildnttBalanceinput(obj))
+/* small.save(function (err) {
 if (err) return handleError(err);
 // saved!
-}); */ 
+});  */
 olevel.toinit().Olevel.find({}, function (err, data) {
   if (err)
     throw err;

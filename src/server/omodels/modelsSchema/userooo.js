@@ -1,21 +1,14 @@
 /*eslint-disable no-unused-vars */
 "use strict";
-const mongoose = require('mongoose'),
-Schema = mongoose.Schema;
-const  bcrypt = require('bcryptjs');
- let  SALT_WORK_FACTOR = 10,
-   MAX_LOGIN_ATTEMPTS = 5,
+var mongoose = require('mongoose'),
+  Schema = mongoose.Schema,
+  ObjectId = mongoose.SchemaTypes.ObjectId,
+  bcrypt = require('bcryptjs'),
+  SALT_WORK_FACTOR = 10,
+  MAX_LOGIN_ATTEMPTS = 5,
   LOCK_TIME = 2 * 60 * 60 * 1000;
-const {getauditentity, gettoObject ,extendSchema, auditUserEntityPlugin} = require('../helpers/odabaseSchema').toinit();
-const {userClass, modelObject}=require('../staticModels/staticUser').toinit();
 
-  const user = (function () {
-    const auditBaseSchema = new Schema(getauditentity,gettoObject);
-    const UserSchema= extendSchema(auditBaseSchema, modelObject);
-  //  UserSchema.loadClass(userClass);
-   // ocompteschema.plugin(auditEntityPlugin);
-  
-/* var UserSchema = new Schema({
+var UserSchema = new Schema({
   username: {
     type: String, required: true,
     index: { unique: true },
@@ -46,7 +39,7 @@ const {userClass, modelObject}=require('../staticModels/staticUser').toinit();
       type: String
     },
 } , { toJSON: { virtuals: true } }
-) */;
+);
 UserSchema.set('toObject', { getters: true });
 UserSchema.set('toJSON', { getters: true });
 // expose enum on the model
@@ -180,33 +173,24 @@ UserSchema.statics.getAuthenticated = function (username, password, cb) {
     return ret;
   }
 });
-    let User = mongoose.model('User', UserSchema);
-     
-    function toinit() {
-      return {
-        User: User
-      }
-    }
-    return {
-      toinit: toinit
-    }
-  })();
-  module.exports = {
-    toinit: user.toinit
-  }
-  
-  require('../../config/ohadb').connectserver();
-  const obj = { "username": "akoli", "role": "user", "password": "Password123"}
-  // ocompte.toinit().Ocompte.create(obj);
-  // const obj={ CompteNumber: '86'}
-  /* var small = new user.toinit().User(obj);
-  small.save(function (err) {
-  if (err) return handleError(err);
-  // saved!
-  }) ;   */
-  user.toinit().User.find({}, function (err, data) {
-    if (err)
-      throw err;
-    console.log(data);
-  }); 
-   
+
+
+var User = mongoose.model('User', UserSchema);
+module.exports = User;
+
+
+require('../../config/ohadb').connectserver();
+const obj = { "username": "efoe", "role": "user", "password": "Password123"}
+// ocompte.toinit().Ocompte.create(obj);
+// const obj={ CompteNumber: '86'}
+/* var small = new User(obj);
+small.save(function (err) {
+if (err) return handleError(err);
+// save
+}) ;   */
+User.find({}, function (err, data) {
+  if (err)
+    throw err;
+  console.log(data);
+});
+ 

@@ -2,6 +2,8 @@
 'use strict';
 // const _ = require('lodash');
 let mongoose = require('mongoose');
+const  bcrypt = require('bcryptjs');
+let SALT_WORK_FACTOR = 10;
 //Schema = mongoose.Schema;
 // const Schema = mongoose.Schema;
 const odabaseSchema = (function () {
@@ -57,7 +59,7 @@ toJSON: { virtuals:true }
             getters: true
         });
         //  let self = this;
-        schema.pre(['save', 'create'], function (next) {
+     /*    schema.pre(['save', 'create'], function (next) {
             let user = this;
             if (!this.CreatedOn)
                 this.CreatedOn = currentDate;
@@ -88,7 +90,7 @@ toJSON: { virtuals:true }
                     next();
                 });
             });
-        });
+        }); */
     };
     
 

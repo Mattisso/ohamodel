@@ -2,7 +2,6 @@
 const {find,map,assign} = require('lodash');
 const {getStringValue, isValid, odauditObj}=require('../../SharedKernel/odaUtility').toinit();
 
-
 const staticUser = (function () {
     const modelObject = {
       username: {
@@ -38,29 +37,28 @@ const staticUser = (function () {
     }
   
     class userClass {
-      constructor(username, role, password, loginAttempts = 0, lockUntil = 0) {
-  
-        this._username = username;
+      constructor( username, role, password, loginAttempts = 0, lockUntil = 0) {  
+       this._username = username;
         this._role = role;
         this._password = password;
         this._loginAttempts = loginAttempts;
-        this._lockUntil = lockUntil;
+        this._lockUntil = lockUntil; 
       }
   
-      get lockuntil() {
+     get lockuntil() {
         return this._lockUntil;
       }
       set lockuntil(lockUntil) {
         this._lockUntil = lockUntil;
         return this;
       }
-      get username() {
+       get username() {
         return this._username;
       }
       set username(username) {
         this._username = username;
         return this;
-      }
+      } 
       get role() {
         return this._role;
       }

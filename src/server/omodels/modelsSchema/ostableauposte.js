@@ -44,7 +44,7 @@ const ostableauposte = (function () {
 module.exports = {
 	toinit: ostableauposte.toinit
 };
-require('../../config/ohadb').connectserver();
+// require('../../config/ohadb').connectserver();
 const obj = {
   "StableauName": "tblAmortImmo",
   "StbleauLongName": "Amortissements",
@@ -58,8 +58,8 @@ small.save(function (err) {
 if (err) return handleError(err);
 // saved!
 }); */
-ostableauposte.toinit().oStableauPoste.find({}, function (err, data) {
+/*ostableauposte.toinit().oStableauPoste.find({}, function (err, data) {
 if (err)
   throw err;
 console.log(JSON.stringify(data));
-});
+});*/

@@ -37,7 +37,7 @@ const nstbalanceinput= (function(){
     toinit: nstbalanceinput.toinit
     };
 
-    require('../../config/ohadb').connectserver();
+  //  require('../../config/ohadb').connectserver();
 const obj ={
   "NumCompte": "431287",
   "IntitulCompte": "mensah tesing",
@@ -45,12 +45,12 @@ const obj ={
 }
  /// nstbalanceinput.toinit().nstBalanceInput.create(obj); 
 // const obj={ CompteNumber: '86'}
-  var small = new  nstbalanceinput.toinit().nstBalanceInput(obj);
+ // var small = new  nstbalanceinput.toinit().nstBalanceInput(obj);
  //  small.toBuildBalanceinput(obj);
-small.save(function (err) {
-if (err) return handleError(err);
+//small.save(function (err) {
+//if (err) return handleError(err);
 // saved!
-});  
+//});  
 /*  nstbalanceinput.toinit().nstBalanceInput.find({}, function (err, data) {
   if (err)
     throw err;

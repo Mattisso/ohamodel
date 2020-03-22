@@ -3,8 +3,8 @@ const mongoose = require('mongoose'),
   Schema = mongoose.Schema,
   ObjectId = mongoose.SchemaTypes.ObjectId;
 const { find, map, assign, filter, forEach } = require('lodash');
-const { odauditObj, getStringValue, replaceNullToZero,getodaAggreateData} = require('../../sharedkernel/odaStats').toinit();
-const {isValid}=require('../../sharedkernel/odaUtility').toinit();
+const { odauditObj, getStringValue, getodaAggreateData} = require('../../sharedkernel/odaStats').toinit();
+const {isValid,replaceNullToZero}=require('../../sharedkernel/odaUtility').toinit();
 
 const staticNttcomptebalance = (function () {
 
@@ -91,23 +91,18 @@ const staticNttcomptebalance = (function () {
   }
 
   const toCompteBalanceDetail = function (requestparamid, obj) {
-    let isvalid = queryselector(obj),
-     _arrbalanceDetails =[];
+    let isvalid = queryselector(obj);
     if (isvalid === true  && replaceNullToZero(obj.SoldeDebit)!==0
     || isvalid === true  && replaceNullToZero(obj.SoldeCredit)!==0 ) {
-      _arrbalanceDetails.push({
+      return  {
         "nttcomptebalanceKey": requestparamid,
         "NumCompte": obj.NumCompte,
         "IntitulCompte": obj.IntitulCompte,
         "SoldeCredit": replaceNullToZero(obj.SoldeCredit),
         "SoldeDebit": replaceNullToZero(obj.SoldeDebit)
-      });
-    }
-    return {
-      "getodaAggreateData":  getodaAggreateData(_arrbalanceDetails),
-      "_arrbalanceDetails":_arrbalanceDetails.slice()
-      
       };
+    }
+ 
   };
   const toLoadCompteBalanceDetail = function (obj) {
     let isvalid = queryselector(obj);

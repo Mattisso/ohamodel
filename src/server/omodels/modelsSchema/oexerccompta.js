@@ -25,7 +25,7 @@ const oexerccompta = (function () {
 module.exports = {
   toinit: oexerccompta.toinit
 };
-require('../../config/ohadb').connectserver();
+// require('../../config/ohadb').connectserver();
 
 const obj = {
   oExercComptaId: '2006'
@@ -38,8 +38,8 @@ small.save(function (err) {
     return handleError(err);
   // saved!
 }); */ 
- oexerccompta.toinit().oExercCompta.find({}, function (err, data) {
+/* oexerccompta.toinit().oExercCompta.find({}, function (err, data) {
   if (err)
     throw err;
   console.log(data);
-});  
+});  */

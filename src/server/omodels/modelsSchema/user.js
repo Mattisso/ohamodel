@@ -159,7 +159,7 @@ UserSchema.statics.getAuthenticated = function (username, password, cb) {
     toinit: user.toinit
   }
   
-  require('../../config/ohadb').connectserver();
+  // require('../../config/ohadb').connectserver();
   const obj = { "username": "akoli", "role": "user", "password": "Password123"}
   // ocompte.toinit().Ocompte.create(obj);
   // const obj={ CompteNumber: '86'}
@@ -168,9 +168,9 @@ UserSchema.statics.getAuthenticated = function (username, password, cb) {
   if (err) return handleError(err);
   // saved!
   }) ;   */
-  user.toinit().User.find({}, function (err, data) {
+  /*user.toinit().User.find({}, function (err, data) {
     if (err)
       throw err;
     console.log(data);
-  }); 
+  }); */
    

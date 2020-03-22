@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const {toCompteBalanceDetail} = require('../staticModels/staticNttcomptebalanceDetail').toinit();
 const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
 const {nttcomptebalanceClass, modelObject}=require('../staticModels/staticNttcomptebalance').toinit();
-
+const {getTotalCount, getTotalSoldedebit, getTotalSoldecredit}=require('../../SharedKernel/odaStats').toinit();
 const nttcomptebalance = (function () {
   const auditBaseSchema = new Schema(getauditentity, gettoObject);
 	const nttCompteBalanceSchema = extendSchema(auditBaseSchema, modelObject);
@@ -65,9 +65,9 @@ nttCompteBalanceSchema.virtual('comptebalancedetails')
       'OexercCompta': this.OexercComptaKey,
       'Otableauposte': this.OtableauposteKey,
       'Oreference': this.OreferenceKey,
-      'totalSoldeDebit': this.totalSoldeDebit, //odasum.totalSoldeDebit?odasum.totalSoldeDebit:0,
-      'totalSoldeCredit': this.totalSoldeCredit, //odasum.totalSoldeCredit?odasum.totalSoldeCredit:0,
-      'DetailCount': nttcomptebalancedetails.length?nttcomptebalancedetails.length:0,      
+      'totalSoldeDebit': getTotalSoldedebit(this.nttcomptebalancedetails), //this.totalSoldeDebit, //odasum.totalSoldeDebit?odasum.totalSoldeDebit:0,
+      'totalSoldeCredit': getTotalSoldecredit( this.nttcomptebalancedetails),//this.totalSoldeCredit, //odasum.totalSoldeCredit?odasum.totalSoldeCredit:0,
+      'DetailCount': getTotalCount(this.nttcomptebalancedetails), // nttcomptebalancedetails.length?nttcomptebalancedetails.length:0,      
       'nttcomptebalancedetails': nttcomptebalancedetails.slice()
     };
   });

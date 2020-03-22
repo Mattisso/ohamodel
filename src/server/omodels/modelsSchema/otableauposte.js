@@ -41,7 +41,7 @@ module.exports={
 	toinit: otableauposte.toinit
 } 
 
-require('../../config/ohadb').connectserver();
+// require('../../config/ohadb').connectserver();
 const obj = {
     "tblRefCode": "BZ",
     "Description": "Total General ( I +  II +  III +  IV)",
@@ -66,9 +66,9 @@ small.save(function (err) {
 if (err) return handleError(err);
 // saved!
 });  */
- otableauposte.toinit().oTableauPoste.find({}, function (err, data) {
+ /*otableauposte.toinit().oTableauPoste.find({}, function (err, data) {
 if (err)
   throw err;
 console.log(JSON.stringify(data));
-});
+});*/
  

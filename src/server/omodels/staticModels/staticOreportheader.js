@@ -31,7 +31,7 @@ class oreportHeaderClass {
 		this._OreferenceKey = OreferenceKey;
 	}
 
-	get sortorderH() {
+	/* get sortorderH() {
 		return this._SortOrderH;
 	}
 	set SortOrderH(SortOrderH) {
@@ -51,7 +51,7 @@ class oreportHeaderClass {
 	set oreferencekey(OreferenceKey) {
 		this._OreferenceKey = OreferenceKey;
 		return this;
-	}
+	} */
 
 }
 

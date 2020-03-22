@@ -42,7 +42,7 @@ module.exports = {
   toinit: oreference.toinit
 };
 
-require('../../config/ohadb').connectserver();
+// require('../../config/ohadb').connectserver();
 const obj = {
   "RefCode": "AC",
   "Description": "Primes de remboursement des obligations"
@@ -54,9 +54,9 @@ small.save(function (err) {
 if (err) return handleError(err);
 // saved!
 });  */
-oreference.toinit().oReference.find({}, function (err, data) {
+/*oreference.toinit().oReference.find({}, function (err, data) {
   if (err)
     throw err;
   console.log(data);
-});
+});*/
 

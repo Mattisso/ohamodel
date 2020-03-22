@@ -54,7 +54,7 @@ const nttbalance= (function(){
     toinit: nttbalance.toinit
     };
 
-    require('../../config/ohadb').connectserver();
+   // require('../../config/ohadb').connectserver();
 const obj ={
   "OexercComptaKey": "5aee0f0023b8a2227003e7b0",
   "OtableauposteKey": "5aee0eff23b8a2227003e7ab",
@@ -74,9 +74,9 @@ small.getoreference(oReference,function(err,data){
   if(err) console.log(err)
   console.log(data);
 }) */
- nttbalance.toinit().nttBalance.find({}, function (err, data) {
+ /*nttbalance.toinit().nttBalance.find({}, function (err, data) {
   if (err)
     throw err;
   console.log(data);
-});
+});*/
    

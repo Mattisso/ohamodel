@@ -108,6 +108,8 @@ const odaStats = (function () {
             getTotalCount:getTotalCount,
             gettotalSoldDebit$: gettotalSoldDebit$,
             gettotalSoldeCredit$: gettotalSoldeCredit$,
+            getTotalSoldecredit:getTotalSoldecredit,
+            getTotalSoldedebit:getTotalSoldedebit,
             odagetObserver: odagetObserver,
             gettotalSolde$: gettotalSolde$,
             getodaAggreateData: getodaAggreateData

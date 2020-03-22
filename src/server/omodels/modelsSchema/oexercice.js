@@ -26,7 +26,7 @@ const oexercice= (function(){
     toinit: oexercice.toinit
     };
 
-    require('../../config/ohadb').connectserver();
+  //  require('../../config/ohadb').connectserver();
 const obj = {
   oExerciceEncour: '2000'
 }
@@ -37,9 +37,9 @@ small.save(function (err) {
 if (err) return handleError(err);
 // saved!
 }); */
-oexercice.toinit().oExercice.find({}, function (err, data) {
+/*oexercice.toinit().oExercice.find({}, function (err, data) {
   if (err)
     throw err;
   console.log(data);
-});
+});*/
  

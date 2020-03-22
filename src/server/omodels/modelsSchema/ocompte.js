@@ -25,7 +25,7 @@ const ocompte= (function(){
     toinit: ocompte.toinit
     };
 
-    require('../../config/ohadb').connectserver();
+  //  require('../../config/ohadb').connectserver();
 const obj = {
   CompteNumber: '86'
 }
@@ -36,9 +36,9 @@ small.save(function (err) {
 if (err) return handleError(err);
 // saved!
 }) ; */   
-ocompte.toinit().Ocompte.find({}, function (err, data) {
+/*ocompte.toinit().Ocompte.find({}, function (err, data) {
   if (err)
     throw err;
   console.log(data);
-});
+});*/
  

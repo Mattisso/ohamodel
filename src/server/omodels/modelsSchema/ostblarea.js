@@ -47,7 +47,7 @@ return {
 module.exports =  {
     toinit: ostblarea.toinit
      };
-	require('../../config/ohadb').connectserver();
+	// require('../../config/ohadb').connectserver();
 	const obj = {
 		"AreaShortName": "ActifCircul",
 		"AreaLongName": "ActifCircul",
@@ -69,9 +69,10 @@ module.exports =  {
 small.save(function (err) {
 if (err) return handleError(err);
 // saved!
-}); */
+}); *//*
 ostblarea.toinit().oStblArea.find({}, function (err, data) {
   if (err)
     throw err;
   console.log(JSON.stringify(data));
 });
+*/

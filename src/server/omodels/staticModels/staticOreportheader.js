@@ -1,5 +1,7 @@
 
 "use strict";
+const mongoose = require('mongoose');
+const ObjectId = mongoose.SchemaTypes.ObjectId;
 const { find, map, assign, filter, forEach,maxBy,ary,toString,toNumber} = require('lodash');
 const {staticObjects} =require('../../SharedKernel/index').toinit();
 const { isValid, odauditObj, getStringValue, replaceNullToZero } = require('../../SharedKernel/odaUtility').toinit();

@@ -9,44 +9,12 @@ const  bcrypt = require('bcryptjs');
 const {getauditentity, gettoObject ,extendSchema, auditUserEntityPlugin} = require('../helpers/odabaseSchema').toinit();
 const {userClass, modelObject}=require('../staticModels/staticUser').toinit();
 
-  const user = (function () {
+const user = (function () {
     const auditBaseSchema = new Schema(getauditentity,gettoObject);
     const UserSchema= extendSchema(auditBaseSchema, modelObject);
   //  UserSchema.loadClass(userClass);
    // ocompteschema.plugin(auditEntityPlugin);
-  
-/* var UserSchema = new Schema({
-  username: {
-    type: String, required: true,
-    index: { unique: true },
-    lowercase: true, trim: true
-  },
-  role: { type: String, default: 'user' },
-  password: { type: String, required: true },
-  loginAttempts: { type: Number, required: true, default: 0 },
-  lockUntil: { type: Number },
-  CreatedOn:
-    {
-      type: Date,
-      default:
-        Date.now
-    },
-  CreatedBy:
-    {
-      type: String
-    },
-  ModifiedOn:
-    {
-      type: Date,
-      default:
-        Date.now
-    },
-  ModifiedBy:
-    {
-      type: String
-    },
-} , { toJSON: { virtuals: true } }
-) */;
+   
 UserSchema.set('toObject', { getters: true });
 UserSchema.set('toJSON', { getters: true });
 // expose enum on the model
@@ -63,9 +31,7 @@ UserSchema.virtual('isLocked').get(function () {
 
 UserSchema.pre('save', function (next) {
   var user = this;
-
   var currentDate = new Date();
-
   if (!this.CreatedOn)
     this.CreatedOn = currentDate;
   if (!this.ModifiedOn)
@@ -74,8 +40,6 @@ UserSchema.pre('save', function (next) {
     this.CreatedBy = 'Admin';
   if (!this.ModifiedBy)
     this.ModifiedBy = 'Admin';
-
-
 
   // only hash the password if it has been modified (or is new)
   if (!user.isModified('password')) return next();

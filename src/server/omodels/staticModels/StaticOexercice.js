@@ -1,6 +1,8 @@
 
 "use strict";
 const _ = require('lodash');
+const mongoose = require('mongoose'),
+ ObjectId = mongoose.SchemaTypes.ObjectId;
 
 const {getobjOexercCompta} =require('../../SharedKernel/staticObjects').toinit();
 const { isValid, odauditObj, getStringValue, replaceNullToZero } = require('../../SharedKernel/odaUtility').toinit();

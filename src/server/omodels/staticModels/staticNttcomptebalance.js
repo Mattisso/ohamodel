@@ -6,9 +6,8 @@ const {getodaAggreateData} = require('../../SharedKernel/odaStats').toinit();
 const { isValid, odauditObj, getStringValue, replaceNullToZero,odareduceArray} = require('../../SharedKernel/odaUtility').toinit();
  const {getobjOreference,getobjOexercCompta,getobjOtableauposte}=require('../../SharedKernel/staticObjects').toinit();
 const { getodafilter,odaByarg } = require('../../SharedKernel/odaFiltered').toinit();
-const {queryselector, getSoldeDebit,getSoldeCredit}=require('./objQryParams').toinit();
-const {getodaAggreateData} = require('../../SharedKernel/odaStats').toinit();
-const {queryselector, getSoldeDebit,getSoldeCredit}=require('./objQryParams').toinit();
+const {queryselector, getSoldeDebit,getSoldeCredit}=require('../../sharedkernel/objQryParams').toinit();
+
 
 const staticNttcomptebalance = (function () {
 	const modelObject = {

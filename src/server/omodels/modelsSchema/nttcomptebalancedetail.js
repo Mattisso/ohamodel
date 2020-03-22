@@ -5,10 +5,10 @@ const {nttcomptebalanceDetailClass,modelObject}=require('../staticModels/staticN
 
 const nttcomptebalancedetail=(function(){
   const balanceSheetBaseSchema = new Schema(Object.assign({},getbaseBalancesheet,getauditentity),gettoObject);
-  const nstBalanceInputSchema = extendSchema(balanceSheetBaseSchema, modelObject);
+  const nttcomptebalanceDetailSchema = extendSchema(balanceSheetBaseSchema, modelObject);
 
-  nstBalanceInputSchema.loadClass(nttcomptebalanceDetailClass);
-  nstBalanceInputSchema.plugin(auditEntityPlugin);
+  nttcomptebalanceDetailSchema.loadClass(nttcomptebalanceDetailClass);
+  nttcomptebalanceDetailSchema.plugin(auditEntityPlugin);
   
 nttcomptebalanceDetailSchema.virtual('nttcomptebalance')
 .set(function (nttcomptebalance) {

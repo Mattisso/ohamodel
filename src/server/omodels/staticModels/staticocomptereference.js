@@ -2,10 +2,8 @@
 "use strict";
 const mongoose = require('mongoose'),
 ObjectId = mongoose.SchemaTypes.ObjectId;
-const { find, map, assign } = require('lodash');
 const { isValid, getStringValue, odauditObj } = require('../../SharedKernel/odaUtility').toinit();
 const {find,  map,  assign,  filter,  forEach} = require('lodash');
-const {  odauditObj,  getStringValue,  replaceNullToZero,  getodaAggreateData} = require('../../sharedkernel/odaStats').toinit();
 
 const staticOcomptereference = (function () {
   const modelObject = {

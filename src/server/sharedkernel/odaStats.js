@@ -11,7 +11,8 @@ const {
 const {
     isValid,
     replaceNullToZero,
-    oarray
+    oarray,
+     odaremoveDupnumcompte
 } = require('./odaUtility').toinit();
 
 const odaStats = (function () {
@@ -22,7 +23,7 @@ const odaStats = (function () {
 
     const getTotalSoldedebit = function (_arr) {
         //  let totalSoldedebit = 0;
-        const arr = oarray(_arr);
+        const arr = odaremoveDupnumcompte(oarray(_arr));
         for (let item of arr) {
             if (isValid(item.SoldeDebit) === true) {
                 TotalSoldeDebit += replaceNullToZero(item.SoldeDebit)
@@ -37,8 +38,8 @@ const odaStats = (function () {
     };
 
     const getTotalSoldecredit = function (_arr) {
-        const arr = oarray(_arr);
-        for (let item of arr) {
+        const arr = odaremoveDupnumcompte(oarray(_arr));   
+             for (let item of arr) {
             if (isValid(item.SoldeCredit) === true) {
                 TotalSoldeCredit += replaceNullToZero(item.SoldeCredit)
             } else if (isValid(item.totalSoldeCredit) === true) {
@@ -59,7 +60,7 @@ const odaStats = (function () {
     };
 
     const getObservertotalSoldDebit = pipe(
-            map(n => n),
+            map(n => odaremoveDupnumcompte(n)),
             mergeMap(item => item),
             reduce((acc, item) => acc + item.SoldeDebit ? item.SoldeDebit : (acc + item.totalSoldeDebit), 0),
             catchError());

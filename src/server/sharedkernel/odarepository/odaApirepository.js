@@ -1,7 +1,7 @@
 "use strict";
 const{forEach,merge} = require('lodash');
 const { Observable } = require('rxjs');
-const { inArray, isValid} = require('./odaUtility').toinit();
+const { inArray, isValid} = require('../odaUtility').toinit();
 
 const odaApirepository = (function () {
   function SearchByid(model, ObjParams) {

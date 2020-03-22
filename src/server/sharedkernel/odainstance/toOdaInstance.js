@@ -17,13 +17,19 @@ const toOdaInstance = (function () {
         }
   };
   const tocreateChildObject = function (model, o, requestparamid, fn) {
-    if (isValid(o) === true) {
+    if (isValid(o) === true && isValid(fn)==true) {
       return new model(fn(requestparamid, o));
     }
+    else if (isValid(o) === true && isValid(fn)==false){
+      return new model(requestparamid, o);
+  }
+  else {
+      return new Error(
+        ` missing some arguments`);
+      }
   };
   const tocreateChildObjFromArray = function (model, arr, requestparamid, f) {
-    const newArray = [];
-    forEach(arr, function (o) {
+    const newArray = [];    forEach(arr, function (o) {
       const obj = tocreateChildObject(model, o, requestparamid, f);
       if ((!hasitem(obj, newArray)===true))
         newArray.push(obj);
@@ -89,17 +95,6 @@ const toOdaInstance = (function () {
     });
     return newArray;
   };
-  const toapicreateinstance= function(model, argone, requestparamid, fn) {
-    if(isValid(requestparamid)===false){
-      return tocreateinstance(model,argone,fn);
-    }else if (isValid(requestparamid)===true){
-      return tocreatechildinstance(model, argone, requestparamid, fn);
-    }
-    else {
-      return new Error(
-        ` missing some arguments`);
-      }
-  }
   const tocreateinstance = function (model, argone, f) {
     if (inArray(argone) === false) {
       return tocreateObject(model, argone, f);
@@ -116,13 +111,37 @@ const toOdaInstance = (function () {
       return tocreateChildObjFromArray(model, argone, requestparamid, fn);
     }
   };
+  const toapicreateinstance= function(model, argone, requestparamid, fn) {
+    if(isValid(requestparamid)===false){
+      return tocreateinstance(model,argone,fn);
+    }else if (isValid(requestparamid)===true){
+      return tocreatechildinstance(model, argone, requestparamid, fn);
+    }
+    else {
+      return new Error(
+        ` missing some arguments`);
+      }
+  }
+  
+  const toapiUpdateInstance= function(model, argone, requestparamid, fn) {
+    if(isValid(requestparamid)===false){
+      return toupdateinstance(model,argone,fn);
+    }else if (isValid(requestparamid)===true){
+      return toupdatechildinstance(model, argone, requestparamid, fn);
+    }
+    else {
+      return new Error(
+        ` missing some arguments`);
+      }
+  }
   function toinit() {
     return {
-      toupdateinstance: toupdateinstance,
-      tocreateinstance: tocreateinstance,
-      tocreatechildinstance: tocreatechildinstance,
-      toupdatechildinstance: toupdatechildinstance,
-      toapicreateinstance:toapicreateinstance
+     // toupdateinstance: toupdateinstance,
+     //  tocreateinstance: tocreateinstance,
+     // tocreatechildinstance: tocreatechildinstance,
+  //    toupdatechildinstance: toupdatechildinstance,
+      toapicreateinstance:toapicreateinstance,
+      toapiUpdateInstance:toapiUpdateInstance
     };
   }
   return {

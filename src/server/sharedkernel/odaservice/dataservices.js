@@ -2,7 +2,7 @@
 const{forEach,assign,isUndefined,isNull, map, merge} = require('lodash');
 var async = require('async');
 const { Observable,pipe } = require('rxjs');
-const { inArray, isValid,hasitem } = require('./odaUtility').toinit();
+const { inArray, isValid,hasitem } = require('../odaUtility').toinit();
 
 const dataservices = (function () {
 const odaSearchBy = function (model, option) {

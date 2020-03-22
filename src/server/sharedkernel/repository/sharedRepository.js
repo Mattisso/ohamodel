@@ -1,11 +1,11 @@
 "use strict";
 const _ = require('lodash');
-const Model = require('../omodels/modelsSchema/index').toinit();
-const { getodaindex$ } = require('../SharedKernel/dataservices').toinit();
-const odaObjects = require('../SharedKernel/odaObjects').toinit();
-const {isValid}=require('../SharedKernel/odaUtility').toinit();
-const {getobjOcompte,getobjOstableauposte,getobjOstblarea,getobjOtableauposte,getobjOreference} = require('../SharedKernel/staticObjects').toinit();
-const {getObshareddata$ } = require('../SharedKernel/odaSubscribe').toinit();
+const Model = require('../../omodels/modelsSchema/index').toinit();
+const { getodaindex$ } = require('../odaservice/dataservices').toinit();
+const odaObjects = require('../odaObjects').toinit();
+const {isValid}=require('../odaUtility').toinit();
+const {getobjOcompte,getobjOstableauposte,getobjOstblarea,getobjOtableauposte,getobjOreference} = require('../staticObjects').toinit();
+const {getObshareddata$ } = require('../odaSubscribe').toinit();
 
 const { combineLatest, pipe, concat} = require('rxjs');
 const { map ,shareReplay} = require('rxjs/operators');

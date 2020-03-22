@@ -2,8 +2,8 @@
 const { forEach, assign, isUndefined, isNull, map, merge, find} = require('lodash');
 const async = require('async');
 const { Observable} = require('rxjs');
-const { inArray,  isValid} = require('./odaUtility').toinit();
-const { odaByarg} = require('./odaFiltered').toinit();
+const { inArray,  isValid} = require('../odaUtility').toinit();
+const { odaByarg} = require('../odaFiltered').toinit();
 
 function SearchByid(model, ObjParams) {
   const getquery = model.findOne({

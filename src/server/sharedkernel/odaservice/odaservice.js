@@ -1,11 +1,11 @@
 "use strict";
 const _ = require('lodash');
-const {odaupdate$, odasave$, odaseedUsersave$,odaDel$,odaLoadupdate$,odaSearchBy}=require('./odarepository').toinit();
-const {odaApiBulkDel$, odaApisave$,odaApiupdate$, odapiDel$}=require('./odaApirepository').toinit();
+const {odaupdate$, odasave$, odaseedUsersave$,odaDel$,odaLoadupdate$,odaSearchBy}=require('../odarepository/odarepository').toinit();
+const {odaApiBulkDel$, odaApisave$,odaApiupdate$, odapiDel$}=require('../odarepository/odaApirepository').toinit();
 //const {toInitializeInstance}=require('./toInitializeInstance').toinit();
-const {toUpdateInstance,toseedInstance, toInitializeInstance,toapiUpdateInstance, toapiUpdateOtherInstance,toInitializeOtherInstance,toseedOthersInstance,toapiInitializeInstance,toapiInitcomptebalanceInstance,toapiInitcomptabalanceDetailsInstance,toapiupdatecomptebalanceInstance,toapiupdatecomptabalanceDetailsInstance}=require('./odainstance/index').toinit();
+const {toUpdateInstance,toseedInstance, toInitializeInstance,toapiUpdateInstance, toapiUpdateOtherInstance,toInitializeOtherInstance,toseedOthersInstance,toapiInitializeInstance,toapiInitcomptebalanceInstance,toapiInitcomptabalanceDetailsInstance,toapiupdatecomptebalanceInstance,toapiupdatecomptabalanceDetailsInstance}=require('../odainstance/index').toinit();
 //const {toseedInstance}=require('./toSeedInstance').toinit();
-const {isValid } = require('./odaUtility').toinit();
+const {isValid } = require('../odaUtility').toinit();
 
 const  odaservice = (function () {
   const svcapiupdate$=function(model, obj,reqparmid) {

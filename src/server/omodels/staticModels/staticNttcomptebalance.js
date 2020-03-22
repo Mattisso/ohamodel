@@ -1,6 +1,5 @@
 "use strict";
-const mongoose = require('mongoose'),
-ObjectId = mongoose.SchemaTypes.ObjectId;
+
 const { find, map, assign } = require('lodash');
 const {getodaAggreateData} = require('../../SharedKernel/odaStats').toinit();
 const { isValid, odauditObj, getStringValue, replaceNullToZero,odareduceArray} = require('../../SharedKernel/odaUtility').toinit();
@@ -8,121 +7,8 @@ const { isValid, odauditObj, getStringValue, replaceNullToZero,odareduceArray} =
 const { getodafilter,odaByarg } = require('../../SharedKernel/odaFiltered').toinit();
 const {queryselector, getSoldeDebit,getSoldeCredit}=require('../../sharedkernel/objQryParams').toinit();
 
-
 const staticNttcomptebalance = (function () {
-	const modelObject = {
-		OexercComptaKey: {
-			type: ObjectId,
-			ref: 'oExercCompta',
-		},
-		OtableauposteKey: {
-			type: ObjectId,
-			ref: 'oTableauPoste',
-		},
-		OreferenceKey: {
-			type: ObjectId,
-			ref: 'oReference'
-		},
-		totalSoldeDebit: {
-			type: Number,
-		default:
-			0
-		},
-
-		totalSoldeCredit: {
-			type: Number,
-		default:
-			0
-		},
-
-		amntNet: {
-			type: Number,
-		default:
-			0
-		}
-
-	}
-
-	class nttcomptebalanceClass {
-		constructor(OexercComptaKey, OtableauposteKey, OreferenceKey, totalSoldeDebit = 0, totalSoldeCredit = 0, amntNet = 0) {
-
-			this._OexercComptaKey = OexercComptaKey;
-			this._OtableauposteKey = OtableauposteKey;
-			this._OreferenceKey = OreferenceKey;
-			this._totalSoldeDebit = totalSoldeDebit;
-			this._totalSoldeCredit = totalSoldeCredit;
-			this._amntNet = amntNet;
-		}
-
-		get amntnet() {
-			return this._amntNet;
-		}
-		set amntnet(amntNet) {
-			this._amntNet = amntNet;
-			return this;
-		}
-
-		get oreferencekey() {
-			return this._OreferenceKey;
-		}
-		set oreferencekey(OreferenceKey) {
-			this._OreferenceKey = OreferenceKey;
-			return this;
-		}
-
-		get otableaupostekey() {
-			return this._OtableauposteKey;
-		}
-		set otableaupostekey(OtableauposteKey) {
-			this._OtableauposteKey = OtableauposteKey;
-			return this;
-		}
-
-		get totalsoldedebit() {
-			return this._totalSoldeDebit;
-		}
-		set totalsoldedebit(totalSoldeDebit) {
-			this._totalSoldeDebit = totalSoldeDebit;
-			return this;
-		}
-
-		get totalsoldecredit() {
-			return this._totalSoldeCredit;
-		}
-		set totalsoldecredit(totalSoldeCredit) {
-			this._totalSoldeCredit = totalSoldeCredit;
-			return this;
-		}
-
-		get oexerccomptakey() {
-			return this._OexercComptaKey;
-		}
-		set oexerccomptakey(OexercComptaKey) {
-			this._OexercComptaKey = OexercComptaKey;
-			return this;
-		}
-
-	}
-
-	const _togetcomptebalance = function (obj) {
-		let initObj,
-		odauditobj;
-		initObj = {
-			"id": obj.id,
-			"OreferenceKey": getStringValue(obj.OreferenceKey),
-			"OtableauposteKey": getStringValue(obj.OtableauposteKey),
-			"OexercComptaKey": getStringValue(obj.OexercComptaKey),
-			"totalSoldeDebit": (obj.totalSoldeDebit),
-			"totalSoldeCredit": (obj.totalSoldeCredit),
-			//  "AmortProvAmnt": obj.AmortProvAmnt,
-			//   "provamnt": obj.provamnt,
-			//   "amntNet": (obj.amntNet),
-		};
-		odauditobj = odauditObj(obj);
-		return assign({}, initObj, odauditobj);
-	};
-
-	const togetcomptebalances = function (argOne) {
+		const togetcomptebalances = function (argOne) {
 		let initObj,
 		odauditobj;
 		return map(argOne, function (obj) {
@@ -282,9 +168,7 @@ const staticNttcomptebalance = (function () {
 	}
 	function toinit() {
 		return {
-			modelObject: modelObject,
-			nttcomptebalanceClass: nttcomptebalanceClass,
-			togetcomptebalances: togetcomptebalances,
+		togetcomptebalances: togetcomptebalances,
 			tonttcomptebalance: tonttcomptebalance,
 			getObjcomptebalance: getObjcomptebalance,
 			toUpdatecomptebalancedata: toUpdatecomptebalancedata,

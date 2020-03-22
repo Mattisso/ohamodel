@@ -4,7 +4,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const {toCompteBalanceDetail} = require('../staticModels/staticNttcomptebalanceDetail').toinit();
 const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
-const {nttcomptebalanceClass, modelObject}=require('../staticModels/staticNttcomptebalance').toinit();
+const {odaremoveDupnumcompte} = require('../../sharedkernel/odaUtility').toinit();
+
+const {nttcomptebalanceClass, modelObject}=require('../modelClass/nttcomptebalanceClass').toinit();
 const {getTotalCount, getTotalSoldedebit, getTotalSoldecredit}=require('../../SharedKernel/odaStats').toinit();
 const nttcomptebalance = (function () {
   const auditBaseSchema = new Schema(getauditentity, gettoObject);
@@ -61,14 +63,16 @@ nttCompteBalanceSchema.virtual('comptebalancedetails')
   nttCompteBalanceSchema.method('getData', function () {
     //const odasum =getodaAggreateData(nttcomptebalancedetails);
     return {
-      'id': this.id,
-      'OexercCompta': this.OexercComptaKey,
-      'Otableauposte': this.OtableauposteKey,
-      'Oreference': this.OreferenceKey,
+      "isActive": this.isActive,
+      '_id': this._id,
+      'OexercComptaKey': this.OexercComptaKey,
+      'OtableauposteKey': this.OtableauposteKey,
+      'OreferenceKey': this.OreferenceKey,
       'totalSoldeDebit': getTotalSoldedebit(this.nttcomptebalancedetails), //this.totalSoldeDebit, //odasum.totalSoldeDebit?odasum.totalSoldeDebit:0,
       'totalSoldeCredit': getTotalSoldecredit( this.nttcomptebalancedetails),//this.totalSoldeCredit, //odasum.totalSoldeCredit?odasum.totalSoldeCredit:0,
-      'DetailCount': getTotalCount(this.nttcomptebalancedetails), // nttcomptebalancedetails.length?nttcomptebalancedetails.length:0,      
-      'nttcomptebalancedetails': nttcomptebalancedetails.slice()
+      'DetailCount': getTotalCount(odaremoveDupnumcompte(this.nttcomptebalancedetails)), // nttcomptebalancedetails.length?
+      'id': this.id,    
+      'nttcomptebalancedetails': odaremoveDupnumcompte(nttcomptebalancedetails.slice())
     };
   });
 
@@ -89,7 +93,6 @@ nttCompteBalanceSchema.virtual('comptebalancedetail')
     return this._comptebalancedetail;
   });
  
-
 let nttCompteBalance = mongoose.model('nttCompteBalance', nttCompteBalanceSchema);
 
   function toinit() {

@@ -3,15 +3,28 @@ const _ = require('lodash');
 const {isValid,getStringValue, replaceNullToZero,hasitem} = require('./odaUtility').toinit();
 const {toapiUpdateInstance}=require('../odainstance/toOdaInstance').toinit();
 const toUpdateInstance = (function () {
-    
-    
-    
-    
-    
-    const svctoUpdateInstance = function (body, fn) {
-        return toapiUpdateInstance(body, fn);
-    };
-    
+        
+    function toupdateBuild(requestBody, fn) {
+        let DetailCount = 0,
+        arrArg = [];
+        const _getdata = toapiUpdateInstance(requestBody, fn);
+        // console.log(JSON.stringify(_getdata));
+        if ((!hasitem(_getdata, arrArg)))
+          arrArg.push(_getdata);
+        if (isValid(arrArg.length) === true) {
+          DetailCount = arrArg.length;
+        }
+        return {
+          DetailCount: DetailCount,
+          arrArg: arrArg.slice()
+        };
+      }
+       const toUpdateInstance = function (body, f) {
+        const data = toupdateBuild(body, f);
+        return data;
+      };
+      
+ 
     const toOdaUpdate$ = function (requestBody, toupdobj, fn) {
         return Observable.create(function (observer) {
             // const _toupdatedata = fn(requestBody, objupd);
@@ -26,13 +39,13 @@ const toUpdateInstance = (function () {
             }
         });
     };
-    const toUpdateOComptedata$ = function (requestBody, requestparamid) {
-        return toOdaUpdate$(requestBody, requestparamid, toUpdateocompte, svctoUpdateInstance);
+    const svctoUpdateInstance$ = function (requestBody, toupdobj) {
+        return toOdaUpdate$(requestBody, requestparamid, toupdobj, toUpdateInstance);
     };
     
     function toinit() {
         return {
-          toUpdateInstance: toUpdateInstance
+            svctoUpdateInstance$: svctoUpdateInstance$
        //   toupdateObject: toupdateObject
         };
       }

@@ -4,7 +4,7 @@ const  {oCompte} = require('../../omodels/modelsSchema/index').toinit();
 const {togetocompte,toUpdateocompte,getobjOcompte,toOCompte}=require('./StaticOcompte').toinit();
 const {ocomptedata} = require('../../seed/data-seed/index').toinit();
 const { concat } = require('rxjs');
-const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$}=require('../../sharedkernel/odaservice/dataservices').toinit();
+const {getodaindex$, odaindex,getodaByid$}=require('../../sharedkernel/odaservice/dataservices').toinit();
 const {svctoInitializeInstance,svctoUpdateInstance,svcodasave$, svcapiupdate$,svcodaApiDel$,svcodaSearchBy,svcodaDel$}=require('../../sharedkernel/odaservice/odaservice').toinit();
 
 const ocompteRepository = (function () {

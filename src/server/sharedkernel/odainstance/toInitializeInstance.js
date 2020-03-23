@@ -1,7 +1,7 @@
 "use strict";
 const { isValid, hasitem, inArray} = require('../odaUtility').toinit();
 const { toapicreateinstance,toapiUpdateInstance} = require('./toOdaInstance').toinit();
-
+const { Observable,pipe } = require('rxjs');
 //var async = require('async')
 const toInitializeInstance = (function () {
   function tocreateBuild(model, requestBody, fn) {
@@ -33,55 +33,30 @@ const toInitializeInstance = (function () {
     const data = tocreateBuild(model, body, f);
     return data;
   };
-
-  function toupdateBuild(requestBody, fn) {
-    let DetailCount = 0,
-    arrArg = [];
-    const _getdata = toapiUpdateInstance(requestBody, fn);
-    // console.log(JSON.stringify(_getdata));
-    if ((!hasitem(_getdata, arrArg)))
-      arrArg.push(_getdata);
-    if (isValid(arrArg.length) === true) {
-      DetailCount = arrArg.length;
-    }
-    return {
-      DetailCount: DetailCount,
-      arrArg: arrArg.slice()
-    };
-  }
-   const toUpdateInstance = function (body, f) {
-    const data = toupdateBuild(body, f);
-    return data;
-  };
+  const toapiOdaCreate$ = function (model,requestBody, fn) {
+    return Observable.create(function (observer) {
+      try {
+        const _toCreatedata = fn(model,requestBody);
+        observer.next(_toCreatedata);
+        setTimeout(() => {
+          observer.complete();
+        }, 100);
+      } catch (err) {
+        observer.error(err);
+      }
+    });
   
-  function todeleteBuild(requestBody) {
-    let DetailCount = 0,
-    arrArg = [];
-    var _getdata = toapiUpdateInstance(requestBody);
-    // console.log(JSON.stringify(_getdata));
-    if ((!hasitem(_getdata, arrArg)))
-      arrArg.push(_getdata);
-
-    if (isValid(arrArg.length) === true) {
-      DetailCount = arrArg.length;
-    }
-    return {
-      odasum: {
-        DetailCount: DetailCount,
-      },
-      arrArg: arrArg.slice()
-    };
-  }
-  const toDeleteInstance = function (body) {
-    const data = todeleteBuild(body);
-    return data;
   };
+  const svctoInitializeInstance$ = function (model,requestBody) {
+    return toapiOdaCreate$(model, requestBody, toInitializeInstance);
+};
+
 
   function toinit() {
     return {
-      toInitializeInstance: toInitializeInstance,
-      toDeleteInstance: toDeleteInstance,
-      toUpdateInstance: toUpdateInstance,
+      svctoInitializeInstance$: svctoInitializeInstance$,
+      toInitializeInstance:toInitializeInstance
+  
 
     };
   }

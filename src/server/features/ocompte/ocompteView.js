@@ -13,7 +13,7 @@ const ocompteView = (function () {
  
  const getInfo = function (objdata) {
  let _newLine  =  newLine();
- const _arr= oarray(objdata)
+ const _arr= oarray(objdata.arrArg)
  
        let underline = _newLine + line(28, "-") + _newLine;
 
@@ -46,7 +46,7 @@ const ocompteView = (function () {
   };
 
  const render = function (objdata) {
-     if(inArray(objdata)===true) {
+     if(inArray(objdata.arrArg)===true) {
      return   console.log(getInfo(objdata));
      }
      else  if(inArray(objdata)===false) {

@@ -22,8 +22,8 @@ require('../config/ohadb').connectserver()
 
 const data =toInitializeInstance(nttCompteBalance,createData)
 // JSON.stringify(toInitializeInstance(nttCompteBalance,createData)));
-// console.log(data.getData);
-const comptedata=data.getData;
+console.log(data.getData);
+/* const comptedata=data.getData;
 const detailsdata=comptedata.nttcomptebalancedetails
  const details= toapicreateinstance(nttCompteBalanceDetail,detailsdata);
-console.log(details)
+console.log(details) */

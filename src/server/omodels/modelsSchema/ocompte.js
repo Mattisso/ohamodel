@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
-const {OcompteClass, ocompteObj}=require('../staticModels/staticOcompte').toinit();
+const {OcompteClass, ocompteObj}=require('../modelClass/ocompteClass').toinit();
 
 const ocompte= (function(){
   const auditBaseSchema = new Schema(getauditentity,gettoObject);
@@ -11,6 +11,7 @@ const ocompte= (function(){
   ocompteschema.index({
     CompteNumber: 1
   });
+
   let Ocompte = mongoose.model('Ocompte', ocompteschema);
   function toinit() {
     return {
@@ -25,20 +26,3 @@ const ocompte= (function(){
     toinit: ocompte.toinit
     };
 
-  //  require('../../config/ohadb').connectserver();
-const obj = {
-  CompteNumber: '86'
-}
-// ocompte.toinit().Ocompte.create(obj);
-// const obj={ CompteNumber: '86'}
-/*  var small = new ocompte.toinit().Ocompte(obj);
-small.save(function (err) {
-if (err) return handleError(err);
-// saved!
-}) ; */   
-/*ocompte.toinit().Ocompte.find({}, function (err, data) {
-  if (err)
-    throw err;
-  console.log(data);
-});*/
- 

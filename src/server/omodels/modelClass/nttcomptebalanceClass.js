@@ -97,8 +97,7 @@ const nttcomptebalanceClass=(function(){
 		}
 
     }
-    
-    
+        
 let comptebalance = null,
 nttcomptebalancedetails=[];;
 function BuildnttCompteBalance(model,body) {

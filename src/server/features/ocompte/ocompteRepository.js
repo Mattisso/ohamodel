@@ -1,16 +1,15 @@
 
 "use strict";
-
-const _ = require('lodash');
-const  {oCompte} = require('../../omodels').toinit();
+const  {oCompte} = require('../../omodels/modelsSchema/index').toinit();
 const {togetocompte,toUpdateocompte,getobjOcompte,toOCompte}=require('./StaticOcompte').toinit();
-const { combineLatest, Observable, of, pipe, from } = require('rxjs');
-const { filter, map, tap, pluck, find } = require('rxjs/operators');
-const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$}=require('../../SharedKernel/dataservices').toinit();
-const {svctoInitializeInstance,svctoapiUpdateInstance,svctoUpdateInstance,svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice').toinit();
+const {ocomptedata} = require('../../seed/data-seed/index').toinit();
+const { concat } = require('rxjs');
+const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$}=require('../../sharedkernel/odaservice/dataservices').toinit();
+const {svctoInitializeInstance,svctoUpdateInstance,svcodasave$, svcapiupdate$,svcodaApiDel$,svcodaSearchBy,svcodaDel$}=require('../../sharedkernel/odaservice/odaservice').toinit();
 
 const ocompteRepository = (function () {
 
+  const toseedarray=svctoInitializeInstance(oCompte,ocomptedata);
     const  removeOcompte$= function(model,item) {
         return   svcodaDel$(model,item);
           };
@@ -36,7 +35,7 @@ const ocompteRepository = (function () {
     return svcodasave$(arr);
   };
   const toUpdateOComptedata$ = function (requestBody,requestparamid) {
-    return toOdaUpdate$(requestBody,requestparamid, toUpdateocompte, svctoapiUpdateInstance);
+    return toOdaUpdate$(requestBody,requestparamid, toUpdateocompte, svctoUpdateInstance);
   };
   const editOCompte$ = function (body, requestparamid) {
     return svcapiupdate$(oCompte, body, requestparamid);
@@ -57,7 +56,9 @@ const ocompteRepository = (function () {
       toUpdateOComptedata$: toUpdateOComptedata$,
       editOCompte$: editOCompte$,
       odasearchBy: odasearchBy,
-      deleteOCompte$: deleteOCompte$
+      deleteOCompte$: deleteOCompte$,
+      seedresult$:seedresult$,
+      toseedarray:toseedarray
 
     };
   }

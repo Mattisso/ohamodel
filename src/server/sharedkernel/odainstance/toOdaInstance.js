@@ -17,10 +17,10 @@ const toOdaInstance = (function () {
         }
   };
   const tocreateChildObject = function (model, o, requestparamid, fn) {
-    if (isValid(o) === true && isValid(fn)==true) {
+    if (isValid(o) === true && isValid(requestparamid)===true && isValid(fn)==true) {
       return new model(fn(requestparamid, o));
     }
-    else if (isValid(o) === true && isValid(fn)==false){
+    else if (isValid(o) === true && isValid(requestparamid)===true && isValid(fn)==false){
       return new model(requestparamid, o);
   }
   else {

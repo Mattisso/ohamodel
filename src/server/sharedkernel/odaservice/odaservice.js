@@ -1,9 +1,8 @@
 "use strict";
-const _ = require('lodash');
 const {odaupdate$, odasave$, odaseedUsersave$,odaDel$,odaLoadupdate$,odaSearchBy}=require('../odarepository/odarepository').toinit();
 const {odaApiBulkDel$, odaApisave$,odaApiupdate$, odapiDel$}=require('../odarepository/odaApirepository').toinit();
 //const {toInitializeInstance}=require('./toInitializeInstance').toinit();
-const {toUpdateInstance,toseedInstance, toInitializeInstance,toapiUpdateInstance, toapiUpdateOtherInstance,toInitializeOtherInstance,toseedOthersInstance,toapiInitializeInstance,toapiInitcomptebalanceInstance,toapiInitcomptabalanceDetailsInstance,toapiupdatecomptebalanceInstance,toapiupdatecomptabalanceDetailsInstance}=require('../odainstance/index').toinit();
+const {toUpdateInstance,toInitializeInstance, toapiInitializeInstance}=require('../odainstance/index').toinit();
 //const {toseedInstance}=require('./toSeedInstance').toinit();
 const {isValid } = require('../odaUtility').toinit();
 
@@ -45,45 +44,20 @@ const  odaservice = (function () {
   const svcodaApiDel$=function(model, requestparamid) {
     return odapiDel$(model,requestparamid);
   };
-  const svctoseedInstance=function(model, option,fn) {
-    return toseedInstance(model,option,fn);
-  };
+ 
   const svctoInitializeInstance=function(model, body,fn) {
     return toInitializeInstance(model,body,fn);
   };
   const svctoUpdateInstance=function(body,fn) {
     return toUpdateInstance(body,fn);
   };
-  const svctoapiUpdateInstance=function(body,fn) {
-    return toapiUpdateInstance(body,fn);
-  };
-  const svctoInitializeOtherInstance=function(model, body,fn) {
-    return toInitializeOtherInstance(model,body,fn);
-  };
-  const svctoseedOthersInstance=function(model, option,fn) {
-    return toseedOthersInstance(model,option,fn);
-  };
+
+ 
 //model,vmodel,body, fn,fnn
   const svctoapiInitializeinstance=function(model, vmodel,requestBody, toinitP,toinitC) {
     return toapiInitializeInstance(model,vmodel, requestBody, toinitP,toinitC);
   };
-
-  const svctoapiInitcomptebalanceInstance=function(model, requestBody, toinitP) {
-    return toapiInitcomptebalanceInstance(model, requestBody, toinitP);
-  };
-  const svctoapiInitcomptabalanceDetailsInstance=function(model, requestBody, requestparamid,fn) {
-    return toapiInitcomptabalanceDetailsInstance(model, requestBody, requestparamid,fn);
-  };
-  const svctoapiupdatecomptebalanceInstance=function(requestBody,fn) {
-    return toapiupdatecomptebalanceInstance(requestBody,fn);
-  };
-  const svctoapiupdatecomptabalanceDetailsInstance=function(requestBody, requestparamid,fn) {
-    return toapiupdatecomptabalanceDetailsInstance(requestBody, requestparamid,fn);
-  };
-  //toapiInitcomptebalanceInstance
-  const svctoapiUpdateOtherInstance=function(body,fn) {
-    return toapiUpdateOtherInstance(body,fn);
-  };
+ 
   function toinit() {
     return {
       svcapiupdate$:svcapiupdate$,
@@ -94,20 +68,12 @@ const  odaservice = (function () {
       svcodaApisave$:svcodaApisave$,
       svcodaApiupdate$:svcodaApiupdate$,
       svcodaApiBulkDel$:svcodaApiBulkDel$,
-      svctoseedInstance:svctoseedInstance,
       svctoInitializeInstance:svctoInitializeInstance,
       svctoUpdateInstance:svctoUpdateInstance,
       svcodaApiDel$:svcodaApiDel$,
       svcodaSearchBy:svcodaSearchBy,
-      svctoapiUpdateInstance:svctoapiUpdateInstance,
-      svctoInitializeOtherInstance:svctoInitializeOtherInstance,
-      svctoseedOthersInstance:svctoseedOthersInstance,
-      svctoapiUpdateOtherInstance:svctoapiUpdateOtherInstance,
       svctoapiInitializeinstance:svctoapiInitializeinstance,
-      svctoapiInitcomptebalanceInstance:svctoapiInitcomptebalanceInstance,
-      svctoapiInitcomptabalanceDetailsInstance:svctoapiInitcomptabalanceDetailsInstance,
-      svctoapiupdatecomptebalanceInstance:svctoapiupdatecomptebalanceInstance,
-      svctoapiupdatecomptabalanceDetailsInstance:svctoapiupdatecomptabalanceDetailsInstance
+
     };
   }
 return {

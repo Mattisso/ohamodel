@@ -4,10 +4,9 @@ const {getStringValue, isValid, odauditObj}=require('../../SharedKernel/odaUtili
 const StaticOcompte = (function () {
 
   const toOCompte = function (o) {
-    return (
-      {
+    return      {
         "CompteNumber": o.CompteNumber
-      });
+      };
   };
   const togetocompte = function (argOne) {
     let initObj, odauditobj;

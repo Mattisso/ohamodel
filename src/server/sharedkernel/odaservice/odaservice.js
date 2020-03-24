@@ -2,7 +2,7 @@
 const {odaupdate$, odasave$, odaseedUsersave$,odaDel$,odaLoadupdate$,odaSearchBy}=require('../odarepository/odarepository').toinit();
 const {odaApiBulkDel$, odaApisave$,odaApiupdate$, odapiDel$}=require('../odarepository/odaApirepository').toinit();
 //const {toInitializeInstance}=require('./toInitializeInstance').toinit();
-const {toUpdateInstance,toInitializeInstance, toapiInitializeInstance}=require('../odainstance/index').toinit();
+/* const {toUpdateInstance,toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../odainstance/index').toinit(); */
 //const {toseedInstance}=require('./toSeedInstance').toinit();
 const {isValid } = require('../odaUtility').toinit();
 
@@ -44,19 +44,19 @@ const  odaservice = (function () {
   const svcodaApiDel$=function(model, requestparamid) {
     return odapiDel$(model,requestparamid);
   };
- 
+ /* 
   const svctoInitializeInstance=function(model, body,fn) {
     return toInitializeInstance(model,body,fn);
   };
-  const svctoUpdateInstance=function(body,fn) {
-    return toUpdateInstance(body,fn);
+  const svctoUpdateInstance=function(body,requestparamid,fn) {
+    return toUpdateInstance(body,requestparamid,fn);
   };
+ */
 
- 
 //model,vmodel,body, fn,fnn
-  const svctoapiInitializeinstance=function(model, vmodel,requestBody, toinitP,toinitC) {
+/*   const svctoapiInitializeinstance=function(model, vmodel,requestBody, toinitP,toinitC) {
     return toapiInitializeInstance(model,vmodel, requestBody, toinitP,toinitC);
-  };
+  } */;
  
   function toinit() {
     return {
@@ -68,11 +68,11 @@ const  odaservice = (function () {
       svcodaApisave$:svcodaApisave$,
       svcodaApiupdate$:svcodaApiupdate$,
       svcodaApiBulkDel$:svcodaApiBulkDel$,
-      svctoInitializeInstance:svctoInitializeInstance,
-      svctoUpdateInstance:svctoUpdateInstance,
+   //   svctoInitializeInstance:svctoInitializeInstance,
+   //   svctoUpdateInstance:svctoUpdateInstance,
       svcodaApiDel$:svcodaApiDel$,
       svcodaSearchBy:svcodaSearchBy,
-      svctoapiInitializeinstance:svctoapiInitializeinstance,
+     // svctoapiInitializeinstance:svctoapiInitializeinstance,
 
     };
   }

@@ -17,12 +17,9 @@ const {getstreamdata$, odagetObserver,getapistreamdata$,getapiObserver}=require(
 require('../../config/ohadb').connectserver();
 
 //const {Loadnstbalanceinput$} = require('./index').toinit();
-const {Insert$,Update$,Delete$,getByid$,index$} = require('./index').toinit();
+const {insert$,Update$,Delete$,getByid$,index$} = require('./index').toinit();
 const  obj ={
-    "NumCompte": "81288",
-    "IntitulCompte": "AKolitesting",
-    "SoldeCredit": 0,
-    "SoldeDebit": 4952197
+  "CompteNumber": '485'
 };
 
 const objupdate={
@@ -44,7 +41,7 @@ const objupdate={
 // getByid$('getByid');
 // Delete$('5de4209ff5f8b20fe8229f97');
 
-const getLoaddData$ =  index$;
+const getLoaddData$ =  index$ //insert$(obj);
 
 getstreamdata$(getLoaddData$).subscribe(odagetObserver());
 

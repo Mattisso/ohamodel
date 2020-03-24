@@ -5,11 +5,11 @@ const {togetocompte,toUpdateocompte,getobjOcompte,toOCompte}=require('./StaticOc
 const {ocomptedata} = require('../../seed/data-seed/index').toinit();
 const { concat } = require('rxjs');
 const {getodaindex$, odaindex,getodaByid$}=require('../../sharedkernel/odaservice/dataservices').toinit();
-const {svctoInitializeInstance,svctoUpdateInstance,svcodasave$, svcapiupdate$,svcodaApiDel$,svcodaSearchBy,svcodaDel$}=require('../../sharedkernel/odaservice/odaservice').toinit();
-
+const {svctoUpdateInstance,svcodasave$, svcapiupdate$,svcodaApiDel$,svcodaSearchBy,svcodaDel$}=require('../../sharedkernel/odaservice/odaservice').toinit();
+const {toUpdateInstance,toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const ocompteRepository = (function () {
 
-  const toseedarray=svctoInitializeInstance(oCompte,ocomptedata);
+  const toseedarray=toInitializeInstance(oCompte,ocomptedata);
     const  removeOcompte$= function(model,item) {
         return   svcodaDel$(model,item);
           };
@@ -29,13 +29,13 @@ const ocompteRepository = (function () {
     return getodaByid$(oCompte, togetocompte, requestparamid, getobjOcompte);
   };
   const toCreateOComptedata$ = function (requestBody,requestparamid) {
-    return toOdaCreate$(oCompte, requestBody,requestparamid, toOCompte, svctoInitializeInstance);
+    return svctoInitializeInstance$(oCompte, requestBody,requestparamid, toOCompte);
   };
   const insertOCompte$ = function (arr) {
     return svcodasave$(arr);
   };
   const toUpdateOComptedata$ = function (requestBody,requestparamid) {
-    return toOdaUpdate$(requestBody,requestparamid, toUpdateocompte, svctoUpdateInstance);
+    return svctoUpdateInstance$(requestBody,requestparamid, toUpdateocompte);
   };
   const editOCompte$ = function (body, requestparamid) {
     return svcapiupdate$(oCompte, body, requestparamid);

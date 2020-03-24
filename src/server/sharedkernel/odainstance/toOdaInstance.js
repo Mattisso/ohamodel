@@ -123,11 +123,11 @@ const toOdaInstance = (function () {
       }
   }
   
-  const toapiUpdateInstance= function(model, argone, requestparamid, fn) {
+  const toapiUpdateInstance= function(argone, requestparamid, fn) {
     if(isValid(requestparamid)===false){
-      return toupdateinstance(model,argone,fn);
+      return toupdateinstance(argone,fn);
     }else if (isValid(requestparamid)===true){
-      return toupdatechildinstance(model, argone, requestparamid, fn);
+      return toupdatechildinstance(argone, requestparamid, fn);
     }
     else {
       return new Error(

@@ -6,8 +6,8 @@ const  bcrypt = require('bcryptjs');
  let  SALT_WORK_FACTOR = 10,
    MAX_LOGIN_ATTEMPTS = 5,
   LOCK_TIME = 2 * 60 * 60 * 1000;
-const {getauditentity, gettoObject ,extendSchema, auditUserEntityPlugin} = require('../helpers/odabaseSchema').toinit();
-const {userClass, modelObject}=require('../staticModels/staticUser').toinit();
+const {getauditentity, gettoObject ,extendSchema} = require('../helpers/odabaseSchema').toinit();
+const {userClass,modelObject}=require('../modelClass/userClass').toinit();
 
 const user = (function () {
     const auditBaseSchema = new Schema(getauditentity,gettoObject);
@@ -159,18 +159,3 @@ UserSchema.statics.getAuthenticated = function (username, password, cb) {
     toinit: user.toinit
   }
   
-  // require('../../config/ohadb').connectserver();
-  const obj = { "username": "akoli", "role": "user", "password": "Password123"}
-  // ocompte.toinit().Ocompte.create(obj);
-  // const obj={ CompteNumber: '86'}
-  /* var small = new user.toinit().User(obj);
-  small.save(function (err) {
-  if (err) return handleError(err);
-  // saved!
-  }) ;   */
-  /*user.toinit().User.find({}, function (err, data) {
-    if (err)
-      throw err;
-    console.log(data);
-  }); */
-   

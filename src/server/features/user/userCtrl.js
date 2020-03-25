@@ -8,8 +8,8 @@ const { getusers$,
   toUpdateuserdata$,
   edituser$,
   odasearchBy,
-  Deleteuser$}=require('./userRepository').toinit();
-  const {result$, toseedarray}=require('./userSeed').toinit();
+  Deleteuser$,
+  seedresult$}=require('./userRepository').toinit();
   const { concatMap } = require('rxjs/operators');
 
 const userCtrl = (function () {
@@ -17,7 +17,7 @@ const userCtrl = (function () {
     return getusers$;
   };
   const userSeed$ = function () {
-    return result$;
+    return seedresult$;
   };
   const getbyid$ = function (id) {
     return getByid$(id);

@@ -5,8 +5,8 @@ const {togetocompte,toUpdateocompte,getobjOcompte,toOCompte}=require('./StaticOc
 const {ocomptedata} = require('../../seed/data-seed/index').toinit();
 const { concat } = require('rxjs');
 const {getodaindex$, odaindex,getodaByid$}=require('../../sharedkernel/odaservice/dataservices').toinit();
-const {svctoUpdateInstance,svcodasave$, svcapiupdate$,svcodaApiDel$,svcodaSearchBy,svcodaDel$}=require('../../sharedkernel/odaservice/odaservice').toinit();
-const {toUpdateInstance,toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+const {svcodasave$, svcapiupdate$,svcodaApiDel$,svcodaSearchBy,svcodaDel$}=require('../../sharedkernel/odaservice/odaservice').toinit();
+const {toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const ocompteRepository = (function () {
 
   const toseedarray=toInitializeInstance(oCompte,ocomptedata);

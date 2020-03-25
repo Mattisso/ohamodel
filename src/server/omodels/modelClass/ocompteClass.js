@@ -1,7 +1,4 @@
 'use strict'
-
-const {toapicreateinstance}=require('../../sharedkernel/odainstance/toOdaInstance').toinit()
-
 const ocompteClass = (function () {
   class OcompteClass {
     constructor(CompteNumber) {
@@ -20,25 +17,6 @@ const ocompteClass = (function () {
     CompteNumber: String
   }
 
-  let ocompte = null;
-function Buildocompte(model,body) {
-    ocompte =toapicreateinstance(model,body);    
-        return ocompte;
-      }    
-     /*  function BuildupdateCompteBalance(body) {
-        // let ocomptedetails=[];
-        comptebalance = body;
-        return comptebalance;
-      }  
-    
-      function toInitializeInstance(model,body) {
-        const ocompte = Buildocompte(model,body);
-        return {
-      //    balance: balance,
-          getData: ocompte.getData()
-        };
-    
-      } */
   function toinit() {
     return {
       OcompteClass: OcompteClass,

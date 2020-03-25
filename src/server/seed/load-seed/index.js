@@ -1,12 +1,11 @@
 
 "use strict";
-var _ = require('lodash');
 require('../../config/ohadb').connectserver();
-const { Observable,concat, pipe} = require('rxjs');
-const  { concatMap, map  } =require('rxjs/operators');
+const { concat, pipe} = require('rxjs');
+const  { map  } =require('rxjs/operators');
 
 const {seedOcompte$ }=require('../../features/ocompte/index').toinit();
-const {seedOreference$ }=require('../../features/oreference/index').toinit();
+/* const {seedOreference$ }=require('../../features/oreference/index').toinit();
 const {seedOstblarea$ }=require('../../features/ostblarea/index').toinit();
 const { seedostableauposte$}=require('../../features/ostableauposte/index').toinit();
 const { seedotableauposte$}=require('../../features/otableauposte/index').toinit();
@@ -16,22 +15,22 @@ const { seedocomptereference$}=require('../../features/ocomptereference/index').
 const {seedorepOrtdetail$}=require('../../features/oreportdetail/index').toinit();
 const {seedoreportheader$}=require('../../features/oreportheader/index').toinit();
 
-const { seeduser$}=require('../../features/user/index').toinit();
+const { seeduser$}=require('../../features/user/index').toinit(); */
 
 const index = (function () {
 
  const seedAll$=  concat(
-  seeduser$,
+  /* seeduser$,
   seedolevel$,
-  seedoexcompta$,
-  seedOcompte$,
-  seedOreference$,
+  seedoexcompta$, */
+  seedOcompte$
+  /* seedOreference$,
   seedOstblarea$,
   seedostableauposte$,
  seedotableauposte$,
   seedocomptereference$,
   seedorepOrtdetail$,
-  seedoreportheader$
+  seedoreportheader$ */
   );
 
 

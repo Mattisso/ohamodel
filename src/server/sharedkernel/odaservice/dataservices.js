@@ -192,26 +192,7 @@ const toOdaUpdate$ = function (requestBody, toupdobj, fn) {
       }
     });
   };
-  /**let data =  toapiInitializeInstance(nttCompteBalance, nttCompteBalanceDetail,comptebalancedata.createData, toapinttcomptebalance,toCompteBalanceDetail); */
-const toOdaseed$ = function (model, fn, requestparamid, fnobj) {
-  return Observable.create(function (observer) {
-    try {
-      return index(model, fn, function (err, datas) {
-        if (err) {
-          observer.next(err);
-        } else {
-          const filteredObject = fnobj(model, datas, fn);
-          observer.next(filteredObject);
-          setTimeout(function () {
-            observer.complete();
-          }, 100);
-        }
-      });
-    } catch (err) {
-      observer.error(err);
-    }
-  });
-};
+
   function toinit() {
     return {
       getodaindex$:getodaindex$,

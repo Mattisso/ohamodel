@@ -34,8 +34,8 @@ const ocompteRepository = (function () {
   const insertOCompte$ = function (arr) {
     return svcodasave$(arr);
   };
-  const toUpdateOComptedata$ = function (requestBody,requestparamid) {
-    return svctoUpdateInstance$(requestBody,requestparamid, toUpdateocompte);
+  const toUpdateOComptedata$ = function (requestBody) {
+    return svctoUpdateInstance$(requestBody, toUpdateocompte);
   };
   const editOCompte$ = function (body, requestparamid) {
     return svcapiupdate$(oCompte, body, requestparamid);

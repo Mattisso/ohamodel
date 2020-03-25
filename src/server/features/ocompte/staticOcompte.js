@@ -42,7 +42,7 @@ const StaticOcompte = (function () {
     if (result) {
       {
           result.id = body.id,
-          result.NumCompte = body.NumCompte,
+          result.CompteNumber = body.CompteNumber,
           result.ModifiedOn = d;
       }
     }

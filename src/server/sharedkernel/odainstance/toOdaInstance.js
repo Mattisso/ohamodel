@@ -123,12 +123,12 @@ const toOdaInstance = (function () {
       }
   }
   
-  const toapiUpdateInstance= function(argone, requestparamid, fn) {
-    if(isValid(requestparamid)===false){
+  const toapiUpdateInstance= function(argone,  fn) {
+    if(isValid(argone)===true){
       return toupdateinstance(argone,fn);
-    }else if (isValid(requestparamid)===true){
+    }/* else if (isValid(requestparamid)===true){
       return toupdatechildinstance(argone, requestparamid, fn);
-    }
+    } */
     else {
       return new Error(
         ` missing some arguments`);

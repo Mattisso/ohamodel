@@ -1,14 +1,15 @@
 "use strict";
 const {odaupdate$, odasave$, odaseedUsersave$,odaDel$,odaLoadupdate$,odaSearchBy}=require('../odarepository/odarepository').toinit();
-const {odaApiBulkDel$, odaApisave$,odaApiupdate$, odapiDel$}=require('../odarepository/odaApirepository').toinit();
+const {odaApiBulkDel$, odaApisave$,odapiupdate$, odapiDel$}=require('../odarepository/odaApirepository').toinit();
 //const {toInitializeInstance}=require('./toInitializeInstance').toinit();
 /* const {toUpdateInstance,toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../odainstance/index').toinit(); */
 //const {toseedInstance}=require('./toSeedInstance').toinit();
 const {isValid } = require('../odaUtility').toinit();
 
 const  odaservice = (function () {
+  
   const svcapiupdate$=function(model, obj,reqparmid) {
-    return odaApiupdate$(model,obj,reqparmid);
+    return odapiupdate$(model,obj,reqparmid);
   };
   const svcodasave$=function(option) {
     return odasave$(option);
@@ -44,19 +45,7 @@ const  odaservice = (function () {
   const svcodaApiDel$=function(model, requestparamid) {
     return odapiDel$(model,requestparamid);
   };
- /* 
-  const svctoInitializeInstance=function(model, body,fn) {
-    return toInitializeInstance(model,body,fn);
-  };
-  const svctoUpdateInstance=function(body,requestparamid,fn) {
-    return toUpdateInstance(body,requestparamid,fn);
-  };
- */
-
-//model,vmodel,body, fn,fnn
-/*   const svctoapiInitializeinstance=function(model, vmodel,requestBody, toinitP,toinitC) {
-    return toapiInitializeInstance(model,vmodel, requestBody, toinitP,toinitC);
-  } */;
+ 
  
   function toinit() {
     return {

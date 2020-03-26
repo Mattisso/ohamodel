@@ -20,9 +20,8 @@ const ocompteClass = (function () {
   function toinit() {
     return {
       OcompteClass: OcompteClass,
-      ocompteObj:ocompteObj,
-      Buildocompte:Buildocompte
-    };
+      ocompteObj:ocompteObj
+     };
   }
   return {
     toinit: toinit

@@ -111,12 +111,14 @@ const toOdaInstance = (function () {
       return tocreateChildObjFromArray(model, argone, requestparamid, fn);
     }
   };
-  const toapicreateinstance= function(model, argone, requestparamid, fn) {
-    if(isValid(requestparamid)===false){
+  const toapicreateinstance= function(model, argone, fn) {
+    if(isValid(argone)===true){
       return tocreateinstance(model,argone,fn);
-    }else if (isValid(requestparamid)===true){
+     }
+  
+  /*else if (isValid(requestparamid)===true){
       return tocreatechildinstance(model, argone, requestparamid, fn);
-    }
+    } */
     else {
       return new Error(
         ` missing some arguments`);

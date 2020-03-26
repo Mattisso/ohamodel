@@ -1,13 +1,12 @@
 
 "use strict";
-const {toseedarray}=require('./userSeed').toinit();
 const {index$,
   getall,
   getbyid$,
   insert$,
   update$,
   odasearchby,
-  delete$,userSeed$}=require('./userCtrl').toinit();
+  delete$,userSeed$,toseedarray}=require('./userCtrl').toinit();
 const  index = (function () {
 
   function toinit() {

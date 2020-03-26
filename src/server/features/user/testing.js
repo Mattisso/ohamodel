@@ -11,15 +11,16 @@ require('../../config/ohadb').connectserver();
 const { combineLatest, Observable, of, pipe, from } = require('rxjs');
 const { filter, map, tap, pluck, take, find, distinct, shareReplay } = require('rxjs/operators');
 // const {combinedSeedata$} = require('./ostblareaRepository').toinit();
-//const {combinedSeedata$} = require('./ostableauposteRepository').toinit();
-const {toseedarray, getAll, getusers$, result$} = require('./index').toinit();
+const {toseedarray} = require('./userRepository').toinit();
+//const {toseedarray, getAll, getusers$, result$} = require('./index').toinit();
 
+console.log(JSON.stringify(toseedarray));
 
 
 // const getoreportdetail$= sharedrepository.getocomptreferences$;
  //const getcallbackdata = ostblareaRepository.index;
 //  const getoreportdetail$ = olevelRepository.getolevelsBy$(3);
-const getoreportdetail$ = getusers$;
+/* const getoreportdetail$ = getusers$;
 console.log(toseedarray);
 
 getAll(function(err,data){
@@ -67,3 +68,4 @@ const getoreportdetailR$ = getObserverdata(getoreportdetail$);
 
 });
 
+ */

@@ -3,24 +3,22 @@
 const  {User} = require('../../omodels/modelsSchema').toinit();
 const {userdata} = require('../../seed/data-seed/index').toinit();
 const {togetuser,togetObjuser,toUpdateUser,toUser}=require('./staticUser').toinit();
-const {getodaindex$, odaindex,getodaByid$}=require('../../SharedKernel/dataservices').toinit();
-
 const {getodaindex$, odaindex,getodaByid$}=require('../../sharedkernel/odaservice/dataservices').toinit();
-const {svcodaseedUsersave$, svcapiupdate$,svcodaApiDel$,svcodaSearchBy,svcodaApiDel$,svcodaDel$}=require('../../sharedkernel/odaservice/odaservice').toinit();
+const {svcodaseedUsersave$, svcapiupdate$,svcodaApiDel$,svcodaSearchBy,svcodaDel$}=require('../../sharedkernel/odaservice/odaservice').toinit();
 const {toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
-
 
 const userRepository = (function () {
 
-  const toseedarray=toInitializeInstance(User,userdata,toUser);
+  const toseedarray=toInitializeInstance(User,userdata);
 
   const _removeData$= function(model,item) {
     return  svcodaDel$(model,item);
   };
-  const _insertuser$ = function(model, arr) {
-return svcodaseedUsersave$(model,arr);
+ const _insertuser$ = function(model, arr) {
+return svcodaseedUsersave$(model,arr); 
   };
   const removeData$= _removeData$(User,'User');
+
   const insertuser$= _insertuser$(User, toseedarray);
 
 const seedresult$= concat(removeData$,insertuser$);
@@ -40,9 +38,9 @@ const seedresult$= concat(removeData$,insertuser$);
    const toCreateuserdata$ = function (requestBody,requestparamid) {
     return svctoInitializeInstance$(User, requestBody, requestparamid,toUser);
    };
-   const insertuser$ = function (arr) {
+/*    const insertuser$ = function (arr) {
     return svcodaseedUsersave$(User,arr);
-   };
+   }; */
    const toUpdateuserdata$ = function (requestBody) {
     return svctoUpdateInstance$(requestBody, toUpdateUser);
    };

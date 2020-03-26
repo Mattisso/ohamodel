@@ -9,7 +9,7 @@ const { getusers$,
   edituser$,
   odasearchBy,
   Deleteuser$,
-  seedresult$}=require('./userRepository').toinit();
+  seedresult$,toseedarray}=require('./userRepository').toinit();
   const { concatMap } = require('rxjs/operators');
 
 const userCtrl = (function () {
@@ -47,6 +47,8 @@ const userCtrl = (function () {
     return Deleteuser$(requestparamid);
   };
 
+
+
   function toinit() {
     return {
       index$: index$(),
@@ -57,6 +59,7 @@ const userCtrl = (function () {
       update$:updateuser$,
       odasearchby:odasearchby,
       delete$:deleteuser$
+    
     };
   }
 

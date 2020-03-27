@@ -5,5 +5,5 @@ const {toapicreateinstance} = require('../sharedkernel/odainstance/toOdaInstance
 const {toInitializeInstance} = require('../sharedkernel/odainstance/toInitializeInstance').toinit();
 
 
-console.log(toInitializeInstance(User,arruserdata()))
+console.log(toInitializeInstance(User,objuserdata()))
 

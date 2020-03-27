@@ -1,4 +1,4 @@
-"use strict";
+/* "use strict";
 const _ = require('lodash');
 const {User} = require('../../omodels/index').toinit();
 const {userdata} = require('../../seed/data-seed/index').toinit();
@@ -39,4 +39,4 @@ module.exports= {
 toinit:userSeed.toinit
 };
 
- 
+  */

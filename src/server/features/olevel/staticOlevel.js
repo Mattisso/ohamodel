@@ -2,8 +2,8 @@
 const { getStringValue,isValid,odauditObj, odareduceArray} = require('../../SharedKernel/odaUtility').toinit();
 const { find, map, assign, filter, forEach } = require('lodash');
 
+
 const staticOlevel = (function () {
- 
  const toOlevel =function (obj) {
   return ({
     "olevelNum": obj.olevelNum,
@@ -57,8 +57,6 @@ function toUpdateolevel(body) {
 }
   function toinit() {
     return {
-      olevelClass:olevelClass,
-      modelObject:modelObject,
       toOlevel:toOlevel,
       togetolevel:togetolevel,
       getobjolevel:getobjolevel,

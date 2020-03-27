@@ -1,17 +1,21 @@
 
 "use strict";
-const  {User} = require('../../omodels/modelsSchema').toinit();
+const  {User} = require('../../omodels/modelsSchema/index').toinit();
 const {userdata} = require('../../seed/data-seed/index').toinit();
 const {togetuser,togetObjuser,toUpdateUser,toUser}=require('./staticUser').toinit();
 const {getodaindex$, odaindex,getodaByid$}=require('../../sharedkernel/odaservice/dataservices').toinit();
 const {svcodaseedUsersave$, svcapiupdate$,svcodaApiDel$,svcodaSearchBy,svcodaDel$}=require('../../sharedkernel/odaservice/odaservice').toinit();
-const {toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+const {toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit();  
+const { concat } = require('rxjs');
+/* const {toUpdateInstance,svctoUpdateInstance$} = require('../../sharedkernel/odainstance/toUpdateInstance').toinit();
+
+const {toInitializeInstance,svctoInitializeInstance} = require('../../sharedkernel/odainstance/toInitializeInstance').toinit(); */
 
 const userRepository = (function () {
 
   const toseedarray=toInitializeInstance(User,userdata);
 
-  const _removeData$= function(model,item) {
+   const _removeData$= function(model,item) {
     return  svcodaDel$(model,item);
   };
  const _insertuser$ = function(model, arr) {
@@ -38,9 +42,9 @@ const seedresult$= concat(removeData$,insertuser$);
    const toCreateuserdata$ = function (requestBody,requestparamid) {
     return svctoInitializeInstance$(User, requestBody, requestparamid,toUser);
    };
-/*    const insertuser$ = function (arr) {
+ /*   const insertuser$ = function (arr) {
     return svcodaseedUsersave$(User,arr);
-   }; */
+   };  */
    const toUpdateuserdata$ = function (requestBody) {
     return svctoUpdateInstance$(requestBody, toUpdateUser);
    };
@@ -54,7 +58,7 @@ const seedresult$= concat(removeData$,insertuser$);
    const Deleteuser$ = function (requestparamid) {
     return svcodaApiDel$(User, requestparamid);
    };
-
+ 
   function toinit() {
     return {
       getusers$: index$(),
@@ -66,7 +70,7 @@ const seedresult$= concat(removeData$,insertuser$);
       edituser$:edituser$,
       odasearchBy:odasearchBy,
       Deleteuser$:Deleteuser$,
-      seedresult$:seedresult$,
+      seedresult$:seedresult$, 
       toseedarray:toseedarray
     };
   }

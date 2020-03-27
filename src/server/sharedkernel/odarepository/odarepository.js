@@ -232,7 +232,10 @@ const odarepository = (function () {
                   break;
                 }
               });
+            }
+          });
               _arr.push(o);
+            });
               //    observer.next();
               //      console.log(`Finished  in seeding ${arr.length} records inserted`);
               observer.next((`Finished  in Inserting ${_arr.length} out of ${JSON.stringify(odacount(ArgOne))} records`));
@@ -241,10 +244,9 @@ const odarepository = (function () {
               setTimeout(() => {
                 observer.complete();
               }, 100);
-            }
-          });
+          
 
-        });
+      
 
       } catch (err) {
         observer.error(err);

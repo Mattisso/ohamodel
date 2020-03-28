@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 const { getauditentity, gettoObject, extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
-const {initObjOreference,oreferenceClass}=require('../staticModels/staticOreference').toinit();
+const {initObjOreference,oreferenceClass}=require('../modelClass/oreferenceClass').toinit();
 
 const oreference = (function () {
   const auditBaseSchema = new Schema(getauditentity, gettoObject);

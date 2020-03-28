@@ -1,8 +1,7 @@
 
 "use strict";
 
-const {  result$} = require('./oexercomptaSeed').toinit();
-const {  index$,  insert$,  GetComptaWithExercice$,  update$,  delete$,  getbyid$,  getoexercice$,  getoexerciceencour$,  odasearchby,ddlexerComptable$} = require('./oexercomptaCtrl').toinit();
+const {  index$,  insert$,  GetComptaWithExercice$,  update$,  delete$,  getbyid$,  getoexercice$,  getoexerciceencour$,  odasearchby,ddlexerComptable$,seedoexcompta$} = require('./oexercomptaCtrl').toinit();
 
 
 //const {toCreateExerccomptadata$} = require('./oexerccomptaRepository').toinit();
@@ -11,7 +10,7 @@ const index = (function () {
 
   function toinit() {
     return {
-      seedoexcompta$: result$,
+      seedoexcompta$: seedoexcompta$,
       insert$$: insert$,
       update$: update$,
       delete$: delete$,

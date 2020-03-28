@@ -1,15 +1,16 @@
 /* eslint-disable  no-console */
 /* eslint-disable no-unused-vars */
 const _ = require('lodash');
-const  {oExercCompta} = require('../../omodels').toinit();
+const  {oExercCompta} = require('../../omodels/modelsSchema/index').toinit();
 const {getoexercices$, seedoexercice$} = require('../oexercice/').toinit();
 const {odaByarg,getodafilter} =require('../../SharedKernel/odaFiltered').toinit();
+const {oexercomptadata} = require('../../seed/data-seed/index').toinit();
 const {togetoexerccompta,toUpdateOexercompta, toOexercompta,staticDropListExerComptable}=require('./staticOxerccompta').toinit();
 const {getobjOexercCompta} =require('../../SharedKernel/staticObjects').toinit();
 const { combineLatest, Observable, concat,pipe } = require('rxjs');
 const { map} = require('rxjs/operators');
-const {svctoInitializeInstance,svctoapiUpdateInstance,svcodasave$,svcodaApiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
-const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$,getodaApiByid$,getodaindexapi$}=require('../../SharedKernel/dataservices').toinit();
+const {svctoInitializeInstance,svctoapiUpdateInstance,svcodasave$,svcodaApiupdate$, svcodaApiDel$,svcodaSearchBy, svcodaDel$}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$,getodaApiByid$,getodaindexapi$}=require('../../SharedKernel/odaservice/dataservices').toinit();
 const {toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const oexerccomptaRepository = (function () {
   const toseedoexercompta=toInitializeInstance(oExercCompta,oexercomptadata);
@@ -79,11 +80,11 @@ const oexerccomptaRepository = (function () {
   };
   const toCreateExerccomptadata$ = function (requestBody) {
 
-    return toOdaCreate$(oExercCompta, requestBody, toOexercompta, svctoInitializeInstance);
+    return svctoInitializeInstance$(oExercCompta, requestBody);
   };
 
-  const toUpdateExerccomptadata$ = function (requestBody,requestparamid) {
-    return toOdaUpdate$(requestBody,requestparamid, toUpdateOexercompta, svctoapiUpdateInstance);
+  const toUpdateExerccomptadata$ = function (requestBody) {
+    return svctoUpdateInstance$(requestBody, toUpdateOexercompta);
   };
 
   const insertExercCompta$ = function (arr) {
@@ -114,7 +115,9 @@ const oexerccomptaRepository = (function () {
       editExercCompta$: editExercCompta$,
       odasearchBy: odasearchBy,
       deleteExercCompta$: deleteExercCompta$,
-      DropDownListExerComptable$:DropDownListExerComptable$
+      DropDownListExerComptable$:DropDownListExerComptable$,
+      seedOexerccompta$:seedOexerccompta$,
+      toseedoexercompta:toseedoexercompta
     };
   }
 

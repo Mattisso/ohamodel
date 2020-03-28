@@ -1,12 +1,12 @@
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 const { getauditentity,gettoObject, extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
-const {oExercComptalass, initObject}=require('../modelClass/oxerccomptaClass').toinit();
+const {oExercComptaClass, initObject}=require('../modelClass/oxerccomptaClass').toinit();
 const oexerccompta = (function () {
   const auditBaseSchema = new Schema(getauditentity, gettoObject);
   const oexerccomptaschema = extendSchema(auditBaseSchema, initObject);
 
-  oexerccomptaschema.loadClass(oExercComptalass);
+  oexerccomptaschema.loadClass(oExercComptaClass);
   oexerccomptaschema.plugin(auditEntityPlugin);
   oexerccomptaschema.index({
     oExercComptaId: 1

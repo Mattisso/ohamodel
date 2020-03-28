@@ -23,7 +23,7 @@ const oxerccomptaClass = (function () {
       true
     }
   }
-  class oExercComptalass {
+  class oExercComptaClass {
     constructor(oExercComptaId, DateDebut, Datefin, Cloture) {
       this._oExercComptaId = oExercComptaId;
       this._DateDebut = DateDebut;
@@ -64,7 +64,7 @@ const oxerccomptaClass = (function () {
   function toinit() {
     return {
       initObject: initObject,
-      oxerccomptaClass: oExercComptalass
+      oExercComptaClass: oExercComptaClass
     }
   }
 

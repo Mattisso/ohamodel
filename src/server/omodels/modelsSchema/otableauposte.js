@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
-const {otableauposteClass, modelObject}=require('../staticModels/staticOtableauposte').toinit()
+const {otableauposteClass, modelObject}=require('../modelClass/otableauposteClass').tonit();
 const otableauposte = (function(){
 	const auditBaseSchema = new Schema(getauditentity, gettoObject);
 	const otableauPosteSchema = extendSchema(auditBaseSchema, modelObject);

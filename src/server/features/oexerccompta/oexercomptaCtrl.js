@@ -1,12 +1,15 @@
 
 "use strict";
 var _ = require('lodash');
-const {getByid$,getexeccomptas$,getoExerciceEncour$,getoExercice$,GetComptaWithExercice$,toCreateExerccomptadata$,toUpdateExerccomptadata$,deleteExercCompta$,insertExercCompta$,editExercCompta$, odasearchBy,DropDownListExerComptable$} = require('./oexerccomptaRepository').toinit();
+const {getByid$,getexeccomptas$,getoExerciceEncour$,getoExercice$,GetComptaWithExercice$,toCreateExerccomptadata$,toUpdateExerccomptadata$,deleteExercCompta$,insertExercCompta$,editExercCompta$, odasearchBy,DropDownListExerComptable$, seedOexerccompta$} = require('./oexerccomptaRepository').toinit();
 const { concatMap } = require('rxjs/operators');
 const {seedoexercice$} = require('../oexercice/oexerciceCtrl').toinit();
 const { concat } = require('rxjs');
 
 const oexercomptaCtrl = (function () {
+  const seedoexcompta$ = function () {
+    return seedOexerccompta$;
+  };
   const index$ = function () {
     return getexeccomptas$;
   };
@@ -53,7 +56,8 @@ const oexercomptaCtrl = (function () {
     getoexerciceencour$: getoexerciceencour$(),
     GetComptaWithExercice$: Getcomptawithexercice$(),
     getoexercice$: getoexercice$(),
-    ddlexerComptable$:ddlexerComptable$()
+    ddlexerComptable$:ddlexerComptable$(),
+    seedoexcompta$:seedoexcompta$()
     };
   }
 

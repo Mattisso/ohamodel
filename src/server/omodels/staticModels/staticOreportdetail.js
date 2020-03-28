@@ -30,7 +30,6 @@ const modelObject = {
 
 class oreportDetailClass {
 	constructor(OtableauposteKey, OreferenceKey, olevelKey, SortOrder) {
-
 		this._SortOrder = SortOrder;
 		this._OtableauposteKey = OtableauposteKey;
 		this._OreferenceKey = OreferenceKey;

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
-const {oExerciceClass,initObjOexcerice}=require('../staticModels/StaticOexercice').toinit();
+const {oExerciceClass,initObjOexcerice}=require('../modelClass/oexerciceClass').tonit();
 
 const oexercice= (function(){
   const auditBaseSchema = new Schema(getauditentity,gettoObject);
@@ -25,21 +25,3 @@ const oexercice= (function(){
   module.exports = {
     toinit: oexercice.toinit
     };
-
-  //  require('../../config/ohadb').connectserver();
-const obj = {
-  oExerciceEncour: '2000'
-}
-// oexercice.toinit().oExercice.create(obj);
-// const obj={ oExerciceEncour: '86'}
-/*   var small = new oExercice(obj);
-small.save(function (err) {
-if (err) return handleError(err);
-// saved!
-}); */
-/*oexercice.toinit().oExercice.find({}, function (err, data) {
-  if (err)
-    throw err;
-  console.log(data);
-});*/
- 

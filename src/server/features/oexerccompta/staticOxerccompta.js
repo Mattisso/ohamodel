@@ -3,9 +3,7 @@ const { find, map, assign, filter, forEach,maxBy,ary,toString,toNumber} = requir
 const {staticObjects} =require('../../SharedKernel/index').toinit();
 const { isValid, odauditObj, getStringValue, replaceNullToZero } = require('../../SharedKernel/odaUtility').toinit();
 
-
 const staticOxerccompta= (function () {
-
   const odaqueryselector = function (obj) {
     let selector;
     if (isValid(obj.oExercComptaId) === true && isValid(obj.DateDebut) === true
@@ -71,12 +69,10 @@ function toUpdateOexercompta (requestBody) {
     result.Datefin = requestBody.Datefin,
     result.Cloture = requestBody.Cloture,
     result.ModifiedOn = d;
-
   }
 }
 return result;
 }
-
 const getobjOexercCompta = function (arr, value) {
   if (isValid(value) === true) {
     const validate = find(arr, function (o) {

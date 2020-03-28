@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
-const {oreportHeaderClass, modelObject}=require('../staticModels/staticOreportheader').toinit()
+const {oreportHeaderClass, modelObject}=require('../modelClass/oreportheaderClass').toinit()
 const  oreportheader=(function(){
 	const auditBaseSchema = new Schema(getauditentity, gettoObject);
 	const oReportHeaderSchema = extendSchema(auditBaseSchema, modelObject);

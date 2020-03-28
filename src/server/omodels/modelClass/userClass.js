@@ -49,24 +49,24 @@ const userClass=(function(){
       this._lockUntil = lockUntil;
       return this;
     }
-     get username() {
+     get Username() {
       return this._username;
     }
-    set username(username) {
+    set Username(username) {
       this._username = username;
       return this;
     } 
-    get role() {
+    get Role() {
       return this._role;
     }
-    set role(role) {
+    set Role(role) {
       this._role = role;
       return this;
     }
-    get password() {
+    get Password() {
       return this._password;
     }
-    set password(password) {
+    set Password(password) {
       this._password = password;
       return this;
     }
@@ -77,7 +77,9 @@ const userClass=(function(){
       this._loginAttempts = loginAttempts;
       return this;
     }
-  }
+  
+
+}
 function toinit(){
   return {
 userClass:userClass,

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
-const {ostableauposteClass, modelObject}=require('../staticModels/staticOstableauposte').toinit()
+const {ostableauposteClass, modelObject}=require('../modelClass/ostableauposteClass').toinit()
 
 const ostableauposte = (function () {
 	const auditBaseSchema = new Schema(getauditentity, gettoObject);
@@ -13,9 +13,9 @@ const ostableauposte = (function () {
 	});
 
 	oStableauPosteSchema.virtual('ostblarea').set(function (ostblarea) {
-		this.OstblareaKey = ostblarea;
+		this._ostblarea = ostblarea;
 	}).get(function () {
-		return this.OstblareaKey;
+		return this._ostblarea;
 	});
 
 	let oStableauPoste = mongoose.model('oStableauPoste', oStableauPosteSchema);

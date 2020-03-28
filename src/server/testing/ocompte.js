@@ -1,13 +1,13 @@
 
 const {svctoInitializeInstance$}=require('../sharedkernel/odainstance/toInitializeInstance').toinit()
 const {objocomptedata,arrocomptedata}=require('../testing/data/ocomptedata').toinit();
-const {oCompte}=require('../omodels/modelsSchema/index').toinit();
+const {Ocompte}=require('../omodels/modelsSchema/ocompte').toinit();
 const {render}=require('../features/ocompte/ocompteView').toinit();
 const { combineLatest, Observable, of, pipe, from ,concat} = require('rxjs');
 const { filter, map, tap, pluck, take, find, distinct, shareReplay } = require('rxjs/operators');
 
 
-const {Buildocompte}=require('../omodels/modelClass/ocompteClass').toinit();
+//const {Buildocompte}=require('../omodels/modelClass/ocompteClass').toinit();
 // const {nttCompteBalance}=require('../omodels/modelsSchema/index').toinit();
 
 // require('../config/ohadb').connectserver()
@@ -16,7 +16,7 @@ const {Buildocompte}=require('../omodels/modelClass/ocompteClass').toinit();
 // JSON.stringify(toInitializeInstance(nttCompteBalance,createData)));
 // console.log(data.getData);
 
- const data= svctoInitializeInstance$(oCompte,arrocomptedata);
+/*  const data= svctoInitializeInstance$(oCompte,arrocomptedata);
 //console.log(render(data));
  
 const getoreportdetail$ =  data
@@ -31,6 +31,16 @@ const getObserverdata = pipe(
   getoreportdetailR$.subscribe(function (x) {
   return render(x);
   //console.log(getodaAggreateData(x));
+ 
+
+});*/
 
 
-});
+const toOCompte = function (o) {
+  return      {
+      "CompteNumber": comptenumber(o)
+    };
+};
+
+const data = new  Ocompte(objocomptedata);
+console.log(data.comptenumber())

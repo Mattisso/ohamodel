@@ -1,8 +1,4 @@
 'use strict';
-/* eslint-disable  no-console */
-/*eslint-disable no-unused-vars */
-
-const async = require('async');
 const _ = require('lodash');
 const { oStableauPoste } = require('../../omodels/modelsSchema/index').toinit();
 const { ostableaupostedatas } = require('../../seed/data-seed/index').toinit().ostableaupostedata;
@@ -10,9 +6,8 @@ const {getobjOstblarea} =require('../../SharedKernel/index').toinit().staticObje
 const { index } = require('../ostblarea/ostblareaRepository').toinit();
 const { toOstableauposte } = require('./staticOstableauposte').toinit();
 const {svcodasave$, svcodaDel$}=require('../../sharedkernel/odaservice/odaservice').toinit();
-const { of, pipe, from, Observable, concat } = require('rxjs');
-const { filter, map, tap, pluck, find, take, distinct, concatMap } = require('rxjs/operators');
-const { staticObjects } = require('../../SharedKernel/index').toinit();
+const { Observable, concat } = require('rxjs');
+const { concatMap } = require('rxjs/operators');
 const {toInitializeInstance}=require('../../sharedkernel/odainstance/index').toinit();
 
 var ostableauposteSeed = (function () {

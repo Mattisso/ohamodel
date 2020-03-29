@@ -98,9 +98,9 @@ const nttcomptebalanceClass=(function(){
 
     }
         
-let comptebalance = null,
-nttcomptebalancedetails=[];;
-function BuildnttCompteBalance(model,body) {
+let comptebalance = null
+/* nttcomptebalancedetails=[];;
+ */function BuildnttCompteBalance(model,body) {
     comptebalance =toapicreateinstance(model,body);    
     body.nttcomptebalancedetails.forEach(function (entry) {
       comptebalance.addBalanceDetail(entry);    
@@ -110,12 +110,11 @@ function BuildnttCompteBalance(model,body) {
         return comptebalance;
       }    
       function BuildupdateCompteBalance(body) {
-        // let nttcomptebalancedetails=[];
         comptebalance = body;
         return comptebalance;
       }  
     
-      function toInitializeInstance(model,body) {
+      function toInitCompteBalanceInstance(model,body) {
         const balance = BuildnttCompteBalance(model,body);
         return {
       //    balance: balance,
@@ -128,7 +127,7 @@ function BuildnttCompteBalance(model,body) {
         return {
             modelObject: modelObject,
             nttcomptebalanceClass: nttcomptebalanceClass,
-            toInitializeInstance:toInitializeInstance
+            toInitCompteBalanceInstance:toInitCompteBalanceInstance
         }
     }
     return {

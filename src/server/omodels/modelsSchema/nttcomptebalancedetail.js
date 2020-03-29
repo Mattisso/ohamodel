@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin, getbaseBalancesheet} = require('../helpers/odabaseSchema').toinit();
-const {nttcomptebalanceDetailClass,modelObject}=require('../staticModels/staticNttcomptebalanceDetail').toinit();
+const {nttcomptebalanceDetailClass,modelObject}=require('../modelClass/nttcomptebalanceDetailClass').toinit();
 
 const nttcomptebalancedetail=(function(){
   const balanceSheetBaseSchema = new Schema(Object.assign({},getbaseBalancesheet,getauditentity),gettoObject);

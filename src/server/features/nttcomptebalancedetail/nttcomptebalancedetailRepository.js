@@ -1,10 +1,10 @@
 
 "use strict";
-const  {nttCompteBalanceDetail} = require('../../omodels').toinit();
+const  {nttCompteBalanceDetail} = require('../../omodels/modelsSchema/index').toinit();
 const {togetnttcomptebalancedetail,getobjnttcomptebalanceDetail,toUpdateCompteBalanceDetail,toCompteBalanceDetail}=require('./staticNttcomptebalanceDetail').toinit();
-const {getodaindex$, odaindex,getodaByid$,toapiOdaChildCreate$,toOdaChildUpdate$}=require('../../SharedKernel/dataservices').toinit();
-const {svctoapiupdatecomptabalanceDetailsInstance,svctoapiInitcomptabalanceDetailsInstance,svcodaApisave$,svcodaApiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice').toinit();
-
+const {getodaindex$, odaindex,getodaByid$,toapiOdaChildCreate$,toOdaChildUpdate$}=require('../../SharedKernel/odaservice/dataservices').toinit();
+const {svctoapiupdatecomptabalanceDetailsInstance,svctoapiInitcomptabalanceDetailsInstance,svcodaApisave$,svcodaApiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const {toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit();
 const nttcomptebalancedetailRepository = (function () {
   const index = function (callback) {
     return odaindex(nttCompteBalanceDetail, togetnttcomptebalancedetail, callback);

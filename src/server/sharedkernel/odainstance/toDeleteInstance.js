@@ -21,3 +21,17 @@ const { Observable,pipe } = require('rxjs');
     const data = todeleteBuild(body);
     return data;
   };
+
+  const toDeleteInstance=(function(){
+function toinit(){
+return {
+  toDeleteInstance:toDeleteInstance
+}
+}
+return {
+  toinit:toinit
+}
+  })()
+  module.exports={
+
+  }

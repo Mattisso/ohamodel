@@ -1,7 +1,6 @@
 "use strict";
-
 var _ = require('lodash');
-const  {OcompteReference} = require('../../omodels').toinit();
+const  {OcompteReference} = require('../../omodels/modelsSchema/index').toinit();
 const { ocompterefencedata} = require('../../seed/data-seed/index').toinit();
 const { getoreferences$ } = require('../oreference/oreferenceRepository').toinit();
 const { getotableaupostes$ } = require('../otableauposte/otableauposteRepository').toinit();
@@ -10,8 +9,8 @@ const { getocomptes$ } = require('../ocompte/ocompteRepository').toinit();
 const { getostableaupostes$ } = require('../ostableauposte/ostableauposteRepository').toinit();
 const {togetocomptereference,getObjOcomptereference,toOcomptereference,toUpdateocomptereference} =require('./staticocomptereference').toinit();
 const {getobjOcompte, getobjOreference,getobjOstableauposte,getobjOtableauposte,getobjOstblarea} =require('../../SharedKernel/staticObjects').toinit();
-const {getodaindex$, odaindex,getodaByid$}=require('../../SharedKernel/dataservices').toinit();
-const {svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice').toinit();
+const {getodaindex$, odaindex,getodaByid$}=require('../../SharedKernel/odaservice/dataservices').toinit();
+const {svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
 const {svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
 
 const { isValid, oarray} = require('../../SharedKernel/odaUtility').toinit();

@@ -7,6 +7,34 @@ const { getodafilter,odaByarg } = require('../../SharedKernel/odaFiltered').toin
 const {queryselector, getSoldeDebit,getSoldeCredit}=require('./objQryParams').toinit();
 
 const staticNttcomptebalance = (function () {
+
+
+
+  let comptebalance = null
+/* nttcomptebalancedetails=[];;
+ */function BuildnttCompteBalance(model,body, fn) {
+    comptebalance =fn(model,body);    
+    body.nttcomptebalancedetails.forEach(function (entry) {
+      comptebalance.addBalanceDetail(entry);    
+    });
+    comptebalance.getTotalSoldedebit;
+    comptebalance.getTotalSoldecredit;    
+        return comptebalance;
+      }    
+      function BuildupdateCompteBalance(body) {
+        // let nttcomptebalancedetails=[];
+        comptebalance = body;
+        return comptebalance;
+      }  
+
+      function toInitComptebalanceInstance(model,body,fn) {
+        const balance = BuildnttCompteBalance(model,body,fn);
+        return {
+      //    balance: balance,
+          getData: balance.getData()
+        };
+    
+      }
   const _togetcomptebalance = function (obj) {
     let initObj, odauditobj;
       initObj = {
@@ -192,7 +220,8 @@ const objoexercompta = getobjOexercCompta(oexerccompta,obj.OexercComptaKey).filt
       togetloadnttbalance:togetloadnttbalance,
       togetcomptebalancesWithDetails:togetcomptebalancesWithDetails,
       getloadnttcomptebalanceDetaildata:getloadnttcomptebalanceDetaildata,
-      getcombinednIndex:getcombinednIndex
+      getcombinednIndex:getcombinednIndex,
+      toInitComptebalanceInstance:toInitComptebalanceInstance
     };
   }
 return {

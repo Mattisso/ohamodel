@@ -68,9 +68,9 @@ nttCompteBalanceSchema.virtual('comptebalancedetails')
       'OexercComptaKey': this.OexercComptaKey,
       'OtableauposteKey': this.OtableauposteKey,
       'OreferenceKey': this.OreferenceKey,
-      'totalSoldeDebit': getTotalSoldedebit(this.nttcomptebalancedetails), //this.totalSoldeDebit, //odasum.totalSoldeDebit?odasum.totalSoldeDebit:0,
-      'totalSoldeCredit': getTotalSoldecredit( this.nttcomptebalancedetails),//this.totalSoldeCredit, //odasum.totalSoldeCredit?odasum.totalSoldeCredit:0,
-      'DetailCount': getTotalCount(odaremoveDupnumcompte(this.nttcomptebalancedetails)), // nttcomptebalancedetails.length?
+      'totalSoldeDebit': getTotalSoldedebit(this.nttcomptebalancedetails), 
+      'totalSoldeCredit': getTotalSoldecredit( this.nttcomptebalancedetails),
+      'DetailCount': getTotalCount(odaremoveDupnumcompte(this.nttcomptebalancedetails)), 
       'id': this.id,    
       'nttcomptebalancedetails': odaremoveDupnumcompte(nttcomptebalancedetails.slice())
     };

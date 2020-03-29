@@ -39,7 +39,7 @@ const ocomptereferenceClass=(function(){
   }
   
   class ocompteReferenceClass {
-    constructor(OcompteKey, OstblareaKey, OreferenceKey, OtableauposteKey, OstableauposteKey, Exception, Taux) {
+    constructor(OcompteKey, OstblareaKey, OreferenceKey, OtableauposteKey, OstableauposteKey, Exception=0, Taux=1) {
       this._OcompteKey = OcompteKey;
       this._OstblareaKey = OstblareaKey;
       this._OreferenceKey = OreferenceKey;

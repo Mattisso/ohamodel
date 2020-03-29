@@ -79,10 +79,10 @@ const toOdaInstance = (function () {
     return newArray;
   };
   const toupdatechildinstance = function (argone, requestparamid, f) {
-    if (inArray(argone) === false) {
+    if (inArray(argone) === false && isValid(requestparamid)===true) {
       return toupdateChildObject(argone, requestparamid, f);
     }
-    if (inArray(argone) === true) {
+    if (inArray(argone) === true && isValid(requestparamid)===true) {
       return toupdateChildObjFromArray(argone, requestparamid, f);
     }
   };
@@ -96,15 +96,15 @@ const toOdaInstance = (function () {
     return newArray;
   };
   const tocreateinstance = function (model, argone, f) {
-    if (inArray(argone) === false) {
+    if (inArray(argone) === false && isValid(argone)===true) {
       return tocreateObject(model, argone, f);
     }
-    if (inArray(argone) === true) {
+    if (inArray(argone) === true && isValid(argone)===true) {
       return tocreateObjFromArray(model, argone, f);
     }
   };
   const tocreatechildinstance = function (model, argone, requestparamid, fn) {
-    if (inArray(argone) === false) {
+    if (inArray(argone) === false ) {
       return tocreateChildObject(model, argone, requestparamid, fn);
     }
     if (inArray(argone) === true) {
@@ -115,10 +115,16 @@ const toOdaInstance = (function () {
     if(isValid(argone)===true){
       return tocreateinstance(model,argone,fn);
      }
-  
-  /*else if (isValid(requestparamid)===true){
-      return tocreatechildinstance(model, argone, requestparamid, fn);
-    } */
+    else {
+      return new Error(
+        ` missing some arguments`);
+      }
+  }
+
+  const toapicreateChildinstance= function(model, argone, requestparamid,fn) {
+    if(isValid(requestparamid)===true){
+      return tocreatechildinstance(model,argone,requestparamid,fn);
+     }
     else {
       return new Error(
         ` missing some arguments`);
@@ -128,9 +134,17 @@ const toOdaInstance = (function () {
   const toapiUpdateInstance= function(argone,  fn) {
     if(isValid(argone)===true){
       return toupdateinstance(argone,fn);
-    }/* else if (isValid(requestparamid)===true){
-      return toupdatechildinstance(argone, requestparamid, fn);
-    } */
+    }
+    else {
+      return new Error(
+        ` missing some arguments`);
+      }
+  }
+
+  const toapiUpdateChildInstance= function(argone, requestparamid, fn) {
+    if(isValid(requestparamid)===true){
+      return toupdatechildinstance(argone, requestparamid,fn);
+    }
     else {
       return new Error(
         ` missing some arguments`);
@@ -138,10 +152,10 @@ const toOdaInstance = (function () {
   }
   function toinit() {
     return {
-     // toupdateinstance: toupdateinstance,
-     //  tocreateinstance: tocreateinstance,
-     // tocreatechildinstance: tocreatechildinstance,
-  //    toupdatechildinstance: toupdatechildinstance,
+   //  toupdateinstance: toupdateinstance,
+   //  tocreateinstance: tocreateinstance,
+   toapicreateChildinstance: toapicreateChildinstance,
+     toapiUpdateChildInstance: toapiUpdateChildInstance,
       toapicreateinstance:toapicreateinstance,
       toapiUpdateInstance:toapiUpdateInstance
     };

@@ -1,7 +1,7 @@
 "use strict"
 
 
-const ocomptereferenceClass=(function(){
+const nttcomptebalanceDetailClass=(function(){
 function toinit(){
   return {
 
@@ -13,5 +13,5 @@ toinit:toinit
 }
 })()
 module.exports={
-  toinit:ocomptereferenceClass.toinit
+  toinit:nttcomptebalanceDetailClass.toinit
 }

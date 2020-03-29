@@ -14,7 +14,7 @@ const { seedotableauposte$}=require('../../features/otableauposte/index').toinit
 const { seedoexcompta$}=require('../../features/oexerccompta/index').toinit();
 //const { seedocomptereference$}=require('../../features/ocomptereference/index').toinit();
 //const {seedorepOrtdetail$}=require('../../features/oreportdetail/index').toinit();
-// const {seedoreportheader$}=require('../../features/oreportheader/index').toinit();
+ const {seedoreportheader$}=require('../../features/oreportheader/index').toinit();
 
 
 const index = (function () {
@@ -29,7 +29,7 @@ const index = (function () {
   ,seedOstblarea$
   ,seedostableauposte$
   ,seedotableauposte$
-  
+  ,seedoreportheader$ 
 
   /* 
  

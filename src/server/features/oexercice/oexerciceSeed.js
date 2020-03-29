@@ -1,15 +1,15 @@
 
 "use strict";
 const _ = require('lodash');
-const { odaCreateObjFromArray, getObjArray, asyncsave, odasave$,odaDel$ } = require('../../SharedKernel/dataservices').toinit();
+const { odaCreateObjFromArray, getObjArray, asyncsave, odasave$,odaDel$ } = require('../../SharedKernel/odaservice/dataservices').toinit();
 const { combineLatest, Observable, of, pipe, from, concat } = require('rxjs');
 const { filter, map, tap, pluck, find, take, distinct, shareReplay, concatMap} = require('rxjs/operators');
 const { toOexercice} = require('./StaticOexercice').toinit();
-const { oExercice, oExercCompta } = require('../../omodels/index').toinit();
+const { oExercice, oExercCompta } = require('../../omodels/modelsSchema/index').toinit();
 const { odaindex} = require('../../SharedKernel/base').toinit();
 const {getoexercice,togetoexerccompta} = require('../../SharedKernel/odaObjects').toinit();
 
-const {svctoseedOthersInstance, svcodaDel$, svcodasave$} = require('../../SharedKernel/odaservice').toinit();
+const {svctoseedOthersInstance, svcodaDel$, svcodasave$} = require('../../SharedKernel/odaservice/odaservice').toinit();
 
 
 const oexerciceSeed = (function () {

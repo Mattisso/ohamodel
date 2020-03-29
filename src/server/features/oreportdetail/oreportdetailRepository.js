@@ -1,15 +1,14 @@
 
 "use strict";
 
-const _ = require('lodash');
-const { olevel, oReportDetail } = require('../../omodels').toinit();
+const { olevel, oReportDetail } = require('../../omodels/modelsSchema/index').toinit();
 const { odaByarg, getodafilter } = require('../../SharedKernel/index').toinit().filtered;
 const { getObjoreportdetail, togetoreportdetail, toOreportDetail, toUpdateoreportdetail } = require('./staticOreportdetail').toinit();
 const { togetolevel, getobjolevel } = require('../olevel/staticOlevel').toinit();
-const { combineLatest, Observable, of, pipe, from } = require('rxjs');
-const { filter, map, tap, pluck, find } = require('rxjs/operators');
-const { getodaindex$, odaindex, getodaByid$, toOdaUpdate$, toOdaCreate$ } = require('../../SharedKernel/dataservices').toinit();
-const { svctoInitializeInstance, svctoapiUpdateInstance, svctoUpdateInstance, svcodasave$, svcapiupdate$, svcodaApiDel$, svcodaSearchBy } = require('../../SharedKernel/odaservice').toinit();
+const { Observable } = require('rxjs');
+const { getodaindex$, odaindex, getodaByid$ } = require('../../SharedKernel/odaservice/dataservices').toinit();
+const { svcodasave$, svcapiupdate$, svcodaApiDel$, svcodaSearchBy } = require('../../SharedKernel/odaservice/odaservice').toinit();
+const {svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const oreportdetailRepository = (function () {
   const getolevels = function (callback) {
     return odaindex(olevel, togetolevel, callback);
@@ -26,15 +25,15 @@ const oreportdetailRepository = (function () {
     return getodaByid$(oReportDetail, togetoreportdetail, requestparamid, getObjoreportdetail);
 
   };
-  const toCreateoreportdetaildata$ = function (requestBody,requestparamid) {
+  const toCreateoreportdetaildata$ = function (requestBody) {
 
-    return toOdaCreate$(oReportDetail, requestBody,requestparamid, toOreportDetail, svctoInitializeInstance);
+    return svctoInitializeInstance$(oReportDetail, requestBody,toOreportDetail);
   };
   const insertoreportdetail$ = function (arr) {
     return svcodasave$(arr);
   };
-  const toUpdateoreportdetaildata$ = function (requestBody,requestparamid) {
-    return toOdaUpdate$(requestBody,requestparamid, toUpdateoreportdetail, svctoapiUpdateInstance);
+  const toUpdateoreportdetaildata$ = function (requestBody) {
+    return svctoUpdateInstance$(requestBody,requestparamid, toUpdateoreportdetail);
   };
 
   const editoreportdetail$ = function (body, requestparamid) {

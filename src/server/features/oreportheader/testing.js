@@ -12,8 +12,8 @@ const {odaremove} =require('../../SharedKernel/odaUtility').toinit();
 const { combineLatest, Observable, of, pipe, from } = require('rxjs');
 const { filter, map, tap, pluck, take, find, distinct, shareReplay } = require('rxjs/operators');
 // const {combinedSeedata$} = require('./ostblareaRepository').toinit();
-//const {getloadocomptereferencedata$} = require('../../DataService/loadRepository').toinit();
-const { toseedoreportheaderdata$}=require('./oreportheaderSeed').toinit();
+/* const {getseedreportheaderdata$} = require('../../sharedkernel/odarepository/loadRepository').toinit();
+ */const { toseedoreportheaderdata$}=require('./oreportheaderSeed').toinit();
 
 
 
@@ -54,8 +54,8 @@ console.log('Data written successfully!');
 */
   const getObserverdata = pipe(
   map(n => n)
- // ,tap(ev => console.log(ev))
-  //,take(2)
+  ,tap(ev => console.log(ev))
+  ,take(2)
 
 );
 
@@ -78,14 +78,15 @@ console.log('Data written successfully!');
  */
 
   getoreportdetailR$.subscribe(function (x) {
-  var filename = JSON.stringify(odaremove(x));
-  fs.writeFile(outdirname, filename, function (err) {
+  //var filename =
+  return x;
+/*   fs.writeFile(outdirname, filename, function (err) {
     if (err) {
       return console.error(err);
     }
     console.log("Data written successfully!");
     process.exit(0);
-  });
+  }); */
 
 });
 

@@ -1,10 +1,10 @@
 
 "use strict";
-const { oExercCompta} = require('../../omodels/index').toinit();
+const { oExercCompta} = require('../../omodels/modelsSchema/index').toinit();
 const {oexercomptadata} = require('../../seed/data-seed/index').toinit();
 const { toOexercompta} = require('./staticOxerccompta').toinit();
 const {seedoexercice$} =require('../oexercice/index').toinit();
-const {svctoseedOthersInstance, svcodaDel$, svcodasave$} = require('../../SharedKernel/odaservice').toinit();
+const {svctoseedOthersInstance, svcodaDel$, svcodasave$} = require('../../SharedKernel/odaservice/odaservice').toinit();
 const { concat } = require('rxjs');
 
 const toseedoexercompta=svctoseedOthersInstance(oExercCompta,oexercomptadata,toOexercompta);

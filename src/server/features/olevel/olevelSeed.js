@@ -1,26 +1,29 @@
 "use strict";
 const _ = require('lodash');
 const async = require('async');
-const {olevel} = require('../../omodels/index').toinit();
+const {olevel} = require('../../omodels/modelsSchema/index').toinit();
 const {oleveldata} = require('../../seed/data-seed/index').toinit();
 const {toOlevel}=require('./Staticolevel').toinit();
 const {concat } = require('rxjs');
-const {svctoseedOthersInstance, svcodaDel$, svcodasave$} = require('../../SharedKernel/odaservice').toinit();
+const {svcodaDel$, svcodasave$} = require('../../SharedKernel/odaservice/odaservice').toinit();
+const {toInitializeInstance} = require('../../SharedKernel/odainstance/toInitializeInstance').toinit();
 
-const toseedarray=svctoseedOthersInstance(olevel,oleveldata,toOlevel);
+
 
 const olevelSeed = (function () {
-  var removeData$=function(model, item){
-return   svcodaDel$(model,item);
-  };
-  const insertolevel$ = function(arr) {
-    return svcodasave$(arr);
-  };
+  const toseedarray=toInitializeInstance(olevel,oleveldata,toOlevel);
 
-const result$= concat(removeData$(olevel,'olevel'),insertolevel$(toseedarray));
+  var removeData$=function(model, item){
+    return   svcodaDel$(model,item);
+      };
+      const insertolevel$ = function(arr) {
+        return svcodasave$(arr);
+      };
+    const seedresult$= concat(removeData$(olevel,'olevel'),insertolevel$(toseedarray));
+
   function toinit() {
     return {
-      result$:result$
+      result$:seedresult$
     };
   }
 

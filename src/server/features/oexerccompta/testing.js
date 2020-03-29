@@ -9,7 +9,7 @@ const  callbackdirname = path.join(__dirname, '../../DataService/data/source/cal
 require('../../config/ohadb').connectserver();
 const { combineLatest, Observable, of, pipe, from ,concat} = require('rxjs');
 const { filter, map, tap, pluck, take, find, distinct, shareReplay } = require('rxjs/operators');
-const { oExercCompta, oExercice} = require('../../omodels/index').toinit();
+const { oExercCompta, oExercice} = require('../../omodels/modelsSchema/index').toinit();
 
 // const { toOexercompta, toOexercice} = require('./staticOxerccompta').toinit();
 const {index,getexeccomptas$,GetComptaWithExercice$,getoExerciceEncour$,DropDownListExerComptable$} = require('./oexerccomptaRepository').toinit();

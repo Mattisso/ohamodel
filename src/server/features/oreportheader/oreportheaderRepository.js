@@ -1,16 +1,9 @@
-
 "use strict";
-
-var _ = require('lodash');
-const { oReportHeader } = require('../../omodels').toinit();
+const { oReportHeader } = require('../../omodels/modelsSchema/index').toinit();
 const { togetoreportheader,getObjoreportheader,toUpdateoreportheader,toOreportheader} = require('./staticOreportheader').toinit();
-const { odaByarg,getodafilter} = require('../../SharedKernel/index').toinit().filtered;
-
-const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$}=require('../../SharedKernel/dataservices').toinit();
-const {svctoInitializeInstance,svctoapiUpdateInstance,svctoUpdateInstance,svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice').toinit();
-const { combineLatest, Observable, of, pipe, from } = require('rxjs');
-const { filter, map, tap, pluck, find } = require('rxjs/operators');
-
+const {getodaindex$, odaindex,getodaByid$}=require('../../SharedKernel/odaservice/dataservices').toinit();
+const {svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const {svctoInitializeInstance$,svctoUpdateInstance$}=require('../../SharedKernel/odainstance/index').toinit();
 var oreportheaderRepository = (function () {
 
   const index = function (callback) {
@@ -24,15 +17,15 @@ var oreportheaderRepository = (function () {
     return getodaByid$(oReportHeader, togetoreportheader, requestparamid, getObjoreportheader);
 
   };
-  const toCreateoreportheaderdata$ = function (requestBody,requestparamid) {
+  const toCreateoreportheaderdata$ = function (requestBody) {
 
-    return toOdaCreate$(oReportHeader, requestBody,requestparamid, toOreportheader, svctoInitializeInstance);
+    return svctoInitializeInstance$(oReportHeader, requestBody, toOreportheader);
   };
   const Insertoreportheader$ = function (arr) {
     return svcodasave$(arr);
   };
   const toUpdateoreportheaderdata$ = function (requestBody) {
-    return toOdaUpdate$(requestBody, toUpdateoreportheader, svctoapiUpdateInstance);
+    return svctoUpdateInstance$(requestBody, toUpdateoreportheader);
   };
 
   const editoreportheader$ = function (body, requestparamid) {

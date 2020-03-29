@@ -1,6 +1,7 @@
 "use strict";
 const _ = require('lodash');
-const {insertolevel$,toUpdateoleveldata$,Deleteolevel$,getolevels$,getAll,getByid$,getolevelsBy$,odasearchBy,toCreateoleveldata$,editolevel$,seedresult$}=require('./olevelRepository').toinit();
+const {insertolevel$,toUpdateoleveldata$,Deleteolevel$,getolevels$,getAll,getByid$,getolevelsBy$,odasearchBy,toCreateoleveldata$,editolevel$}=require('./olevelRepository').toinit();
+const {seedresult$}=require('./olevelSeed').toinit();
 const { concatMap } = require('rxjs/operators');
 
 const olevelCtrl = (function () {

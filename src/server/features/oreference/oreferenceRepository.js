@@ -1,7 +1,6 @@
 "use strict";
 var _ = require('lodash');
 
-// var oReference = require('../../../omodels/index').oReference;
 const { oreferencedata } = require('../../seed/data-seed/index').toinit();
 const { combineLatest, pipe } = require('rxjs');
 const { map } = require('rxjs/operators');

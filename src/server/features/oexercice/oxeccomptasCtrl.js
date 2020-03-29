@@ -7,7 +7,6 @@ var url = require('url');
 var objqueriesparams = require('../../objQueriesParams');
 var baserepos = require('../base');
 var _ = require('lodash');
-// var oExercCompta = require('../../../omodels/index').oExercCompta;
 var oexerccomptaModel = require('./oxeccomptas');
 var oexercicemodel = require('./oexercice');
 var Models = require('../../../omodels');

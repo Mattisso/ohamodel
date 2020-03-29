@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 const { getauditentity, gettoObject, extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
-const {ocompteReferenceClass,modelObject}=require('../staticModels/staticocomptereference').toinit();
+const {ocompteReferenceClass,modelObject}=require('../modelClass/ocomptereferenceClass').toinit();
 
 
 const  ocomptereference = (function(){

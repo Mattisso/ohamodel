@@ -1,20 +1,17 @@
-
 "use strict";
 const _ = require('lodash');
 
-const { ocompterefencedata, oreportdetaildata, oreportheaderdata} = require('../odarepository/odaApirepository').toinit();
-const { getoreferences$ } = require('../features/oreference/oreferenceRepository').toinit();
-const { getotableaupostes$ } = require('../features/otableauposte/otableauposteRepository').toinit();
-const { getostblareas$ } = require('../features/ostblarea/ostblareaRepository').toinit();
-const { getocomptes$ } = require('../features/ocompte/ocompteRepository').toinit();
-const { getostableaupostes$ } = require('../features/ostableauposte/ostableauposteRepository').toinit();
-// const {getoreferences$, getostblareas$,getostableaupostes$}=require('./sharedRepository').toinit();
-const { getolevels$ } = require('../features/olevel/olevelRepository').toinit();
-const {staticObjects}= require('../SharedKernel/index').toinit();
-const {odareduceArray, isValid}=require('../SharedKernel/odaUtility').toinit();
+const { ocompterefencedata, oreportdetaildata, oreportheaderdata} = require('../../seed/data-seed/index').toinit();
+const { getoreferences$ } = require('../../features/oreference/oreferenceRepository').toinit();
+const { getotableaupostes$ } = require('../../features/otableauposte/otableauposteRepository').toinit();
+const { getostblareas$ } = require('../../features/ostblarea/ostblareaRepository').toinit();
+const { getocomptes$ } = require('../../features/ocompte/ocompteRepository').toinit();
+const { getostableaupostes$ } = require('../../features/ostableauposte/ostableauposteRepository').toinit();
+const { getolevels$ } = require('../../features/olevel/olevelRepository').toinit();
+const staticObjects= require('../../SharedKernel/staticObjects').toinit();
+const {odareduceArray, isValid, oarray}=require('../../SharedKernel/odaUtility').toinit();
 const { combineLatest, Observable, of, pipe, from } = require('rxjs');
 const { filter, map, tap, pluck, find, shareReplay } = require('rxjs/operators');
-const { oarray } = require('../helper/oda').toinit();
 
 const loadRepository = (function () {
   const seededatas = oarray(ocompterefencedata);
@@ -106,7 +103,7 @@ const loadRepository = (function () {
 
   const getseedreportheaderdata$ = combineLatest(getotableaupostes$, getoreferences$).pipe(
     //   tap(ev => console.log(ev)),
-    map(function ([getotableaupostes,getoreferences,getolevels]) {
+    map(function ([getotableaupostes,getoreferences]) {
       let neobj;
       neobj = _.map(oreportheaderseededatas, function (seed) {
        // const filteredvalue = filtered.odaByarg("nttcomptebalanceKey", ntcompttbalance.id);

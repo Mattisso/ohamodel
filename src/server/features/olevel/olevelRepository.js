@@ -5,20 +5,11 @@ const {odaByarg,getodafilter} =require('../../SharedKernel/index').toinit().filt
 const { Observable } = require('rxjs');
 const {togetolevel, getobjolevel,toOlevel,toUpdateolevel}=require('./staticOlevel').toinit();
 const {getodaindex$, odaindex,getodaByid$}=require('../../SharedKernel/odaservice/dataservices').toinit();
-const {svctoapiUpdateInstance,svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice').toinit();
-const {toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+const {svctoapiUpdateInstance,svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const {svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const {concat } = require('rxjs');
 
 const olevelRepository = (function () {
-  const toseedarray=toInitializeInstance(olevel,oleveldata);
-
-  var removeData$=function(model, item){
-    return   svcodaDel$(model,item);
-      };
-      const insertolevel$ = function(arr) {
-        return svcodasave$(arr);
-      };
-    const seedresult$= concat(removeData$(olevel,'olevel'),insertolevel$(toseedarray));
 
   const index = function (callback) {
     return odaindex(olevel, togetolevel, callback);
@@ -78,9 +69,8 @@ const olevelRepository = (function () {
       toUpdateoleveldata$:toUpdateoleveldata$,
       editolevel$:editolevel$,
       odasearchBy:odasearchBy,
-      Deleteolevel$:Deleteolevel$,
-      seedresult$:seedresult$
-    };
+      Deleteolevel$:Deleteolevel$
+        };
   }
   return {
     toinit: toinit

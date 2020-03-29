@@ -2,14 +2,14 @@
 const _ = require('lodash');
 const async = require('async');
 const path = require('path');
-const {oReportDetail} = require('../../omodels/index').toinit();
+const {oReportDetail} = require('../../omodels/modelsSchema/index').toinit();
 const {toOreportDetail, getObjoreportdetail}=require('./staticoreportdetail').toinit();
 const { combineLatest, Observable, of, pipe, from, concat } = require('rxjs');
 const { filter, map, tap, pluck, find, shareReplay, concatMap } = require('rxjs/operators');
-const {svctoseedOthersInstance, svcodaDel$, svcodasave$} = require('../../SharedKernel/odaservice').toinit();
+const {svctoseedOthersInstance, svcodaDel$, svcodasave$} = require('../../SharedKernel/odaservice/odaservice').toinit();
 const { odaremove} = require('../../SharedKernel/odaUtility').toinit();
- const {getseedreportdetaildata$} = require('../../DataService/loadRepository').toinit();
-
+ const {getseedreportdetaildata$} = require('../../sharedkernel/odarepository/loadRepository').toinit();
+ const {toInitializeInstance}=require('../../sharedkernel/odainstance/toInitializeInstance').toinit(); 
 const orepOrtdetailSeed = (function () {
   const _removeData$ = function (model, item) {
     return   svcodaDel$(model,item);
@@ -18,7 +18,7 @@ const orepOrtdetailSeed = (function () {
   const getObserverdata = pipe(
     map(function(n){
      const filtereddatas = odaremove(n);
-     return svctoseedOthersInstance(oReportDetail,filtereddatas,toOreportDetail);
+     return toInitializeInstance(oReportDetail,filtereddatas,toOreportDetail);
     })
   );
   const toseedoreportdetaildata$ = getObserverdata(getseedreportdetaildata$);

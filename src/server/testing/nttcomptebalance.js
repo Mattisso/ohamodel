@@ -5,6 +5,7 @@ const {nttCompteBalance,nttCompteBalanceDetail}=require('../omodels/modelsSchema
 const {toInitComptebalanceInstance}=require('../features/nttcomptebalance/staticNttcomptebalance').toinit();
 const {odaremoveDupnumcompte} = require('../sharedkernel/odaUtility').toinit();
 const {toInitCustomInstance, toapicreateinstance,svctoInitCustomInstance$}=require('../sharedkernel/odainstance/toInitializeInstance').toinit()
+const {getstreamdata$, odagetObserver,getapistreamdata$,getapiObserver}=require('../sharedkernel/odaSubscribe').toinit();
 /* const {toCompteBalanceDetail}=require('../omodels/staticModels/staticNttcomptebalanceDetail').toinit();
 const { combineLatest, pipe, concat} = require('rxjs');
 const { map, shareReplay } = require('rxjs/operators');
@@ -20,9 +21,17 @@ const {getsrdexeccomptas$,getsrdotableaupostes$,getsrdoreferences$,getsrdcompteb
 //let toacreateinstance=toapicreateinstance;
 
 require('../config/ohadb').connectserver()
+const mytest = function(model, requestbody){
+return toInitCustomInstance(model, requestbody,toInitComptebalanceInstance)
 
-//const data =toInitCustomInstance(nttCompteBalance,createData,toInitComptebalanceInstance)
-const data =toInitComptebalanceInstance(nttCompteBalance,createData,toapicreateinstance)
+}
+const toCreateBalancedata$ = function (requestBody) {
+  //   console.log(requestBody);
+     return svctoInitCustomInstance$(nttCompteBalance, createData, svctoapiInitcomptebalanceInstance);
+   };
+//const finaltest=
+const data =toInitCustomInstance(nttCompteBalance,createData,toInitComptebalanceInstance)
+//const data =toInitComptebalanceInstance(nttCompteBalance,createData,toapicreateinstance)
 // JSON.stringify(toInitializeInstance(nttCompteBalance,createData)));
 console.log(data.getData);
 /* const comptedata=data.getData;
@@ -33,3 +42,18 @@ console.log(details) */
   //   console.log(requestBody);
      return svctoInitCustomInstance$(nttCompteBalance, requestBody,  toInitCustomInstance);
    }; */
+   const getLoaddData$ = toCreateOComptedata$;
+
+/* update$(objupdate,'5e6c1d38f83ac10fd8de514d'); */
+//toUpdateOComptedata$(objupdate)
+/* update$(objupdate,'5e6c1d38f83ac10fd8de514d'); */
+//index$;
+
+//update$(objupdate,//'5e6c1d38f83ac10fd8de514d')
+//index$
+
+/* update$(objupdate,'5e6c1d38f83ac10fd8de514d') */
+
+//index$ //insert$(obj);
+
+getstreamdata$(getLoaddData$(obj)).subscribe(odagetObserver());

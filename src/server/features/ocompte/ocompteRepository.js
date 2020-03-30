@@ -28,8 +28,8 @@ const ocompteRepository = (function () {
   const getByid$ = function (requestparamid) {
     return getodaByid$(oCompte, togetocompte, requestparamid, getobjOcompte);
   };
-  const toCreateOComptedata$ = function (requestBody,requestparamid) {
-    return svctoInitializeInstance$(oCompte, requestBody,requestparamid, toOCompte);
+  const toCreateOComptedata$ = function (requestBody,) {
+    return svctoInitializeInstance$(oCompte, requestBody);
   };
   const insertOCompte$ = function (arr) {
     return svcodasave$(arr);

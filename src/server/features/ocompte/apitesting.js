@@ -18,7 +18,7 @@ require('../../config/ohadb').connectserver();
 
 //const {Loadnstbalanceinput$} = require('./index').toinit();
 const {insert$,update$,Delete$,getByid$,index$} = require('./index').toinit();
-const {toUpdateOComptedata$}=require('../ocompte/ocompteRepository').toinit()
+const {toCreateOComptedata$}=require('../ocompte/ocompteRepository').toinit()
 const  obj ={
   "CompteNumber": '485'
 };
@@ -41,7 +41,7 @@ const objupdate={
 // Delete$('5de4209ff5f8b20fe8229f97');
 
 //index$
-const getLoaddData$ = index$
+const getLoaddData$ = toCreateOComptedata$;
 
 /* update$(objupdate,'5e6c1d38f83ac10fd8de514d'); */
 //toUpdateOComptedata$(objupdate)
@@ -55,5 +55,5 @@ const getLoaddData$ = index$
 
 //index$ //insert$(obj);
 
-getstreamdata$(getLoaddData$).subscribe(odagetObserver());
+getstreamdata$(getLoaddData$(obj)).subscribe(odagetObserver());
 

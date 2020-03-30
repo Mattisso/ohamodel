@@ -1,6 +1,6 @@
 "use strict";
-const { nttCompteBalance ,nttCompteBalanceDetail} = require('../../omodels').toinit();
-const {togetcomptebalances,toUpdatecomptebalancedata, toapinttcomptebalance,togetloadnttbalance,getloadnttcomptebalanceDetaildata, getcombinednIndex,togetcomptebalancesWithDetails}=require('./staticNttcomptebalance').toinit();
+const { nttCompteBalance ,nttCompteBalanceDetail} = require('../../omodels/modelsSchema/index').toinit();
+const {togetcomptebalances,toUpdatecomptebalancedata, toapinttcomptebalance,togetloadnttbalance,getloadnttcomptebalanceDetaildata, getcombinednIndex,togetcomptebalancesWithDetails,toInitComptebalanceInstance}=require('./staticNttcomptebalance').toinit();
 const {toCompteBalanceDetail}=require('../nttcomptebalancedetail/staticNttcomptebalanceDetail').toinit();
 const { combineLatest, pipe, concat} = require('rxjs');
 const { map, shareReplay } = require('rxjs/operators');

@@ -89,17 +89,23 @@ const toInitializeInstance = (function () {
       } catch (err) {
         observer.error(err);
       }
-    });
-  
+    });  
   };
   const svctoInitializeInstance$ = function (model,requestBody) {
     return toapiOdaCreate$(model, requestBody, toInitializeInstance);
 };
 
+const toInitCustomInstance = function (model,requestBody, fn) {
+  return fn(model, requestBody,toapicreateinstance)
+};
+
+const svctoInitCustomInstance$= function(model,requestBody){
+return toapiOdaCreate$(model, requestBody,toInitCustomInstance);
+}
+
 const svctoInitializeChildInstance$ = function (model,requestBody,requestparamid) {
   return toapiOdaChildCreate$(model, requestBody, requestparamid,toInitializeChildInstance);
 };
-
 
   function toinit() {
     return {
@@ -107,7 +113,9 @@ const svctoInitializeChildInstance$ = function (model,requestBody,requestparamid
       toInitializeInstance:toInitializeInstance,
       svctoInitializeChildInstance$:svctoInitializeChildInstance$,
       toapicreateChildinstance:toInitializeChildInstance,
-      toapicreateinstance:toapicreateinstance
+      toapicreateinstance:toapicreateinstance,
+      svctoInitCustomInstance$:svctoInitCustomInstance$,
+      toInitCustomInstance:toInitCustomInstance
 
     };
   }

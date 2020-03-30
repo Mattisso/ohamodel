@@ -8,25 +8,24 @@ const {queryselector, getSoldeDebit,getSoldeCredit}=require('./objQryParams').to
 
 const staticNttcomptebalance = (function () {
 
-
-
   let comptebalance = null
 /* nttcomptebalancedetails=[];;
  */function BuildnttCompteBalance(model,body, fn) {
-    comptebalance =fn(model,body);    
+  let toacreateinstance=fn;
+    comptebalance =toacreateinstance(model,body);    
     body.nttcomptebalancedetails.forEach(function (entry) {
       comptebalance.addBalanceDetail(entry);    
     });
     comptebalance.getTotalSoldedebit;
     comptebalance.getTotalSoldecredit;    
         return comptebalance;
-      }    
+      } 
+            
       function BuildupdateCompteBalance(body) {
         // let nttcomptebalancedetails=[];
         comptebalance = body;
         return comptebalance;
       }  
-
       function toInitComptebalanceInstance(model,body,fn) {
         const balance = BuildnttCompteBalance(model,body,fn);
         return {
@@ -35,6 +34,12 @@ const staticNttcomptebalance = (function () {
         };
     
       }
+
+      const toInitCustomInstance = function (model,requestBody, fn) {
+        return fn(model, requestBody,toapicreateinstance)
+      };
+
+      
   const _togetcomptebalance = function (obj) {
     let initObj, odauditobj;
       initObj = {

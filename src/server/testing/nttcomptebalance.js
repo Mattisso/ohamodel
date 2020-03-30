@@ -4,7 +4,7 @@ const {createData,editData}=require('../testing/data/comptebalancedata').toinit(
 const {nttCompteBalance,nttCompteBalanceDetail}=require('../omodels/modelsSchema/index').toinit();
 const {toInitComptebalanceInstance}=require('../features/nttcomptebalance/staticNttcomptebalance').toinit();
 const {odaremoveDupnumcompte} = require('../sharedkernel/odaUtility').toinit();
-const {toapicreateinstance}=require('../sharedkernel/odainstance/toInitializeInstance').toinit()
+const {toInitCustomInstance, toapicreateinstance,svctoInitCustomInstance$}=require('../sharedkernel/odainstance/toInitializeInstance').toinit()
 /* const {toCompteBalanceDetail}=require('../omodels/staticModels/staticNttcomptebalanceDetail').toinit();
 const { combineLatest, pipe, concat} = require('rxjs');
 const { map, shareReplay } = require('rxjs/operators');
@@ -17,9 +17,11 @@ const {tocreateinstance} = require('../sharedkernel/odainstance/toOdaInstance').
 const {getsrdexeccomptas$,getsrdotableaupostes$,getsrdoreferences$,getsrdcomptebalances$,getsrdcomptebalanceDetails$}=require('../sharedkernel/odarepository/sharedRepository').toinit(); */
 // const {toInitCompteBalanceInstance}=require('../omodels/modelClass/nttcomptebalanceClass').toinit();
 //const {nttCompteBalance}=require('../omodels/modelsSchema/index').toinit();
+//let toacreateinstance=toapicreateinstance;
 
 require('../config/ohadb').connectserver()
 
+//const data =toInitCustomInstance(nttCompteBalance,createData,toInitComptebalanceInstance)
 const data =toInitComptebalanceInstance(nttCompteBalance,createData,toapicreateinstance)
 // JSON.stringify(toInitializeInstance(nttCompteBalance,createData)));
 console.log(data.getData);
@@ -27,3 +29,7 @@ console.log(data.getData);
 const detailsdata=comptedata.nttcomptebalancedetails
  const details= toapicreateinstance(nttCompteBalanceDetail,detailsdata);
 console.log(details) */
+/* const toCreateBalancedata$ = function (requestBody) {
+  //   console.log(requestBody);
+     return svctoInitCustomInstance$(nttCompteBalance, requestBody,  toInitCustomInstance);
+   }; */

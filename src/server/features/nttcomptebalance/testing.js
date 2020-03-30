@@ -26,7 +26,6 @@ const {getodaAggreateData} =require('../../SharedKernel/odaStats').toinit();
 //const {toloadnttcomptebalancedata$} = require('./loadnttcomptebalance').toinit();
 const { index,toCreateBalancedata$, toapiCreateBalancedata$,togetcomptebalancesWithDetails$,getcombinednindex$} = require('./nttcomptebalanceRepository').toinit();
 
-
 // const getoreportdetail$= sharedrepository.getocomptreferences$;
  //const getcallbackdata = ostblareaRepository.index;
 //  const getoreportdetail$ = olevelRepository.getolevelsBy$(3);

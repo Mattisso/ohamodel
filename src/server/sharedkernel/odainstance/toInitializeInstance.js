@@ -92,6 +92,7 @@ const toInitializeInstance = (function () {
     });  
   };
   const svctoInitializeInstance$ = function (model,requestBody) {
+
     return toapiOdaCreate$(model, requestBody, toInitializeInstance);
 };
 
@@ -99,8 +100,9 @@ const toInitCustomInstance = function (model,requestBody, fn) {
   return fn(model, requestBody,toapicreateinstance)
 };
 
-const svctoInitCustomInstance$= function(model,requestBody){
-return toapiOdaCreate$(model, requestBody,toInitCustomInstance);
+
+const svctoInitCustomInstance$= function(model,requestBody,fn){
+return toapiOdaCreate$(model, requestBody,fn);
 }
 
 const svctoInitializeChildInstance$ = function (model,requestBody,requestparamid) {

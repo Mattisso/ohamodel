@@ -7,11 +7,18 @@ const { map, shareReplay } = require('rxjs/operators');
 const {getnttbalances$} = require('../nttbalance/nttbalanceRepository').toinit();
 const {getObjcomptebalance}=require('../../SharedKernel/staticObjects').toinit();
 const {getObserverWithShareReplaydata$}=require('../../SharedKernel/odaSubscribe').toinit();
-const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$,getodasharedByid$,toapiOdaCreate$}=require('../../SharedKernel/dataservices').toinit();
-const {svcodaApisave$,svcodaApiupdate$, svcodaApiDel$,svcodaSearchBy, svctoapiInitializeinstance ,svctoapiInitcomptebalanceInstance,svctoapiupdatecomptebalanceInstance}=require('../../SharedKernel/odaservice').toinit();
+const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$,getodasharedByid$,toapiOdaCreate$}=require('../../SharedKernel/odaservice/dataservices').toinit();
+const {svcodaApisave$,svcodaApiupdate$, svcodaApiDel$,svcodaSearchBy, svctoapiInitializeinstance ,svctoapiInitcomptebalanceInstance,svctoapiupdatecomptebalanceInstance}=require('../../SharedKernel/odaservice/odaservice').toinit();
 const {getsrdexeccomptas$,getsrdotableaupostes$,getsrdoreferences$,getsrdcomptebalances$,getsrdcomptebalanceDetails$}=require('../../DataService/sharedRepository').toinit();
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+
 
 const nttcomptebalanceRepository = (function () {
+  const toInitializeFinalInstance = function (model, body) {
+    const data = toInitCustomInstance(model, body, toInitComptebalanceInstance);
+    return data;
+  };
+
   const index = function (callback) {
     return odaindex(nttCompteBalance, togetcomptebalances, callback);
   };
@@ -27,11 +34,11 @@ const nttcomptebalanceRepository = (function () {
 
   const toCreateBalancedata$ = function (requestBody) {
  //   console.log(requestBody);
-    return toOdaCreate$(nttCompteBalance, requestBody, toapinttcomptebalance, svctoapiInitcomptebalanceInstance);
+    return svctoInitCustomInstance$(nttCompteBalance, requestBody, toInitializeFinalInstance);
   };
   const toapiCreateBalancedata$ = function (requestBody) {
     //   console.log(requestBody);
-      const _toapiodacreate= toapiOdaCreate$(nttCompteBalance, nttCompteBalanceDetail, requestBody, toapinttcomptebalance,toCompteBalanceDetail, svctoapiInitializeinstance);
+      const _toapiodacreate= svctoInitCustomInstance$(nttCompteBalance, requestBody, toInitializeFinalInstance);
       return getObserverWithShareReplaydata$(_toapiodacreate);
      };
   //const toCreateapiBalancedata$=getObserverWithShareReplaydata$(toCreateBalancedata$);

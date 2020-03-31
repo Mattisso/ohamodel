@@ -21,16 +21,20 @@ const {getsrdexeccomptas$,getsrdotableaupostes$,getsrdoreferences$,getsrdcompteb
 //let toacreateinstance=toapicreateinstance;
 
 require('../config/ohadb').connectserver()
-const mytest = function(model, requestbody){
+/* const toInitCustomInstance = function(model, requestbody){
 return toInitCustomInstance(model, requestbody,toInitComptebalanceInstance)
 
-}
-const toCreateBalancedata$ = function (requestBody) {
-  //   console.log(requestBody);
-     return svctoInitCustomInstance$(nttCompteBalance, createData, svctoapiInitcomptebalanceInstance);
-   };
+} */
+/* const toCreateBalancedata$ = function (requestBody) {
+  //   console.log(requestBody);requestBody
+     return svctoInitCustomInstance$(nttCompteBalance, requestBody, toInitCustomInstance);
+   }; */
 //const finaltest=
-const data =toInitCustomInstance(nttCompteBalance,createData,toInitComptebalanceInstance)
+const toInitializeFinalInstance = function (model, body) {
+  const data = toInitCustomInstance(model, body, toInitComptebalanceInstance);
+  return data;
+};
+const data =toInitializeFinalInstance(nttCompteBalance,createData)
 //const data =toInitComptebalanceInstance(nttCompteBalance,createData,toapicreateinstance)
 // JSON.stringify(toInitializeInstance(nttCompteBalance,createData)));
 console.log(data.getData);
@@ -42,7 +46,7 @@ console.log(details) */
   //   console.log(requestBody);
      return svctoInitCustomInstance$(nttCompteBalance, requestBody,  toInitCustomInstance);
    }; */
-   const getLoaddData$ = toCreateOComptedata$;
+   // const getLoaddData$ = toCreateOComptedata$;
 
 /* update$(objupdate,'5e6c1d38f83ac10fd8de514d'); */
 //toUpdateOComptedata$(objupdate)
@@ -56,4 +60,4 @@ console.log(details) */
 
 //index$ //insert$(obj);
 
-getstreamdata$(getLoaddData$(obj)).subscribe(odagetObserver());
+// getstreamdata$(getLoaddData$(obj)).subscribe(odagetObserver());

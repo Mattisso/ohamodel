@@ -9,19 +9,21 @@ const {getTotalCount, getTotalSoldedebit, getTotalSoldecredit}=require('../Share
 const {odaremoveDupnumcompte} = require('../Sharedkernel/odaUtility').toinit();
 
 // console.log(toInitializeInstance(nstBalanceInput,arrcreateData))
-let arrbalanceinputs = null
+let balanceinputs = null
 
 function BuildnttCompteBalance(model,body, fn) {
   let toacreateinstance=fn;
-    arrbalanceinputs =toacreateinstance(model,body);   
-        return arrbalanceinputs;
+  balanceinputs =toacreateinstance(model,body); 
+ 
+    console.log(balanceinputs);
+        return balanceinputs;
 
       } 
             
       function BuildupdateCompteBalance(body) {
         // let nttarrbalanceinputsdetails=[];
        // arrbalanceinputs = body;
-        return arrbalanceinputs;
+        return balanceinputs;
       }  
       function toInitComptebalanceInstance(model,body,fn) {
         const balance = BuildnttCompteBalance(model,body,fn);
@@ -47,6 +49,6 @@ return ({
         return data;
       };
       const data =toInitializeFinalInstance(nstBalanceInput,arrcreateData) */
-      const data =toInitComptebalanceInstance(nstBalanceInput,arrcreateData,toapicreateinstance)
+      const data =toInitComptebalanceInstance(nstBalanceInput,createData,toapicreateinstance)
       // JSON.stringify(toInitializeInstance(nttCompteBalance,createData)));
-      console.log(data.getData());
+   //   console.log(data.getData());

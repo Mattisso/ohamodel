@@ -1,10 +1,11 @@
 "use strict"
 const {replaceString}= require('../helpers/utils').toinit();
 const {getTotalCount, getTotalSoldedebit, getTotalSoldecredit}=require('../../SharedKernel/odaStats').toinit();
+const {odaremoveDupnumcompte} = require('../../Sharedkernel/odaUtility').toinit();
 
 const nstbalanceinputClass =(function(){
-/*   let arrbalanceinputs =[];
- */
+  let arrbalanceinputs =[];
+ 
   class nstbalanceinputClass {
 
     constructor(NumCompte, IntitulCompte, SoldeCredit, SoldeDebit) {
@@ -57,8 +58,7 @@ const nstbalanceinputClass =(function(){
       return this;
     }
 
-     AddbalancesheetData(obj) {
-       
+     AddbalancesheetData(obj) {       
    arrbalanceinputs.push(
       {
         "NumCompte" : obj.numcompte,
@@ -70,9 +70,9 @@ const nstbalanceinputClass =(function(){
     
       });
     return   {
-       'totalSoldeDebit': getTotalSoldedebit(this.arrbalanceinputs), 
+   /*     'totalSoldeDebit': getTotalSoldedebit(this.arrbalanceinputs), 
       'totalSoldeCredit': getTotalSoldecredit( this.arrbalanceinputs),
-      'DetailCount': getTotalCount(odaremoveDupnumcompte(this.arrbalanceinputs)), 
+      'DetailCount': getTotalCount(odaremoveDupnumcompte(this.arrbalanceinputs)),  */
       'arrbalanceinputs': odaremoveDupnumcompte(arrbalanceinputs.slice()) 
       }
       

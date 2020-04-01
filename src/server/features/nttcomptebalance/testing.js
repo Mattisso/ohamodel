@@ -6,6 +6,9 @@ const path = require('path');
 var async = require('async');
 const outdirname = path.join(__dirname, '../../DataService/data//source/data.json');
 const  callbackdirname = path.join(__dirname, '../../DataService/data/source/callbackdata.json');
+const {createData,editData}=require('../../testing/data/comptebalancedata').toinit();
+const {getstreamdata$, odagetObserver,getapistreamdata$,getapiObserver}=require('../../SharedKernel/odaSubscribe').toinit();
+
 // var nstbalancedata=require('../load/nstbalance/nstbalancedata');
 const {odaremove, odareduceArray}=require('../../SharedKernel/odaUtility').toinit();
 //const {getstreamdata$}=require('../../SharedKernel/odaSubscribe').toinit();
@@ -24,15 +27,15 @@ console.log(JSON.stringify(objdata));
 const{comptebalancedata}=require('../../testing/data/index').toinit();
 const {getodaAggreateData} =require('../../SharedKernel/odaStats').toinit();
 //const {toloadnttcomptebalancedata$} = require('./loadnttcomptebalance').toinit();
-const { index,toCreateBalancedata$, toapiCreateBalancedata$,togetcomptebalancesWithDetails$,getcombinednindex$} = require('./nttcomptebalanceRepository').toinit();
+const { toCreateBalancedata$} = require('./nttcomptebalanceRepository').toinit();
 
 // const getoreportdetail$= sharedrepository.getocomptreferences$;
  //const getcallbackdata = ostblareaRepository.index;
 //  const getoreportdetail$ = olevelRepository.getolevelsBy$(3);
 // console.log(comptebalancedata.createData);
-const getoreportdetail$ = togetcomptebalancesWithDetails$; // toapiCreateBalancedata$(comptebalancedata.createData);
+const getoreportdetail$ = toCreateBalancedata$; // toapiCreateBalancedata$(comptebalancedata.createData);
 
-
+/* 
 index(function(err,data){
    if(err) {
      console.log(err);
@@ -55,16 +58,16 @@ console.log('Data written successfully!');
   });
 }
     // console.log(dataservice.getobjolevel(data,_refoce).odakey());
- });
-
+ }); */
+/* 
   const getObserverdata = pipe(
   map(n => n)
-,tap(ev => console.log(ev.length?ev.length:0))
+//,tap(ev => console.log(ev.length?ev.length:0))
 ,tap(ev => console.log(ev))
 ,take(2)
 );
-
- const getoreportdetailR$ = getObserverdata(getoreportdetail$);
+ */
+ // const getoreportdetailR$ = getObserverdata(getoreportdetail$);
 /*  dataservice._getolevels(function(err, data){
      if(err) {
          console.log(err)
@@ -82,16 +85,5 @@ console.log('Data written successfully!');
  getoreportdetailR$.subscribe(odagetObserver);
  */
 
-  getoreportdetailR$.subscribe(function (x) {
-  var filename = JSON.stringify(x);
-  fs.writeFile(outdirname, filename, function (err) {
-    if (err) {
-      return console.error(err);
-    }
-    console.log("Data$ written successfully!");
-//    process.exit(0);
-  });
 
-});
-
-
+getstreamdata$(getoreportdetail$(createData)).subscribe(odagetObserver());

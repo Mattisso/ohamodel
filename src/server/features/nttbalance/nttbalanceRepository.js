@@ -1,15 +1,15 @@
 "use strict";
 const _ = require('lodash');
-const  {nttBalance} = require('../../omodels').toinit();
+const  {nttBalance} = require('../../omodels/modelsSchema/index').toinit();
 const {getobjnttBalance, togetnttbalance,tonttbalance,toUpdatenttbalancedata}=require('./staticNttbalance').toinit();
 const { combineLatest, concat} = require('rxjs');
 const { map, shareReplay} = require('rxjs/operators');
 const {isValid} = require('../../SharedKernel/odaUtility').toinit();
 const { getobjOreference,getobjOexercCompta,getobjOtableauposte}=require('../../SharedKernel/staticObjects').toinit();
-const {getsrdexeccomptas$,getsrdnttbalances$,getsrdotableaupostes$,getsrdoreferences$}=require('../../DataService/sharedRepository').toinit();
+const {getsrdexeccomptas$,getsrdnttbalances$,getsrdotableaupostes$,getsrdoreferences$}=require('../../sharedkernel/odarepository/sharedRepository').toinit();
 
-const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$,getodasharedByid$}=require('../../SharedKernel/dataservices').toinit();
-const {svctoInitializeInstance,svctoapiUpdateInstance,svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice').toinit();
+const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$,getodasharedByid$}=require('../../SharedKernel/odaservice/dataservices').toinit();
+const {svctoInitializeInstance,svctoapiUpdateInstance,svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
 
 const nttbalanceRepository = (function () {
   const index = function (callback) {

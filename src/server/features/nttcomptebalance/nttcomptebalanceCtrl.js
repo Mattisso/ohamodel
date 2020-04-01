@@ -36,13 +36,11 @@ var nttcomptebalanceCtrl = (function () {
    const insertcomptebalancewithDetail$ = function (body) {
  let _comptebalance=null, _details=null;
 return toapiCreateBalancedata$(body).pipe(concatMap(function (x) {
-    _comptebalance= x.comptebalance,
+    _comptebalance= x.getData,
     _details= _comptebalance.nttcomptebalancedetails;
     return concat(insertcomptebalance$(_comptebalance),insertWithDetails$(_details));
   }))
- /*  console.log(_details);
-    return  concat(finalobj, insertWithDetails$(_details)
-    ) */
+ 
     };
   const update$ = function (body, requestparamid) {
     return toUpdatecomptebalancedata$(body).pipe(concatMap(function (x) {

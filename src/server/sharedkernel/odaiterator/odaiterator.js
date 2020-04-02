@@ -1,63 +1,55 @@
 "use strict"
 const odaiterator = (function () {
 
-    //	data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    // length = data.length;
-    let myiterator = function (argone) {
-        let location = 0,
-        length = argone.length;
-        return {
-           /*  next: function () {
-                return argone[location++];
-            }, */
-            next: function () {
-                let element;
-                if (!this.hasNext()) {
-                return null;
-                }
-                element = argone[location];
-                location += 1;
-                return element;
+    ///let customIterator = function () {
+        let location = 0;
+       let  items= [];
+       // return {
+         const   getItems = function(argone) {
+                return argone;
+              }
+    
+          const   getCount = function(argone) {
+                return argone.length;
+              }
+                 
+         const  addItem = function(item)  {
+              const arr=[];
+              arr.push(item);
+              return arr;
+              }
+
+                let customIterator = function (argone) {
+
+                      return {
+        current :function () {
+                return argone[location];
                 },
-                rewind: function () {
-                    location = 0;
-                    return argone[location];
+    
+     hasMoreItems :function() {
+                    if (location < argone.length && argone[location] != null) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                },
+        hasNext :  function () {
+                    let element;
+                    if (!hasMoreItems()) {
+                    return null;
+                    }
+                    element = argone[location];
+                    location += 1;
+                    return element;
                     },
-                    current: function () {
-                    return argone[location];
-                    },
-            hasNext: function () {
-                if (location < argone.length && argone[location] != null) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
-         /*    return {
-        hasNext: function () {
-        return index < length;
-        },
-        next: function () {
-        var element;
-        if (!this.hasNext()) {
-        return null;
-        }
-        element = argone[index];
-        index += 1;
-        return element;
-        },
 
-        rewind: function () {
-        index = 0;
-        return argone[index];
-        },
-        current: function () {
-        return argone[index];
-        }
-        } */
-
-    }
+            rewind : function() {
+                        location =0;
+                    return location= getCount()-1;
+                    }
+       }
+   
+   }
     function reverseArrayIterator(array) {
         var index = array.length - 1;
         return {
@@ -74,7 +66,10 @@ const odaiterator = (function () {
 
     function toinit() {
         return {
-            myiterator: myiterator,
+            getCount:getCount,
+            addItem:addItem,
+            getItems:getItems,           
+            customIterator:customIterator,
             reverseArrayIterator: reverseArrayIterator
         };
     }

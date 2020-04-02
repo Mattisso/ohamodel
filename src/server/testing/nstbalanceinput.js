@@ -15,7 +15,7 @@ function BuildnttCompteBalance(model,body, fn) {
   let toacreateinstance=fn;
   balanceinputs =toacreateinstance(model,body); 
  
-    console.log(balanceinputs);
+  //  console.log(balanceinputs);
         return balanceinputs;
 
       } 
@@ -49,6 +49,6 @@ return ({
         return data;
       };
       const data =toInitializeFinalInstance(nstBalanceInput,arrcreateData) */
-      const data =toInitComptebalanceInstance(nstBalanceInput,createData,toapicreateinstance)
+      const data =toInitComptebalanceInstance(nstBalanceInput,arrcreateData,toapicreateinstance)
       // JSON.stringify(toInitializeInstance(nttCompteBalance,createData)));
-   //   console.log(data.getData());
+     console.log(data.getData());

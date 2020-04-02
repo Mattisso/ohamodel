@@ -1,43 +1,7 @@
-const oreferencedata = require('./data/oreferencedata');
-const odaiterator=require('../sharedkernel/odaiterator').toinit().myiterator;
+const {customIterator,addItem, getCount, getItems}=require('../sharedkernel/odaiterator/odaiterator').toinit();
 
-/* let  reverse = boolean = false;
-let myiterator = function () {
-    let location = 0,
-    length = oreferencedata.length;
-    if (reverse) {
-        this.location = length- 1;
-      }
-    }
-function rewind() {
-   this.location= this.reverse? oreferencedata.length-1:0;
-   return this.location;
-}
-function key() {
-return this.location;
-}
-function current() {
-    return oreferencedata.length[this.location];
-}
-    
-         function next() {
-const item=oreferencedata.length[this.location];
-location+=this.reverse?-1:1;
-            return item;
-        };
+const {objocomptedata,arrocomptedata}=require('../testing/data/ocomptedata').toinit();
 
-        function hasNext () {
-            if(this.reverse){
-                return this.reverse<0;
-            }
-            return this.location>=oreferencedata.length;
-          /*   if (location < oreferencedata.length && oreferencedata[location] != null) {
-                return true;
-            } else {
-                return false;
-            } */
-       // }// */
-    
 
 
  //while(odaiterator(oreferencedata).hasNext()===true) {
@@ -67,4 +31,6 @@ const obj1={
     "IntitulCompte1": "Dotation BURKINA",
     "SoldeCredit1": 65643312
 }
-console.log(Object.assign({},obj,obj1));
+
+//console.log(addItem(obj));
+console.log(getCount(arrocomptedata));

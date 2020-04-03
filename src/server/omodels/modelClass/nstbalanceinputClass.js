@@ -58,32 +58,13 @@ const nstbalanceinputClass =(function(){
       return this;
     }
 
-     AddbalancesheetData(obj) {       
-   arrbalanceinputs.push(
-      {
-        "NumCompte" : obj.numcompte,
-        "IntitulCompte": obj.intitulcompte,
-        "SoldeDebit": obj.soldedebit,
-        "SoldeCredit": obj.soldedebit,
-        "CompteNumber":obj.CompteNumber
-    
-    
-      });
-    return   {
-   /*     'totalSoldeDebit': getTotalSoldedebit(this.arrbalanceinputs), 
-      'totalSoldeCredit': getTotalSoldecredit( this.arrbalanceinputs),
-      'DetailCount': getTotalCount(odaremoveDupnumcompte(this.arrbalanceinputs)),  */
-      'arrbalanceinputs': odaremoveDupnumcompte(arrbalanceinputs.slice()) 
-      }
-      
-  }
- 
-  getData() {
+     getData() {
     return {
-      'totalSoldeDebit':  this.totalSoldeDebit,//getTotalSoldedebit(this.arrbalanceinputs), 
-      'totalSoldeCredit':  this.totalSoldeCredit,//getTotalSoldecredit( this.arrbalanceinputs),
-      'DetailCount':  this.DetailCount, //getTotalCount(odaremoveDupnumcompte(this.arrbalanceinputs)), 
-      'arrbalanceinputs': this.arrbalanceinputs //odaremoveDupnumcompte(arrbalanceinputs.slice()) 
+      "NumCompte" : this.numcompte,
+        "IntitulCompte": this.intitulcompte,
+        "SoldeDebit": this.soldedebit,
+        "SoldeCredit": this.soldedebit,
+        "CompteNumber":this.CompteNumber
     }
   } 
 } 

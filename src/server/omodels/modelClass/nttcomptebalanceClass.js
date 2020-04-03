@@ -1,7 +1,7 @@
 "use strict"
 const mongoose = require('mongoose'),
 ObjectId = mongoose.SchemaTypes.ObjectId;
-const {toapicreateinstance}=require('../../sharedkernel/odainstance/toOdaInstance').toinit()
+//const {toapicreateinstance}=require('../../sharedkernel/odainstance/toOdaInstance').toinit()
 //const {nttCompteBalance}=require('../modelsSchema/nttcomptebalance').toinit().nttCompteBalance;
 const nttcomptebalanceClass=(function(){
     const modelObject = {
@@ -97,10 +97,10 @@ const nttcomptebalanceClass=(function(){
 		}
 
     }
-        
+        /* 
 let comptebalance = null
 /* nttcomptebalancedetails=[];;
- */function BuildnttCompteBalance(model,body) {
+ function BuildnttCompteBalance(model,body) {
     comptebalance =toapicreateinstance(model,body);    
     body.nttcomptebalancedetails.forEach(function (entry) {
       comptebalance.addBalanceDetail(entry);    
@@ -121,13 +121,13 @@ let comptebalance = null
           getData: balance.getData()
         };
     
-      }
+      } */
 
     function toinit(){
         return {
             modelObject: modelObject,
             nttcomptebalanceClass: nttcomptebalanceClass,
-            toInitCompteBalanceInstance:toInitCompteBalanceInstance
+         //   toInitCompteBalanceInstance:toInitCompteBalanceInstance
         }
     }
     return {

@@ -7,7 +7,7 @@ const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin} = require('
 const {odaremoveDupnumcompte} = require('../../sharedkernel/odaUtility').toinit();
 
 const {nttcomptebalanceClass, modelObject}=require('../modelClass/nttcomptebalanceClass').toinit();
-const {getTotalCount, getTotalSoldedebit, getTotalSoldecredit}=require('../../SharedKernel/odaStats').toinit();
+const {getTotalCount, getTotalSoldedebit, getTotalSoldecredit}=require('../../sharedkernel/odaStats').toinit();
 const nttcomptebalance = (function () {
   const auditBaseSchema = new Schema(getauditentity, gettoObject);
 	const nttCompteBalanceSchema = extendSchema(auditBaseSchema, modelObject);

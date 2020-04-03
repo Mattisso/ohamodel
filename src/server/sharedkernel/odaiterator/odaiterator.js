@@ -1,4 +1,5 @@
 "use strict"
+const {forEach}=require('lodash');
 const odaiterator = (function () {
 
     ///let customIterator = function () {
@@ -63,6 +64,7 @@ const odaiterator = (function () {
             }
         }
     }
+
 
     function toinit() {
         return {

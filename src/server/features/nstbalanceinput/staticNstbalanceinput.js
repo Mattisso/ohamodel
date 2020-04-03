@@ -1,26 +1,61 @@
 //  async = require('async')
 "use strict";
 const { find, map, assign, filter, forEach } = require('lodash');
-
 const { isValid, odauditObj, getStringValue, replaceNullToZero } = require('../../SharedKernel/odaUtility').toinit();
 const { getTotalSoldecredit,getTotalSoldedebit,getTotalCount } = require('../../SharedKernel/odaStats').toinit();
 
 const staticNstbalanceinput = (function () {
-  let  _arrbalanceinputs = [];
 
-    const odaqueryselector = function (obj) {
-      let selector;
-      if (isValid(obj.NumCompte) === true && isValid(obj.IntitulCompte) === true
-         && isValid(obj.SoldeDebit) === true && obj.SoldeDebit > 0) {
-        selector = true;
-      } else if (isValid(obj.NumCompte) === true && isValid(obj.IntitulCompte) == true
-         && isValid(obj.SoldeCredit) === true && obj.SoldeCredit > 0) {
-        selector = true;
-      } else {
-        selector = false;
+  const odaqueryselector = function (obj) {
+    let selector;
+    if (isValid(obj.NumCompte) === true && isValid(obj.IntitulCompte) === true
+       && isValid(obj.SoldeDebit) === true && obj.SoldeDebit > 0) {
+      selector = true;
+    } else if (isValid(obj.NumCompte) === true && isValid(obj.IntitulCompte) == true
+       && isValid(obj.SoldeCredit) === true && obj.SoldeCredit > 0) {
+      selector = true;
+    } else {
+      selector = false;
+    }
+    return selector;
+  };
+
+  function toBalanceinput(o) {
+    let isvalid=odaqueryselector(o);
+    if (isvalid===true) {
+    return (
+      {
+        "NumCompte": o.NumCompte,
+        "IntitulCompte": o.IntitulCompte,
+        "SoldeDebit": o.SoldeDebit,
+        "SoldeCredit": o.SoldeCredit
+      });
+  }
+}
+  let balanceinputs = null
+
+  function BuildBalanceinput(model,body, fn) {
+    let toacreateinstance=fn;
+    balanceinputs =toacreateinstance(model,body);    
+          return balanceinputs;  
+        } 
+              
+       
+        function toInitBalanceinput(model,body,fn) {
+          const balance = BuildBalanceinput(model,body,fn);
+         
+    return {
+      getData : function() {
+  return ({
+    'totalSoldeDebit' : getTotalSoldedebit(balance), 
+     'totalSoldeCredit': getTotalSoldecredit(balance),
+     'DetailCount': getTotalCount(odaremoveDupnumcompte(balance)), 
+     'odaData': odaremoveDupnumcompte(balance.slice())
+  })
       }
-      return selector;
-    };
+    } 
+     }
+    
 
     const togetnstbalanceinput = function (argOne) {
       let initObj, odauditobj;
@@ -58,19 +93,8 @@ const staticNstbalanceinput = (function () {
       }
 
     };
-  function toBalanceinput(o) {
-    let isvalid=odaqueryselector(o);
-    if (isvalid===true) {
-    return (
-      {
-        "NumCompte": o.NumCompte,
-        "IntitulCompte": o.IntitulCompte,
-        "SoldeDebit": o.SoldeDebit,
-        "SoldeCredit": o.SoldeCredit
-      });
-  }
-}
-
+ 
+    
   function toUpdateBalanceinput(body) {
     let d = new Date(), result={};
     if (result) {
@@ -93,7 +117,8 @@ const staticNstbalanceinput = (function () {
       toUpdateBalanceinput: toUpdateBalanceinput,
       togetnstbalanceinput:togetnstbalanceinput,
       getobjBalanceinput:getobjBalanceinput,
-      odaqueryselector:odaqueryselector
+      odaqueryselector:odaqueryselector,
+      toInitBalanceinput:toInitBalanceinput
     };
   }
 

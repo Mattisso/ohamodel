@@ -82,7 +82,7 @@ const comptebalancedata = (function () {
   "ModifiedBy" : "Admin",
   "id" : "5dfa424cb78f6f289c0d9d3d"
 
-},
+}/* ,
 {
   "_id" : "5dfa424cb78f6f289c0d9d2d",
   "OreferenceKey" : ("5df910a1f6cf342244ed1c0b"),
@@ -96,7 +96,7 @@ const comptebalancedata = (function () {
   "ModifiedBy" : "Admin",
   "__v" : 0,
   "id" : "5dfa424cb78f6f289c0d9d2d",
-}
+} */
   ];
   function toinit() {
     return {

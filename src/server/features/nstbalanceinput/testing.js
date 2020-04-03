@@ -19,9 +19,6 @@ require('../../config/ohadb').connectserver();
 const {getnstbalanceinputes$,index ,getloadnstbalanceinputs,getloadnstbalanceinputs$, createBalanceInput$} = require('./nstbalanceinputRepository').toinit();
 const {Insert$,Update$,Delete$,getByid$,index$} = require('./index').toinit();
 
-
-
-
 const getoreportdetail$ = getloadnstbalanceinputs$; //createBalanceInput$(obj);
 
 index(function(err,data){

@@ -92,8 +92,7 @@ const toInitializeInstance = (function () {
     });  
   };
   const svctoInitializeInstance$ = function (model,requestBody) {
-
-    return toapiOdaCreate$(model, requestBody, toInitializeInstance);
+    return toapiOdaCreate$(model, requestBody,toInitializeInstance);
 };
 
 const toInitCustomInstance = function (model,requestBody, fn) {

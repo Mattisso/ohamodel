@@ -15,7 +15,7 @@ const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svcto
 
 const nttcomptebalanceRepository = (function () {
   const toInitializeFinalInstance = function (model, body) {
-    const data = toInitCustomInstance(model, body, toInitComptebalanceInstance);
+    const data = toInitCustomInstance(model, body,toInitComptebalanceInstance);
     return data;
   };
 
@@ -95,7 +95,7 @@ const nttcomptebalanceRepository = (function () {
       getcombinednindex$: getcombinednIndex$,
       getcombinedByid$: getcombinedByid$,
       togetcomptebalancesWithDetails$: togetcomptebalancesWithDetails$,
-      toapiCreateBalancedata$:toapiCreateBalancedata$
+    //  toapiCreateBalancedata$:toapiCreateBalancedata$
 
     };
   }

@@ -6,7 +6,7 @@ const { combineLatest, Observable, of, pipe, from ,concat} = require('rxjs');
 const { filter, map, tap, pluck, take, find, distinct, shareReplay } = require('rxjs/operators');
 const {toInitCustomInstance, toapicreateinstance,svctoInitCustomInstance$}=require('../sharedkernel/odainstance/toInitializeInstance').toinit()
 const {getTotalCount, getTotalSoldedebit, getTotalSoldecredit}=require('../SharedKernel/odaStats').toinit();
-const {odaremoveDupnumcompte} = require('../Sharedkernel/odaUtility').toinit();
+const {odaremoveDupnumcompte,addItem} = require('../Sharedkernel/odaUtility').toinit();
 
 // console.log(toInitializeInstance(nstBalanceInput,arrcreateData))
 let balanceinputs = null
@@ -15,8 +15,8 @@ function BuildnttCompteBalance(model,body, fn) {
   let toacreateinstance=fn;
   balanceinputs =toacreateinstance(model,body); 
  
-  //  console.log(balanceinputs);
-        return balanceinputs;
+// console.log(balanceinputs);
+        return addItem(balanceinputs);
 
       } 
             
@@ -34,7 +34,7 @@ return ({
   'totalSoldeDebit' : getTotalSoldedebit(balance), 
    'totalSoldeCredit': getTotalSoldecredit(balance),
    'DetailCount': getTotalCount(odaremoveDupnumcompte(balance)), 
-   'arrbalanceinputs': odaremoveDupnumcompte(balance.slice())
+   'odaData': odaremoveDupnumcompte(balance.slice())
 })
     }
   } 
@@ -49,6 +49,6 @@ return ({
         return data;
       };
       const data =toInitializeFinalInstance(nstBalanceInput,arrcreateData) */
-      const data =toInitComptebalanceInstance(nstBalanceInput,arrcreateData,toapicreateinstance)
+      const data =toInitComptebalanceInstance(nstBalanceInput,createData,toapicreateinstance)
       // JSON.stringify(toInitializeInstance(nttCompteBalance,createData)));
-     console.log(data.getData());
+    console.log(data.getData());

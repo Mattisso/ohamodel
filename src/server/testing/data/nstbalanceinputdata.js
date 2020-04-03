@@ -16,7 +16,7 @@ const nstbalanceinputdata = (function () {
       "NumCompte": "102020",
       "IntitulCompte": "Dotation BURKINA",
       "SoldeCredit": 65643312
-    }, {
+    }/* , {
       "NumCompte": "102040",
       "IntitulCompte": "Dotation CENTRAFRIQUE",
       "SoldeCredit": 41326938
@@ -36,7 +36,7 @@ const nstbalanceinputdata = (function () {
       "NumCompte": "102080",
       "IntitulCompte": "Dotation TOGO",
       "SoldeCredit": 57203109
-    }
+    } */
   ]
 
   const editData = {

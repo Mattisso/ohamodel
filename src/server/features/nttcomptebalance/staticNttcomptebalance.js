@@ -1,19 +1,36 @@
 "use strict";
-const { find, map, assign } = require('lodash');
+const { find, map, assign ,forEach} = require('lodash');
 const {getodaAggreateData} = require('../../SharedKernel/odaStats').toinit();
-const { isValid, odauditObj, getStringValue, replaceNullToZero,odareduceArray} = require('../../SharedKernel/odaUtility').toinit();
+const { isValid, odauditObj, getStringValue, replaceNullToZero, addItem} = require('../../SharedKernel/odaUtility').toinit();
  const {getobjOreference,getobjOexercCompta,getobjOtableauposte}=require('../../SharedKernel/staticObjects').toinit();
 const { getodafilter,odaByarg } = require('../../SharedKernel/odaFiltered').toinit();
 const {queryselector, getSoldeDebit,getSoldeCredit}=require('./objQryParams').toinit();
 
 const staticNttcomptebalance = (function () {
+  
+  const tonttcomptebalance = function (obj) {
+    let odaisvalid=queryselector(obj);
+    if(odaisvalid===true && replaceNullToZero(obj.SoldeCredit)!==0 ||
+    odaisvalid===true && replaceNullToZero(obj.SoldeDebit)!==0){
+      return ({
+        "OreferenceKey":obj.OreferenceKey,
+        "OtableauposteKey": obj.OtableauposteKey,
+        "OexercComptaKey": obj.OexercComptaKey,
+        "totalSoldeDebit": obj.SoldeDebit,
+        "totalSoldeCredit": obj.SoldeCredit
+    // "AmortProvAmnt": getAmortProvAmnt(obj.AmortProvAmnt),
+    //   "provamnt": replaceNullToZero(obj.provamnt),
+   //  "amntNet": getAmountNet(obj)
+      });
+    }
+  };
 
   let comptebalance = null
-/* nttcomptebalancedetails=[];;
- */function BuildnttCompteBalance(model,body, fn) {
+function BuildnttCompteBalance(model,body, fn) {
   let toacreateinstance=fn;
-    comptebalance =toacreateinstance(model,body);    
-    body.nttcomptebalancedetails.forEach(function (entry) {
+    comptebalance =toacreateinstance(model,body);  
+forEach(body.nttcomptebalancedetails,function (entry) {
+  
       comptebalance.addBalanceDetail(entry);    
     });
     comptebalance.getTotalSoldedebit;
@@ -21,11 +38,7 @@ const staticNttcomptebalance = (function () {
         return comptebalance;
       } 
             
-      function BuildupdateCompteBalance(body) {
-        // let nttcomptebalancedetails=[];
-        comptebalance = body;
-        return comptebalance;
-      }  
+   
       function toInitComptebalanceInstance(model,body,fn) {
         const balance = BuildnttCompteBalance(model,body,fn);
         return {
@@ -35,10 +48,10 @@ const staticNttcomptebalance = (function () {
     
       }
 
-      const toInitCustomInstance = function (model,requestBody, fn) {
+    /*   const toInitCustomInstance = function (model,requestBody, fn) {
         return fn(model, requestBody,toapicreateinstance)
       };
-
+ */
       
   const _togetcomptebalance = function (obj) {
     let initObj, odauditobj;
@@ -139,22 +152,7 @@ const objoexercompta = getobjOexercCompta(oexerccompta,obj.OexercComptaKey).filt
     return odareduceArray(finalObj);
   };
 
-  const tonttcomptebalance = function (obj) {
-    let odaisvalid=queryselector(obj);
-    if(odaisvalid===true && replaceNullToZero(obj.SoldeCredit)!==0 ||
-    odaisvalid===true && replaceNullToZero(obj.SoldeDebit)!==0){
-      return ({
-        "OreferenceKey":obj.OreferenceKey,
-        "OtableauposteKey": obj.OtableauposteKey,
-        "OexercComptaKey": obj.OexercComptaKey,
-        "totalSoldeDebit": obj.SoldeDebit,
-        "totalSoldeCredit": obj.SoldeCredit
-    // "AmortProvAmnt": getAmortProvAmnt(obj.AmortProvAmnt),
-    //   "provamnt": replaceNullToZero(obj.provamnt),
-   //  "amntNet": getAmountNet(obj)
-      });
-    }
-  };
+ 
   const toapinttcomptebalance = function (obj) {
     if(isValid(obj.OreferenceKey)===true && isValid(obj.OtableauposteKey)===true && isValid(obj.OexercComptaKey)===true ){
       const odasum =getodaAggreateData(obj.nttcomptebalancedetails);

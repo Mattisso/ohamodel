@@ -20,7 +20,7 @@ const {getsrdexeccomptas$,getsrdotableaupostes$,getsrdoreferences$,getsrdcompteb
 //const {nttCompteBalance}=require('../omodels/modelsSchema/index').toinit();
 //let toacreateinstance=toapicreateinstance;
 
-require('../config/ohadb').connectserver()
+// require('../config/ohadb').connectserver()
 /* const toInitCustomInstance = function(model, requestbody){
 return toInitCustomInstance(model, requestbody,toInitComptebalanceInstance)
 
@@ -34,7 +34,7 @@ const toInitializeFinalInstance = function (model, body) {
   const data = toInitCustomInstance(model, body, toInitComptebalanceInstance);
   return data;
 };
-const data =toInitializeFinalInstance(nttCompteBalance,createData)
+const data = toInitializeFinalInstance(nttCompteBalance,createData)
 //const data =toInitComptebalanceInstance(nttCompteBalance,createData,toapicreateinstance)
 // JSON.stringify(toInitializeInstance(nttCompteBalance,createData)));
 console.log(data.getData);

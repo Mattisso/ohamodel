@@ -1,14 +1,20 @@
 "use strict";
 var _ = require('lodash');
 const async = require('async');
-const  {nstBalanceInput} = require('../../omodels').toinit();
-const {togetnstbalanceinput, toBalanceinput,toUpdateBalanceinput, getobjBalanceinput}=require('./staticNstbalanceinput').toinit();
+const  {nstBalanceInput} = require('../../omodels/modelsSchema/index').toinit();
+const {togetnstbalanceinput, toBalanceinput,toUpdateBalanceinput, getobjBalanceinput, toInitBalanceinput}=require('./staticNstbalanceinput').toinit();
 const {odaByarg,getodafilter} =require('../../SharedKernel/odaFiltered').toinit();
-const {svctoInitializeInstance,svctoapiUpdateInstance,svctoUpdateInstance,svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice').toinit();
+const {svctoInitializeInstance,svctoapiUpdateInstance,svctoUpdateInstance,svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
 const { Observable } = require('rxjs');
 const {getAllocomptes } = require('../ocompte/index').toinit();
-const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$, toOdaCreate$}=require('../../SharedKernel/dataservices').toinit();
+const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$, toOdaCreate$}=require('../../SharedKernel/odaservice/dataservices').toinit();
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const nstbalanceinputRepository = (function () {
+
+  const toInitializeFinalInstance = function (model, body) {
+    const data = toInitCustomInstance(model, body, toBalanceinput,toInitComptebalanceInstance);
+    return data;
+  };
   const index = function (callback) {
     return odaindex(nstBalanceInput, togetnstbalanceinput, callback);
   };
@@ -19,9 +25,9 @@ const nstbalanceinputRepository = (function () {
     return getodaByid$(nstBalanceInput, togetnstbalanceinput, requestparamid, getobjBalanceinput);
 
   };
-  const toCreateBalanceinputdata$ = function (requestBody,requestparamid) {
+  const toCreateBalanceinputdata$ = function (requestBody) {
 
-    return toOdaCreate$(nstBalanceInput, requestBody,requestparamid, toBalanceinput, svctoInitializeInstance);
+    return svctoInitCustomInstance$(nstBalanceInput, requestBody, toInitializeFinalInstance);
   };
   const insertBalanceInput = function (arr) {
     return svcodasave$(arr);

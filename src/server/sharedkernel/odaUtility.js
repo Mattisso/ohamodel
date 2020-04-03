@@ -3,6 +3,14 @@ const {remove,isEmpty, isUndefined, isNull, toString, toNumber, reject, forEach,
 const odaUtility = (function () {
 const removeodauditobj = ['CreatedBy', 'ModifiedOn', 'ModifiedBy', 'CreatedOn', 'id'];
 
+
+
+const  addItem = function(item)  {
+  let arr=[];
+  if (!hasitem(item, arr))
+  arr.push(item);
+  return arr;
+  }
 const odareomoveInvalidObject = function(arr,fn){
   return remove(arr, function(n) {
     return fn(n)===true;
@@ -34,8 +42,7 @@ const odaremoveDupnumcompte = function (array) {
     }
     return val;
   };
-  const oarray = function (array) {
-    
+  const oarray = function (array) {    
     var passed = [];
     for (var i = 0; i < array.length; i++) {
       if (!hasitem(array[i],passed))
@@ -211,8 +218,8 @@ function odareduceArray(options) {
       removeodauditobj: removeodauditobj,
       SelectedDuplicateObject: SelectedDuplicateObject,
       odaremoveDupnumcompte:odaremoveDupnumcompte,
-  //  tocreateinstance:tocreateinstance,
-      odareomoveInvalidObject:odareomoveInvalidObject
+      odareomoveInvalidObject:odareomoveInvalidObject,
+      addItem:addItem
     };
   }
 

@@ -5,14 +5,19 @@ const  {oExercCompta} = require('../../omodels/modelsSchema/index').toinit();
 const {getoexercices$, seedoexercice$} = require('../oexercice/').toinit();
 const {odaByarg,getodafilter} =require('../../SharedKernel/odaFiltered').toinit();
 const {oexercomptadata} = require('../../seed/data-seed/index').toinit();
-const {togetoexerccompta,toUpdateOexercompta, toOexercompta,staticDropListExerComptable}=require('./staticOxerccompta').toinit();
+const {togetoexerccompta,toUpdateOexercompta, toOexercompta,staticDropListExerComptable, toInitOexerccomptaInstance}=require('./staticOxerccompta').toinit();
 const {getobjOexercCompta} =require('../../SharedKernel/staticObjects').toinit();
 const { combineLatest, Observable, concat,pipe } = require('rxjs');
 const { map} = require('rxjs/operators');
 const {svctoInitializeInstance,svctoapiUpdateInstance,svcodasave$,svcodaApiupdate$, svcodaApiDel$,svcodaSearchBy, svcodaDel$}=require('../../SharedKernel/odaservice/odaservice').toinit();
 const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$,getodaApiByid$,getodaindexapi$}=require('../../SharedKernel/odaservice/dataservices').toinit();
-const {toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+/* const {toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance}=require('../../sharedkernel/odainstance/index').toinit();  */
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const oexerccomptaRepository = (function () {
+  const toInitializeFinalInstance = function (model, body,toinitObj) {
+    const data = toInitCustomInstance(model, body,toinitObj,toInitOexerccomptaInstance);
+    return data;
+  };
   const index = function (callback) {
     return odaindex(oExercCompta, togetoexerccompta, callback);
   };
@@ -66,8 +71,12 @@ const oexerccomptaRepository = (function () {
   };
   const toCreateExerccomptadata$ = function (requestBody) {
 
-    return svctoInitializeInstance$(oExercCompta, requestBody, toOexercompta);
+    return svctoInitCustomInstance$(oExercCompta, requestBody, toOexercompta,toInitializeFinalInstance);
   };
+  /* const toCreateExerccomptadata$ = function (requestBody) {
+
+    return svctoInitializeInstance$(oExercCompta, requestBody, toOexercompta);
+  }; */
 
   const toUpdateExerccomptadata$ = function (requestBody) {
     return svctoUpdateInstance$(requestBody, toUpdateOexercompta);

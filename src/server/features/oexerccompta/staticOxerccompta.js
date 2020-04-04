@@ -2,7 +2,7 @@
 const { find, map, assign, filter, forEach,maxBy,ary,toString,toNumber} = require('lodash');
 const {staticObjects} =require('../../SharedKernel/index').toinit();
 const { isValid, odauditObj, getStringValue,odaremoveDupnumcompte, odareduceArray,addItem} = require('../../SharedKernel/odaUtility').toinit();
-
+const {getodaAggreateData} = require('../../SharedKernel/odaStats').toinit();
 const staticOxerccompta= (function () {
   const odaqueryselector = function (obj) {
     let selector;
@@ -28,16 +28,20 @@ function toOexercompta(o) {
 let toCreateModel = null
   function BuildOexerccompta(model,body, toinitobj,fn) {
     let toacreateinstance=fn;
-    toCreateModel =toacreateinstance(model,body,toinitobj);    
+    toCreateModel =toacreateinstance(model,body,toinitobj);   
+ //   console.log(toCreateModel) 
     const arr = addItem(toCreateModel);
+   // console.log(arr);
     return odareduceArray(arr);
   }               
     function toInitOexerccomptaInstance(model,body,toinitobj,fn) {
        const balance = BuildOexerccompta(model,body,toinitobj,fn);
-  return ({
+     //  console.log(balance);
+       return balance.slice();
+  /* return ({
     'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
      'odaData': odaremoveDupnumcompte(balance.slice())
-  })
+  }) */
         }
 const togetoexerccompta = function (argOne) {
   let initObj, odauditobj;

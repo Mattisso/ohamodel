@@ -336,9 +336,9 @@ const odarepository = (function () {
     });
   };
   const odasave$ = function (arr) {
-   console.log(isArray(arr));
+  // console.log(isArray(arr));
   //  return odasaveObjectArray$(arr);
-   console.log(arr)
+ //  console.log(arr)
     if (inArray(arr) === false) {
     return odasaveObject$(arr);
     } else if (inArray(arr) === true) {

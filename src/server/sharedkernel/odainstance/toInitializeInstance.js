@@ -67,10 +67,10 @@ const toInitializeInstance = (function () {
     const data = tocreateChildBuild(model, body, requestparamid,f);
     return data;
   };
-  const toapiOdaCreate$ = function (model,requestBody, toinitobj,fn) {
+  const toapiOdaCreate$ = function (model,requestBody, fn) {
     return Observable.create(function (observer) {
       try {
-        const _toCreatedata = fn(model,requestBody,toinitobj);
+        const _toCreatedata = fn(model,requestBody);
         observer.next(_toCreatedata);
         setTimeout(() => {
           observer.complete();
@@ -99,13 +99,13 @@ const toInitializeInstance = (function () {
     return toapiOdaCreate$(model, requestBody,toinitobj,toInitializeInstance);
 };
 
-const toInitCustomInstance = function (model,requestBody, toinitobj,fn) {
-  return fn(model, requestBody,toinitobj,toapicreateinstance)
+const toInitCustomInstance = function (model,requestBody, fn) {
+  return fn(model, requestBody,toapicreateinstance)
 };
 
 
-const svctoInitCustomInstance$= function(model,requestBody,toinitobj,fn){
-return toapiOdaCreate$(model, requestBody,toinitobj,fn);
+const svctoInitCustomInstance$= function(model,requestBody,fn){
+return toapiOdaCreate$(model, requestBody,fn);
 }
 
 const svctoInitializeChildInstance$ = function (model,requestBody,requestparamid) {

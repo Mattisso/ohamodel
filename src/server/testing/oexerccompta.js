@@ -11,6 +11,6 @@ const { toCreateExerccomptadata$} = require('../features/oexerccompta/oexerccomp
 const {toseedoexercompta} = require('../features/oexerccompta/oexercomptaSeed').toinit();
 
 const getoreportdetail$ =  toCreateExerccomptadata$
-getstreamdata$(getoreportdetail$(arroexerccomptadata())).subscribe(odagetObserver());
+getstreamdata$(getoreportdetail$(objoexerccomptadata())).subscribe(odagetObserver());
 
 // console.log((toseedoexercompta));

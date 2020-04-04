@@ -26,22 +26,18 @@ function toOexercompta(o) {
 }
 
 let toCreateModel = null
-  function BuildOexerccompta(model,body, toinitobj,fn) {
+  function BuildOexerccompta(model,body,fn) {
     let toacreateinstance=fn;
-    toCreateModel =toacreateinstance(model,body,toinitobj);   
+    toCreateModel =toacreateinstance(model,body,toOexercompta);   
  //   console.log(toCreateModel) 
     const arr = addItem(toCreateModel);
    // console.log(arr);
     return odareduceArray(arr);
   }               
-    function toInitOexerccomptaInstance(model,body,toinitobj,fn) {
-       const balance = BuildOexerccompta(model,body,toinitobj,fn);
+    function toInitOexerccomptaInstance(model,body,fn) {
+       const balance = BuildOexerccompta(model,body,fn);
      //  console.log(balance);
        return balance.slice();
-  /* return ({
-    'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-     'odaData': odaremoveDupnumcompte(balance.slice())
-  }) */
         }
 const togetoexerccompta = function (argOne) {
   let initObj, odauditobj;

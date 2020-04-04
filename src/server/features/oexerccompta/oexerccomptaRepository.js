@@ -14,8 +14,8 @@ const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$,getodaApiByi
 /* const {toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance}=require('../../sharedkernel/odainstance/index').toinit();  */
 const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const oexerccomptaRepository = (function () {
-  const toInitializeFinalInstance = function (model, body,toinitObj) {
-    const data = toInitCustomInstance(model, body,toinitObj,toInitOexerccomptaInstance);
+  const toInitializeFinalInstance = function (model, body) {
+    const data = toInitCustomInstance(model, body,toInitOexerccomptaInstance);
     return data;
   };
   const index = function (callback) {
@@ -71,7 +71,7 @@ const oexerccomptaRepository = (function () {
   };
   const toCreateExerccomptadata$ = function (requestBody) {
 
-    return svctoInitCustomInstance$(oExercCompta, requestBody, toOexercompta,toInitializeFinalInstance);
+    return svctoInitCustomInstance$(oExercCompta, requestBody, toInitializeFinalInstance);
   };
   /* const toCreateExerccomptadata$ = function (requestBody) {
 

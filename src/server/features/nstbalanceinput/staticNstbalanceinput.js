@@ -42,11 +42,11 @@ const staticNstbalanceinput = (function () {
               
        
         function toInitBalanceinputInstance(model,body,toinitobj,fn) {
-          const balance = BuildBalanceinput(model,body,toinitobj,fn);
+          const getCreatedModel = BuildBalanceinput(model,body,toinitobj,fn);
 
   return ({
     'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-     'odaData': odaremoveDupnumcompte(balance.slice())
+     'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
   })
 
      }

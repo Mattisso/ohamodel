@@ -35,9 +35,9 @@ let toCreateModel = null
     return odareduceArray(arr);
   }               
     function toInitOexerccomptaInstance(model,body,fn) {
-       const balance = BuildOexerccompta(model,body,fn);
+       const getCreatedModel = BuildOexerccompta(model,body,fn);
      //  console.log(balance);
-       return balance.slice();
+       return getCreatedModel.slice();
         }
 const togetoexerccompta = function (argOne) {
   let initObj, odauditobj;

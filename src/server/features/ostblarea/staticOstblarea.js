@@ -25,11 +25,11 @@ function BuildOstblarea(model,body, toinitobj,fn) {
             
      
       function toInitOstblareaInstance(model,body,toinitobj,fn) {
-        const balance = BuildOstblarea(model,body,toinitobj,fn);
+        const getCreatedModel = BuildOstblarea(model,body,toinitobj,fn);
 
 return ({
   'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-   'odaData': odaremoveDupnumcompte(balance.slice())
+   'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
 })
 
    }

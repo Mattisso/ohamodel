@@ -40,7 +40,7 @@ forEach(body.nttcomptebalancedetails,function (entry) {
             
    
       function toInitComptebalanceInstance(model,body,fn) {
-        const balance = BuildnttCompteBalance(model,body,fn);
+        const getCreatedModel = BuildnttCompteBalance(model,body,fn);
         return {
       //    balance: balance,
           getData: balance.getData()

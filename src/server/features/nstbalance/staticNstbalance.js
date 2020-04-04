@@ -14,11 +14,11 @@ const staticNstbalance = (function () {
               
        
         function toInitNstbalanceInstance(model,body,toinitobj,fn) {
-          const balance = BuildNstbalance(model,body,toinitobj,fn);
+          const getCreatedModel = BuildNstbalance(model,body,toinitobj,fn);
 
   return ({
     'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-     'odaData': odaremoveDupnumcompte(balance.slice())
+     'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
   })
 
      }

@@ -25,11 +25,11 @@ const staticOreference = (function () {
               
        
         function toInitOreferenceInstance(model,body,toinitobj,fn) {
-          const balance = BuildOreference(model,body,toinitobj,fn);
+          const getCreatedModel = BuildOreference(model,body,toinitobj,fn);
 
   return ({
     'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-     'odaData': odaremoveDupnumcompte(balance.slice())
+     'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
   })
 
      }

@@ -31,11 +31,11 @@ const StaticOexercice = (function () {
               
        
         function toInitOexerciceInstance(model,body,toinitobj,fn) {
-          const balance = BuildOexercice(model,body,toinitobj,fn);
+          const getCreatedModel = BuildOexercice(model,body,toinitobj,fn);
 
   return ({
     'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-     'odaData': odaremoveDupnumcompte(balance.slice())
+     'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
   })
 
      }

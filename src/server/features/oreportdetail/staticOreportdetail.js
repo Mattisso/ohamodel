@@ -25,11 +25,11 @@ function BuildOreportdetail(model,body, toinitobj,fn) {
             
      
       function toInitOreportdetailInstance(model,body,toinitobj,fn) {
-        const balance = BuildOreportdetail(model,body,toinitobj,fn);
+        const getCreatedModel = BuildOreportdetail(model,body,toinitobj,fn);
 
 return ({
   'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-   'odaData': odaremoveDupnumcompte(balance.slice())
+   'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
 })
 
    }

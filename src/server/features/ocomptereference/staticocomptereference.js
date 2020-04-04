@@ -29,11 +29,11 @@ function BuildOcomptereference(model,body, toinitobj,fn) {
             
      
       function toInitOcomptereferenceInstance(model,body,toinitobj,fn) {
-        const balance = BuildOcomptereference(model,body,toinitobj,fn);
+        const getCreatedModel = BuildOcomptereference(model,body,toinitobj,fn);
 
 return ({
   'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-   'odaData': odaremoveDupnumcompte(balance.slice())
+   'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
 })
 
    }

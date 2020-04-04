@@ -23,11 +23,11 @@ function BuildUser(model,body, toinitobj,fn) {
             
      
       function toInitUserInstance(model,body,toinitobj,fn) {
-        const balance = BuildUser(model,body,toinitobj,fn);
+        const getCreatedModel = BuildUser(model,body,toinitobj,fn);
 
 return ({
   'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-   'odaData': odaremoveDupnumcompte(balance.slice())
+   'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
 })
 
    }

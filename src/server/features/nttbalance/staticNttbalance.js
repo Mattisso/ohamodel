@@ -15,10 +15,10 @@ const staticNttbalance = (function () {
     return odareduceArray(arr);
   }       
     function toInitNttbalanceInstance(model,body,toinitobj,fn) {
-    const balance = BuildNttbalance(model,body,toinitobj,fn);
+    const getCreatedModel = BuildNttbalance(model,body,toinitobj,fn);
   return ({
     'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-     'odaData': odaremoveDupnumcompte(balance.slice())
+     'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
   })
   }
     

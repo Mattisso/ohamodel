@@ -20,11 +20,11 @@ function BuildOcompte(model,body, toinitobj,fn) {
             
      
       function toInitOcompteInstance(model,body,toinitobj,fn) {
-        const balance = BuildOcompte(model,body,toinitobj,fn);
+        const getCreatedModel = BuildOcompte(model,body,toinitobj,fn);
 
 return ({
   'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-   'odaData': odaremoveDupnumcompte(balance.slice())
+   'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
 })
 
    }

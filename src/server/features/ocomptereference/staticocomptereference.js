@@ -1,10 +1,9 @@
 
 "use strict";
 const { find, map, assign } = require('lodash');
+const { isValid, getStringValue, odauditObj ,odaremoveDupnumcompte, odareduceArray,addItem} = require('../../SharedKernel/odaUtility').toinit();
 
-const { isValid, getStringValue, odauditObj } = require('../../SharedKernel/odaUtility').toinit();
-
-var staticocomptereference = (function () {
+const staticocomptereference = (function () {
 
   const toOcomptereference = function (o) {
     return (
@@ -18,6 +17,26 @@ var staticocomptereference = (function () {
         "Taux": o.Taux
       });
   };
+
+  
+let toCreateModel = null
+function BuildOcomptereference(model,body, toinitobj,fn) {
+  let toacreateinstance=fn;
+  toCreateModel =toacreateinstance(model,body,toinitobj);    
+  const arr = addItem(toCreateModel);
+  return odareduceArray(arr);
+} 
+            
+     
+      function toInitOcomptereferenceInstance(model,body,toinitobj,fn) {
+        const balance = BuildOcomptereference(model,body,toinitobj,fn);
+
+return ({
+  'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
+   'odaData': odaremoveDupnumcompte(balance.slice())
+})
+
+   }
 
   const toUpdateocomptereference=function(requestBody) {
     let d = new Date(), result={};
@@ -120,7 +139,8 @@ var staticocomptereference = (function () {
       getObjOcomptereference:getObjOcomptereference,
       getObjOcomptereferenceCombined:getObjOcomptereferenceCombined,
       togetocomptereference:togetocomptereference,
-      toUpdateocomptereference:toUpdateocomptereference
+      toUpdateocomptereference:toUpdateocomptereference,
+      toInitOcomptereferenceInstance:toInitOcomptereferenceInstance
     };
   }
   return {

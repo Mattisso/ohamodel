@@ -1,10 +1,28 @@
 "use strict";
 const { find, map, assign, filter, forEach } = require('lodash');
-const { isValid, odauditObj, getStringValue, replaceNullToZero } = require('../../SharedKernel/odaUtility').toinit();
+const { isValid, odauditObj, getStringValue, replaceNullToZero,odaremoveDupnumcompte, odareduceArray, addItem } = require('../../SharedKernel/odaUtility').toinit();
 const { getodafilter } = require('../../SharedKernel/odaFiltered').toinit();
 const { combineLatest, Observable, of, pipe, from } = require('rxjs');
 
 const staticNttcomptebalance = (function () {
+  
+  let toCreateModel = null
+  function BuildNttcomptebalancedetail(model,body, toinitobj,fn) {
+    let toacreateinstance=fn;
+    toCreateModel =toacreateinstance(model,body,toinitobj);    
+    const arr = addItem(toCreateModel);
+    return odareduceArray(arr);
+  } 
+       
+        function toInitNttcomptebalancedetailInstance(model,body,toinitobj,fn) {
+          const balance = BuildNttcomptebalancedetail(model,body,toinitobj,fn);
+
+  return ({
+    'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
+     'odaData': odaremoveDupnumcompte(balance.slice())
+  })
+
+     }
   const togetnttcomptebalancedetail = function (argOne) {
     let initObj,
     odauditobj;
@@ -99,7 +117,8 @@ const staticNttcomptebalance = (function () {
       togetnttcomptebalancedetail: togetnttcomptebalancedetail,
       toLoadCompteBalanceDetail:toLoadCompteBalanceDetail,
       toUpdateCompteBalanceDetail:toUpdateCompteBalanceDetail,
-      getobjnttcomptebalanceDetail:getobjnttcomptebalanceDetail
+      getobjnttcomptebalanceDetail:getobjnttcomptebalanceDetail,
+      toInitNttcomptebalancedetailInstance:toInitNttcomptebalancedetailInstance
     };
   }
   return {

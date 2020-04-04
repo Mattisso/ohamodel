@@ -1,5 +1,5 @@
 //  async = require('async')
-const { getStringValue,isValid,odauditObj, odareduceArray} = require('../../SharedKernel/odaUtility').toinit();
+const { getStringValue,isValid,odauditObj, odaremoveDupnumcompte, odareduceArray,addItem} = require('../../SharedKernel/odaUtility').toinit();
 const { find, map, assign, filter, forEach,uniqBy } = require('lodash');
 const staticObjects = require('../../SharedKernel/staticObjects').toinit();
 const { getodafilter,odaByarg} = require('../../SharedKernel/odaFiltered').toinit();
@@ -13,6 +13,26 @@ const staticOreference = (function () {
         "ocomptes": o.ocomptes
       });
   };
+
+
+  let toCreateModel = null
+  function BuildOreference(model,body, toinitobj,fn) {
+    let toacreateinstance=fn;
+    toCreateModel =toacreateinstance(model,body,toinitobj);    
+    const arr = addItem(toCreateModel);
+    return odareduceArray(arr);
+  } 
+              
+       
+        function toInitOreferenceInstance(model,body,toinitobj,fn) {
+          const balance = BuildOreference(model,body,toinitobj,fn);
+
+  return ({
+    'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
+     'odaData': odaremoveDupnumcompte(balance.slice())
+  })
+
+     }
 
   function toUpdateoreference(requestBody) {
     let d = new Date(), result={};
@@ -104,7 +124,9 @@ const statictReferenceByoTableauPostes=function(ocomptreferences,oreferences){
       toUpdateoreference: toUpdateoreference,
       togetoreference:togetoreference,
       getobjOreference:getobjOreference,
-      statictReferenceByoTableauPostes:statictReferenceByoTableauPostes,staticReferenceByYears:staticReferenceByYears
+      statictReferenceByoTableauPostes:statictReferenceByoTableauPostes,
+      staticReferenceByYears:staticReferenceByYears,
+      toInitOreferenceInstance:toInitOreferenceInstance
     };
 
   }

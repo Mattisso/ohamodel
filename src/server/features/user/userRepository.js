@@ -12,21 +12,6 @@ const { concat } = require('rxjs');
 const {toInitializeInstance,svctoInitializeInstance} = require('../../sharedkernel/odainstance/toInitializeInstance').toinit(); */
 
 const userRepository = (function () {
-
-  const toseedarray=toInitializeInstance(User,userdata);
-
-   const _removeData$= function(model,item) {
-    return  svcodaDel$(model,item);
-  };
- const _insertuser$ = function(model, arr) {
-return svcodaseedUsersave$(model,arr); 
-  };
-  const removeData$= _removeData$(User,'User');
-
-  const insertuser$= _insertuser$(User, toseedarray);
-
-const seedresult$= concat(removeData$,insertuser$);
-
   const index = function (callback) {
     return odaindex(User,togetuser,callback);
   };
@@ -36,15 +21,14 @@ const seedresult$= concat(removeData$,insertuser$);
   };
   const getByid$ = function (requestparamid) {
     return  getodaByid$(User,togetuser,requestparamid,togetObjuser);
-
   };
 
    const toCreateuserdata$ = function (requestBody,requestparamid) {
     return svctoInitializeInstance$(User, requestBody, requestparamid,toUser);
    };
- /*   const insertuser$ = function (arr) {
+   const insertuser$ = function (arr) {
     return svcodaseedUsersave$(User,arr);
-   };  */
+   };  
    const toUpdateuserdata$ = function (requestBody) {
     return svctoUpdateInstance$(requestBody, toUpdateUser);
    };
@@ -69,9 +53,8 @@ const seedresult$= concat(removeData$,insertuser$);
       toUpdateuserdata$:toUpdateuserdata$,
       edituser$:edituser$,
       odasearchBy:odasearchBy,
-      Deleteuser$:Deleteuser$,
-      seedresult$:seedresult$, 
-      toseedarray:toseedarray
+      Deleteuser$:Deleteuser$
+     
     };
   }
 

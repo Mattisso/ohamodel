@@ -13,20 +13,6 @@ const {svctoInitializeInstance,svctoapiUpdateInstance,svcodasave$,svcodaApiupdat
 const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$,getodaApiByid$,getodaindexapi$}=require('../../SharedKernel/odaservice/dataservices').toinit();
 const {toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const oexerccomptaRepository = (function () {
-  const toseedoexercompta=toInitializeInstance(oExercCompta,oexercomptadata);
-
-  const  _removeoExercCompta$= function(model,item) {
-    return   svcodaDel$(model,item);
-      };
-      const _insertoExercCompta$ = function(arr) {
-     return  svcodasave$(arr);
-        };
-        const removeoExercCompta$=_removeoExercCompta$(oExercCompta,'oExercCompta');
-      const insertoExercCompta$ =_insertoExercCompta$(toseedoexercompta);
-
-        const seedOexerccompta$ = concat(removeoExercCompta$,insertoExercCompta$,seedoexercice$);
-
-
   const index = function (callback) {
     return odaindex(oExercCompta, togetoexerccompta, callback);
   };
@@ -115,9 +101,8 @@ const oexerccomptaRepository = (function () {
       editExercCompta$: editExercCompta$,
       odasearchBy: odasearchBy,
       deleteExercCompta$: deleteExercCompta$,
-      DropDownListExerComptable$:DropDownListExerComptable$,
-      seedOexerccompta$:seedOexerccompta$,
-      toseedoexercompta:toseedoexercompta
+      DropDownListExerComptable$:DropDownListExerComptable$
+
     };
   }
 

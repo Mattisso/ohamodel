@@ -314,15 +314,15 @@ const odarepository = (function () {
     });
   };
   const odasave$ = function (arr) {
-    return odasaveObjectArray$(arr);
-    /*
+   // return odasaveObjectArray$(arr);
+    
     if (inArray(arr) === false) {
     return odasaveObject$(arr);
     } else if (inArray(arr) === true) {
     return odasaveObjectArray$(arr);
     } else {
     return;
-    } */
+    } 
   };
   function toinit() {
     return {

@@ -1,6 +1,6 @@
 "use strict";
 const {find,map,assign} = require('lodash');
-const {getStringValue, isValid, odauditObj}=require('../../SharedKernel/odaUtility').toinit();
+const {getStringValue, isValid, odauditObj,odaremoveDupnumcompte, odareduceArray,addItem}=require('../../SharedKernel/odaUtility').toinit();
 const StaticOcompte = (function () {
 
   const toOCompte = function (o) {
@@ -8,6 +8,26 @@ const StaticOcompte = (function () {
         "CompteNumber": o.CompteNumber
       };
   };
+
+  
+let toCreateModel = null
+function BuildOcompte(model,body, toinitobj,fn) {
+  let toacreateinstance=fn;
+  toCreateModel =toacreateinstance(model,body,toinitobj);    
+  const arr = addItem(toCreateModel);
+  return odareduceArray(arr);
+} 
+            
+     
+      function toInitOcompteInstance(model,body,toinitobj,fn) {
+        const balance = BuildOcompte(model,body,toinitobj,fn);
+
+return ({
+  'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
+   'odaData': odaremoveDupnumcompte(balance.slice())
+})
+
+   }
   const togetocompte = function (argOne) {
     let initObj, odauditobj;
     return map(argOne, function (obj) {
@@ -53,7 +73,8 @@ const StaticOcompte = (function () {
       toOCompte:toOCompte,
       getobjOcompte:getobjOcompte,
       togetocompte:togetocompte,
-      toUpdateocompte:toUpdateocompte
+      toUpdateocompte:toUpdateocompte,
+      toInitOcompteInstance:toInitOcompteInstance
 
     };
   }

@@ -2,7 +2,7 @@
 "use strict";
 const { find, map, assign, filter, forEach,maxBy,ary,toString,toNumber} = require('lodash');
 const {staticObjects} =require('../../SharedKernel/index').toinit();
-const { isValid, odauditObj, getStringValue, replaceNullToZero } = require('../../SharedKernel/odaUtility').toinit();
+const { isValid, odauditObj, getStringValue, replaceNullToZero,odaremoveDupnumcompte, odareduceArray,addItem} = require('../../SharedKernel/odaUtility').toinit();
 const staticOreportheader = (function () {
   const toOreportheader = function (o) {
     return (
@@ -12,6 +12,26 @@ const staticOreportheader = (function () {
       "SortOrderH": o.SortOrderH
       });
   };
+
+  let balanceinputs = null
+  function BuildOreportheader(model,body, toinitobj,fn) {
+    let toacreateinstance=fn;
+    balanceinputs =toacreateinstance(model,body,toinitobj);    
+    const arr = addItem(balanceinputs);
+    return odareduceArray(arr);
+  } 
+              
+       
+        function toInitOreportheaderInstance(model,body,toinitobj,fn) {
+          const balance = BuildOreportheader(model,body,toinitobj,fn);
+
+  return ({
+    'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
+     'odaData': odaremoveDupnumcompte(balance.slice())
+  })
+
+     }
+
   const togetoreportheader = function (argOne) {
     let initObj, odauditobj;
     return map(argOne, function (obj) {
@@ -67,7 +87,8 @@ const staticOreportheader = (function () {
       toOreportheader:toOreportheader,
       togetoreportheader:togetoreportheader,
       getObjoreportheader:getObjoreportheader,
-      toUpdateoreportheader:toUpdateoreportheader
+      toUpdateoreportheader:toUpdateoreportheader,
+      toInitOreportheaderInstance:toInitOreportheaderInstance
     };
   }
 

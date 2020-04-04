@@ -10,6 +10,25 @@ const staticOlevel = (function () {
     "olevelDescption": obj.olevelDescption
   });
  };
+
+ 
+let toCreateModel = null
+function BuildOlevel(model,body, toinitobj,fn) {
+  let toacreateinstance=fn;
+  toCreateModel =toacreateinstance(model,body,toinitobj);    
+  const arr = addItem(toCreateModel);
+  return odareduceArray(arr);
+} 
+            
+    function toInitOlevelInstance(model,body,toinitobj,fn) {
+     const balance = BuildOlevel(model,body,toinitobj,fn);
+
+return ({
+  'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
+   'odaData': odaremoveDupnumcompte(balance.slice())
+})
+
+   }
  const togetolevel = function (argOne) {
   let initObj, odauditobj;
   return map(argOne, function (obj) {
@@ -60,10 +79,10 @@ function toUpdateolevel(body) {
       toOlevel:toOlevel,
       togetolevel:togetolevel,
       getobjolevel:getobjolevel,
-      toUpdateolevel:toUpdateolevel
+      toUpdateolevel:toUpdateolevel,
+      toInitOlevelInstance:toInitOlevelInstance
     };
   }
-
 
 return {
   toinit: toinit

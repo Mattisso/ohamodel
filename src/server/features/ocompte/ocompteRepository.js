@@ -9,16 +9,7 @@ const {svcodasave$, svcapiupdate$,svcodaApiDel$,svcodaSearchBy,svcodaDel$}=requi
 const {toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const ocompteRepository = (function () {
 
-  const toseedarray=toInitializeInstance(oCompte,ocomptedata);
-    const  removeOcompte$= function(model,item) {
-        return   svcodaDel$(model,item);
-          };
-    
-      const insertoCompte$ = function(arr){
-        return   svcodasave$(arr);
-      };
-    const seedresult$= concat(removeOcompte$(oCompte,'oCompte'),insertoCompte$(toseedarray));
-    
+       
   const index = function (callback) {
     return odaindex(oCompte, togetocompte, callback);
   };
@@ -56,9 +47,8 @@ const ocompteRepository = (function () {
       toUpdateOComptedata$: toUpdateOComptedata$,
       editOCompte$: editOCompte$,
       odasearchBy: odasearchBy,
-      deleteOCompte$: deleteOCompte$,
-      seedresult$:seedresult$,
-      toseedarray:toseedarray
+      deleteOCompte$: deleteOCompte$
+    
 
     };
   }

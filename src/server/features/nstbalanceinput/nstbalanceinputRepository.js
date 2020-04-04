@@ -23,17 +23,15 @@ const nstbalanceinputRepository = (function () {
   };
   const getByid$ = function (requestparamid) {
     return getodaByid$(nstBalanceInput, togetnstbalanceinput, requestparamid, getobjBalanceinput);
-
   };
   const toCreateBalanceinputdata$ = function (requestBody) {
-
     return svctoInitCustomInstance$(nstBalanceInput, requestBody, toBalanceinput, toInitializeFinalInstance);
   };
   const insertBalanceInput = function (arr) {
     return svcodasave$(arr);
   };
-  const toUpdateBalanceinputdata$ = function (requestBody,requestparamid) {
-    return toOdaUpdate$(requestBody, toUpdateBalanceinput,requestparamid, svctoapiUpdateInstance);
+  const toUpdateBalanceinputdata$ = function (requestBody) {
+    return svctoUpdateInstance$(requestBody, toUpdateBalanceinput);
   };
 
   const editBalanceInput$ = function (body, requestparamid) {

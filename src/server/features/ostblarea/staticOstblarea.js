@@ -1,7 +1,7 @@
 //  async = require('async')
 "use strict";
 const { find, map, assign, filter, forEach } = require('lodash');
-const { isValid, odauditObj, getStringValue, odareduceArray } = require('../../SharedKernel/odaUtility').toinit();
+const { isValid, odauditObj, getStringValue, odaremoveDupnumcompte, odareduceArray,addItem } = require('../../SharedKernel/odaUtility').toinit();
 
 const staticOstblarea= (function () {
   const toOstblarea = function (o) {
@@ -14,6 +14,25 @@ const staticOstblarea= (function () {
       });
   };
 
+  
+let toCreateModel = null
+function BuildOstblarea(model,body, toinitobj,fn) {
+  let toacreateinstance=fn;
+  toCreateModel =toacreateinstance(model,body,toinitobj);    
+  const arr = addItem(toCreateModel);
+  return odareduceArray(arr);
+} 
+            
+     
+      function toInitOstblareaInstance(model,body,toinitobj,fn) {
+        const balance = BuildOstblarea(model,body,toinitobj,fn);
+
+return ({
+  'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
+   'odaData': odaremoveDupnumcompte(balance.slice())
+})
+
+   }
 function toUpdateostblarea (result, requestparamid, requestBody) {
   var d = new Date();
 
@@ -74,7 +93,8 @@ function toinit() {
     toOstblarea:toOstblarea,
     toUpdateostblarea:toUpdateostblarea,
     getobjOstblarea:getobjOstblarea,
-    togetostblarea:togetostblarea
+    togetostblarea:togetostblarea,
+    toInitOstblareaInstance:toInitOstblareaInstance
   };
 
 }

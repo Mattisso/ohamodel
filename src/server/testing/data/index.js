@@ -11,8 +11,9 @@ const index = (function () {
       'getloadnstbalanceDatas':require('../data/source/getloadnstbalanceDatas.json'),
       'getloadnttcomptebalanceDetaildata':require('../data/source/getloadnttcomptebalanceDetaildata.json'), */
       'comptebalancedata':require('../data/comptebalancedata').toinit(),
-      'ocomptedata':require('../data/ocomptedata').toinit()
+      'ocomptedata':require('../data/ocomptedata').toinit(),
      // 'comptebalancedetaildata':require('../data/source/comptebalancedetaildata').toinit()
+     'oexerccomptadata':require('../data/oexerccomptadata').toinit()
     };
   }
   return {

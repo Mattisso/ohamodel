@@ -13,6 +13,26 @@ const staticOstableauposte = (function () {
 
       });
   };
+
+  
+let toCreateModel = null
+function BuildOstableauposte(model,body, toinitobj,fn) {
+  let toacreateinstance=fn;
+  toCreateModel =toacreateinstance(model,body,toinitobj);    
+  const arr = addItem(toCreateModel);
+  return odareduceArray(arr);
+} 
+            
+     
+      function toInitOstableauposteInstance(model,body,toinitobj,fn) {
+        const balance = BuildOstableauposte(model,body,toinitobj,fn);
+
+return ({
+  'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
+   'odaData': odaremoveDupnumcompte(balance.slice())
+})
+
+   }
   const togetostableauposte = function (argOne) {
     let initObj, odauditobj;
     const arr = map(argOne, function (obj) {
@@ -67,7 +87,8 @@ const staticOstableauposte = (function () {
       toUpdateOstableauposte: toUpdateOstableauposte,
       toOstableauposte: toOstableauposte,
       getobjOstableauposte: getobjOstableauposte,
-      togetostableauposte: togetostableauposte
+      togetostableauposte: togetostableauposte,
+      toInitOstableauposteInstance:toInitOstableauposteInstance
     };
 
   }

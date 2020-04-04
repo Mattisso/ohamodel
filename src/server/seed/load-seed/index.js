@@ -20,16 +20,16 @@ const { seedoexcompta$}=require('../../features/oexerccompta/index').toinit();
 const index = (function () {
 
  const seedAll$=  concat(
- seeduser$
- ,seedoexcompta$
- ,seedOreference$
+ //seeduser$,
+ seedoexcompta$
+// ,seedOreference$
    /* seedolevel$,
   */
-  ,seedOcompte$
-  ,seedOstblarea$
-  ,seedostableauposte$
-  ,seedotableauposte$
-  ,seedoreportheader$ 
+  //,seedOcompte$
+ // ,seedOstblarea$
+  //,seedostableauposte$
+ // ,seedotableauposte$
+  //,seedoreportheader$ 
 
   /* 
  

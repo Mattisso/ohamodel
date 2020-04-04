@@ -1,7 +1,7 @@
 //  async = require('async')
 const { find, map, assign, filter, forEach,maxBy,ary,toString,toNumber} = require('lodash');
 const {staticObjects} =require('../../SharedKernel/index').toinit();
-const { isValid, odauditObj, getStringValue, replaceNullToZero } = require('../../SharedKernel/odaUtility').toinit();
+const { isValid, odauditObj, getStringValue,odaremoveDupnumcompte, odareduceArray,addItem} = require('../../SharedKernel/odaUtility').toinit();
 
 const staticOxerccompta= (function () {
   const odaqueryselector = function (obj) {
@@ -24,6 +24,21 @@ function toOexercompta(o) {
 
   });
 }
+
+let toCreateModel = null
+  function BuildOexerccompta(model,body, toinitobj,fn) {
+    let toacreateinstance=fn;
+    toCreateModel =toacreateinstance(model,body,toinitobj);    
+    const arr = addItem(toCreateModel);
+    return odareduceArray(arr);
+  }               
+    function toInitOexerccomptaInstance(model,body,toinitobj,fn) {
+       const balance = BuildOexerccompta(model,body,toinitobj,fn);
+  return ({
+    'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
+     'odaData': odaremoveDupnumcompte(balance.slice())
+  })
+        }
 const togetoexerccompta = function (argOne) {
   let initObj, odauditobj;
   return map(argOne, function (obj) {
@@ -99,7 +114,8 @@ function toinit() {
     togetoexerccompta:togetoexerccompta,
     odaqueryselector:odaqueryselector,
     getobjOexercCompta:getobjOexercCompta,
-    staticDropListExerComptable:staticDropListExerComptable
+    staticDropListExerComptable:staticDropListExerComptable,
+    toInitOexerccomptaInstance:toInitOexerccomptaInstance    
   };
 
 }

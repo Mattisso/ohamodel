@@ -7,13 +7,15 @@ const toInitializeInstance = (function () {
 
   function tocreateBuild(model, requestBody, fn) {
     let DetailCount = 0,
-    arrArg = [];
+    arrArg=[] ;
     if (inArray(requestBody) === true) {
       const _getdata = toapicreateinstance(model, requestBody, fn);
-      return {
+        arrArg =_getdata.slice();
+         return arrArg;
+     /*  return {
         DetailCount: _getdata.length,
         arrArg: _getdata.slice()
-      };
+      }; */
     }
     else  if (inArray(requestBody) === false) {
       const _getdata = toapicreateinstance(model, requestBody, fn);

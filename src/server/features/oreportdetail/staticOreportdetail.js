@@ -13,6 +13,26 @@ const staticOreportdetail = (function () {
       "SortOrder": o.SortOrder
     });
   };
+
+  
+let toCreateModel = null
+function BuildOreportdetail(model,body, toinitobj,fn) {
+  let toacreateinstance=fn;
+  toCreateModel =toacreateinstance(model,body,toinitobj);    
+  const arr = addItem(toCreateModel);
+  return odareduceArray(arr);
+} 
+            
+     
+      function toInitOreportdetailInstance(model,body,toinitobj,fn) {
+        const balance = BuildOreportdetail(model,body,toinitobj,fn);
+
+return ({
+  'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
+   'odaData': odaremoveDupnumcompte(balance.slice())
+})
+
+   }
   const togetoreportdetail = function (argOne) {
     let initObj,
     odauditobj;
@@ -74,7 +94,8 @@ const staticOreportdetail = (function () {
       toOreportDetail: toOreportDetail,
       togetoreportdetail: togetoreportdetail,
       getObjoreportdetail: getObjoreportdetail,
-      toUpdateoreportdetail:toUpdateoreportdetail
+      toUpdateoreportdetail:toUpdateoreportdetail,
+      toInitOreportdetailInstance:toInitOreportdetailInstance
     };
   }
   return {

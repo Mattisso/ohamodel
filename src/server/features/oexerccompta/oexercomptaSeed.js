@@ -6,8 +6,9 @@ const { toOexercompta} = require('./staticOxerccompta').toinit();
 const {seedoexercice$} =require('../oexercice/index').toinit();
 const {svctoseedOthersInstance, svcodaDel$, svcodasave$} = require('../../SharedKernel/odaservice/odaservice').toinit();
 const { concat } = require('rxjs');
+const {toInitializeInstance}=require('../../sharedkernel/odainstance/index').toinit(); 
 
-const toseedoexercompta=svctoseedOthersInstance(oExercCompta,oexercomptadata,toOexercompta);
+const toseedoexercompta=toInitializeInstance(oExercCompta,oexercomptadata,toOexercompta);
 
 const oexercomptaSeed = (function () {
 

@@ -4,8 +4,7 @@ const _ = require('lodash');
 
 const { find, map, assign, filter, forEach,maxBy,ary,toString,toNumber} = require('lodash');
 const {getobjOexercCompta} =require('../../SharedKernel/staticObjects').toinit();
-const { isValid, odauditObj, getStringValue, replaceNullToZero } = require('../../SharedKernel/odaUtility').toinit();
-
+const { isValid, odauditObj, getStringValue, odaremoveDupnumcompte, odareduceArray,addItem} = require('../../SharedKernel/odaUtility').toinit();
 
 const StaticOexercice = (function () {
 
@@ -13,7 +12,6 @@ const StaticOexercice = (function () {
     const  _getcurrentYear= _.maxBy(_.map(_.map(arr,'oExercComptaId'), _.ary(parseInt, 1)));
     let getcurrentObject = getobjOexercCompta(arr, _.toString(_getcurrentYear)).odaObject();
     return getcurrentObject;
-
   };
   const toOexercice= function (o) {
    return ({
@@ -23,6 +21,24 @@ const StaticOexercice = (function () {
    });
   };
 
+  let toCreateModel = null
+  function BuildOexercice(model,body, toinitobj,fn) {
+    let toacreateinstance=fn;
+    toCreateModel =toacreateinstance(model,body,toinitobj);    
+    const arr = addItem(toCreateModel);
+    return odareduceArray(arr);
+  } 
+              
+       
+        function toInitOexerciceInstance(model,body,toinitobj,fn) {
+          const balance = BuildOexercice(model,body,toinitobj,fn);
+
+  return ({
+    'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
+     'odaData': odaremoveDupnumcompte(balance.slice())
+  })
+
+     }
   const togetoexercices = function (argOne) {
     let initObj, odauditobj;
     return _.map(argOne, function (obj) {
@@ -61,7 +77,8 @@ const StaticOexercice = (function () {
       toOexercice:toOexercice,
       togetoexercices:togetoexercices,
       tocreateOexerciceObject:tocreateOexerciceObject,
-      getobjOexercice:getobjOexercice
+      getobjOexercice:getobjOexercice,
+      toInitOexerciceInstance:toInitOexerciceInstance
     };
   }
 return {

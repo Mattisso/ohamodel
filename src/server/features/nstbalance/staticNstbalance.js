@@ -1,7 +1,29 @@
 "use strict";
 const { find, map, assign } = require('lodash');
-const { isValid, odauditObj, getStringValue, replaceNullToZero } = require('../../SharedKernel/odaUtility').toinit();
+const { isValid, odauditObj, getStringValue, replaceNullToZero ,odaremoveDupnumcompte, odareduceArray,addItem} = require('../../SharedKernel/odaUtility').toinit();
 const staticNstbalance = (function () {
+
+
+  let balanceinputs = null
+  function BuildNstbalance(model,body, toinitobj,fn) {
+    let toacreateinstance=fn;
+    balanceinputs =toacreateinstance(model,body,toinitobj);    
+    const arr = addItem(balanceinputs);
+    return odareduceArray(arr);
+  } 
+              
+       
+        function toInitNstbalanceInstance(model,body,toinitobj,fn) {
+          const balance = BuildNstbalance(model,body,toinitobj,fn);
+
+  return ({
+    'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
+     'odaData': odaremoveDupnumcompte(balance.slice())
+  })
+
+     }
+    
+
   const togetnstbalance = function (argOne) {
     let initObj,
     odauditobj;
@@ -103,19 +125,8 @@ return result;
       toupdObjCH:toupdObjCH,
       queryselector:queryselector,
       getobjnstBalance:getobjnstBalance,
-      toUpdatenstbalancedata:toUpdatenstbalancedata
-
-      /* DSLookup: DSLookup,
-      BSLookup: BSLookup,
-      updnsbalance: updnsbalance,
-      DSFiltered: DSFiltered,
-      BSFiltered: BSFiltered,
-      BSUpdateObject: BSUpdateObject,
-      //_update_DS:_update_DS,
-      CIFiltered: CIFiltered,
-      CILookup: CILookup,
-      CHLookup: CHLookup,
-      CHUpdateObject */
+      toUpdatenstbalancedata:toUpdatenstbalancedata,
+      toInitNstbalanceInstance:toInitNstbalanceInstance
     };
   }
 
@@ -127,6 +138,3 @@ return result;
 module.exports = {
   toinit: staticNstbalance.toinit
 };
-
-// console.log(staticNstbalance.toinit().updnsbalance(sub,'5dbac506aa1fc24648be978a'));
-// console.log(staticNstbalance.toinit()._update_DS(_nstbalance,DS));

@@ -8,6 +8,7 @@ const { toOexercice} = require('./StaticOexercice').toinit();
 const { oExercice, oExercCompta } = require('../../omodels/modelsSchema/index').toinit();
 const { odaindex} = require('../../SharedKernel/base').toinit();
 const {getoexercice,togetoexerccompta} = require('../../SharedKernel/odaObjects').toinit();
+const {toInitializeInstance}=require('../../sharedkernel/odainstance/toInitializeInstance').toinit(); 
 
 const {svctoseedOthersInstance, svcodaDel$, svcodasave$} = require('../../SharedKernel/odaservice/odaservice').toinit();
 
@@ -30,7 +31,7 @@ return	odaindex(oExercCompta,togetoexerccompta,callback);
         observer.next(err);
       }
       else {
-      const toseedOexercicedata = svctoseedOthersInstance(oExercice, data,toOexercice);
+      const toseedOexercicedata = toInitializeInstance(oExercice, data,toOexercice);
         observer.next(toseedOexercicedata);
           setTimeout(() => {
           observer.complete();

@@ -1,6 +1,6 @@
 'use strict';
 const {find,map,assign} = require('lodash');
-const {getStringValue, isValid,odauditObj} = require('../../SharedKernel/odaUtility').toinit();
+const {getStringValue, isValid,odauditObj,odaremoveDupnumcompte, odareduceArray,addItem} = require('../../SharedKernel/odaUtility').toinit();
 
 const staticUser = (function () {
 
@@ -11,6 +11,26 @@ const staticUser = (function () {
       'password': o.password
     });
   }
+
+  
+let toCreateModel = null
+function BuildUser(model,body, toinitobj,fn) {
+  let toacreateinstance=fn;
+  toCreateModel =toacreateinstance(model,body,toinitobj);    
+  const arr = addItem(toCreateModel);
+  return odareduceArray(arr);
+} 
+            
+     
+      function toInitUserInstance(model,body,toinitobj,fn) {
+        const balance = BuildUser(model,body,toinitobj,fn);
+
+return ({
+  'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
+   'odaData': odaremoveDupnumcompte(balance.slice())
+})
+
+   }
 
   function toUpdateUser(result, requestparamid, requestBody) {
     let d = new Date();
@@ -61,7 +81,8 @@ const staticUser = (function () {
       toUser: toUser,
       toUpdateUser: toUpdateUser,
       togetuser: togetuser,
-      togetObjuser: togetObjuser
+      togetObjuser: togetObjuser,
+      toInitUserInstance:toInitUserInstance
     };
   }
   return {

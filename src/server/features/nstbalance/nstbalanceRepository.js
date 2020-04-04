@@ -1,23 +1,24 @@
 "use strict";
 const _ = require('lodash');
-const  {nstBalance} = require('../../omodels').toinit();
+const  {nstBalance} = require('../../omodels/modelsSchema').toinit();
 const { combineLatest, concat,pipe} = require('rxjs');
 const { map, shareReplay} = require('rxjs/operators');
 const { isValid, removeodauditobj,SelectedDuplicateObject} = require('../../SharedKernel/odaUtility').toinit();
 const {getocomptreferences$} = require('../ocomptereference/index').toinit();
 const {getObjcomptereference, getobjOreference,getobjOexercCompta,getobjOtableauposte}=require('../../SharedKernel/staticObjects').toinit();
-//const { getoreferences$ } = require('../oreference/oreferenceRepository').toinit();
-//const { getotableaupostes$ } = require('../otableauposte/otableauposteRepository').toinit();
-//const {getoexercices$ }=require('../oexercice/index').toinit();
-//const {getAlloexerccompta$ }=require('../oexerccompta/index').toinit();
 const { getloadnstBalanceinputs$} = require('../nstbalanceinput/index').toinit();
-const {togetnstbalance,getobjnstBalance, toUpdatenstbalancedata, tonstbalance}=require('./staticNstbalance').toinit();
+const {togetnstbalance,getobjnstBalance, toUpdatenstbalancedata, tonstbalance, toInitNstbalanceInstance}=require('./staticNstbalance').toinit();
 const {toUpdateCH,toUpdateDS, toUpdateBS, toUpdateChgCredit, toUpdatePrdtDebit,toUpdateBPassif}=require('./objQryParams').toinit();
-const {getsrdexeccomptas$,getsrdnttbalances$,  getsrdoExercices$,getsrdotableaupostes$,getsrdoreferences$}=require('../../DataService/sharedRepository').toinit();
-const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$,getodasharedByid$}=require('../../SharedKernel/dataservices').toinit();
-const {svctoInitializeInstance,svctoapiUpdateInstance,svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice').toinit();
+const {getsrdexeccomptas$,getsrdnttbalances$, getsrdoExercices$,getsrdotableaupostes$,getsrdoreferences$}=require('../../sharedkernel/odarepository/sharedRepository').toinit();
+const {getodaindex$, odaindex,getodaByid$,getodasharedByid$}=require('../../SharedKernel/odaservice/dataservices').toinit();
+const {svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
 
-const nstbalanceRepository = (function () {
+const nstbalanceRepository = (function () {  
+  const toInitializeFinalInstance = function (model, body, toinitobj) {
+    const data = toInitCustomInstance(model, body, toinitobj, toInitNstbalanceInstance);
+    return data;
+  };
   const index = function (callback) {
     return odaindex(nstBalance, togetnstbalance, callback);
   };
@@ -30,14 +31,14 @@ const nstbalanceRepository = (function () {
   const getcombinedByid$ =function(arr,requestparamid){
 return getodasharedByid$(arr,requestparamid,getobjnstBalance);
   };
-  const toCreateBalancedata$ = function (requestBody,requestparamid) {
-    return toOdaCreate$(nstBalance,requestBody,requestparamid,tonstbalance,svctoInitializeInstance);
+  const toCreateBalancedata$ = function (requestBody) {
+    return  svctoInitCustomInstance$(nstBalance,requestBody,tonstbalance, toInitializeFinalInstance);
  };
   const insertnstbalance$ = function (arr) {
     return concat(svcodasave$(arr));
   };
-  const toUpdatenstbalancedata$ = function (requestBody,requestparamid) {
-return  toOdaUpdate$(requestBody,toUpdatenstbalancedata,requestparamid,svctoapiUpdateInstance);
+  const toUpdatenstbalancedata$ = function (requestBody) {
+return  svctoUpdateInstance$(requestBody,toUpdatenstbalancedata);
      };
   const editnstbalance$ = function (body, requestparamid) {
     return concat(svcapiupdate$(nstBalance, body, requestparamid));
@@ -64,8 +65,7 @@ return  toOdaUpdate$(requestBody,toUpdatenstbalancedata,requestparamid,svctoapiU
         return neobj;
       }), shareReplay(1));
 
-
-  const getloadnstbalancedatas$ = combineLatest(getloadnstBalanceinputs$, getocomptreferences$, getsrdoExercices$).pipe(
+      const getloadnstbalancedatas$ = combineLatest(getloadnstBalanceinputs$, getocomptreferences$, getsrdoExercices$).pipe(
       map(function ([getloadnstbalanceinputs, getocomptreferences, getoexercices]) {
         let neobj;
         neobj = _.map(getloadnstbalanceinputs, function (obj) {

@@ -1,5 +1,7 @@
 "use strict";
-const {insertOCompte$,getAllocomptes,getocomptes$,editOCompte$,deleteOCompte$,odasearchBy,getByid$,toCreateOComptedata$,toUpdateOComptedata$,seedresult$}=require('./ocompteRepository').toinit();
+const {insertOCompte$,getAllocomptes,getocomptes$,editOCompte$,deleteOCompte$,odasearchBy,getByid$,toCreateOComptedata$,toUpdateOComptedata$}=require('./ocompteRepository').toinit();
+const {seedresult$}=require('./ocompteSeed').toinit();
+
 const { concatMap } = require('rxjs/operators');
 
 const ocompteCtrl = (function () {

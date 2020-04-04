@@ -8,9 +8,9 @@ const { getusers$,
   toUpdateuserdata$,
   edituser$,
   odasearchBy,
-  Deleteuser$,
-  seedresult$,toseedarray}=require('./userRepository').toinit();
+  Deleteuser$}=require('./userRepository').toinit();
   const { concatMap } = require('rxjs/operators');
+  const {seedresult$}=require('./userSeed').toinit();
 
 const userCtrl = (function () {
   const index$ = function () {

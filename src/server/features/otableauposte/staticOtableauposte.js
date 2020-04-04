@@ -13,6 +13,24 @@ const staticOtableauposte = (function () {
     });
   };
 
+  let toCreateModel = null
+  function BuildOtableauposte(model,body, toinitobj,fn) {
+    let toacreateinstance=fn;
+    toCreateModel =toacreateinstance(model,body,toinitobj);    
+    const arr = addItem(toCreateModel);
+    return odareduceArray(arr);
+  } 
+              
+       
+        function toInitOtableauposteInstance(model,body,toinitobj,fn) {
+          const balance = BuildOtableauposte(model,body,toinitobj,fn);
+
+  return ({
+    'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
+     'odaData': odaremoveDupnumcompte(balance.slice())
+  })
+
+     }
   function toUpdateOtableauposte(result, requestparamid, requestBody) {
     var d = new Date();
 
@@ -100,7 +118,8 @@ const staticOtableauposte = (function () {
       togetotableauposte: togetotableauposte,
       getobjOtableauposte: getobjOtableauposte,
       totableaupostesNoChifAffair:totableaupostesNoChifAffair,
-      staticotableauPosteWithcomptebalances:staticotableauPosteWithcomptebalances
+      staticotableauPosteWithcomptebalances:staticotableauPosteWithcomptebalances,
+      toInitOtableauposteInstance:toInitOtableauposteInstance
     };
   }
 

@@ -24,11 +24,7 @@ const staticOtableauposte = (function () {
        
         function toInitOtableauposteInstance(model,body,toinitobj,fn) {
           const getCreatedModel = BuildOtableauposte(model,body,toinitobj,fn);
-
-  return ({
-    'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-     'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
-  })
+          return getCreatedModel.slice();
 
      }
   function toUpdateOtableauposte(result, requestparamid, requestBody) {

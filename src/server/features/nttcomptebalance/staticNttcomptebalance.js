@@ -1,5 +1,5 @@
 "use strict";
-const { find, map, assign ,forEach} = require('lodash');
+const { find, map, assign, forEach} = require('lodash');
 const {getodaAggreateData} = require('../../SharedKernel/odaStats').toinit();
 const { isValid, odauditObj, getStringValue, replaceNullToZero, addItem} = require('../../SharedKernel/odaUtility').toinit();
  const {getobjOreference,getobjOexercCompta,getobjOtableauposte}=require('../../SharedKernel/staticObjects').toinit();
@@ -25,26 +25,29 @@ const staticNttcomptebalance = (function () {
     }
   };
 
-  let comptebalance = null
+  let toCreateModel = null
 function BuildnttCompteBalance(model,body, fn) {
   let toacreateinstance=fn;
-    comptebalance =toacreateinstance(model,body);  
-forEach(body.nttcomptebalancedetails,function (entry) {
-  
-      comptebalance.addBalanceDetail(entry);    
+    toCreateModel =toacreateinstance(model,body);  
+// console.log(body.ntttoCreateModeldetails)  ;
+forEach(body.ntttoCreateModeldetails,function (entry) { 
+      toCreateModel.addBalanceDetail(entry);    
     });
-    comptebalance.getTotalSoldedebit;
-    comptebalance.getTotalSoldecredit;    
-        return comptebalance;
+    toCreateModel.getTotalSoldedebit;
+    toCreateModel.getTotalSoldecredit;    
+//console.log(toCreateModel)
+        return toCreateModel;
       } 
             
    
       function toInitComptebalanceInstance(model,body,fn) {
         const getCreatedModel = BuildnttCompteBalance(model,body,fn);
+  //      console.log(getCreatedModel)
+  //    return   getCreatedModel;
         return {
       //    balance: balance,
-          getData: balance.getData()
-        };
+          getData: getCreatedModel.getData()
+        }; 
     
       }
 

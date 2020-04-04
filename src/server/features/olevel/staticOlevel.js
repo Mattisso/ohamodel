@@ -22,11 +22,8 @@ function BuildOlevel(model,body, toinitobj,fn) {
             
     function toInitOlevelInstance(model,body,toinitobj,fn) {
      const getCreatedModel = BuildOlevel(model,body,toinitobj,fn);
+     return (getCreatedModel.slice());
 
-return ({
-  'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-   'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
-})
 
    }
  const togetolevel = function (argOne) {

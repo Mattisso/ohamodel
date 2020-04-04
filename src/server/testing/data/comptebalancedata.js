@@ -5,7 +5,8 @@ const comptebalancedata = (function () {
     "OexercComptaKey": "5aee0f0023b8a2227003e7b0",
     "OtableauposteKey": "5aee0eff23b8a2227003e7aa",
     "OreferenceKey": "5aee0efe23b8a2227003e6ef",
-    "nttcomptebalancedetails": [{
+    "nttcomptebalancedetails": [
+      {
         "IntitulCompte": "Ninivie",
         "NumCompte": "767676",
         "SoldeDebit": 44829579
@@ -54,7 +55,7 @@ const comptebalancedata = (function () {
   } ],"fullDescription":"CA - Capital","tableauLongName":"Bilan Passif","oExercComptaId":"2006"
 }
 
-  const comptebalanceData= [
+  const arrcomptebalanceData= [
     {
       "_id" : "5dfa424cb78f6f289c0d9d34",
       "OreferenceKey" : "5df910a1f6cf342244ed1b9e",
@@ -102,7 +103,7 @@ const comptebalancedata = (function () {
     return {
       createData: createData,
       editData: editData,
-      comptebalanceData:comptebalanceData
+      arrcomptebalanceData:arrcomptebalanceData
     };
   }
 

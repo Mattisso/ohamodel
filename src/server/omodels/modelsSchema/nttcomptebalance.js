@@ -24,7 +24,7 @@ nttCompteBalanceSchema.index(
 let  nttcomptebalancedetails=[];
 
 nttCompteBalanceSchema.method('addBalanceDetail', function (obj) {
-const requestparamid= this.id;
+let  requestparamid= this.id;
 nttcomptebalancedetails.push(toCompteBalanceDetail(requestparamid,obj)
   );
 
@@ -72,7 +72,7 @@ nttCompteBalanceSchema.virtual('comptebalancedetails')
       'totalSoldeCredit': getTotalSoldecredit( this.nttcomptebalancedetails),
       'DetailCount': getTotalCount(odaremoveDupnumcompte(this.nttcomptebalancedetails)), 
       'id': this.id,    
-      'nttcomptebalancedetails': odaremoveDupnumcompte(nttcomptebalancedetails.slice())
+      'nttcomptebalancedetails': odaremoveDupnumcompte(this.nttcomptebalancedetails.slice())
     };
   });
 

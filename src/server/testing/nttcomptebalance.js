@@ -37,7 +37,7 @@ const toInitializeFinalInstance = function (model, body) {
 const data = toInitializeFinalInstance(nttCompteBalance,createData)
 //const data =toInitComptebalanceInstance(nttCompteBalance,createData,toapicreateinstance)
 // JSON.stringify(toInitializeInstance(nttCompteBalance,createData)));
-console.log(data.getData);
+console.log(data.getData)
 /* const comptedata=data.getData;
 const detailsdata=comptedata.nttcomptebalancedetails
  const details= toapicreateinstance(nttCompteBalanceDetail,detailsdata);

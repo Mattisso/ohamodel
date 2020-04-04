@@ -24,11 +24,7 @@ const staticOreportheader = (function () {
        
         function toInitOreportheaderInstance(model,body,toinitobj,fn) {
           const getCreatedModel = BuildOreportheader(model,body,toinitobj,fn);
-
-  return ({
-    'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-     'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
-  })
+          return (getCreatedModel.slice());
 
      }
 

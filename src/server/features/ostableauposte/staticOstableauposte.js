@@ -26,11 +26,7 @@ function BuildOstableauposte(model,body, toinitobj,fn) {
      
       function toInitOstableauposteInstance(model,body,toinitobj,fn) {
         const getCreatedModel = BuildOstableauposte(model,body,toinitobj,fn);
-
-return ({
-  'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-   'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
-})
+        return (getCreatedModel.slice());
 
    }
   const togetostableauposte = function (argOne) {

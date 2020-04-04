@@ -16,11 +16,8 @@ const staticNttbalance = (function () {
   }       
     function toInitNttbalanceInstance(model,body,toinitobj,fn) {
     const getCreatedModel = BuildNttbalance(model,body,toinitobj,fn);
-  return ({
-    'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-     'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
-  })
-  }
+    return odaremoveDupnumcompte(getCreatedModel.slice());
+    }
     
   const togetnttbalance = function (argOne) {
     let initObj,

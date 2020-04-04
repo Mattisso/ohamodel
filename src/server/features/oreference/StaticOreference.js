@@ -26,12 +26,8 @@ const staticOreference = (function () {
        
         function toInitOreferenceInstance(model,body,toinitobj,fn) {
           const getCreatedModel = BuildOreference(model,body,toinitobj,fn);
-
-  return ({
-    'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-     'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
-  })
-
+          return (getCreatedModel.slice());
+  
      }
 
   function toUpdateoreference(requestBody) {

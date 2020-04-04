@@ -20,16 +20,10 @@ function BuildUser(model,body, toinitobj,fn) {
   const arr = addItem(toCreateModel);
   return odareduceArray(arr);
 } 
-            
-     
+               
       function toInitUserInstance(model,body,toinitobj,fn) {
         const getCreatedModel = BuildUser(model,body,toinitobj,fn);
-
-return ({
-  'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
-   'odaData': odaremoveDupnumcompte(getCreatedModel.slice())
-})
-
+        return (getCreatedModel.slice());
    }
 
   function toUpdateUser(result, requestparamid, requestBody) {

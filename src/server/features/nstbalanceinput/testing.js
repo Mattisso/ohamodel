@@ -5,8 +5,8 @@
 const _ = require('lodash');
 const fs = require("fs");
 const path = require('path');
-const outdirname = path.join(__dirname, '../../DataService/data//source/data.json');
-const  callbackdirname = path.join(__dirname, '../../DataService/data/source/callbackdata.json');
+// const outdirname = path.join(__dirname, '../../DataService/data//source/data.json');
+//   callbackdirname = path.join(__dirname, '../../DataService/data/source/callbackdata.json');
 // var nstbalancedata=require('../load/nstbalance/nstbalancedata');
 
 const { combineLatest, Observable, of, pipe, from } = require('rxjs');

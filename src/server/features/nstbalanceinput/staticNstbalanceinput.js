@@ -1,8 +1,8 @@
 //  async = require('async')
 "use strict";
 const { find, map, assign, filter, forEach } = require('lodash');
-const { isValid, odauditObj, getStringValue, replaceNullToZero } = require('../../SharedKernel/odaUtility').toinit();
-const { getTotalSoldecredit,getTotalSoldedebit,getTotalCount } = require('../../SharedKernel/odaStats').toinit();
+const { isValid, odauditObj, getStringValue, replaceNullToZero , addItem, odaremoveDupnumcompte, odareduceArray} = require('../../SharedKernel/odaUtility').toinit();
+const { getTotalSoldecredit,getTotalSoldedebit,getTotalCount, getodaAggreateData} = require('../../SharedKernel/odaStats').toinit();
 
 const staticNstbalanceinput = (function () {
 
@@ -33,27 +33,22 @@ const staticNstbalanceinput = (function () {
   }
 }
   let balanceinputs = null
-
-  function BuildBalanceinput(model,body, fn) {
+  function BuildBalanceinput(model,body, toinitobj,fn) {
     let toacreateinstance=fn;
-    balanceinputs =toacreateinstance(model,body);    
-          return balanceinputs;  
-        } 
+    balanceinputs =toacreateinstance(model,body,toinitobj);    
+    const arr = addItem(balanceinputs);
+    return odareduceArray(arr);
+  } 
               
        
-        function toInitBalanceinput(model,body,fn) {
-          const balance = BuildBalanceinput(model,body,fn);
-         
-    return {
-      getData : function() {
+        function toInitBalanceinputInstance(model,body,toinitobj,fn) {
+          const balance = BuildBalanceinput(model,body,toinitobj,fn);
+
   return ({
-    'totalSoldeDebit' : getTotalSoldedebit(balance), 
-     'totalSoldeCredit': getTotalSoldecredit(balance),
-     'DetailCount': getTotalCount(odaremoveDupnumcompte(balance)), 
+    'getAgregateData':getodaAggreateData(odaremoveDupnumcompte(balance)),
      'odaData': odaremoveDupnumcompte(balance.slice())
   })
-      }
-    } 
+
      }
     
 
@@ -118,7 +113,7 @@ const staticNstbalanceinput = (function () {
       togetnstbalanceinput:togetnstbalanceinput,
       getobjBalanceinput:getobjBalanceinput,
       odaqueryselector:odaqueryselector,
-      toInitBalanceinput:toInitBalanceinput
+      toInitBalanceinputInstance:toInitBalanceinputInstance
     };
   }
 

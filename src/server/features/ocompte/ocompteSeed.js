@@ -21,7 +21,8 @@ const seedresult$= concat(removeOcompte$(oCompte,'oCompte'),insertoCompte$(tosee
 
   function toinit() {
     return {
-      seedresult$:seedresult$
+      seedresult$:seedresult$,
+      toseedarray:toseedarray
 
     };
   }

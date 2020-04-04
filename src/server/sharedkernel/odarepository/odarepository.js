@@ -1,5 +1,5 @@
 "use strict";
-const { forEach, assign, isUndefined, isNull, map, merge, find} = require('lodash');
+const { forEach, assign, isUndefined, isNull, map, merge, find, isArray} = require('lodash');
 const async = require('async');
 const { Observable} = require('rxjs');
 const { inArray,  isValid} = require('../odaUtility').toinit();
@@ -254,12 +254,34 @@ const odarepository = (function () {
 
     });
   };
+  
+  const odasaveObject$ = function (ArgOne) {
+    // const arr = ArgOne.arrArg); //console.log(ArgOne.arrArg);
+      return Observable.create(function (observer) {
+        try {
+          ArgOne.save(function (err) {
+              if (err) {
+                observer.next(err);
+              }
+            });
+  
+          observer.next((`Finished  in Inserting ${ArgOne}`));
+          setTimeout(() => {
+            observer.complete();
+          }, 100);
+  
+        } catch (err) {
+          observer.error(err);
+        }
+  
+      });
+    };
   const odasaveObjectArray$ = function (ArgOne) {
     let _arr = [];
     // const arr = ArgOne.arrArg); //console.log(ArgOne.arrArg);
     return Observable.create(function (observer) {
       try {
-        forEach(ArgOne.arrArg, function (o) {
+        forEach(ArgOne, function (o) {
           o.save(function (err) {
             if (err) {
               observer.next(err);
@@ -268,7 +290,7 @@ const odarepository = (function () {
           _arr.push(o);
         });
 
-        observer.next((`Finished  in Inserting ${_arr.length} out of ${JSON.stringify(ArgOne.odasum?ArgOne.odasum:ArgOne.DetailCount)} records`));
+        observer.next((`Finished  in Inserting ${_arr.length} out of ${JSON.stringify(ArgOne.length)} records`));
 
         setTimeout(() => {
           observer.complete();
@@ -314,15 +336,16 @@ const odarepository = (function () {
     });
   };
   const odasave$ = function (arr) {
-   // return odasaveObjectArray$(arr);
-    
+   console.log(isArray(arr));
+  //  return odasaveObjectArray$(arr);
+   console.log(arr)
     if (inArray(arr) === false) {
     return odasaveObject$(arr);
     } else if (inArray(arr) === true) {
     return odasaveObjectArray$(arr);
     } else {
     return;
-    } 
+    }  
   };
   function toinit() {
     return {

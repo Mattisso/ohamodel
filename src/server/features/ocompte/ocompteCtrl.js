@@ -22,6 +22,7 @@ const ocompteCtrl = (function () {
   };
   const insertocompte$ = function (body) {
     return toCreateOComptedata$(body).pipe(concatMap(function (x) {
+      
         return insertOCompte$(x);
       }));
   };

@@ -66,7 +66,7 @@ const oexerccomptaRepository = (function () {
   };
   const toCreateExerccomptadata$ = function (requestBody) {
 
-    return svctoInitializeInstance$(oExercCompta, requestBody);
+    return svctoInitializeInstance$(oExercCompta, requestBody, toOexercompta);
   };
 
   const toUpdateExerccomptadata$ = function (requestBody) {

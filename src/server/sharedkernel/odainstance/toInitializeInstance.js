@@ -21,13 +21,15 @@ const toInitializeInstance = (function () {
       const _getdata = toapicreateinstance(model, requestBody, fn);
       if ((!hasitem(_getdata, arrArg)))
         arrArg.push(_getdata);
-        if (isValid(arrArg.length) === true) {
+        arrArg =arrArg.slice();
+        return arrArg;
+      /*   if (isValid(arrArg.length) === true) {
           DetailCount = arrArg.length;
         }
       return {
         DetailCount: DetailCount,
         arrArg: arrArg.slice()
-      };
+      }; */
     }
 
   } 

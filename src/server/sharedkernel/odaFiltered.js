@@ -24,8 +24,6 @@ var filters = [];
 _.forEach(value, function (o) {
 if (isValid(o) === true) {
     var filterArg = `{"${objkey}" : "${getStringValue(o)}"}`;
-    //    console.log(filterArg);
-
     var filter = JSON.parse((filterArg));
     filters.push(filter);
 }
@@ -104,11 +102,11 @@ var key = ['OexercComptaKey', 'OreferenceKey', 'OtableauposteKey'].map(function 
 
 if (!hash[key]) {
     hash[key] = {
-        OexercComptaKey: o.OexercComptaKey,
-        OreferenceKey: o.OreferenceKey,
-        OtableauposteKey: o.OtableauposteKey,
-        SoldeDebit: 0,
-        SoldeCredit: 0
+        'OexercComptaKey': o.OexercComptaKey,
+        'OreferenceKey': o.OreferenceKey,
+        'OtableauposteKey': o.OtableauposteKey,
+        'SoldeDebit': 0,
+        'SoldeCredit': 0
     };
     grouped.push(hash[key]);
 }

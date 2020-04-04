@@ -5,42 +5,21 @@ const {Ocompte}=require('../omodels/modelsSchema/ocompte').toinit();
 const {render}=require('../features/ocompte/ocompteView').toinit();
 const { combineLatest, Observable, of, pipe, from ,concat} = require('rxjs');
 const { filter, map, tap, pluck, take, find, distinct, shareReplay } = require('rxjs/operators');
+const {getstreamdata$, odagetObserver,getapistreamdata$,getapiObserver}=require('../SharedKernel/odaSubscribe').toinit();
+const {toseedarray} = require('../features/ocompte/ocompteSeed').toinit();
+//
+const { toCreateOComptedata$} = require('../features/ocompte/ocompteRepository').toinit();
+const { toBalanceinput} = require('../features/nstbalanceinput/staticNstbalanceinput').toinit();
 
 
-//const {Buildocompte}=require('../omodels/modelClass/ocompteClass').toinit();
-// const {nttCompteBalance}=require('../omodels/modelsSchema/index').toinit();
+// const getoreportdetail$= sharedrepository.getocomptreferences$;
+ //const getcallbackdata = ostblareaRepository.index;
+//  const getoreportdetail$ = olevelRepository.getolevelsBy$(3);
+// console.log(comptebalancedata.createData);
+ const getoreportdetail$ = toCreateOComptedata$; // 
 
-// require('../config/ohadb').connectserver()
+getstreamdata$(getoreportdetail$(arrocomptedata)).subscribe(odagetObserver());
 
-// const data =Buildocompte(oCompte,objocomptedata)
-// JSON.stringify(toInitializeInstance(nttCompteBalance,createData)));
-// console.log(data.getData);
+//const getoreportdetail$ =  toseedarray
 
-/*  const data= svctoInitializeInstance$(oCompte,arrocomptedata);
-//console.log(render(data));
- 
-const getoreportdetail$ =  data
-const getObserverdata = pipe(
-  map(n => n)
- ,tap(ev => console.log(ev))
-  //,take(2)
-);
-
- const getoreportdetailR$ = getObserverdata(getoreportdetail$);
-
-  getoreportdetailR$.subscribe(function (x) {
-  return render(x);
-  //console.log(getodaAggreateData(x));
- 
-
-});*/
-
-
-const toOCompte = function (o) {
-  return      {
-      "CompteNumber": comptenumber(o)
-    };
-};
-
-const data = new  Ocompte(objocomptedata);
-console.log(data.comptenumber())
+// console.log((toseedarray));

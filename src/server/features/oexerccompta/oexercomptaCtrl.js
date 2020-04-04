@@ -1,9 +1,11 @@
 
 "use strict";
 var _ = require('lodash');
-const {getByid$,getexeccomptas$,getoExerciceEncour$,getoExercice$,GetComptaWithExercice$,toCreateExerccomptadata$,toUpdateExerccomptadata$,deleteExercCompta$,insertExercCompta$,editExercCompta$, odasearchBy,DropDownListExerComptable$, seedOexerccompta$} = require('./oexerccomptaRepository').toinit();
+const {getByid$,getexeccomptas$,getoExerciceEncour$,getoExercice$,GetComptaWithExercice$,toCreateExerccomptadata$,toUpdateExerccomptadata$,deleteExercCompta$,insertExercCompta$,editExercCompta$, odasearchBy,DropDownListExerComptable$} = require('./oexerccomptaRepository').toinit();
 const { concatMap } = require('rxjs/operators');
 const {seedoexercice$} = require('../oexercice/oexerciceCtrl').toinit();
+const { seedOexerccompta$} = require('./oexercomptaSeed').toinit();
+
 const { concat } = require('rxjs');
 
 const oexercomptaCtrl = (function () {

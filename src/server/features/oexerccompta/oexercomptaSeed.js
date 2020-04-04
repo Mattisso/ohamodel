@@ -26,7 +26,7 @@ const oexercomptaSeed = (function () {
 
   function toinit() {
     return {
-      result$:seedOexerccompta$,
+      seedOexerccompta$:seedOexerccompta$,
       toseedoexercompta:toseedoexercompta
 //result$:seedOexerccompta$,
 //seedOexercice$:seedOexercice$

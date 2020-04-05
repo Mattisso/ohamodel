@@ -16,16 +16,16 @@ const staticOreference = (function () {
 
 
   let toCreateModel = null
-  function BuildOreference(model,body, toinitobj,fn) {
+  function BuildOreference(model,body, fn) {
     let toacreateinstance=fn;
-    toCreateModel =toacreateinstance(model,body,toinitobj);    
+    toCreateModel =toacreateinstance(model,body,toOreference);    
     const arr = addItem(toCreateModel);
     return odareduceArray(arr);
   } 
               
        
-        function toInitOreferenceInstance(model,body,toinitobj,fn) {
-          const getCreatedModel = BuildOreference(model,body,toinitobj,fn);
+        function toInitOreferenceInstance(model,body,fn) {
+          const getCreatedModel = BuildOreference(model,body,fn);
           return (getCreatedModel.slice());
   
      }

@@ -110,8 +110,8 @@ const odarepository = (function () {
     result = {};
     return Observable.create(function (observer) {
       try {
-        if (isValid(ArgOne) === true && inArray(ArgOne.arrArg) === true && ArgOne.arrArg.length > 0 && isValid(ArgOne.odaObjupd) === false) {
-          forEach(ArgOne.arrArg, function (elm) {
+        if (isValid(ArgOne) === true && inArray(ArgOne) === true && ArgOne.length > 0 && isValid(ArgOne.odaObjupd) === false) {
+          forEach(ArgOne, function (elm) {
             SearchByid(model, elm.id)
             .exec(function (err, data) {
               if (err) {
@@ -165,8 +165,8 @@ const odarepository = (function () {
     result = {};
     return Observable.create(function (observer) {
       try {
-        if (isValid(ArgOne) === true && inArray(ArgOne.arrArg) === true && ArgOne.arrArg.length > 0 && isValid(ArgOne.odaObjupd) === true) {
-          forEach(ArgOne.arrArg, function (elm) {
+        if (isValid(ArgOne) === true && inArray(ArgOne) === true && ArgOne.length > 0 && isValid(ArgOne.odaObjupd) === true) {
+          forEach(ArgOne, function (elm) {
             SearchByid(model, elm.id)
             .exec(function (err, data) {
               if (err) {
@@ -205,7 +205,7 @@ const odarepository = (function () {
     const _arr = [];
     return Observable.create(function (observer) {
       try {
-        forEach(ArgOne.arrArg, function (o) {
+        forEach(ArgOne, function (o) {
           o.save(function (err) {
             if (err) {
               observer.next(err);
@@ -238,7 +238,7 @@ const odarepository = (function () {
             });
               //    observer.next();
               //      console.log(`Finished  in seeding ${arr.length} records inserted`);
-              observer.next((`Finished  in Inserting ${_arr.length} out of ${JSON.stringify(odacount(ArgOne))} records`));
+              observer.next((`Finished  in Inserting ${_arr.length} out of ${JSON.stringify(ArgOne.length)} records`));
 
               //  console.log(result);
               setTimeout(() => {

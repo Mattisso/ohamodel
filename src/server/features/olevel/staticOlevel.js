@@ -13,15 +13,15 @@ const staticOlevel = (function () {
 
  
 let toCreateModel = null
-function BuildOlevel(model,body, toinitobj,fn) {
+function BuildOlevel(model,body, fn) {
   let toacreateinstance=fn;
-  toCreateModel =toacreateinstance(model,body,toinitobj);    
+  toCreateModel =toacreateinstance(model,body,toOlevel);    
   const arr = addItem(toCreateModel);
   return odareduceArray(arr);
 } 
             
-    function toInitOlevelInstance(model,body,toinitobj,fn) {
-     const getCreatedModel = BuildOlevel(model,body,toinitobj,fn);
+    function toInitOlevelInstance(model,body,fn) {
+     const getCreatedModel = BuildOlevel(model,body,fn);
      return (getCreatedModel.slice());
 
 

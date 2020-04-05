@@ -1,7 +1,7 @@
 "use strict";
 const _ = require('lodash');
 const {insertolevel$,toUpdateoleveldata$,Deleteolevel$,getolevels$,getAll,getByid$,getolevelsBy$,odasearchBy,toCreateoleveldata$,editolevel$}=require('./olevelRepository').toinit();
-const {seedresult$}=require('./olevelSeed').toinit();
+const {result$}=require('./olevelSeed').toinit();
 const { concatMap } = require('rxjs/operators');
 
 const olevelCtrl = (function () {
@@ -12,7 +12,7 @@ const olevelCtrl = (function () {
     return getAll(callback);
   };
   const seedolevel$ = function () {
-    return seedresult$;
+    return result$;
   };
   const getbyid$ = function (id) {
     return getByid$(id);

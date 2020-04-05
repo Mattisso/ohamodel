@@ -23,7 +23,8 @@ const olevelSeed = (function () {
 
   function toinit() {
     return {
-      result$:seedresult$
+      result$:seedresult$,
+      toseedarray:toseedarray
     };
   }
 

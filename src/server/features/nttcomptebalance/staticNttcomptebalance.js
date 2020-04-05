@@ -9,6 +9,7 @@ const {queryselector, getSoldeDebit,getSoldeCredit}=require('./objQryParams').to
 const staticNttcomptebalance = (function () {
   
   const tonttcomptebalance = function (obj) {
+    let nttcomptebalancedetails=[];
     let odaisvalid=queryselector(obj);
     if(odaisvalid===true && replaceNullToZero(obj.SoldeCredit)!==0 ||
     odaisvalid===true && replaceNullToZero(obj.SoldeDebit)!==0){
@@ -17,7 +18,8 @@ const staticNttcomptebalance = (function () {
         "OtableauposteKey": obj.OtableauposteKey,
         "OexercComptaKey": obj.OexercComptaKey,
         "totalSoldeDebit": obj.SoldeDebit,
-        "totalSoldeCredit": obj.SoldeCredit
+        "totalSoldeCredit": obj.SoldeCredit,
+        "nttcomptebalancedetails": nttcomptebalancedetails
     // "AmortProvAmnt": getAmortProvAmnt(obj.AmortProvAmnt),
     //   "provamnt": replaceNullToZero(obj.provamnt),
    //  "amntNet": getAmountNet(obj)
@@ -27,14 +29,17 @@ const staticNttcomptebalance = (function () {
 
   let toCreateModel = null
 function BuildnttCompteBalance(model,body, fn) {
-  let toacreateinstance=fn;
+  let toacreateinstance=fn,
     toCreateModel =toacreateinstance(model,body);  
+    forEach(body.nttcomptebalancedetails,function(entry){
+      return toCreateModel.addBalanceDetail(entry);
+    })
 // console.log(body.ntttoCreateModeldetails)  ;
-forEach(body.ntttoCreateModeldetails,function (entry) { 
-      toCreateModel.addBalanceDetail(entry);    
-    });
-    toCreateModel.getTotalSoldedebit;
-    toCreateModel.getTotalSoldecredit;    
+/* forEach(body.ntttoCreateModeldetails,function (entry) { 
+  return   toCreateModel.addBalanceDetail(entry)    
+    }); */
+   // toCreateModel.getTotalSoldedebit;
+  //  toCreateModel.getTotalSoldecredit;    
 //console.log(toCreateModel)
         return toCreateModel;
       } 
@@ -44,11 +49,13 @@ forEach(body.ntttoCreateModeldetails,function (entry) {
         const getCreatedModel = BuildnttCompteBalance(model,body,fn);
   //      console.log(getCreatedModel)
   //    return   getCreatedModel;
-        return {
-      //    balance: balance,
+  return           getCreatedModel.getData()
+
+     /*    return {
+         balance: getCreatedModel,
           getData: getCreatedModel.getData()
         }; 
-    
+     */
       }
 
     /*   const toInitCustomInstance = function (model,requestBody, fn) {

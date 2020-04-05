@@ -11,16 +11,15 @@ const StaticOcompte = (function () {
 
   
 let toCreateModel = null
-function BuildOcompte(model,body, toinitobj,fn) {
+function BuildOcompte(model,body, fn) {
   let toacreateinstance=fn;
-  toCreateModel =toacreateinstance(model,body,toinitobj);    
+  toCreateModel =toacreateinstance(model,body,toOCompte);    
   const arr = addItem(toCreateModel);
   return odareduceArray(arr);
 } 
-            
-     
-      function toInitOcompteInstance(model,body,toinitobj,fn) {
-        const getCreatedModel = BuildOcompte(model,body,toinitobj,fn);
+               
+      function toInitOcompteInstance(model,body,fn) {
+        const getCreatedModel = BuildOcompte(model,body,fn);
         return getCreatedModel.slice();
 
    }

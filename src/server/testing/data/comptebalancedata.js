@@ -7,6 +7,7 @@ const comptebalancedata = (function () {
     "OreferenceKey": "5aee0efe23b8a2227003e6ef",
     "nttcomptebalancedetails": [
       {
+       
         "IntitulCompte": "Ninivie",
         "NumCompte": "767676",
         "SoldeDebit": 44829579

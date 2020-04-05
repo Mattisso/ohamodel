@@ -9,13 +9,14 @@ const {toInitializeInstance}=require('../../SharedKernel/odainstance/toInitializ
 
 const { concat } = require('rxjs');
 
-const toseedarray=toInitializeInstance(User,userdata);
+const toseedarray=toInitializeInstance(User,userdata, toUser);
 
 const userSeed = (function () {
   const _removeData$= function(model,item) {
     return  svcodaDel$(model,item);
   };
   const _insertuser$ = function(model, arr) {
+  //  console.log(arr);
 return svcodaseedUsersave$(model,arr);
   };
   const removeData$= _removeData$(User,'User');

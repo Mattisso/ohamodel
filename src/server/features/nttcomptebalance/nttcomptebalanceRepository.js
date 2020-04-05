@@ -95,6 +95,7 @@ const nttcomptebalanceRepository = (function () {
       getcombinednindex$: getcombinednIndex$,
       getcombinedByid$: getcombinedByid$,
       togetcomptebalancesWithDetails$: togetcomptebalancesWithDetails$,
+      toInitializeFinalInstance:toInitializeFinalInstance
     //  toapiCreateBalancedata$:toapiCreateBalancedata$
 
     };

@@ -2,12 +2,12 @@
 "use strict";
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const {toCompteBalanceDetail} = require('../staticModels/staticNttcomptebalanceDetail').toinit();
+// const {toCompteBalanceDetail} = require('../staticModels/staticNttcomptebalanceDetail').toinit();
 const {getauditentity, gettoObject ,extendSchema, auditEntityPlugin} = require('../helpers/odabaseSchema').toinit();
-const {odaremoveDupnumcompte} = require('../../sharedkernel/odaUtility').toinit();
+// const {odaremoveDupnumcompte, replaceNullToZero} = require('../../sharedkernel/odaUtility').toinit();
 
 const {nttcomptebalanceClass, modelObject}=require('../modelClass/nttcomptebalanceClass').toinit();
-const {getTotalCount, getTotalSoldedebit, getTotalSoldecredit}=require('../../sharedkernel/odaStats').toinit();
+// const {getTotalCount, getTotalSoldedebit, getTotalSoldecredit}=require('../../sharedkernel/odaStats').toinit();
 const nttcomptebalance = (function () {
   const auditBaseSchema = new Schema(getauditentity, gettoObject);
 	const nttCompteBalanceSchema = extendSchema(auditBaseSchema, modelObject);
@@ -23,14 +23,24 @@ nttCompteBalanceSchema.index(
 
 let  nttcomptebalancedetails=[];
 
+/* 
 nttCompteBalanceSchema.method('addBalanceDetail', function (obj) {
 let  requestparamid= this.id;
-nttcomptebalancedetails.push(toCompteBalanceDetail(requestparamid,obj)
+console.log(obj)
+return  nttcomptebalancedetails.push(
+  ({
+    "nttcomptebalanceKey":this.id,
+    "NumCompte": obj.NumCompte,
+    "IntitulCompte": obj.IntitulCompte,
+    "SoldeCredit": replaceNullToZero(obj.SoldeCredit),
+    "SoldeDebit": replaceNullToZero(obj.SoldeDebit)
+  })
+  // toCompteBalanceDetail(requestparamid,obj
+    
   );
+}); */
 
-});
-
-nttCompteBalanceSchema.method('hasitem', function (obj) {
+/* nttCompteBalanceSchema.method('hasitem', function (obj) {
   return this.nttcomptebalancedetails.indexOf(obj) !== -1;
 });
 
@@ -42,7 +52,7 @@ nttCompteBalanceSchema.method('removeItem', function (obj) {
 });
 
 nttCompteBalanceSchema.method('addcomptebalancedetail', function () {
-  nttcomptebalancedetails.push({
+  this.nttcomptebalancedetails.push({
     "nttcomptebalanceKey" : this.id,
     "NumCompte":  "",
     "IntitulCompte": "",
@@ -51,18 +61,20 @@ nttCompteBalanceSchema.method('addcomptebalancedetail', function () {
   });
   // this.nttcomptebalancedetails.slice();
 });
-
-nttCompteBalanceSchema.virtual('comptebalancedetails')
+ */
+/* nttCompteBalanceSchema.virtual('comptebalancedetails')
   .set(function (comptebalancedetails) {
       this._comptebalancedetails = comptebalancedetails;
   })
   .get(function () {
       return this._comptebalancedetails;
-  });
+  }); */
 
-  nttCompteBalanceSchema.method('getData', function () {
-    //const odasum =getodaAggreateData(nttcomptebalancedetails);
+  /* nttCompteBalanceSchema.method('getData', function () {
+  //  const odasum =getodaAggreateData(nttcomptebalancedetails);
+    console.log(nttcomptebalancedetails)
     return {
+      
       "isActive": this.isActive,
       '_id': this._id,
       'OexercComptaKey': this.OexercComptaKey,
@@ -70,11 +82,12 @@ nttCompteBalanceSchema.virtual('comptebalancedetails')
       'OreferenceKey': this.OreferenceKey,
       'totalSoldeDebit': getTotalSoldedebit(this.nttcomptebalancedetails), 
       'totalSoldeCredit': getTotalSoldecredit( this.nttcomptebalancedetails),
+    
       'DetailCount': getTotalCount(odaremoveDupnumcompte(this.nttcomptebalancedetails)), 
       'id': this.id,    
-      'nttcomptebalancedetails': odaremoveDupnumcompte(this.nttcomptebalancedetails.slice())
+      'nttcomptebalancedetails': odaremoveDupnumcompte(nttcomptebalancedetails.slice())
     };
-  });
+  }); */
 
   nttCompteBalanceSchema.virtual('nttcomptebalancedetails', {
     ref: 'nttCompteBalanceDetail', // The model to use

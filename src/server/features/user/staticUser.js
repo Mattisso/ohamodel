@@ -14,16 +14,16 @@ const staticUser = (function () {
 
   
 let toCreateModel = null
-function BuildUser(model,body, toinitobj,fn) {
+function BuildUser(model,body, fn) {
   let toacreateinstance=fn;
-  toCreateModel =toacreateinstance(model,body,toinitobj);    
+  toCreateModel =toacreateinstance(model,body,toUser);    
   const arr = addItem(toCreateModel);
   return odareduceArray(arr);
 } 
                
-      function toInitUserInstance(model,body,toinitobj,fn) {
-        const getCreatedModel = BuildUser(model,body,toinitobj,fn);
-        return (getCreatedModel.slice());
+      function toInitUserInstance(model,body,fn) {
+        const getCreatedModel = BuildUser(model,body,fn);
+        return getCreatedModel.slice();
    }
 
   function toUpdateUser(result, requestparamid, requestBody) {

@@ -1,15 +1,17 @@
 
 "use strict";
 const  {oCompte} = require('../../omodels/modelsSchema/index').toinit();
-const {togetocompte,toUpdateocompte,getobjOcompte,toOCompte}=require('./StaticOcompte').toinit();
+const {togetocompte,toUpdateocompte,getobjOcompte,toOCompte, toInitOcompteInstance}=require('./StaticOcompte').toinit();
 const {ocomptedata} = require('../../seed/data-seed/index').toinit();
 const { concat } = require('rxjs');
 const {getodaindex$, odaindex,getodaByid$}=require('../../sharedkernel/odaservice/dataservices').toinit();
 const {svcodasave$, svcapiupdate$,svcodaApiDel$,svcodaSearchBy,svcodaDel$}=require('../../sharedkernel/odaservice/odaservice').toinit();
-const {toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
-const ocompteRepository = (function () {
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); const ocompteRepository = (function () {
 
-       
+  const toInitializeFinalInstance = function (model, body) {
+    const data = toInitCustomInstance(model, body,toInitOcompteInstance);
+    return data;
+  };
   const index = function (callback) {
     return odaindex(oCompte, togetocompte, callback);
   };
@@ -20,7 +22,7 @@ const ocompteRepository = (function () {
     return getodaByid$(oCompte, togetocompte, requestparamid, getobjOcompte);
   };
   const toCreateOComptedata$ = function (requestBody,) {
-    return svctoInitializeInstance$(oCompte, requestBody);
+    return svctoInitCustomInstance$(oCompte, requestBody,toInitializeFinalInstance);
   };
   const insertOCompte$ = function (arr) {
     return svcodasave$(arr);
@@ -28,8 +30,8 @@ const ocompteRepository = (function () {
   const toUpdateOComptedata$ = function (requestBody) {
     return svctoUpdateInstance$(requestBody, toUpdateocompte);
   };
-  const editOCompte$ = function (body, requestparamid) {
-    return svcapiupdate$(oCompte, body, requestparamid);
+  const editOCompte$ = function (body) {
+    return svctoUpdateInstance$(oCompte, body);
   };
   const odasearchBy = function (body) {
     return svcodaSearchBy(oCompte, body);

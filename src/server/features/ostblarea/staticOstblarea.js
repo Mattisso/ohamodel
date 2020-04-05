@@ -16,16 +16,16 @@ const staticOstblarea= (function () {
 
   
 let toCreateModel = null
-function BuildOstblarea(model,body, toinitobj,fn) {
+function BuildOstblarea(model,body, fn) {
   let toacreateinstance=fn;
-  toCreateModel =toacreateinstance(model,body,toinitobj);    
+  toCreateModel =toacreateinstance(model,body,toOstblarea);    
   const arr = addItem(toCreateModel);
   return odareduceArray(arr);
 } 
             
      
-      function toInitOstblareaInstance(model,body,toinitobj,fn) {
-        const getCreatedModel = BuildOstblarea(model,body,toinitobj,fn);
+      function toInitOstblareaInstance(model,body,fn) {
+        const getCreatedModel = BuildOstblarea(model,body,fn);
         return (getCreatedModel.slice());
 
    }

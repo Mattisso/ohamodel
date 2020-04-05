@@ -23,12 +23,12 @@ const index = (function () {
 // seeduser$,
  // seedoexcompta$
  // seedolevel$
-  seedOcompte$
- // ,seedOreference$
+  // seedOcompte$
+ //seedOreference$
    /* 
   */
  
- // ,seedOstblarea$
+ seedOstblarea$
   //,seedostableauposte$
  // ,seedotableauposte$
   //,seedoreportheader$ 

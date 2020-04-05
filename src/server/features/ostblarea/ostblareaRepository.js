@@ -8,13 +8,17 @@ const { combineLatest, Observable, of, pipe, from } = require('rxjs');
 const { filter, map, tap, pluck, find } = require('rxjs/operators');
 const { getocomptes$ } = require('../../features/ocompte/ocompteRepository').toinit();
 const { odareduceArray } = require('../../SharedKernel/odaUtility').toinit();
-const {toOstblarea,togetostblarea,toUpdateostblarea,getobjOstblarea}=require('./staticOstblarea').toinit();
+const {toOstblarea,togetostblarea,toUpdateostblarea,getobjOstblarea, toInitOstblareaInstance}=require('./staticOstblarea').toinit();
 const { ostblareadata } = require('../../seed/data-seed/index').toinit();
 const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$}=require('../../SharedKernel/odaservice/dataservices').toinit();
 const {svctoInitializeInstance,svctoapiUpdateInstance,svctoUpdateInstance,svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
-const { svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
 
 const ostblareaRepository = (function () {
+  const toInitializeFinalInstance = function (model, body) {
+    const data = toInitCustomInstance(model, body,toInitOstblareaInstance);
+    return data;
+  };
   const index = function (callback) {
     return odaindex(oStblArea, togetostblarea, callback);
   };
@@ -26,7 +30,7 @@ const ostblareaRepository = (function () {
     return getodaByid$(oStblArea, togetostblarea, requestparamid, getobjOstblarea);
   };
   const toCreateostblareadata$ = function (requestBody) {
-    return svctoInitializeInstance$(oStblArea, requestBody, toOstblarea);
+    return svctoInitCustomInstance$(oStblArea, requestBody,toInitializeFinalInstance);
   };
   const insertostblarea$ = function (arr) {
     return svcodasave$(arr);

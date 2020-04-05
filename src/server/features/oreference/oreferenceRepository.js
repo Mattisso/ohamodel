@@ -5,18 +5,21 @@ const { oreferencedata } = require('../../seed/data-seed/index').toinit();
 const { combineLatest, pipe } = require('rxjs');
 const { map } = require('rxjs/operators');
 const { oReference} = require('../../omodels/modelsSchema/index').toinit();
-const { toOreference, togetoreference,getobjOreference,toUpdateoreference,statictReferenceByoTableauPostes ,staticReferenceByYears} = require('./staticOreference').toinit();
+const { toOreference, togetoreference,getobjOreference,toUpdateoreference,statictReferenceByoTableauPostes ,staticReferenceByYears, toInitOreferenceInstance} = require('./staticOreference').toinit();
 const staticObjects = require('../../SharedKernel/staticObjects').toinit();
 const { getodafilter,odaByarg} = require('../../SharedKernel/odaFiltered').toinit();
 const {getsrdcomptebalances$,getsrdocomptreferences$,getsrdocomptes$} = require('../../sharedkernel/odarepository/sharedRepository').toinit();
 const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$,getodaindexapi$,getodaApiByid$}=require('../../SharedKernel/odaservice/dataservices').toinit();
 const {svctoInitializeInstance,svctoapiUpdateInstance,svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
-const {toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
-// const { getocomptes$ } = require('../../features/ocompte/ocompteRepository').toinit();
-const ocomptedata$=getsrdocomptes$;
-let seededdatas$= oreferencedata.oreferencedatas$;
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+
 
 const oreferenceRepository = (function () {
+  const toInitializeFinalInstance = function (model, body) {
+    const data = toInitCustomInstance(model, body,toInitOreferenceInstance);
+    return data;
+  };
+
   const index = function (callback) {
     return odaindex(oReference,togetoreference,callback);
   };
@@ -34,7 +37,7 @@ const oreferenceRepository = (function () {
     return getodaApiByid$(oReference, requestparamid,getobjOreference);
   };
   const toCreateoreferencedata$ = function (requestBody) {
-    return svctoInitializeInstance$(oReference, requestBody, toOreference);
+    return svctoInitCustomInstance$(oReference, requestBody, toInitializeFinalInstance);
   };
   const insertoreference$ = function (arr) {
     return svcodasave$(arr);

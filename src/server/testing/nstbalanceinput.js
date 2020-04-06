@@ -14,7 +14,7 @@ const {getstreamdata$, odagetObserver,getapistreamdata$,getapiObserver}=require(
 
       
 
-const { toCreateBalanceinputdata$} = require('../features/nstbalanceinput/nstbalanceinputRepository').toinit();
+const { toCreateBalanceinputdata$, getloadnstbalanceinputs} = require('../features/nstbalanceinput/nstbalanceinputRepository').toinit();
 const { toBalanceinput} = require('../features/nstbalanceinput/staticNstbalanceinput').toinit();
 
 

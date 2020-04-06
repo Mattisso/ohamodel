@@ -46,7 +46,7 @@ const nstbalanceinputRepository = (function () {
 
   const getloadnstbalanceinputs = function (callback) {
     let _arr = [];
-    return odaindex(nstBalanceInput, togetnstbalanceinput, function (err, nstbalanceinputs) {
+    return odaindex(function (err, nstbalanceinputs) {
       if (err) {
         throw (err);
       } else {

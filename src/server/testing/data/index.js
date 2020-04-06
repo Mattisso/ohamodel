@@ -4,7 +4,7 @@ var _ = require('lodash');
 const index = (function () {
   function toinit() {
     return {
-  /*     'ocomptereferencesdata': require('../data/source/ocomptereferencesdata.json'),
+  /* 'ocomptereferencesdata': require('../data/source/ocomptereferencesdata.json'),
      'nstbalancedata': require('../data/source/nstbalancedata.json'),
       'ocomptedata': require('../data/source/ocomptedata.json'),
       'filteredata': require('../data/source/filteredata.json'),
@@ -13,7 +13,8 @@ const index = (function () {
       'comptebalancedata':require('../data/comptebalancedata').toinit(),
       'ocomptedata':require('../data/ocomptedata').toinit(),
      // 'comptebalancedetaildata':require('../data/source/comptebalancedetaildata').toinit()
-     'oexerccomptadata':require('../data/oexerccomptadata').toinit()
+     'oexerccomptadata':require('../data/oexerccomptadata').toinit(),
+     'oreferencedata':require('../data/oreferencedata').toinit()
     };
   }
   return {

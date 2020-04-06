@@ -16,17 +16,16 @@ const { seedocomptereference$}=require('../../features/ocomptereference/index').
 const {seedorepOrtdetail$}=require('../../features/oreportdetail/index').toinit();
  const {seedoreportheader$}=require('../../features/oreportheader/index').toinit();
 
-
 const index = (function () {
 
  const seedAll$=  concat(
 seeduser$,
- seedoexcompta$,
+seedoexcompta$,
  seedolevel$,
-  seedOcompte$,
+ seedOcompte$,
  seedOreference$ ,
  seedOstblarea$,
-   seedostableauposte$,
+ seedostableauposte$,
  seedotableauposte$,
  seedocomptereference$,
  seedorepOrtdetail$,

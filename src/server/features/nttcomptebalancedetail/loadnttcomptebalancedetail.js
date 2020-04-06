@@ -1,11 +1,11 @@
 'use strict';
 // var omodel = require('../../omodels/nttCompteBalanceDetail.js');
 //const { ocompterefencedata } = require('../../seed/data-seed/index').toinit();
-const {nttCompteBalanceDetail} = require('../../omodels/index').toinit();
+const {nttCompteBalanceDetail} = require('../../omodels/modelsSchema/index').toinit();
 const {toLoadCompteBalanceDetail}=require('./staticNttcomptebalanceDetail').toinit();
 const { pipe, concat } = require('rxjs');
 const { map, concatMap } = require('rxjs/operators');
-const {svctoseedInstance, svcodaDel$, svcodasave$} = require('../../SharedKernel/odaservice').toinit();
+const {svctoseedInstance, svcodaDel$, svcodasave$} = require('../../SharedKernel/odaservice/odaservice').toinit();
 const { odaremove} = require('../../SharedKernel/odaUtility').toinit();
 const {getloadnttcomptebalanceDetaildata$} = require('../nttcomptebalance/nttcomptebalanceRepository').toinit();
 

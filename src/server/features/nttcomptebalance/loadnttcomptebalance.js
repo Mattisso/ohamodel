@@ -11,7 +11,7 @@ const {svctoseedInstance, svcodaDel$, svcodasave$} = require('../../SharedKernel
 const { odaremove} = require('../../SharedKernel/odaUtility').toinit();
 const { reducegroupby} = require('../../SharedKernel/odaFiltered').toinit();
 
-const {getloadnttcomptebalanceData$} = require('./nttcomptebalanceRepository').toinit();
+const {getloadnttcomptebalanceData$} = require('../nttcomptebalance/nttcomptebalanceRepository').toinit();
 
 const loadnttcomptebalance = (function () {
 

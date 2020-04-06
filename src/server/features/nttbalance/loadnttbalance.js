@@ -4,14 +4,14 @@
 const _ = require('lodash');
 // var omodel = require('../../omodels/nttbalance.js');
 //const { ocompterefencedata } = require('../../seed/data-seed/index').toinit();
-const {nttBalance} = require('../../omodels/index').toinit();
+const {nttBalance} = require('../../omodels/modelsSchema/index').toinit();
 
 const { base, staticObjects, filtered, filteredBy, odaObjects } = require('../../SharedKernel/index').toinit();
 const {tonttbalance}=require('./staticNttbalance').toinit();
 
 const { combineLatest, Observable, of, pipe, from, concat } = require('rxjs');
 const { filter, map, tap, pluck, find, shareReplay, concatMap } = require('rxjs/operators');
-const {svctoseedInstance, svcodaDel$, svcodasave$, svcodaupdate$} = require('../../SharedKernel/odaservice').toinit();
+const {svctoseedInstance, svcodaDel$, svcodasave$, svcodaupdate$} = require('../../SharedKernel/odaservice/odaservice').toinit();
 const {odareomoveInvalidObject,odaremove} = require('../../SharedKernel/odaUtility').toinit();
 const { getnstbalances$} = require('../nstbalance/nstbalanceRepository').toinit();
 

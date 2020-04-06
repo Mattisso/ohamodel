@@ -16,16 +16,16 @@ const staticOstableauposte = (function () {
 
   
 let toCreateModel = null
-function BuildOstableauposte(model,body, toinitobj,fn) {
+function BuildOstableauposte(model,body, fn) {
   let toacreateinstance=fn;
-  toCreateModel =toacreateinstance(model,body,toinitobj);    
+  toCreateModel =toacreateinstance(model,body,toOstableauposte);    
   const arr = addItem(toCreateModel);
   return odareduceArray(arr);
 } 
             
      
-      function toInitOstableauposteInstance(model,body,toinitobj,fn) {
-        const getCreatedModel = BuildOstableauposte(model,body,toinitobj,fn);
+      function toInitOstableauposteInstance(model,body,fn) {
+        const getCreatedModel = BuildOstableauposte(model,body,fn);
         return (getCreatedModel.slice());
 
    }

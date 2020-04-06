@@ -15,7 +15,7 @@ const oreportheaderSeed = (function () {
   const getObserverdata = pipe(
     map(function(n){
      const filtereddatas = odaremove(n);
-     return toInitializeInstance(oReportHeader,filtereddatas);
+     return toInitializeInstance(oReportHeader,filtereddatas,toOreportheader);
     })    // ,
     // ,tap(ev => console.log(ev))
   );

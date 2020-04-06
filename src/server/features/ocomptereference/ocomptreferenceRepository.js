@@ -7,11 +7,11 @@ const { getotableaupostes$ } = require('../otableauposte/otableauposteRepository
 const { getostblareas$ } = require('../ostblarea/ostblareaRepository').toinit();
 const { getocomptes$ } = require('../ocompte/ocompteRepository').toinit();
 const { getostableaupostes$ } = require('../ostableauposte/ostableauposteRepository').toinit();
-const {togetocomptereference,getObjOcomptereference,toOcomptereference,toUpdateocomptereference} =require('./staticocomptereference').toinit();
+const {togetocomptereference,getObjOcomptereference,toOcomptereference,toUpdateocomptereference, toInitOcomptereferenceInstance} =require('./staticocomptereference').toinit();
 const {getobjOcompte, getobjOreference,getobjOstableauposte,getobjOtableauposte,getobjOstblarea} =require('../../SharedKernel/staticObjects').toinit();
 const {getodaindex$, odaindex,getodaByid$}=require('../../SharedKernel/odaservice/dataservices').toinit();
 const {svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
-const {svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
 
 const { isValid, oarray} = require('../../SharedKernel/odaUtility').toinit();
 const { combineLatest } = require('rxjs');
@@ -19,6 +19,10 @@ const { map, shareReplay} = require('rxjs/operators');
 const seededatas = oarray(ocompterefencedata);
 
 const ocomptreferenceRepository = (function () {
+  const toInitializeFinalInstance = function (model, body) {
+    const data = toInitCustomInstance(model, body,toInitOcomptereferenceInstance);
+    return data;
+  };
   const index = function (callback) {
     return odaindex(OcompteReference,togetocomptereference,callback);
   };
@@ -31,7 +35,7 @@ const ocomptreferenceRepository = (function () {
   };
   const toCreateocomptereferencedata$ = function (requestBody) {
 
-    return svctoInitializeInstance$(OcompteReference, requestBody, toOcomptereference);
+    return svctoInitCustomInstance$(OcompteReference, requestBody, toInitializeFinalInstance);
   };
   const insertocomptereference$ = function (arr) {
     return svcodasave$(arr);

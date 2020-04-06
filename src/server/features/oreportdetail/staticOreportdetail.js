@@ -16,16 +16,16 @@ const staticOreportdetail = (function () {
 
   
 let toCreateModel = null
-function BuildOreportdetail(model,body, toinitobj,fn) {
+function BuildOreportdetail(model,body, fn) {
   let toacreateinstance=fn;
-  toCreateModel =toacreateinstance(model,body,toinitobj);    
+  toCreateModel =toacreateinstance(model,body,toOreportDetail);    
   const arr = addItem(toCreateModel);
   return odareduceArray(arr);
 } 
             
      
-      function toInitOreportdetailInstance(model,body,toinitobj,fn) {
-        const getCreatedModel = BuildOreportdetail(model,body,toinitobj,fn);
+      function toInitOreportdetailInstance(model,body,fn) {
+        const getCreatedModel = BuildOreportdetail(model,body,fn);
         return (getCreatedModel.slice());
 
    }

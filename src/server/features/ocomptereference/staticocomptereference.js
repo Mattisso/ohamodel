@@ -20,16 +20,16 @@ const staticocomptereference = (function () {
 
   
 let toCreateModel = null
-function BuildOcomptereference(model,body, toinitobj,fn) {
+function BuildOcomptereference(model,body,fn) {
   let toacreateinstance=fn;
-  toCreateModel =toacreateinstance(model,body,toinitobj);    
+  toCreateModel =toacreateinstance(model,body,toOcomptereference);    
   const arr = addItem(toCreateModel);
   return odareduceArray(arr);
 } 
             
      
-      function toInitOcomptereferenceInstance(model,body,toinitobj,fn) {
-        const getCreatedModel = BuildOcomptereference(model,body,toinitobj,fn);
+      function toInitOcomptereferenceInstance(model,body,fn) {
+        const getCreatedModel = BuildOcomptereference(model,body,fn);
         return getCreatedModel.slice();
        }
 

@@ -12,32 +12,25 @@ const { seedostableauposte$}=require('../../features/ostableauposte/index').toin
 const { seedotableauposte$}=require('../../features/otableauposte/index').toinit();
 const {seedolevel$ }=require('../../features/olevel/index').toinit();
 const { seedoexcompta$}=require('../../features/oexerccompta/index').toinit();
-//const { seedocomptereference$}=require('../../features/ocomptereference/index').toinit();
-//const {seedorepOrtdetail$}=require('../../features/oreportdetail/index').toinit();
+const { seedocomptereference$}=require('../../features/ocomptereference/index').toinit();
+const {seedorepOrtdetail$}=require('../../features/oreportdetail/index').toinit();
  const {seedoreportheader$}=require('../../features/oreportheader/index').toinit();
 
 
 const index = (function () {
 
  const seedAll$=  concat(
-// seeduser$,
- // seedoexcompta$
- // seedolevel$
-  // seedOcompte$
- //seedOreference$
-   /* 
-  */
- 
- seedOstblarea$
-  //,seedostableauposte$
- // ,seedotableauposte$
-  //,seedoreportheader$ 
-
-  /* 
- 
-  seedocomptereference$,
-  seedorepOrtdetail$,
-  seedoreportheader$ */
+seeduser$,
+ seedoexcompta$,
+ seedolevel$,
+  seedOcompte$,
+ seedOreference$ ,
+ seedOstblarea$,
+   seedostableauposte$,
+ seedotableauposte$,
+ seedocomptereference$,
+ seedorepOrtdetail$,
+  seedoreportheader$ 
   );
 
 

@@ -4,15 +4,19 @@
 
 const  {oTableauPoste} = require('../../omodels/modelsSchema/index').toinit();
 //const { odaExclude} =require('../../SharedKernel/base').toinit();
-const {togetotableauposte, getobjOtableauposte,toOtableauposte,toUpdateOstableauposte,totableaupostesNoChifAffair,staticotableauPosteWithcomptebalances}=require('./staticOtableauposte').toinit();
+const {togetotableauposte, getobjOtableauposte,toOtableauposte,toUpdateOstableauposte,totableaupostesNoChifAffair,staticotableauPosteWithcomptebalances,toInitOtableauposteInstance}=require('./staticOtableauposte').toinit();
 const {getodaindex$, odaindex,getodaByid$,getodaindexapi$,getodaApiByid$}=require('../../SharedKernel//odaservice/dataservices').toinit();
 const {svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
 const {getsrdcomptebalances$} =require('../../sharedkernel/odarepository/sharedRepository').toinit();
-const { svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit();
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const { combineLatest, pipe } = require('rxjs');
 const { map } = require('rxjs/operators');
 
 const otableauposteRepository = (function () {
+  const toInitializeFinalInstance = function (model, body) {
+    const data = toInitCustomInstance(model, body,toInitOtableauposteInstance);
+    return data;
+  };
   const index = function (callback) {
     return odaindex(oTableauPoste, togetotableauposte, callback);
   };
@@ -30,7 +34,7 @@ const getapiByid$ = function (requestparamid) {
  };
 const toCreateotableaupostedata$ = function (requestBody) {
 
- return svctoInitializeInstance$(oTableauPoste, requestBody, toOtableauposte);
+ return svctoInitCustomInstance$(oTableauPoste, requestBody, toInitializeFinalInstance);
 };
 const insertotableauposte$ = function (arr) {
  return svcodasave$(arr);

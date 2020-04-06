@@ -14,16 +14,14 @@ const staticOtableauposte = (function () {
   };
 
   let toCreateModel = null
-  function BuildOtableauposte(model,body, toinitobj,fn) {
+  function BuildOtableauposte(model,body, fn) {
     let toacreateinstance=fn;
-    toCreateModel =toacreateinstance(model,body,toinitobj);    
+    toCreateModel =toacreateinstance(model,body, toOtableauposte);    
     const arr = addItem(toCreateModel);
     return odareduceArray(arr);
-  } 
-              
-       
-        function toInitOtableauposteInstance(model,body,toinitobj,fn) {
-          const getCreatedModel = BuildOtableauposte(model,body,toinitobj,fn);
+  }              
+        function toInitOtableauposteInstance(model,body,fn) {
+          const getCreatedModel = BuildOtableauposte(model,body,fn);
           return getCreatedModel.slice();
 
      }

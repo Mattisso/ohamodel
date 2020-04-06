@@ -3,13 +3,18 @@
 
 const { olevel, oReportDetail } = require('../../omodels/modelsSchema/index').toinit();
 const { odaByarg, getodafilter } = require('../../SharedKernel/index').toinit().filtered;
-const { getObjoreportdetail, togetoreportdetail, toOreportDetail, toUpdateoreportdetail } = require('./staticOreportdetail').toinit();
+const { getObjoreportdetail, togetoreportdetail, toOreportDetail, toUpdateoreportdetail , toInitOreportdetailInstance} = require('./staticOreportdetail').toinit();
 const { togetolevel, getobjolevel } = require('../olevel/staticOlevel').toinit();
 const { Observable } = require('rxjs');
 const { getodaindex$, odaindex, getodaByid$ } = require('../../SharedKernel/odaservice/dataservices').toinit();
 const { svcodasave$, svcapiupdate$, svcodaApiDel$, svcodaSearchBy } = require('../../SharedKernel/odaservice/odaservice').toinit();
-const {svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const oreportdetailRepository = (function () {
+
+  const toInitializeFinalInstance = function (model, body) {
+    const data = toInitCustomInstance(model, body,toInitOreportdetailInstance);
+    return data;
+  };
   const getolevels = function (callback) {
     return odaindex(olevel, togetolevel, callback);
   };
@@ -27,7 +32,7 @@ const oreportdetailRepository = (function () {
   };
   const toCreateoreportdetaildata$ = function (requestBody) {
 
-    return svctoInitializeInstance$(oReportDetail, requestBody,toOreportDetail);
+    return svctoInitCustomInstance$(oReportDetail, requestBody,toInitializeFinalInstance);
   };
   const insertoreportdetail$ = function (arr) {
     return svcodasave$(arr);

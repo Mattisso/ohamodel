@@ -1,11 +1,14 @@
 "use strict";
 const { oReportHeader } = require('../../omodels/modelsSchema/index').toinit();
-const { togetoreportheader,getObjoreportheader,toUpdateoreportheader,toOreportheader} = require('./staticOreportheader').toinit();
+const { togetoreportheader,getObjoreportheader,toUpdateoreportheader,toOreportheader, toInitOreportheaderInstance} = require('./staticOreportheader').toinit();
 const {getodaindex$, odaindex,getodaByid$}=require('../../SharedKernel/odaservice/dataservices').toinit();
 const {svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
-const {svctoInitializeInstance$,svctoUpdateInstance$}=require('../../SharedKernel/odainstance/index').toinit();
-var oreportheaderRepository = (function () {
-
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+const oreportheaderRepository = (function () {
+  const toInitializeFinalInstance = function (model, body) {
+    const data = toInitCustomInstance(model, body,toInitOreportheaderInstance);
+    return data;
+  };
   const index = function (callback) {
     return odaindex(oReportHeader,togetoreportheader,callback);
   };
@@ -19,7 +22,7 @@ var oreportheaderRepository = (function () {
   };
   const toCreateoreportheaderdata$ = function (requestBody) {
 
-    return svctoInitializeInstance$(oReportHeader, requestBody, toOreportheader);
+    return svctoInitCustomInstance$(oReportHeader, requestBody, toInitializeFinalInstance);
   };
   const Insertoreportheader$ = function (arr) {
     return svcodasave$(arr);

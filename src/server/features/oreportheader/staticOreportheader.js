@@ -14,16 +14,16 @@ const staticOreportheader = (function () {
   };
 
   let balanceinputs = null
-  function BuildOreportheader(model,body, toinitobj,fn) {
+  function BuildOreportheader(model,body, fn) {
     let toacreateinstance=fn;
-    balanceinputs =toacreateinstance(model,body,toinitobj);    
+    balanceinputs =toacreateinstance(model,body,toOreportheader);    
     const arr = addItem(balanceinputs);
     return odareduceArray(arr);
   } 
               
        
-        function toInitOreportheaderInstance(model,body,toinitobj,fn) {
-          const getCreatedModel = BuildOreportheader(model,body,toinitobj,fn);
+        function toInitOreportheaderInstance(model,body,fn) {
+          const getCreatedModel = BuildOreportheader(model,body,fn);
           return (getCreatedModel.slice());
 
      }

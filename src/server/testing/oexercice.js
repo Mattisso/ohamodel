@@ -5,7 +5,7 @@ const {oExercCompta, oExercice}=require('../omodels/modelsSchema/index').toinit(
 const {toInitOexerccomptaInstance,toOexercompta}=require('../features/oexerccompta/staticOxerccompta').toinit();
 // const {tocreateOexerciceObject}=require('../features/oexercice/StaticOexercice').toinit();
 
-const {odaremoveDupnumcompte} = require('../sharedkernel/odaUtility').toinit();
+const {odaremoveDupnumcompte, isValid} = require('../sharedkernel/odaUtility').toinit();
 const {toInitializeInstance}=require('../sharedkernel/odainstance/toInitializeInstance').toinit()
 const {getstreamdata$, odagetObserver,getapistreamdata$,getapiObserver}=require('../sharedkernel/odaSubscribe').toinit();
 const { toCreateExerccomptadata$} = require('../features/oexerccompta/oexerccomptaRepository').toinit();
@@ -26,11 +26,12 @@ getstreamdata$(getoreportdetail$(objoexerccomptadata())).subscribe(odagetObserve
   const _getPreviousYear= (_.maxBy(_.map(_.map(oexcomptadata,'oExercComptaId'), _.ary(parseInt, 1))))-1;
   let getcurrentObject = getobjOexercCompta(oexcomptadata, _.toString(_getcurrentYear)).odaObject();
   let  getPreviousYearObject = getobjOexercCompta(oexcomptadata, _.toString(_getPreviousYear)).odaObject()
-  console.log(getPreviousYearObject)
-  return {
-    getcurrentObject:getcurrentObject,
-    getPreviousYearObject:getPreviousYearObject
-  } 
+  let  getDefaultYearObject = getobjOexercCompta(oexcomptadata, '1900').odaObject()
+  if(isValid(getPreviousYearObject)===false) 
+  getPreviousYearObject=getDefaultYearObject;
+    getcurrentObject.getPreviousYearObject=getPreviousYearObject;
+    return getcurrentObject
+   
 };
  
 

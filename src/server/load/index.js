@@ -14,11 +14,11 @@ const {getstreamdata$, odagetObserver}=require('../SharedKernel/odaSubscribe').t
 
 const index = (function () {
 const seedAll$=  concat(
- //nstbalanceinputLoad$,
-nstbalanceload$,
-//nttbalanceload$, 
-//nttcomptebalanceload$,
-//nttcomptebalancedetailload$
+ nstbalanceinputLoad$,
+ nstbalanceload$,
+ nttbalanceload$, 
+nttcomptebalanceload$,
+nttcomptebalancedetailload$
   );
 
   function toinit() {

@@ -10,11 +10,11 @@ const odaSearchBy = function (model, option) {
     return getquery;
   };
   const _index = function (model) {
-    var getquery = model.find({}, {});//, { limit: 2});
+    var getquery = model.find({},{});//, { limit: 2});
     return getquery;
   };
-const index = function (model, f, callback) {
-  return _index(model).exec(
+const index = function (odamodel, f, callback) {
+  return  _index(odamodel).exec(
     function (err, datas) {
     if (err)
       throw err;

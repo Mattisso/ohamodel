@@ -58,7 +58,7 @@ const nstbalanceinputClass =(function(){
       return this;
     }
 
-     getData() {
+    /*  getData() {
     return {
       "NumCompte" : this.numcompte,
         "IntitulCompte": this.intitulcompte,
@@ -66,7 +66,7 @@ const nstbalanceinputClass =(function(){
         "SoldeCredit": this.soldedebit,
         "CompteNumber":this.CompteNumber
     }
-  } 
+  } */ 
 } 
 function toinit(){
   return {

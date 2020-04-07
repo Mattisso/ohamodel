@@ -73,7 +73,8 @@ const oexerciceRepository = (function () {
       getByid$:getByid$,
       result$:seedOexercice$,
       index:index,
-      toseedOexercicedata$:toseedOexercicedata$
+      toseedOexercicedata$:toseedOexercicedata$,
+      _tocreateoexerciceobject:_tocreateoexerciceobject
     };
   }
 

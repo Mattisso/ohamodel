@@ -8,8 +8,9 @@ const { filter, map, tap, pluck, take, find, distinct, shareReplay } = require('
 const {getstreamdata$, odagetObserver,getapistreamdata$,getapiObserver}=require('../SharedKernel/odaSubscribe').toinit();
 const {toseedarray} = require('../features/ocompte/ocompteSeed').toinit();
 //
-const { toCreateOComptedata$} = require('../features/ocompte/ocompteRepository').toinit();
+const { toCreateOComptedata$, getAllocomptes} = require('../features/ocompte/ocompteRepository').toinit();
 const { toBalanceinput} = require('../features/nstbalanceinput/staticNstbalanceinput').toinit();
+require('../config/ohadb') .connectserver()
 
 
 // const getoreportdetail$= sharedrepository.getocomptreferences$;
@@ -18,8 +19,12 @@ const { toBalanceinput} = require('../features/nstbalanceinput/staticNstbalancei
 // console.log(comptebalancedata.createData);
  const getoreportdetail$ = toCreateOComptedata$; // 
 
-getstreamdata$(getoreportdetail$(arrocomptedata)).subscribe(odagetObserver());
+// getstreamdata$(getoreportdetail$(arrocomptedata)).subscribe(odagetObserver());
 
 //const getoreportdetail$ =  toseedarray
 
 // console.log((toseedarray));
+getAllocomptes(function(err,data){
+  if (err) console.log(err)
+  console.log(data[10]);
+})

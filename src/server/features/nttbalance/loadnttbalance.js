@@ -11,9 +11,10 @@ const {tonttbalance}=require('./staticNttbalance').toinit();
 
 const { combineLatest, Observable, of, pipe, from, concat } = require('rxjs');
 const { filter, map, tap, pluck, find, shareReplay, concatMap } = require('rxjs/operators');
-const {svctoseedInstance, svcodaDel$, svcodasave$, svcodaupdate$} = require('../../SharedKernel/odaservice/odaservice').toinit();
+const { svcodaDel$, svcodasave$, svcodaupdate$} = require('../../SharedKernel/odaservice/odaservice').toinit();
 const {odareomoveInvalidObject,odaremove} = require('../../SharedKernel/odaUtility').toinit();
 const { getnstbalances$} = require('../nstbalance/nstbalanceRepository').toinit();
+const { toInitializeInstance}=require('../../sharedkernel/odainstance/index').toinit(); 
 
 const loadnttbalance = (function () {
 
@@ -23,7 +24,7 @@ const loadnttbalance = (function () {
   const getObserverdata = pipe(
       map(function (n) {
         const filtereddatas = odaremove(n);
-        return svctoseedInstance(nttBalance, filtereddatas, tonttbalance);
+        return toInitializeInstance(nttBalance, filtereddatas, tonttbalance);
       }) // ,
       // ,tap(ev => console.log(ev))
     );

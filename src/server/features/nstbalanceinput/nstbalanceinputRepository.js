@@ -9,6 +9,7 @@ const { Observable } = require('rxjs');
 const {getAllocomptes } = require('../ocompte/index').toinit();
 const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$, toOdaCreate$}=require('../../SharedKernel/odaservice/dataservices').toinit();
 const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+
 const nstbalanceinputRepository = (function () {
 
   const toInitializeFinalInstance = function (model, body, toinitobj) {
@@ -46,7 +47,7 @@ const nstbalanceinputRepository = (function () {
 
   const getloadnstbalanceinputs = function (callback) {
     let _arr = [];
-    return odaindex(function (err, nstbalanceinputs) {
+    return odaindex(nstBalanceInput, togetnstbalanceinput, function (err, nstbalanceinputs) {
       if (err) {
         throw (err);
       } else {

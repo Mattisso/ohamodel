@@ -7,12 +7,12 @@ const {tonttcomptebalance}=require('./staticNttcomptebalance').toinit();
 
 const { pipe, concat } = require('rxjs');
 const { map, concatMap } = require('rxjs/operators');
-const {svctoseedInstance, svcodaDel$, svcodasave$} = require('../../SharedKernel/odaservice/odaservice').toinit();
+const {svcodaDel$, svcodasave$} = require('../../SharedKernel/odaservice/odaservice').toinit();
 const { odaremove} = require('../../SharedKernel/odaUtility').toinit();
 const { reducegroupby} = require('../../SharedKernel/odaFiltered').toinit();
 
 const {getloadnttcomptebalanceData$} = require('../nttcomptebalance/nttcomptebalanceRepository').toinit();
-
+const {toInitializeInstance}=require('../../sharedkernel/odainstance/index').toinit(); 
 const loadnttcomptebalance = (function () {
 
   const _removeData$ = function (model) {
@@ -21,7 +21,7 @@ const loadnttcomptebalance = (function () {
   const getObserverdata = pipe(
       map(function (n) {
         const filtereddatas= reducegroupby(n);
-        return svctoseedInstance(nttCompteBalance, filtereddatas, tonttcomptebalance);
+        return toInitializeInstance(nttCompteBalance, filtereddatas, tonttcomptebalance);
       }) // ,
       // ,tap(ev => console.log(ev))
     );

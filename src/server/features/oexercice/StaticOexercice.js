@@ -13,6 +13,7 @@ const StaticOexercice = (function () {
     let getcurrentObject = getobjOexercCompta(arr, _.toString(_getcurrentYear)).odaObject();
     return getcurrentObject;
   };
+
   const toOexercice= function (o) {
    return ({
     "oExerciceEncour": o.oExercComptaId,
@@ -22,16 +23,14 @@ const StaticOexercice = (function () {
   };
 
   let toCreateModel = null
-  function BuildOexercice(model,body, toinitobj,fn) {
+  function BuildOexercice(model,body, fn) {
     let toacreateinstance=fn;
-    toCreateModel =toacreateinstance(model,body,toinitobj);    
+    toCreateModel =toacreateinstance(model,body,toOexercice);    
     const arr = addItem(toCreateModel);
     return odareduceArray(arr);
-  } 
-              
-       
-        function toInitOexerciceInstance(model,body,toinitobj,fn) {
-          const getCreatedModel = BuildOexercice(model,body,toinitobj,fn);
+  }            
+        function toInitOexerciceInstance(model,body,fn) {
+          const getCreatedModel = BuildOexercice(model,body,fn);
           return getCreatedModel.slice();
      }
   const togetoexercices = function (argOne) {

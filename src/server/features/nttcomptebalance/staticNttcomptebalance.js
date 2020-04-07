@@ -1,7 +1,7 @@
 "use strict";
 const { find, map, assign, forEach} = require('lodash');
 const {getodaAggreateData} = require('../../SharedKernel/odaStats').toinit();
-const { isValid, odauditObj, getStringValue, replaceNullToZero, addItem} = require('../../SharedKernel/odaUtility').toinit();
+const { isValid, odauditObj, getStringValue, replaceNullToZero, addItem, odareduceArray} = require('../../SharedKernel/odaUtility').toinit();
  const {getobjOreference,getobjOexercCompta,getobjOtableauposte}=require('../../SharedKernel/staticObjects').toinit();
 const { getodafilter,odaByarg } = require('../../SharedKernel/odaFiltered').toinit();
 const {queryselector, getSoldeDebit,getSoldeCredit}=require('./objQryParams').toinit();

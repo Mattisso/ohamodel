@@ -33,7 +33,7 @@ const sharedRepository = (function () {
     return getObshareddata$(getdata$);
   };
   const getsrdoExercices$ = function () {
-    const getdata$ = getodaindex$(Model.oExercice, odaObjects.togetoexercices);
+    const getdata$ = getodaindex$(Model.oExercice, odaObjects.togetoexercice);
     return getObshareddata$(getdata$);
   };
   const getsrdostableaupostes$ = function () {

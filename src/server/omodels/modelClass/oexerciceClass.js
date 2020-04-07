@@ -27,7 +27,7 @@ const oexerciceClass = (function () {
   class oExerciceClass {
     constructor(oExerciceEncour, ExercicePrev, OexercComptaKey, OexercComptaPrevKey, OexercComptaEncourKey) {
       this._oexerciceEncour = oExerciceEncour
-        this._exercicePrev = ExercicePrev,
+      this._exercicePrev = ExercicePrev,
       this._oexerccomptaKey = OexercComptaKey,
       this._oexercComptaPrevKey = OexercComptaPrevKey,
       this._oexercComptaEncourKey = OexercComptaEncourKey

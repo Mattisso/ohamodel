@@ -8,7 +8,7 @@ const { map, concatMap } = require('rxjs/operators');
 const {svctoseedInstance, svcodaDel$, svcodasave$} = require('../../SharedKernel/odaservice/odaservice').toinit();
 const { odaremove} = require('../../SharedKernel/odaUtility').toinit();
 const {getloadnttcomptebalanceDetaildata$} = require('../nttcomptebalance/nttcomptebalanceRepository').toinit();
-
+const {toInitializeInstance}=require('../../sharedkernel/odainstance/index').toinit(); 
 const loadnttcomptebalancedetail = (function () {
 
   const _removeData$ = function (model) {
@@ -17,7 +17,7 @@ const loadnttcomptebalancedetail = (function () {
   const getObserverdata = pipe(
       map(function (n) {
         const filtereddatas = odaremove(n);
-        return svctoseedInstance(nttCompteBalanceDetail, filtereddatas, toLoadCompteBalanceDetail);
+        return toInitializeInstance(nttCompteBalanceDetail, filtereddatas, toLoadCompteBalanceDetail);
       })
     );
   const toloadnttcomptebalancedetaildata$ = getObserverdata(getloadnttcomptebalanceDetaildata$);

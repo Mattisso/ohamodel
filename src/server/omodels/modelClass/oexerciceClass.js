@@ -10,10 +10,10 @@ const oexerciceClass = (function () {
     ExercicePrev: {
       type: String
     },
-    OexercComptaKey: {
+    /* OexercComptaKey: {
       type: ObjectId,
       ref: 'oExercCompta'
-    },
+    }, */
     OexercComptaPrevKey: {
       type: ObjectId,
       ref: 'oExercCompta'
@@ -25,26 +25,38 @@ const oexerciceClass = (function () {
   }
 
   class oExerciceClass {
-    constructor(oExerciceEncour, ExercicePrev, OexercComptaKey, OexercComptaPrevKey, OexercComptaEncourKey) {
-      this._oexerciceEncour = oExerciceEncour
-      this._exercicePrev = ExercicePrev,
-      this._oexerccomptaKey = OexercComptaKey,
-      this._oexercComptaPrevKey = OexercComptaPrevKey,
-      this._oexercComptaEncourKey = OexercComptaEncourKey
+    constructor(oExerciceEncour, ExercicePrev,  OexercComptaPrevKey, OexercComptaEncourKey) {
+      this._oExerciceEncour = oExerciceEncour;
+      this._OexercComptaEncourKey = OexercComptaEncourKey;
+      this._OexercComptaPrevKey = OexercComptaPrevKey;
+      this._ExercicePrev = ExercicePrev;      
     }
-    get oexerciceEncour() {
-      return this._oexerciceEncour;
+    get oexerccomptaencourkey() {
+      return this._OexercComptaEncourKey;
     }
-
-    set oexerciceEncour(oExerciceEncour) {
-      this._oexerciceEncour = oExerciceEncour;
+    set oexerccomptaencourkey(OexercComptaEncourKey) {
+      this._OexercComptaEncourKey = OexercComptaEncourKey;
       return this;
     }
-    get oexerccomptakey() {
-      return this._oexerccomptaKey;
+    get oexerccomptaprevkey() {
+      return this._OexercComptaPrevKey;
     }
-    set oexerccomptakey(OexercComptaKey) {
-      this._oexerccomptaKey = OexercComptaKey;
+    set oexerccomptaprevkey(OexercComptaPrevKey) {
+      this._OexercComptaPrevKey = OexercComptaPrevKey;
+      return this;
+    }
+    get exerciceprev() {
+      return this._ExercicePrev;
+    }
+    set exerciceprev(ExercicePrev) {
+      this._ExercicePrev = ExercicePrev;
+      return this;
+    }
+    get oexerciceencour() {
+      return this._oExerciceEncour;
+    }
+    set oexerciceencour(oExerciceEncour) {
+      this._oExerciceEncour = oExerciceEncour;
       return this;
     }
   }

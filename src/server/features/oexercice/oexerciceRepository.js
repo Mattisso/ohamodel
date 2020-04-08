@@ -23,7 +23,6 @@ const oexerciceRepository = (function () {
           const finalObj=tocreateOexerciceObject(data);
           callback(null, finalObj);
         }
-
     });
       };
       const getoExercices$ = function() {
@@ -32,7 +31,6 @@ const oexerciceRepository = (function () {
 
       const getByid$ = function (requestparamid) {
         return  getodaByid$(oExercice,togetoexercices,requestparamid,getobjOexercice);
-
       };
 
   const removeoExercice$= function(model, item) {
@@ -46,7 +44,7 @@ const oexerciceRepository = (function () {
       }
       else {
 
-      const toseedOexercicedata = toInitializeInstance(oExercice, data,toOexercice);
+      const toseedOexercicedata = toInitializeInstance(oExercice, data);
         observer.next(toseedOexercicedata);
           setTimeout(() => {
           observer.complete();

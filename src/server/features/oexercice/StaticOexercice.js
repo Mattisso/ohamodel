@@ -1,26 +1,40 @@
 
 "use strict";
 const _ = require('lodash');
-
-const { find, map, assign, filter, forEach,maxBy,ary,toString,toNumber} = require('lodash');
 const {getobjOexercCompta} =require('../../SharedKernel/staticObjects').toinit();
-const { isValid, odauditObj, getStringValue, odaremoveDupnumcompte, odareduceArray,addItem} = require('../../SharedKernel/odaUtility').toinit();
+const { isValid, odauditObj, getStringValue,  odareduceArray,addItem} = require('../../SharedKernel/odaUtility').toinit();
 
 const StaticOexercice = (function () {
 
-  const tocreateOexerciceObject= function(arr) {
-    const  _getcurrentYear= _.maxBy(_.map(_.map(arr,'oExercComptaId'), _.ary(parseInt, 1)));
-    let getcurrentObject = getobjOexercCompta(arr, _.toString(_getcurrentYear)).odaObject();
-    return getcurrentObject;
+  const tocreateOexerciceObject = function (oexcomptadata) {
+    const _getcurrentYear = _.maxBy(_.map(_.map(oexcomptadata, 'oExercComptaId'), _.ary(parseInt, 1)));
+    const _getPreviousYear = (_.maxBy(_.map(_.map(oexcomptadata, 'oExercComptaId'), _.ary(parseInt, 1)))) - 1;
+    let getcurrentObject = getobjOexercCompta(oexcomptadata, _.toString(_getcurrentYear)).odaObject();
+    let getPreviousYearObject = getobjOexercCompta(oexcomptadata, _.toString(_getPreviousYear)).odaObject()
+      let getDefaultYearObject = getobjOexercCompta(oexcomptadata, '1900').odaObject()
+      if (isValid(getPreviousYearObject) === false)
+        getPreviousYearObject = getDefaultYearObject;
+      const currentYearObj = {
+      'oExerciceEncour': getcurrentObject.oExercComptaId,
+      'OexercComptaEncourKey': getcurrentObject.id
+    }
+    const PreviousYearObj = {
+      'ExercicePrev': getPreviousYearObject.oExercComptaId,
+      'OexercComptaPrevKey': getPreviousYearObject.id
+    }
+    const finalobj = _.assign({}, currentYearObj, PreviousYearObj)
+      return finalobj;
+  
   };
-
-  const toOexercice= function (o) {
+  
+  /* const toOexercice= function (o) {
    return ({
-    "oExerciceEncour": o.oExercComptaId,
-     "ExercicePrev":  _.toString(_.toNumber(o.oExercComptaId)-1)?_.toString(_.toNumber(o.oExercComptaId)-1):'1900',
-    "OexercComptaKey":  o.id
+    "oExerciceEncour": o.oExerciceEncour,
+     "ExercicePrev":  o.ExercicePrev,
+    "OexercComptaEncourKey":  o.OexercComptaEncourKey,
+    "OexercComptaPrevKey":o.OexercComptaPrevKey
    });
-  };
+  }; */
 
   let toCreateModel = null
   function BuildOexercice(model,body, fn) {
@@ -38,9 +52,10 @@ const StaticOexercice = (function () {
     return _.map(argOne, function (obj) {
       initObj = {
         "id": obj.id,
-        "OexercComptaKey": obj.OexercComptaKey,
         "oExerciceEncour": obj.oExerciceEncour,
-        "ExercicePrev": obj.ExercicePrev
+        "ExercicePrev":  obj.ExercicePrev,
+       "OexercComptaEncourKey":  obj.OexercComptaEncourKey,
+       "OexercComptaPrevKey":obj.OexercComptaPrevKey
       };
       odauditobj = odauditObj(obj);
       return _.assign({}, initObj, odauditobj);
@@ -49,7 +64,7 @@ const StaticOexercice = (function () {
   };
   const getobjOexercice = function (arr, value) {
     if (isValid(value) === true) {
-      const validate = find(arr, function (o) {
+      const validate = _.find(arr, function (o) {
         return o.OexercComptaKey === getStringValue(value)
           || o.oExerciceEncour === getStringValue(value)
           || o.OexercComptaPrevKey === getStringValue(value)
@@ -68,7 +83,7 @@ const StaticOexercice = (function () {
   };
   function toinit() {
     return {
-      toOexercice:toOexercice,
+// toOexercice:toOexercice,
       togetoexercices:togetoexercices,
       tocreateOexerciceObject:tocreateOexerciceObject,
       getobjOexercice:getobjOexercice,

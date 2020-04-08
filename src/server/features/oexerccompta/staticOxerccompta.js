@@ -53,7 +53,7 @@ const togetoexerccompta = function (argOne) {
     return assign({}, initObj, odauditobj);
   });
 };
-const toOexercice= function (model, arr) {
+/* const toOexercice= function (model, arr) {
   const  _getcurrentYear= maxBy(map(map(arr,'oExercComptaId'), ary(parseInt, 1)));
  var getcurrentObject = staticObjects.getobjOexercCompta(arr, toString(_getcurrentYear)).odaObject();
  return new model({
@@ -61,7 +61,8 @@ const toOexercice= function (model, arr) {
    "ExercicePrev":  toString(toNumber(getcurrentObject.oExercComptaId)-1)?toString(toNumber(getcurrentObject.oExercComptaId)-1):'1900',
    "OexercComptaKey":  getcurrentObject.id
  });
-};
+}; */
+
 
 const staticDropListExerComptable=function(execcomptas) {
  const arr =map(execcomptas, function (obj) {
@@ -110,7 +111,7 @@ function toinit() {
   return {
     toOexercompta:toOexercompta,
     toUpdateOexercompta:toUpdateOexercompta,
-    toOexercice:toOexercice,
+  //  toOexercice:toOexercice,
     togetoexerccompta:togetoexerccompta,
     odaqueryselector:odaqueryselector,
     getobjOexercCompta:getobjOexercCompta,

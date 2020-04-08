@@ -4,7 +4,7 @@ const _ = require('lodash');
 const { odaCreateObjFromArray, getObjArray, asyncsave, odasave$,odaDel$ } = require('../../SharedKernel/odaservice/dataservices').toinit();
 const { combineLatest, Observable, of, pipe, from, concat } = require('rxjs');
 const { filter, map, tap, pluck, find, take, distinct, shareReplay, concatMap} = require('rxjs/operators');
-const { toOexercice} = require('./StaticOexercice').toinit();
+const { tocreateOexerciceObject} = require('./StaticOexercice').toinit();
 const { oExercice, oExercCompta } = require('../../omodels/modelsSchema/index').toinit();
 const { odaindex} = require('../../SharedKernel/base').toinit();
 const {getoexercice,togetoexerccompta} = require('../../SharedKernel/odaObjects').toinit();
@@ -31,7 +31,7 @@ return	odaindex(oExercCompta,togetoexerccompta,callback);
         observer.next(err);
       }
       else {
-      const toseedOexercicedata = toInitializeInstance(oExercice, data,toOexercice);
+      const toseedOexercicedata = toInitializeInstance(oExercice, data,tocreateOexerciceObject);
         observer.next(toseedOexercicedata);
           setTimeout(() => {
           observer.complete();

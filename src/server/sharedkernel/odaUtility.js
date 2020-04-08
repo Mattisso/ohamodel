@@ -1,9 +1,16 @@
 "use strict";
-const {remove,isEmpty, isUndefined, isNull, toString, toNumber, reject, forEach, isArray, flattenDeep, difference} = require('lodash');
+const {remove,isEmpty, isUndefined, isNull, toString, toNumber, reject, forEach, isArray, flattenDeep, difference, maxBy,map, ary, parseInt} = require('lodash');
 const odaUtility = (function () {
 const removeodauditobj = ['CreatedBy', 'ModifiedOn', 'ModifiedBy', 'CreatedOn', 'id'];
 
-
+const getcurrentYearObj=function(arr){
+  let _getcurrentYear= maxBy(map(map(oexcomptadata,'oExercComptaId'), ary(parseInt, 1)));
+  return _getcurrentYear;
+}
+const getPreviousYearObj=function(arr){
+  let _getPreviousYear=(maxBy(map(map(oexcomptadata,'oExercComptaId'), ary(parseInt, 1))))-1;
+  return _getPreviousYear;
+}
 
 const  addItem = function(item)  {
   let arr=[];

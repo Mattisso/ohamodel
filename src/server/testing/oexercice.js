@@ -29,10 +29,37 @@ getstreamdata$(getoreportdetail$(objoexerccomptadata())).subscribe(odagetObserve
   let  getDefaultYearObject = getobjOexercCompta(oexcomptadata, '1900').odaObject()
   if(isValid(getPreviousYearObject)===false) 
   getPreviousYearObject=getDefaultYearObject;
-    getcurrentObject.getPreviousYearObject=getPreviousYearObject;
-    return getcurrentObject
+    // getcurrentObject.getPreviousYearObject=getPreviousYearObject;
+    const currentYearObj={
+      'oExerciceEncour': getcurrentObject.oExercComptaId, 
+      'OexercComptaEncourKey': getcurrentObject._id 
+      }
+      const PreviousYearObj={
+        'ExercicePrev': getPreviousYearObject.oExercComptaId, 
+        'OexercComptaPrevKey': getPreviousYearObject._id 
+        }
+        const arr= _.assign({},currentYearObj,PreviousYearObj)
+    return   arr
+    /*   getcurrentYear: function() {
+        return {
+        'oExerciceEncour': getcurrentObject.oExercComptaId, 
+        'OexercComptaEncourKey': getcurrentObject.id 
+        };
+      },
+      getPreviousYear: function(){
+        return {
+          'ExercicePrev': getPreviousYearObject.oExercComptaId, 
+        'OexercComptaEncourKey': getPreviousYearObject.id 
+        }
+      } */
+      
+    
    
 };
- 
+ /* function testing(option){
+   return {
 
+   }
+ }
+ */
 console.log(tocreateOexerciceObject());

@@ -10,8 +10,8 @@ const staticObjects = require('../../SharedKernel/staticObjects').toinit();
 const { getodafilter,odaByarg} = require('../../SharedKernel/odaFiltered').toinit();
 const {getsrdcomptebalances$,getsrdocomptreferences$,getsrdocomptes$} = require('../../sharedkernel/odarepository/sharedRepository').toinit();
 const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$,getodaindexapi$,getodaApiByid$}=require('../../SharedKernel/odaservice/dataservices').toinit();
-const {svctoInitializeInstance,svctoapiUpdateInstance,svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
-const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+const {svctoInitializeInstance,svctoapiUpdateInstance,svcodasave$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$,svcapiupdate$}=require('../../sharedkernel/odainstance/index').toinit(); 
 
 
 const oreferenceRepository = (function () {

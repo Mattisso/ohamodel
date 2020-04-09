@@ -10,8 +10,8 @@ const { getostableaupostes$ } = require('../ostableauposte/ostableauposteReposit
 const {togetocomptereference,getObjOcomptereference,toOcomptereference,toUpdateocomptereference, toInitOcomptereferenceInstance} =require('./staticocomptereference').toinit();
 const {getobjOcompte, getobjOreference,getobjOstableauposte,getobjOtableauposte,getobjOstblarea} =require('../../SharedKernel/staticObjects').toinit();
 const {getodaindex$, odaindex,getodaByid$}=require('../../SharedKernel/odaservice/dataservices').toinit();
-const {svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
-const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+const {svcodasave$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$,svcapiupdate$}=require('../../sharedkernel/odainstance/index').toinit(); 
 
 const { isValid, oarray} = require('../../SharedKernel/odaUtility').toinit();
 const { combineLatest } = require('rxjs');

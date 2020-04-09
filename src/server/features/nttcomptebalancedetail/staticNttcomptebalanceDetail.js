@@ -5,17 +5,29 @@ const { getodafilter } = require('../../SharedKernel/odaFiltered').toinit();
 const { combineLatest, Observable, of, pipe, from } = require('rxjs');
 
 const staticNttcomptebalance = (function () {
-  
+  const toCompteBalanceDetail = function (requestparamid, obj) {
+    let isvalid = queryselector(obj);
+    if (isvalid === true  && replaceNullToZero(obj.SoldeDebit)!==0
+    || isvalid === true  && replaceNullToZero(obj.SoldeCredit)!==0 ) {
+      return ({
+        "nttcomptebalanceKey": requestparamid,
+        "NumCompte": obj.NumCompte,
+        "IntitulCompte": obj.IntitulCompte,
+        "SoldeCredit": replaceNullToZero(obj.SoldeCredit),
+        "SoldeDebit": replaceNullToZero(obj.SoldeDebit)
+      });
+    }
+  };
   let toCreateModel = null
-  function BuildNttcomptebalancedetail(model,body, toinitobj,fn) {
+  function BuildNttcomptebalancedetail(model,body, fn) {
     let toacreateinstance=fn;
-    toCreateModel =toacreateinstance(model,body,toinitobj);    
+    toCreateModel =toacreateinstance(model,body,toCompteBalanceDetail);    
     const arr = addItem(toCreateModel);
     return odareduceArray(arr);
   } 
        
-        function toInitNttcomptebalancedetailInstance(model,body,toinitobj,fn) {
-          const getCreatedModel = BuildNttcomptebalancedetail(model,body,toinitobj,fn);
+        function toInitNttcomptebalancedetailInstance(model,body,fn) {
+          const getCreatedModel = BuildNttcomptebalancedetail(model,body,fn);
 
           return odaremoveDupnumcompte(getCreatedModel.slice());
 
@@ -48,19 +60,7 @@ const staticNttcomptebalance = (function () {
     }
     return selector;
   }
-  const toCompteBalanceDetail = function (requestparamid, obj) {
-    let isvalid = queryselector(obj);
-    if (isvalid === true  && replaceNullToZero(obj.SoldeDebit)!==0
-    || isvalid === true  && replaceNullToZero(obj.SoldeCredit)!==0 ) {
-      return ({
-        "nttcomptebalanceKey": requestparamid,
-        "NumCompte": obj.NumCompte,
-        "IntitulCompte": obj.IntitulCompte,
-        "SoldeCredit": replaceNullToZero(obj.SoldeCredit),
-        "SoldeDebit": replaceNullToZero(obj.SoldeDebit)
-      });
-    }
-  };
+ 
   const toLoadCompteBalanceDetail = function (obj) {
     let isvalid = queryselector(obj);
     if (isvalid === true  && (replaceNullToZero(obj.SoldeDebit))!==0

@@ -2,8 +2,8 @@
 const { oReportHeader } = require('../../omodels/modelsSchema/index').toinit();
 const { togetoreportheader,getObjoreportheader,toUpdateoreportheader,toOreportheader, toInitOreportheaderInstance} = require('./staticOreportheader').toinit();
 const {getodaindex$, odaindex,getodaByid$}=require('../../SharedKernel/odaservice/dataservices').toinit();
-const {svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
-const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+const {svcodasave$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$,svcapiupdate$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const oreportheaderRepository = (function () {
   const toInitializeFinalInstance = function (model, body) {
     const data = toInitCustomInstance(model, body,toInitOreportheaderInstance);

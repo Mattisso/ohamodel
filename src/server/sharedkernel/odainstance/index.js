@@ -2,7 +2,7 @@
 const _ = require('lodash');
 //const {toDeleteInstance}=require('./toDeleteInstance').toinit();
 const {toInitializeInstance, svctoInitializeInstance$, toInitCustomInstance,svctoInitCustomInstance$} = require('./toInitializeInstance').toinit();
-const {svctoUpdateInstance$, toUpdateInstance} = require('./toUpdateInstance').toinit();
+const {svctoUpdateInstance$, toUpdateInstance, svcapiupdate$,svcodaupdate$} = require('./toUpdateInstance').toinit();
 //const {toUpdateInstance,toapiUpdateInstance,toapiUpdateOtherInstance}=require('./toUpdateInstance').toinit();
 const index = (function () {
   function toinit() {
@@ -12,7 +12,9 @@ const index = (function () {
       toInitializeInstance:toInitializeInstance,
       toUpdateInstance:toUpdateInstance,
       toInitCustomInstance:toInitCustomInstance,
-      svctoInitCustomInstance$:svctoInitCustomInstance$
+      svctoInitCustomInstance$:svctoInitCustomInstance$,
+      svcapiupdate$:svcapiupdate$,
+      svcodaupdate$:svcodaupdate$
         };
   }
   return {

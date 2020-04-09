@@ -1,7 +1,7 @@
 "use strict";
 const _ = require('lodash');
 const  {nttBalance} = require('../../omodels/modelsSchema/index').toinit();
-const {getobjnttBalance, togetnttbalance,tonttbalance,toUpdatenttbalancedata}=require('./staticNttbalance').toinit();
+const {getobjnttBalance, togetnttbalance,tonttbalance,toUpdatenttbalancedata, toInitNttbalanceInstance}=require('./staticNttbalance').toinit();
 const { combineLatest, concat} = require('rxjs');
 const { map, shareReplay} = require('rxjs/operators');
 const {isValid} = require('../../SharedKernel/odaUtility').toinit();
@@ -9,9 +9,15 @@ const { getobjOreference,getobjOexercCompta,getobjOtableauposte}=require('../../
 const {getsrdexeccomptas$,getsrdnttbalances$,getsrdotableaupostes$,getsrdoreferences$}=require('../../sharedkernel/odarepository/sharedRepository').toinit();
 
 const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$,getodasharedByid$}=require('../../SharedKernel/odaservice/dataservices').toinit();
-const {svctoInitializeInstance,svctoapiUpdateInstance,svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const {svctoInitializeInstance,svctoapiUpdateInstance,svcodasave$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$,svcapiupdate$}=require('../../sharedkernel/odainstance/index').toinit(); 
 
 const nttbalanceRepository = (function () {
+  
+  const toInitializeFinalInstance = function (model, body) {
+    const data = toInitCustomInstance(model, body,toInitNttbalanceInstance);
+    return data;
+  };
   const index = function (callback) {
     return odaindex(nttBalance, togetnttbalance, callback);
   };
@@ -25,14 +31,14 @@ const nttbalanceRepository = (function () {
     return getodasharedByid$(arr,requestparamid,getobjnttBalance);
       };
 
-  const toCreateBalancedata$ = function (requestBody,requestparamid) {
-    return toOdaCreate$(nttBalance, requestBody,requestparamid, tonttbalance, svctoInitializeInstance);
+  const toCreateBalancedata$ = function (requestBody) {
+    return svctoInitializeInstance$(nttBalance, requestBody, toInitializeFinalInstance);
   };
   const insertnttbalance$ = function (arr) {
     return concat(svcodasave$(arr));
   };
-  const toUpdatenttbalancedata$ = function (requestBody,requestparamid) {
-    return toOdaUpdate$(requestBody,requestparamid, toUpdatenttbalancedata, svctoapiUpdateInstance);
+  const toUpdatenttbalancedata$ = function (requestBody) {
+    return svctoUpdateInstance$(requestBody, toUpdatenttbalancedata);
   };
   const editnttbalance$ = function (body, requestparamid) {
     return concat(svcapiupdate$(nttBalance, body, requestparamid));

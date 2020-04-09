@@ -1,6 +1,8 @@
 "use strict";
-const {hasitem} = require('../odaUtility').toinit();
+const { forEach,merge} = require('lodash');
+const {hasitem, inArray} = require('../odaUtility').toinit();
 const {toapiUpdateChildInstance,toapiUpdateInstance}=require('../odainstance/toOdaInstance').toinit();
+const {odaupdate$, odaLoadupdate$, SearchByid}=require('../odarepository/odarepository').toinit();
 const { Observable } = require('rxjs');
 const toUpdateInstance = (function () {
         
@@ -77,13 +79,104 @@ const toUpdateInstance = (function () {
     const svctoUpdateChildInstance$ = function (requestBody, requestparamid, toupdobj) {
       return toOdaUpdateChild$(requestBody, requestparamid, toupdobj, toUpdateChildInstance);
   };
-    
+   const odaApiupdateObj$ = function (model, body, reqparmid) {
+    let _arr = [], result={};
+    return Observable.create(function (observer) {
+      try {
+        if (isValid(body) === true) {
+            SearchByid(model,reqparmid)
+            .exec(function (err, data) {
+              if (err) {
+                return observer.next(err);
+              } else {
+                if(isValid(body)===true) {
+                  result=merge(data,body);
+                  result.save(function (err) {
+                    if (err) {
+                      observer.next(err);
+                    }
+                  });
+                }
+              }
+            });
+            _arr.push(body);
+        }
+        observer.next((`Finished  in updating ${_arr.length} records`));
+        setTimeout(() => {
+          observer.complete();
+        }, 100);
+
+      } catch (err) {
+        observer.error(err);
+      }
+    });
+  };
+  const odaApiupdateArray$ = function (model, ArgOne,reqparmid) {
+    let _arr = [],
+    result = {};
+    return Observable.create(function (observer) {
+      try {
+          forEach(ArgOne, function (elm) {
+            SearchByid(model, reqparmid)
+            .exec(function (err, data) {
+              if (err) {
+                return observer.next(err);
+              } else {
+                  result = merge(data, elm);
+                result.save(function (err) {
+                  if (err) {
+                    observer.next(err);
+                  }
+                });
+              }
+            });
+            _arr.push(elm);
+          });
+
+        observer.next((`Finished  in updating ${_arr.length} out of ${ArgOne.length} records`));
+
+        setTimeout(() => {
+          observer.complete();
+        }, 100);
+
+      } catch (err) {
+        observer.error(err);
+      }
+
+    });
+  };
+
+  
+  const odapiupdate$=function(model, ArgOne,reqparmid) {
+    if(inArray(ArgOne)===true){
+      return odaApiupdateArray$(model, ArgOne,reqparmid);
+    } else if (inArray(ArgOne)===false){
+      return odaApiupdateObj$(model, ArgOne,reqparmid);
+    }
+    else {
+      return;
+    }
+
+  } ;
+  const svcapiupdate$=function(model, obj,reqparmid) {
+    return odapiupdate$(model,obj,reqparmid);
+  };
+  const svcodaupdate$=function(model,option) {
+    if( isValid(option.arrArg)===true && isValid(option.odaObjupd)===true){
+      return odaLoadupdate$(model,option);
+    }
+    if( isValid(option.arrArg)===true && isValid(option.odaObjupd)===false){
+      return odaupdate$(model,option);
+    }
+  };
     function toinit() {
         return {
       svctoUpdateInstance$: svctoUpdateInstance$,
         toUpdateInstance: toUpdateInstance,
         svctoUpdateChildInstance$:svctoUpdateChildInstance$,
-        toUpdateChildInstance:toUpdateChildInstance
+        toUpdateChildInstance:toUpdateChildInstance,
+        svcapiupdate$:svcapiupdate$,
+        svcodaupdate$:svcodaupdate$
 
         };
       }

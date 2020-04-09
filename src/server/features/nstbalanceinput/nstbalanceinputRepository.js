@@ -2,18 +2,18 @@
 var _ = require('lodash');
 const async = require('async');
 const  {nstBalanceInput} = require('../../omodels/modelsSchema/index').toinit();
-const {togetnstbalanceinput, toBalanceinput,toUpdateBalanceinput, getobjBalanceinput,toInitBalanceinputInstance}=require('./staticNstbalanceinput').toinit();
+const {togetnstbalanceinput, toBalanceinput,toUpdateBalanceinput, getobjBalanceinput,toInitNstBalanceinputInstance}=require('./staticNstbalanceinput').toinit();
 const {odaByarg,getodafilter} =require('../../SharedKernel/odaFiltered').toinit();
-const {svctoInitializeInstance,svctoapiUpdateInstance,svctoUpdateInstance,svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const {svctoInitializeInstance,svctoapiUpdateInstance,svctoUpdateInstance,svcodasave$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
 const { Observable } = require('rxjs');
 const {getAllocomptes } = require('../ocompte/index').toinit();
 const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$, toOdaCreate$}=require('../../SharedKernel/odaservice/dataservices').toinit();
-const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$,svcapiupdate$}=require('../../sharedkernel/odainstance/index').toinit(); 
 
 const nstbalanceinputRepository = (function () {
 
-  const toInitializeFinalInstance = function (model, body, toinitobj) {
-    const data = toInitCustomInstance(model, body, toinitobj, toInitBalanceinputInstance);
+  const toInitializeFinalInstance = function (model, body) {
+    const data = toInitCustomInstance(model, body, toInitNstBalanceinputInstance);
     return data;
   };
   const index = function (callback) {
@@ -26,7 +26,7 @@ const nstbalanceinputRepository = (function () {
     return getodaByid$(nstBalanceInput, togetnstbalanceinput, requestparamid, getobjBalanceinput);
   };
   const toCreateBalanceinputdata$ = function (requestBody) {
-    return svctoInitCustomInstance$(nstBalanceInput, requestBody, toBalanceinput, toInitializeFinalInstance);
+    return svctoInitCustomInstance$(nstBalanceInput, requestBody, toInitializeFinalInstance);
   };
   const insertBalanceInput = function (arr) {
     return svcodasave$(arr);
@@ -111,8 +111,7 @@ const nstbalanceinputRepository = (function () {
       toCreateBalanceinputdata$: toCreateBalanceinputdata$,
       toUpdateBalanceinputdata$: toUpdateBalanceinputdata$,
       editBalanceInput$: editBalanceInput$,
-      deleteBalanceInput$: deleteBalanceInput$,
-      toInitializeFinalInstance:toInitializeFinalInstance,
+      deleteBalanceInput$: deleteBalanceInput$ ,
       //    toDeleteBalanceinputdata$: toDeleteBalanceinputdata$,
       odasearchby: odasearchby,
       

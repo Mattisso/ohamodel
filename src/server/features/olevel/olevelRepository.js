@@ -5,8 +5,8 @@ const {odaByarg,getodafilter} =require('../../SharedKernel/index').toinit().filt
 const { Observable } = require('rxjs');
 const {togetolevel, getobjolevel,toOlevel,toUpdateolevel}=require('./staticOlevel').toinit();
 const {getodaindex$, odaindex,getodaByid$}=require('../../SharedKernel/odaservice/dataservices').toinit();
-const {svctoapiUpdateInstance,svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
-const {svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+const {svctoapiUpdateInstance,svcodasave$,svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const {svctoInitializeInstance$,svctoUpdateInstance$,svcapiupdate$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const {concat } = require('rxjs');
 
 const olevelRepository = (function () {

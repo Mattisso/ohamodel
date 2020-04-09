@@ -6,9 +6,9 @@ const  {oTableauPoste} = require('../../omodels/modelsSchema/index').toinit();
 //const { odaExclude} =require('../../SharedKernel/base').toinit();
 const {togetotableauposte, getobjOtableauposte,toOtableauposte,toUpdateOstableauposte,totableaupostesNoChifAffair,staticotableauPosteWithcomptebalances,toInitOtableauposteInstance}=require('./staticOtableauposte').toinit();
 const {getodaindex$, odaindex,getodaByid$,getodaindexapi$,getodaApiByid$}=require('../../SharedKernel//odaservice/dataservices').toinit();
-const {svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const {svcodasave$,svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
 const {getsrdcomptebalances$} =require('../../sharedkernel/odarepository/sharedRepository').toinit();
-const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$,svcapiupdate$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const { combineLatest, pipe } = require('rxjs');
 const { map } = require('rxjs/operators');
 

@@ -128,7 +128,7 @@ const odarepository = (function () {
             _arr.push(elm);
           });
         }
-        observer.next((`Finished  in updating ${_arr.length} out of ${JSON.stringify(odacount(ArgOne))||_arr.length} records`));
+        observer.next((`Finished  in updating ${_arr.length} out of ${ArgOne.length} records`));
 
         setTimeout(() => {
           observer.complete();
@@ -336,9 +336,6 @@ const odarepository = (function () {
     });
   };
   const odasave$ = function (arr) {
-  // console.log(isArray(arr));
-  //  return odasaveObjectArray$(arr);
- //  console.log(arr)
     if (inArray(arr) === false) {
     return odasaveObject$(arr);
     } else if (inArray(arr) === true) {
@@ -358,7 +355,8 @@ const odarepository = (function () {
       odaDel$: odaDel$,
       odaApiDel$: odaApiDel$,
       odaApiBulkDel$: odaApiBulkDel$,
-      odaSeedDel$: odaSeedDel$
+      odaSeedDel$: odaSeedDel$,
+      SearchByid:SearchByid
     };
   }
   return {

@@ -6,16 +6,31 @@ const { getodafilter } = require('../../SharedKernel/odaFiltered').toinit();
 const { combineLatest, Observable, of, pipe, from } = require('rxjs');
 
 const staticNttbalance = (function () {
-  
+  const tonttbalance = function (obj) {
+    if (isValid(obj) === true) {
+    return ({
+      "OreferenceKey": obj.OreferenceKey,
+      "OtableauposteKey": obj.OtableauposteKey,
+      "OexercComptaKey": obj.OexercComptaKey,
+     // "OcompteKey": obj.OcompteKey,
+      "NumCompte": obj.NumCompte,
+      "IntitulCompte": obj.IntitulCompte,
+      "SoldeCredit": replaceNullToZero(obj.SoldeCredit),
+      "SoldeDebit": replaceNullToZero(obj.SoldeDebit)
+      // "id":obj.id
+    });
+  }
+  };
+
   let balanceinputs = null
-  function BuildNttbalance(model,body, toinitobj,fn) {
+  function BuildNttbalance(model,body, fn) {
     let toacreateinstance=fn;
-    balanceinputs =toacreateinstance(model,body,toinitobj);    
+    balanceinputs =toacreateinstance(model,body,tonttbalance);    
     const arr = addItem(balanceinputs);
     return odareduceArray(arr);
   }       
-    function toInitNttbalanceInstance(model,body,toinitobj,fn) {
-    const getCreatedModel = BuildNttbalance(model,body,toinitobj,fn);
+    function toInitNttbalanceInstance(model,body,fn) {
+    const getCreatedModel = BuildNttbalance(model,body,fn);
     return odaremoveDupnumcompte(getCreatedModel.slice());
     }
     
@@ -38,21 +53,7 @@ const staticNttbalance = (function () {
       return assign({}, initObj, odauditobj);
     });
   };
-  const tonttbalance = function (obj) {
-    if (isValid(obj) === true) {
-    return ({
-      "OreferenceKey": obj.OreferenceKey,
-      "OtableauposteKey": obj.OtableauposteKey,
-      "OexercComptaKey": obj.OexercComptaKey,
-     // "OcompteKey": obj.OcompteKey,
-      "NumCompte": obj.NumCompte,
-      "IntitulCompte": obj.IntitulCompte,
-      "SoldeCredit": replaceNullToZero(obj.SoldeCredit),
-      "SoldeDebit": replaceNullToZero(obj.SoldeDebit)
-      // "id":obj.id
-    });
-  }
-  };
+  
   const getobjnttBalance = function (arr, value) {
     if (isValid(value) === true) {
       const validate = find(arr, function (o) {

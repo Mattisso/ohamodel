@@ -4,8 +4,8 @@ const  {User} = require('../../omodels/modelsSchema/index').toinit();
 const {userdata} = require('../../seed/data-seed/index').toinit();
 const {togetuser,togetObjuser,toUpdateUser,toUser}=require('./staticUser').toinit();
 const {getodaindex$, odaindex,getodaByid$}=require('../../sharedkernel/odaservice/dataservices').toinit();
-const {svcodaseedUsersave$, svcapiupdate$,svcodaApiDel$,svcodaSearchBy,svcodaDel$}=require('../../sharedkernel/odaservice/odaservice').toinit();
-const {toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$}=require('../../sharedkernel/odainstance/index').toinit();  
+const {svcodaseedUsersave$, svcodaApiDel$,svcodaSearchBy,svcodaDel$}=require('../../sharedkernel/odaservice/odaservice').toinit();
+const {toInitializeInstance, svctoInitializeInstance$,svctoUpdateInstance$,svcapiupdate$}=require('../../sharedkernel/odainstance/index').toinit();  
 const { concat } = require('rxjs');
 /* const {toUpdateInstance,svctoUpdateInstance$} = require('../../sharedkernel/odainstance/toUpdateInstance').toinit();
 

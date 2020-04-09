@@ -5,8 +5,8 @@
 const  {oStableauPoste} = require('../../omodels/modelsSchema/index').toinit();
 const {toOstableauposte,togetostableauposte,getobjOstableauposte,toUpdateOstableauposte, toInitOstableauposteInstance}=require('./staticOstableauposte').toinit();
 const {getodaindex$, odaindex,getodaByid$}=require('../../SharedKernel/odaservice/dataservices').toinit();
-const {svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
-const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+const {svcodasave$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$,svcapiupdate$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const ostableauposteRepository = (function () {
 
   const toInitializeFinalInstance = function (model, body) {

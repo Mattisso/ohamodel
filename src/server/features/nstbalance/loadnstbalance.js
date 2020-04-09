@@ -9,10 +9,10 @@ const { base, staticObjects, filtered, filteredBy, odaObjects } = require('../..
 const {tonstbalance,queryselector }=require('./staticNstbalance').toinit();
 const { combineLatest, Observable, of, pipe, from, concat } = require('rxjs');
 const { filter, map, tap, pluck, find, shareReplay, concatMap } = require('rxjs/operators');
-const {svcodaDel$, svcodasave$, svcodaupdate$} = require('../../SharedKernel/odaservice/odaservice').toinit();
+const {svcodaDel$, svcodasave$,} = require('../../SharedKernel/odaservice/odaservice').toinit();
 const {odaremove} = require('../../SharedKernel/odaUtility').toinit();
  const {getloadnstbalancedatas$, toupdateCHData$,toupdateDSData$, toupdateBSData$, toupdateChgCreditData$, toupdatePrdtDebitData$, toupdateBPassifData$} = require('./nstbalanceRepository').toinit();
- const { toInitializeInstance}=require('../../sharedkernel/odainstance/index').toinit(); 
+ const { toInitializeInstance,svcodaupdate$}=require('../../sharedkernel/odainstance/index').toinit(); 
 
 const loadnstbalance = (function () {
   const _removeData$ = function (model) {
@@ -73,7 +73,7 @@ const loadnstbalance = (function () {
   const updateBPassif$ = toupdateBPassifData$.pipe(concatMap(function (x) {
         return _updateBPassif(nstBalance, x);
       }));
-  const loadnstbalance$ = concat(removenstbalance$, insertnstbalance$, updateCH$, updateDS$, updateBS$); //,updateChgCredit$,updatePrdtDebit$,updateBPassif$);
+  const loadnstbalance$ = concat(removenstbalance$, insertnstbalance$, updateCH$, updateDS$, updateBS$,updateChgCredit$,updatePrdtDebit$,updateBPassif$);
   function toinit() {
     return {
       result$: loadnstbalance$,

@@ -11,8 +11,8 @@ const { odareduceArray } = require('../../SharedKernel/odaUtility').toinit();
 const {toOstblarea,togetostblarea,toUpdateostblarea,getobjOstblarea, toInitOstblareaInstance}=require('./staticOstblarea').toinit();
 const { ostblareadata } = require('../../seed/data-seed/index').toinit();
 const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$}=require('../../SharedKernel/odaservice/dataservices').toinit();
-const {svctoInitializeInstance,svctoapiUpdateInstance,svctoUpdateInstance,svcodasave$,svcapiupdate$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
-const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+const {svctoInitializeInstance,svctoapiUpdateInstance,svctoUpdateInstance,svcodasave$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$,svcapiupdate$}=require('../../sharedkernel/odainstance/index').toinit(); 
 
 const ostblareaRepository = (function () {
   const toInitializeFinalInstance = function (model, body) {

@@ -2,16 +2,15 @@
 /* eslint-disable no-unused-vars */
 const _ = require('lodash');
 const  {oExercCompta} = require('../../omodels/modelsSchema/index').toinit();
-const {getoexercices$, seedoexercice$} = require('../oexercice/').toinit();
+const {getoexercices$} = require('../oexercice/').toinit();
 const {odaByarg,getodafilter} =require('../../SharedKernel/odaFiltered').toinit();
-const {oexercomptadata} = require('../../seed/data-seed/index').toinit();
-const {togetoexerccompta,toUpdateOexercompta, toOexercompta,staticDropListExerComptable, toInitOexerccomptaInstance}=require('./staticOxerccompta').toinit();
+const {togetoexerccompta,toUpdateOexercompta, staticDropListExerComptable, toInitOexerccomptaInstance}=require('./staticOxerccompta').toinit();
 const {getobjOexercCompta} =require('../../SharedKernel/staticObjects').toinit();
-const { combineLatest, Observable, concat,pipe } = require('rxjs');
+const { combineLatest, Observable, pipe } = require('rxjs');
 const { map} = require('rxjs/operators');
-const {svctoInitializeInstance,svctoapiUpdateInstance,svcodasave$,svcodaApiupdate$, svcodaApiDel$,svcodaSearchBy, svcodaDel$}=require('../../SharedKernel/odaservice/odaservice').toinit();
-const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$,toOdaCreate$,getodaApiByid$,getodaindexapi$}=require('../../SharedKernel/odaservice/dataservices').toinit();
-const {svctoInitializeInstance$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$}=require('../../sharedkernel/odainstance/index').toinit(); 
+const {svcodasave$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const {getodaindex$, odaindex,getodaByid$,getodaApiByid$,getodaindexapi$}=require('../../SharedKernel/odaservice/dataservices').toinit();
+const {svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$,svcapiupdate$}=require('../../sharedkernel/odainstance/index').toinit(); 
 const oexerccomptaRepository = (function () {
   const toInitializeFinalInstance = function (model, body) {
     const data = toInitCustomInstance(model, body,toInitOexerccomptaInstance);
@@ -64,10 +63,6 @@ const oexerccomptaRepository = (function () {
       );
       const DropDownListExerComptable$ = _DropDownListExerComptable(getexeccomptas$());
 
-  const getByid$ = function (requestparamid) {
-    return  getodaByid$(oExercCompta, togetoexerccompta,requestparamid,getobjOexercCompta);
-
-  };
   const toCreateExerccomptadata$ = function (requestBody) {
 
     return svctoInitCustomInstance$(oExercCompta, requestBody, toInitializeFinalInstance);
@@ -86,7 +81,7 @@ const oexerccomptaRepository = (function () {
   };
 
   const editExercCompta$ = function (body, requestparamid) {
-    return (svcodaApiupdate$(oExercCompta, body, requestparamid));
+    return (svcapiupdate$(oExercCompta, body, requestparamid));
   };
   const odasearchBy = function (body) {
     return svcodaSearchBy(oExercCompta, body);

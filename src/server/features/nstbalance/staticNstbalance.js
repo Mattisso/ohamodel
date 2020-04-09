@@ -2,19 +2,32 @@
 const { find, map, assign } = require('lodash');
 const { isValid, odauditObj, getStringValue, replaceNullToZero ,odaremoveDupnumcompte, odareduceArray,addItem} = require('../../SharedKernel/odaUtility').toinit();
 const staticNstbalance = (function () {
+  const tonstbalance = function (o) {
+    return ({
+      "OreferenceKey": o.OreferenceKey,
+      "OtableauposteKey": o.OtableauposteKey,
+      "OexercComptaKey": o.OexercComptaKey,
+ //     "OcompteKey": o.OcompteKey,
+      "NumCompte": o.NumCompte,
+      "IntitulCompte": o.IntitulCompte,
+      "SoldeCredit": replaceNullToZero(o.SoldeCredit),
+      "SoldeDebit": replaceNullToZero(o.SoldeDebit)
+      // "id":obj.id
+    });
+};
 
 
   let balanceinputs = null
-  function BuildNstbalance(model,body, toinitobj,fn) {
+  function BuildNstbalance(model,body, fn) {
     let toacreateinstance=fn;
-    balanceinputs =toacreateinstance(model,body,toinitobj);    
+    balanceinputs =toacreateinstance(model,body,tonstbalance);    
     const arr = addItem(balanceinputs);
     return odareduceArray(arr);
   } 
               
        
-        function toInitNstbalanceInstance(model,body,toinitobj,fn) {
-          const getCreatedModel = BuildNstbalance(model,body,toinitobj,fn);
+        function toInitNstbalanceInstance(model,body,fn) {
+          const getCreatedModel = BuildNstbalance(model,body,fn);
 return odaremoveDupnumcompte(getCreatedModel.slice()); 
 
      }
@@ -39,20 +52,7 @@ return odaremoveDupnumcompte(getCreatedModel.slice());
       return assign({}, initObj, odauditobj);
     });
   };
-  const tonstbalance = function (o) {
-      return ({
-        "OreferenceKey": o.OreferenceKey,
-        "OtableauposteKey": o.OtableauposteKey,
-        "OexercComptaKey": o.OexercComptaKey,
-   //     "OcompteKey": o.OcompteKey,
-        "NumCompte": o.NumCompte,
-        "IntitulCompte": o.IntitulCompte,
-        "SoldeCredit": replaceNullToZero(o.SoldeCredit),
-        "SoldeDebit": replaceNullToZero(o.SoldeDebit)
-        // "id":obj.id
-      });
-  };
-
+  
   function queryselector(obj) {
     let selector;
     if (isValid(obj.OreferenceKey) === true

@@ -33,16 +33,16 @@ const staticNstbalanceinput = (function () {
   }
 }
   let balanceinputs = null
-  function BuildBalanceinput(model,body, toinitobj,fn) {
+  function BuildBalanceinput(model,body, fn) {
     let toacreateinstance=fn;
-    balanceinputs =toacreateinstance(model,body,toinitobj);    
+    balanceinputs =toacreateinstance(model,body,toBalanceinput);    
     const arr = addItem(balanceinputs);
     return odareduceArray(arr);
   } 
               
        
-        function toInitBalanceinputInstance(model,body,toinitobj,fn) {
-          const getCreatedModel = BuildBalanceinput(model,body,toinitobj,fn);
+        function toInitNstBalanceinputInstance(model,body,fn) {
+          const getCreatedModel = BuildBalanceinput(model,body,fn);
           return odaremoveDupnumcompte(getCreatedModel.slice());
 
      }
@@ -109,7 +109,7 @@ const staticNstbalanceinput = (function () {
       togetnstbalanceinput:togetnstbalanceinput,
       getobjBalanceinput:getobjBalanceinput,
       odaqueryselector:odaqueryselector,
-      toInitBalanceinputInstance:toInitBalanceinputInstance
+      toInitNstBalanceinputInstance:toInitNstBalanceinputInstance
     };
   }
 

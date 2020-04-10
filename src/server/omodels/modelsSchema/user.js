@@ -1,5 +1,8 @@
 /*eslint-disable no-unused-vars */
 "use strict";
+const graphql = require('graphql');
+const {GraphQLObjectType,GraphQLString,GraphQLID,GraphQLInt} = graphql;
+
 const mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 const  bcrypt = require('bcryptjs');
@@ -145,10 +148,32 @@ UserSchema.statics.getAuthenticated = function (username, password, cb) {
   }
 });
     let User = mongoose.model('User', UserSchema);
+
+    const UserType = new GraphQLObjectType({
+      name : 'User',
+      fields: () => ({
+          id: {
+              type: GraphQLID
+          },
+          username: {
+              type: GraphQLString
+          },
+          role: {
+              type: GraphQLString
+          },
+          password: {
+              type: GraphQLString
+          },
+          loginAttempts: {
+              type: GraphQLInt
+          }
+      })
+  });
      
     function toinit() {
       return {
-        User: User
+        User: User,
+        UserType:UserType
       }
     }
     return {

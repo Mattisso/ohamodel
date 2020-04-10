@@ -1,8 +1,9 @@
 const graphql = require('graphql');
-const {oCompte, oReference, User} = require('../omodels/modelsSchema/index').toinit();
+const {oCompte, oReference, User} = require('../../omodels/modelsSchema/index').toinit();
+const {UserType}=require('../schemas/userSchema').toinit();
 const {GraphQLObjectType,GraphQLString,GraphQLID,GraphQLInt
     ,GraphQLSchema,GraphQLList, GraphQLNonNull} = graphql;
-
+/* 
 const UserType = new GraphQLObjectType({
     name: 'User',
     fields: () => ({
@@ -22,8 +23,8 @@ const UserType = new GraphQLObjectType({
             type: GraphQLInt
         }
     })
-});
-
+}); 
+ */
 const OcompteType = new GraphQLObjectType({
     name: 'oCompte',
     fields: () => ({
@@ -69,7 +70,7 @@ const OreferenceType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
-        user: {
+        getuser: {
             type: UserType,
             //argument passed by the user while making the query
             args: {
@@ -81,20 +82,20 @@ const RootQuery = new GraphQLObjectType({
                 //Here we define how to get data from database source
 
                 //this will return the book with id passed in argument by the user
-                return user.findById(args.id);
+                return User.findById(args.id);
             }
         },
-        users: {
+        getusers: {
             type: new GraphQLList(UserType),
             //argument passed by the user while making the query
             resolve(parent, args) {
                 //Here we define how to get data from database source
 
                 //this will return the book with id passed in argument by the user
-                return user.find({});
+                return User.find({});
             }
         },
-        ocompte: {
+        getocompte: {
             type: OcompteType,
             //argument passed by the user while making the query
             args: {
@@ -109,7 +110,7 @@ const RootQuery = new GraphQLObjectType({
                 return oCompte.findById(args.id);
             }
         },
-        ocomptes: {
+        getocomptes: {
             type: new GraphQLList(OcompteType),
             //argument passed by the user while making the query
             resolve(parent, args) {
@@ -119,7 +120,7 @@ const RootQuery = new GraphQLObjectType({
                 return oCompte.find({});
             }
         },
-        oreference: {
+        getoreference: {
             type: OreferenceType,
             //argument passed by the user while making the query
             args: {
@@ -133,7 +134,7 @@ const RootQuery = new GraphQLObjectType({
                 return oReference.findById(args.id);
             }
         },
-        oreferences: {
+        getoreferences: {
             type: new GraphQLList(OreferenceType),
             //argument passed by the user while making the query
             resolve(parent, args) {

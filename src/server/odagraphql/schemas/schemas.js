@@ -3,7 +3,7 @@ const {oCompte, oReference, User} = require('../../omodels/modelsSchema/index').
 const {UserType}=require('../schemas/userSchema').toinit();
 const {OcompteType, OreferenceType}=require('../schemas/ocompteSchema').toinit();
 
-const {GraphQLObjectType,GraphQLString,GraphQLID,GraphQLInt
+const {GraphQLObjectType,GraphQLString,GraphQLID
     ,GraphQLSchema,GraphQLList, GraphQLNonNull} = graphql;
 /* 
 const UserType = new GraphQLObjectType({

@@ -1,4 +1,5 @@
-const resolvers=(function(){
+
+const oexerciceSchemas=(function(){
   function toinit(){
     return {
 
@@ -9,5 +10,5 @@ const resolvers=(function(){
   }
 })()
 module.exports={
-  toinit: resolvers.toinit
+  toinit:oexerciceSchemas.toinit
 }

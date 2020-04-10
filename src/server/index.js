@@ -1,7 +1,8 @@
 "use strict"
 const dotenv= require('dotenv');
 const express = require('express');
-const graphqlHTTP = require('express-graphql');
+// const =require('apollo-server-exppress');
+ // const graphqlHTTP = require('express-graphql');
 const schema = require('./odagraphql/schemas/schemas')
 const mongoose = require('mongoose');
 const app = express();

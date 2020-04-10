@@ -1,6 +1,8 @@
 const graphql = require('graphql');
 const {oCompte, oReference, User} = require('../../omodels/modelsSchema/index').toinit();
 const {UserType}=require('../schemas/userSchema').toinit();
+const {OcompteType, OreferenceType}=require('../schemas/ocompteSchema').toinit();
+
 const {GraphQLObjectType,GraphQLString,GraphQLID,GraphQLInt
     ,GraphQLSchema,GraphQLList, GraphQLNonNull} = graphql;
 /* 
@@ -24,7 +26,7 @@ const UserType = new GraphQLObjectType({
         }
     })
 }); 
- */
+ 
 const OcompteType = new GraphQLObjectType({
     name: 'oCompte',
     fields: () => ({
@@ -43,30 +45,7 @@ const OcompteType = new GraphQLObjectType({
 
     })
 });
-
-const OreferenceType = new GraphQLObjectType({
-    name: 'oReference',
-    fields: () => ({
-        id: {
-            type: GraphQLID
-        },
-        RefCode: {
-            type: GraphQLString
-        },  
-        Description: {
-            type: GraphQLString
-        },    
-        ocompte: {
-            type: new GraphQLList(OcompteType),
-            resolve(parent, args) {
-                return oCompte.find({
-                    oreferenceID: parent.id
-                });
-            }
-        }
-    })
-});
-
+*/
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {

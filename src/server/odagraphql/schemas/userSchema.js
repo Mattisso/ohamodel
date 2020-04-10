@@ -1,4 +1,5 @@
-
+const graphql = require('graphql');
+const {GraphQLObjectType,GraphQLString,GraphQLID,GraphQLInt} = graphql;
 const userSchemas=(function(){
 
   const UserType = new GraphQLObjectType({

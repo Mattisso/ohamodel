@@ -5,8 +5,31 @@ const { GraphQLObjectType,  GraphQLID,  GraphQLList} = graphql;
 
 const ocompteQuery = (function () {
 
+  const  getocompte ={
+    type: OcompteType,
+    //argument passed by the user while making the query
+    args: {
+        id: {
+            type: GraphQLID
+        }
+    },
+    resolve(parent, args) {
+        //Here we define how to get data from database source
+
+        //this will return the book with id passed in argument by the user
+        return Ocompte.findById(args.id);
+    }
+}
+const getocomptes= {
+  type: new GraphQLList(OcompteType),
+  //argument passed by the user while making the query
+  resolve(parent, args) {
+
+      return Ocompte.find({});
+  }
+}/*
   const ocompteRootQuery = new GraphQLObjectType({
-    name: 'ocompteRootQueryType',
+    name: 'RootQueryType',
     fields: {
       getocompte: {
         type: OcompteType,
@@ -33,10 +56,12 @@ const ocompteQuery = (function () {
     }
 
     }
-  });
+  }); */
   function toinit(){
     return {
-      ocompteRootQuery:ocompteRootQuery
+      getocompte:getocompte,
+      getocomptes:getocomptes
+
     }
   }
   return {

@@ -1,7 +1,7 @@
 
 const {GraphQLObjectType, GraphQLString, GraphQLID,  GraphQLList} = require('graphql');
-const {Ocompte} = require('../../modelsSchema/index').toinit();
-
+// const {Ocompte} = require('../../modelsSchema/index').toinit();
+ // const {OcompteType}=require('../ocompte/ocompteSchema').toinit();
 
 const oreferenceSchema= (function(){
   const OreferenceType = new GraphQLObjectType({
@@ -18,15 +18,15 @@ const oreferenceSchema= (function(){
       },
       fullDescription: {
         type: GraphQLString
-      },
-      ocomptes: {
+      } ,
+     /*  ocomptes: {
         type: new GraphQLList(OcompteType),
         resolve(parent, args) {
           return Ocompte.find({
             id: parent.id
           });
         }
-      }
+      }  */
     })
   });
   function toinit(){

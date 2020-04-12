@@ -1,7 +1,7 @@
 const graphql = require('graphql');
 const { GraphQLObjectType,  GraphQLString,  GraphQLID} = graphql;
 const {oReference} = require('../../modelsSchema/index').toinit();
-const {OreferenceType}= require('../oreference/oreferenceSchema').toinit();
+// const {OreferenceType}= require('../oreference/oreferenceSchema').toinit();
 
 const ocompteSchema = (function () {
 
@@ -13,14 +13,14 @@ const ocompteSchema = (function () {
       },
       CompteNumber: {
         type: GraphQLString
-      },
+      }/* ,
       oreference: {
         type: OreferenceType,
         resolve(parent, args) {
           // const {id}=args;
           return oReference.findById(parent.id);
         }
-      }
+      } */
     })
   });
 

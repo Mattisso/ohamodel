@@ -4,10 +4,7 @@ const { GraphQLObjectType,  GraphQLString,   GraphQLNonNull} = graphql;
 const {User} = require('../../modelsSchema/index').toinit();
 
 const userMutation=(function(){
-  const createUserMutation = new GraphQLObjectType({
-    name: 'Mutation',
-    fields: {
-      addUser: {
+  const tocreateUser=  {
         type: UserType,
         args: {
           //GraphQLNonNull make these field required
@@ -31,12 +28,12 @@ const userMutation=(function(){
         }
       }
 
-    }
-  });
+
+
 
   function toinit(){
     return {
-      createUserMutation:createUserMutation
+      tocreateUser:tocreateUser
     }
   }
   return {

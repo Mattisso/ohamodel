@@ -1,12 +1,11 @@
-const{userQuery, userMutation } =require('./userSchema').toinit()
-const graphql = require('graphql');
+const{UserRootQuery } =require('./userQuery').toinit()
+const{createUserMutation} =require('./userMutation').toinit()
+const {GraphQLSchema} = require('graphql');
 
-const {  GraphQLSchema } = graphql;
-  
 const schema=(function(){
     const myresolver= new GraphQLSchema({
-        query:userQuery,
-        mutation:userMutation} )
+        query:UserRootQuery,
+        mutation:createUserMutation} )
 function toinit(){
     return myresolver
 }

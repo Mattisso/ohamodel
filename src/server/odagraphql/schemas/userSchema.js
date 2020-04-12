@@ -1,31 +1,45 @@
 const graphql = require('graphql');
 const {User} = require('../../omodels/modelsSchema/index').toinit();
-const {getall, index$}=require('../../features/user/index').toinit()
 const { GraphQLObjectType,  GraphQLString,  GraphQLID,  GraphQLSchema,  GraphQLList,  GraphQLNonNull,
   GraphQLInt} = graphql;
-  
+
 const userSchema = (function () {
   const UserType = new GraphQLObjectType({
     name: 'User',
     fields: () => ({
       id: {
-        type: GraphQLID
+        type: GraphQLID,
+        resolve: (root, args, context, info) => {
+          return root.id
+        }
       },
       username: {
-        type: new GraphQLNonNull (GraphQLString)
+        type: new GraphQLNonNull (GraphQLString),
+        resolve: (root, args, context, info) => {
+          return root.username
+        }
       },
       role: {
-        type: GraphQLString
+        type: GraphQLString,
+        resolve: (root, args, context, info) => {
+          return root.role
+        }
       },
       password: {
-        type: GraphQLString
+        type: GraphQLString,
+        resolve: (root, args, context, info) => {
+          return root.password
+        }
       },
       loginAttempts: {
-        type: GraphQLInt
+        type: GraphQLInt,
+        resolve: (root, args, context, info) => {
+          return root.loginAttempts
+        }
       }
     })
   });
-
+/*
   const UserRootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
@@ -51,7 +65,7 @@ const userSchema = (function () {
           //Here we define how to get data from database source
 
           //this will return the book with id passed in argument by the user
-          return   User.find({});
+          return  User.find({});
         }
       }
 
@@ -86,26 +100,18 @@ const userSchema = (function () {
 
     }
   });
-
-const userSubscription= new GraphQLObjectType ({
-name:'Subscription',
-fields:{
-  newuser :{
-    username,
-    role
-  }
-
-}
-})
+ */
   //)
   function toinit() {
-    const userresolver = //new GraphQLSchema(
+    /* const userresolver = //new GraphQLSchema(
       {
       userQuery: UserRootQuery,
       userMutation: UserMutation
       ///userSubscription
-    }
-    return  userresolver    
+    } */
+    return{
+      UserType:UserType
+    }  // userresolver
   };
   return {
     toinit: toinit
@@ -114,8 +120,6 @@ fields:{
 module.exports = {
   toinit: userSchema.toinit
 }
-
-
 //type Query { ... }
 //type Mutation { ... }
 // type Subscription { ... }

@@ -1,3 +1,4 @@
+const {UserType}=require('./userSchema').toinit()
 
 const userSubscription=(function(){
   const toNewUser= {

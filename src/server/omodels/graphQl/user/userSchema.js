@@ -36,6 +36,12 @@ const userSchema = (function () {
         resolve: (root, args, context, info) => {
           return root.loginAttempts
         }
+      },
+      lockUntil: {
+        type: GraphQLInt,
+        resolve: (root, args, context, info) => {
+          return root.lockUntil
+        }
       }
     })
   });

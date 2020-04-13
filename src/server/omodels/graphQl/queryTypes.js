@@ -4,7 +4,7 @@ const {getocompte,getocomptes}=require('./ocompte/ocompteQuery').toinit();
 // const {createOcompteMutation}=require('./ocompte/ocompteMutation').toinit();
 // const { GraphQLObjectType} =require('graphql');
 
-const graphQueryType=(function(){
+const queryTypes=(function(){
 
 const getrootqueries=  {
   getuser:getuser,
@@ -29,5 +29,5 @@ return {
 }
 })()
 module.exports={
-  toinit:graphQueryType.toinit
+  toinit:queryTypes.toinit
 }

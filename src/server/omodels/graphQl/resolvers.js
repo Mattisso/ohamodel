@@ -1,5 +1,7 @@
 const {getrootqueries}=require('./queryTypes').toinit();
 const {togetRootMutation}=require('./mutations').toinit();
+const {getRootSubscriptions}=require('./subscriptions').toinit();
+
 
 const {GraphQLObjectType}=require('graphql');
 
@@ -13,6 +15,14 @@ return getrootqueries;
 
     })
 
+    const RootSubscrition = new GraphQLObjectType({
+      name: 'subscription',
+      fields: function(){
+  return getRootSubscriptions;
+        }
+
+      })
+
     const RootMutation = new GraphQLObjectType({
       name: 'Mutation',
       fields: () => {
@@ -23,7 +33,8 @@ return getrootqueries;
 function toinit(){
   return {
     RootQuery:RootQuery,
-    RootMutation:RootMutation
+    RootMutation:RootMutation,
+    RootSubscrition:RootSubscrition
 
   }
 }

@@ -1,4 +1,4 @@
-const {RootQuery, RootMutation}=require('./resolvers').toinit();
+const {RootQuery, RootMutation, RootSubscrition}=require('./resolvers').toinit();
 // const {RootQuery}=require('./graphQueryType').toinit();
 
 const {GraphQLSchema} = require('graphql');
@@ -7,7 +7,8 @@ const {GraphQLSchema} = require('graphql');
 const schema=(function(){
     const myresolver= new GraphQLSchema({
         query: RootQuery,
-      mutation:RootMutation
+      mutation:RootMutation,
+      subscription:RootSubscrition
      //   mutation:Mutation.createUserMutation
     } )
 

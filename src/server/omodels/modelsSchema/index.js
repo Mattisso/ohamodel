@@ -4,7 +4,7 @@
 var index = (function () {
   function toinit() {
     return {
-      'oCompte': require('./ocompte').toinit().Ocompte,
+      'Ocompte': require('./ocompte').toinit().Ocompte,
       'oReference': require('./oreference').toinit().oReference,
       'nstBalance': require('./nstBalance').toinit().nstBalance,
       'nstBalanceInput': require('./nstbalanceinput').toinit().nstBalanceInput,
@@ -20,7 +20,7 @@ var index = (function () {
       'oStblArea': require('./ostblarea').toinit().oStblArea,
       'oTableauPoste': require('./otableauPoste').toinit().oTableauPoste,
      // 'oGestion': require('./ogestion').toinit(),
-      'olevel': require('./olevel').toinit().Olevel,
+      'Olevel': require('./olevel').toinit().Olevel,
        'User': require('./user').toinit().User,
        'OcompteReference': require('./ocomptereference').toinit().OcompteReference,
        'oReportDetail': require('./oreportdetail').toinit().oReportDetail,

@@ -19,7 +19,11 @@ const {seedorepOrtdetail$}=require('../../features/oreportdetail/index').toinit(
 const index = (function () {
 
  const seedAll$=  concat(
+<<<<<<< HEAD
  seeduser$,
+=======
+seeduser$,
+>>>>>>> 25a63c2774db29c7f69c6b96f072098486bb939e
 seedoexcompta$,
  seedolevel$,
  seedOcompte$,

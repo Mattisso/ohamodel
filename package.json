@@ -2,9 +2,21 @@
   "name": "ohamodel",
   "version": "1.0.0",
   "description": "create models",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "ng build --prod",
+
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "node src/server/startMessage.js",
+    "start": "npm-run-all --parallel lint:watch  build start:server",
+    "start:server": "node src/server/server.js",
+    "predev": "tsc -p ./",
+    "dev": "concurrently  \"ng serve --proxy-config proxy.conf.json --open\" \"tsc -w -p ./\" \"nodemon src/server/server.js\"",
+    "sample": "node src/server/seed/load-seed/index.js",
+    "lints": " esw src/server --color",
+    "lint:watch": "npm run lints -- --watch",
+
+    "stop-win": "Taskkill /IM node.exe /F"
   },
   "repository": {
     "type": "git",
@@ -13,15 +25,25 @@
   "author": "mensah attisso",
   "license": "ISC",
   "dependencies": {
+    "apollo-server-express": "^2.12.0",
     "async": "^3.2.0",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^5.1.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "graphql": "^15.0.0",
     "lodash": "^4.17.15",
     "mongoose": "^5.9.4",
+    "nodemon": "^2.0.3",
+    "npm-run-all": "^4.1.5",
     "rxjs": "^6.5.4",
     "xlsx": "^0.15.6"
+  },
+  "devDependencies": {
+    "@types/core-js": "^2.5.3",
+    "@types/jasmine": "^3.5.10",
+    "@types/node": "^13.11.1",
+    "typescript": "^3.8.3"
   }
 }

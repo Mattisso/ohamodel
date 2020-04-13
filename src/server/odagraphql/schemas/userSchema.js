@@ -1,6 +1,5 @@
 const graphql = require('graphql');
-const {User} = require('../../omodels/modelsSchema/index').toinit();
-const { GraphQLObjectType,  GraphQLString,  GraphQLID,  GraphQLSchema,  GraphQLList,  GraphQLNonNull,
+const { GraphQLObjectType,  GraphQLString,  GraphQLID,  GraphQLSchema,  GraphQLNonNull,
   GraphQLInt} = graphql;
 
 const userSchema = (function () {

@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "build": "ng build --prod",
-
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "node src/server/startMessage.js",
     "start": "npm-run-all --parallel lint:watch  build start:server",
@@ -15,7 +14,6 @@
     "sample": "node src/server/seed/load-seed/index.js",
     "lints": " esw src/server --color",
     "lint:watch": "npm run lints -- --watch",
-
     "stop-win": "Taskkill /IM node.exe /F"
   },
   "repository": {

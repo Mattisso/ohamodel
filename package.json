@@ -42,6 +42,7 @@
     "@graphql-codegen/cli": "^1.13.2",
     "@graphql-codegen/typescript": "^1.13.2",
     "@graphql-codegen/typescript-apollo-angular": "^1.13.2",
+    "@graphql-codegen/typescript-operations": "^1.13.2",
     "@types/core-js": "^2.5.3",
     "@types/jasmine": "^3.5.10",
     "@types/node": "^13.11.1",

@@ -1,0 +1,15 @@
+
+{
+  "schema": "http://localhost:3000/graphql",
+"generates":{
+  "src/toOutput/output.ts":{
+    "plugins":
+       ["typescript",
+       "typescript-operations",
+       "typescript-apollo-angular"]
+    
+      }
+}
+ 
+   
+}

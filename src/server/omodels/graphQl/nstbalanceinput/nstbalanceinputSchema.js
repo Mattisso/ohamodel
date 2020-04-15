@@ -1,26 +1,47 @@
-
+const graphql = require('graphql');
+// const {User} = require('../../modelsSchema/index').toinit();
+const { GraphQLObjectType,  GraphQLString,  GraphQLID, GraphQLNonNull,
+  GraphQLInt} = graphql;
 
 const nstbalanceinputSchema=(function(){
   const nstBalanceInputType = new GraphQLObjectType({
     name: 'nstBalanceInput',
     fields: () => ({
       id: {
-        type: GraphQLID
+        type: GraphQLID,
+        resolve: (root, args, context, info) => {
+          return root.id
+        }
       },
       SoldeDebit: {
-        type: GraphQLInt
+        type: GraphQLInt,
+        resolve: (root, args, context, info) => {
+          return root.SoldeDebit
+        }
       },
       CompteNumber: {
-        type: GraphQLInt
+        type: GraphQLString,
+        resolve: (root, args, context, info) => {
+          return root.CompteNumber
+        }
       },
       SoldeCredit: {
-        type: GraphQLInt
+        type: GraphQLInt,
+        resolve: (root, args, context, info) => {
+          return root.SoldeCredit
+        }
       },
       IntitulCompte: {
-        type: GraphQLString
+        type: new GraphQLNonNull(GraphQLString),
+        resolve: (root, args, context, info) => {
+          return root.IntitulCompte
+        }
       },
       NumCompte: {
-        type: GraphQLString
+        type: new GraphQLNonNull(GraphQLString),
+        resolve: (root, args, context, info) => {
+          return root.NumCompte
+        }
       },
     })
   });

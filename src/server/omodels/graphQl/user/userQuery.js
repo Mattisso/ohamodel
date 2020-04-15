@@ -22,28 +22,14 @@ const userQuery = (function () {
   const getusers= {
     type: new GraphQLList(UserType),
 
-    resolve(parent, args, req, res, next) {
-      const getdata= index$;
-      return   getapistreamdata$(getdata).subscribe({
-        //return {
-          next: function(x){
-          //  console.log(x)
-            return x;
-          } ,
-          error: function(err)
-          {
-            return (new Error(`Observer got an error:  ${err}`));
-          } ,
-
-          complete: function()  {
-          return `Observer got a complete notification ` // console.log('Observer got a complete notification');
-          }
+    resolve(parent, args, context, info) {
+return    User.find({});;
        // }
       //  console.log(data)
      //   return data
-      }
+
    //   (res,next)
-      )
+
 
       //  console.log(data);
       //  return data;

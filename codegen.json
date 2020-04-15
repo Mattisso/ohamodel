@@ -1,7 +1,11 @@
 {
   "schema": "http://localhost:3000/graphql",
   "generates": {
+<<<<<<< HEAD
     "src/toOutput/output.ts": {
+=======
+    "toOutput/output.ts": {
+>>>>>>> fb1b1728610fa48a3872b0c7c979677295097d64
       "plugins":
       ["typescript",
         "typescript-operations",

@@ -3,15 +3,15 @@ const dotenv= require('dotenv');
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const {ApolloServer}= require('apollo-server-express');
-const path='/graphql';
+const path='';
 const schema = require('../server/omodels/graphQl/schema').toinit();
 const app = express();
 dotenv.config({path: '.env'});
 app.set('port', (process.env.PORT || 3000));
 require('./config/ohadb').connectserver();
-const server = new ApolloServer({schema});
+const server = new ApolloServer({schema, cors:true, introspection:true});
 server.applyMiddleware({app, path});
-const extensions = ({
+/* const extensions = ({
     document,
     variables,
     operationName,
@@ -21,21 +21,15 @@ const extensions = ({
     return {
       runTime: Date.now() - context.startTime,
     };
-  };
-/* mongoose.connect('mongodb://localhost:27017/graphql')
+  }; */
 
-mongoose.connection.once('open', () => {
-    console.log('conneted to database');
-}); */
-//This route will be used as an endpoint to interact with Graphql,
-//All queries will go through this route.
-app.use('/graphql', graphqlHTTP( Request=>{
+app.use('/', graphqlHTTP( Request=>{
     return ({
         server,
      //   schema: MyGraphQLSchema,
         context: { startTime: Date.now() },
         extensions,
-        graphiql:false
+        graphiql:true
       })
     //directing express-graphql to use this schema to map out the graph
   //  server,

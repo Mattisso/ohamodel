@@ -1,7 +1,7 @@
 const {getuser, getusers}=require('./user/userQuery').toinit();
 const {getoreference,getoreferences}=require('./oreference/oreferenceQuery').toinit();
 const {getocompte,getocomptes}=require('./ocompte/ocompteQuery').toinit();
-const {getnstbalanceinput,getnstbalanceinputs}=require('./nstbalanceinput/nstbalanceinputQuery').toinit();
+const {getoexerccompta,getoexerccomptas}=require('./oexerccompta/oexerccomptaQuery').toinit();
 
 // const {createOcompteMutation}=require('./ocompte/ocompteMutation').toinit();
 // const { GraphQLObjectType} =require('graphql');
@@ -15,10 +15,10 @@ const getrootqueries=  {
   getocomptes:getocomptes,
   getoreference:getoreference,
   getoreferences:getoreferences,
-  getnstbalanceinput:getnstbalanceinput,
-  getnstbalanceinputs:getnstbalanceinputs
+  getoexerccompta:getoexerccompta,
+  getoexerccomptas:getoexerccomptas
 
-}
+};
 
 
 function toinit(){
@@ -26,12 +26,12 @@ function toinit(){
     getrootqueries:getrootqueries
    // getmutation:getmutation
 
-  }
+  };
 }
 return {
   toinit:toinit
-}
-})()
+};
+})();
 module.exports={
   toinit:queryTypes.toinit
-}
+};

@@ -1,47 +1,27 @@
-const graphql = require('graphql');
-// const {User} = require('../../modelsSchema/index').toinit();
-const { GraphQLObjectType,  GraphQLString,  GraphQLID, GraphQLNonNull,
-  GraphQLInt} = graphql;
+
+const {GraphQLObjectType, GraphQLString, GraphQLID,  GraphQLInt} = require('graphql');
 
 const nstbalanceinputSchema=(function(){
   const nstBalanceInputType = new GraphQLObjectType({
     name: 'nstBalanceInput',
     fields: () => ({
       id: {
-        type: GraphQLID,
-        resolve: (root, args, context, info) => {
-          return root.id
-        }
+        type: GraphQLID
       },
       SoldeDebit: {
-        type: GraphQLInt,
-        resolve: (root, args, context, info) => {
-          return root.SoldeDebit
-        }
+        type: GraphQLInt
       },
       CompteNumber: {
-        type: GraphQLString,
-        resolve: (root, args, context, info) => {
-          return root.CompteNumber
-        }
+        type: GraphQLInt
       },
       SoldeCredit: {
-        type: GraphQLInt,
-        resolve: (root, args, context, info) => {
-          return root.SoldeCredit
-        }
+        type: GraphQLInt
       },
       IntitulCompte: {
-        type: new GraphQLNonNull(GraphQLString),
-        resolve: (root, args, context, info) => {
-          return root.IntitulCompte
-        }
+        type: GraphQLString
       },
       NumCompte: {
-        type: new GraphQLNonNull(GraphQLString),
-        resolve: (root, args, context, info) => {
-          return root.NumCompte
-        }
+        type: GraphQLString
       },
     })
   });
@@ -49,14 +29,14 @@ const nstbalanceinputSchema=(function(){
     return {
       nstBalanceInputType:nstBalanceInputType
 
-    }
+    };
   }
   return {
     toinit:toinit
-  }
-})()
+  };
+})();
 module.exports={
   toinit:nstbalanceinputSchema.toinit
-}
+};
 
 

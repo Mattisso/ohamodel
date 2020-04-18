@@ -1,59 +1,60 @@
-"use strict"
+"use strict";
 const {replaceString}= require('../helpers/utils').toinit();
 const {getTotalCount, getTotalSoldedebit, getTotalSoldecredit}=require('../../SharedKernel/odaStats').toinit();
 const {odaremoveDupnumcompte} = require('../../Sharedkernel/odaUtility').toinit();
 
 const nstbalanceinputClass =(function(){
   let arrbalanceinputs =[];
- 
+
   class nstbalanceinputClass {
 
     constructor(NumCompte, IntitulCompte, SoldeCredit, SoldeDebit) {
       this._NumCompte = NumCompte;
       this._IntitulCompte = IntitulCompte;
       this._SoldeCredit = SoldeCredit;
-      this._SoldeDebit = SoldeDebit;   
+      this._SoldeDebit = SoldeDebit;
     }
-    get numcompte() {
-      this._NumCompte;
+    get soldedebit() {
+      return this._SoldeDebit;
     }
-    set numcompte(NumCompte) {
-      this._NumCompte = NumCompte;
-      return this;
-    }
-    get intitulcompte() {
-      this._IntitulCompte;
-    }
-    set intitulcompte(IntitulCompte) {
-      this._IntitulCompte = IntitulCompte;
-      return this;
-    }
-    get soldecredit() {
-      this._SoldeCredit;
-    }
-    set soldecredit(SoldeCredit) {
-      this._SoldeCredit = SoldeCredit;
+    set soldedebit(SoldeDebit) {
+      this._SoldeDebit = SoldeDebit;
       return this;
     }
     get comptenumber() {
-      this._CompteNumber;
+      return this._CompteNumber;
     }
     set comptenumber(CompteNumber) {
       this._CompteNumber = CompteNumber;
       return this;
     }
-    get soldedebit() {
-      this._SoldeDebit;
+    get soldecredit() {
+      return this._SoldeCredit;
     }
-    set soldedebit(SoldeDebit) {
-      this._SoldeDebit = SoldeDebit;
+    set soldecredit(SoldeCredit) {
+      this._SoldeCredit = SoldeCredit;
       return this;
-    }  
-    
+    }
+    get intitulcompte() {
+      return this._IntitulCompte;
+    }
+    set intitulcompte(IntitulCompte) {
+      this._IntitulCompte = IntitulCompte;
+      return this;
+    }
+    get numcompte() {
+      return this._NumCompte;
+    }
+    set numcompte(NumCompte) {
+      this._NumCompte = NumCompte;
+      return this;
+    }
+
+
     get  CompteNumber() {
       return  replaceString(this.NumCompte);
-    }   
-    set CompteNumber(v)  {    
+    }
+    set CompteNumber(v)  {
       this._comptenumber =replaceString(v);
       return this;
     }
@@ -66,17 +67,17 @@ const nstbalanceinputClass =(function(){
         "SoldeCredit": this.soldedebit,
         "CompteNumber":this.CompteNumber
     }
-  } */ 
-} 
+  } */
+}
 function toinit(){
   return {
     nstbalanceinputClass: nstbalanceinputClass
-  }
+  };
 }
 return {
   toinit:toinit
-}
-})()
+};
+})();
 module.exports={
   toinit:nstbalanceinputClass.toinit
-}
+};

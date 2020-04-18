@@ -1,13 +1,4 @@
-const nstbalanceSchema = (function () {
-  function toinit() {
-    return {
-      nstBalanceType: nstBalanceType,
-    }
-  }
-  return {
-    toinit: toinit
-  }
-})()
-module.exports = {
-  toinit: nstbalanceSchema.toinit
-}
+const graphql = require('graphql');
+const { GraphQLObjectType,  GraphQLString,  GraphQLID} = graphql;
+const {oReference} = require('../../modelsSchema/index').toinit();
+// const {OreferenceType}= require('../oreference/oreferenceSchema').toinit();

@@ -8,8 +8,8 @@ const otableauposte = (function(){
 	otableauPosteSchema.loadClass(otableauposteClass);
 	otableauPosteSchema.plugin(auditEntityPlugin);
 
-	  otableauPosteSchema.virtual('ostableauposte')
-	  .set(function(ostableauposte){
+	otableauPosteSchema.virtual('ostableauposte')
+	.set(function(ostableauposte){
 		this.OstableauposteKey = ostableauposte;
 		}).get(function() {
 		return this.OstableauposteKey;
@@ -30,13 +30,13 @@ const otableauposte = (function(){
 function toinit(){
 	return {
 		oTableauPoste:oTableauPoste
-	}
+	};
 
 }
 return {
 toinit:toinit
-}
+};
 })();
 module.exports={
 	toinit: otableauposte.toinit
-}
+};

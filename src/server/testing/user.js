@@ -7,25 +7,11 @@ const {getapistreamdata$,getapiObserver, getapiCreateObserver,getapidata}=requir
 
 const {getall,index$} = require('../features/user/index').toinit();
 //const {toseedarray, getAll, getusers$, result$} = require('./index').toinit();
-require('../config/ohadb').connectserver()
+require('../config/ohadb').connectserver();
 const getdata= index$;
 let result;
- return  getapistreamdata$(getdata).subscribe(console.log(getapidata())
- /*   {
-      ///console.log(x)
+   getapistreamdata$(getdata).subscribe(console.log(getapidata())
 
-      next: function(x){
-        return x;
-      } ,
-      error: function(err)
-      {
-        return (new Error(`Observer got an error:  ${err}`));
-      } ,
-
-      complete: function()  {
-      return `Observer got a complete notification ` // console.log('Observer got a complete notification');
-      }
-  } */
   );
 
 

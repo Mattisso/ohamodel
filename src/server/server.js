@@ -1,7 +1,7 @@
-"use strict"
+"use strict";
 const dotenv= require('dotenv');
 const express = require('express');
-// const graphqlHTTP = require('express-graphql');
+//const graphqlHTTP = require('express-graphql');
 const {ApolloServer}= require('apollo-server-express');
 const path= require('path');
 const _path= '/graphql';

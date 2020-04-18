@@ -10,7 +10,7 @@ const {getloadnstbalancedatas$ } = require('../features/nstbalance/nstbalanceRep
 require('../config/ohadb').connectserver();
 // const {toseedoexercompta} = require('../features/oexerccompta/oexercomptaSeed').toinit();
 
-const getoreportdetail$ = getloadnstbalancedatas$
+const getoreportdetail$ = getloadnstbalancedatas$;
 //getstreamdata$(getoreportdetail$())
 getoreportdetail$.subscribe(odagetObserver());
 

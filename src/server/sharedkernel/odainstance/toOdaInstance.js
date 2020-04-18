@@ -10,7 +10,7 @@ const toOdaInstance = (function () {
     if (!hasitem(item, arr))
     arr.push(item);
     return arr;
-    }
+    };
   const tocreateObject = function (model, o, fn) {
     if (isValid(o) === true && isValid(fn) == true) {
       return new model(fn(o));
@@ -20,7 +20,7 @@ const toOdaInstance = (function () {
       return new Error(
 ` missing some arguments`);
     }
-  };  
+  };
   const tocreateObjFromArray = function (model, arr, f) {
     let newArray = [];
     forEach(arr, function (o) {
@@ -46,7 +46,7 @@ const toOdaInstance = (function () {
       return new Error(
 ` missing some arguments`);
     }
-  }
+  };
 
   const tocreateChildObject = function (model, o, requestparamid, fn) {
     if (isValid(o) === true && isValid(requestparamid) === true && isValid(fn) == true) {
@@ -67,7 +67,7 @@ const toOdaInstance = (function () {
     });
     return newArray;
   };
-  
+
   const toapicreateChildinstance = function (model, argone, requestparamid, fn) {
     if (isValid(requestparamid) === true) {
       return tocreatechildinstance(model, argone, requestparamid, fn);
@@ -75,7 +75,7 @@ const toOdaInstance = (function () {
       return new Error(
 ` missing some arguments`);
     }
-  }
+  };
   const tocreatechildinstance = function (model, argone, requestparamid, fn) {
     if (inArray(argone) === false) {
       return tocreateChildObject(model, argone, requestparamid, fn);
@@ -135,8 +135,8 @@ const toOdaInstance = (function () {
       return toupdateChildObjFromArray(argone, requestparamid, f);
     }
   };
- 
- 
+
+
 
 
   const toapiUpdateInstance = function (argone, fn) {
@@ -146,7 +146,7 @@ const toOdaInstance = (function () {
       return new Error(
 ` missing some arguments`);
     }
-  }
+  };
 
   const toapiUpdateChildInstance = function (argone, requestparamid, fn) {
     if (isValid(requestparamid) === true) {
@@ -155,7 +155,7 @@ const toOdaInstance = (function () {
       return new Error(
 ` missing some arguments`);
     }
-  }
+  };
   function toinit() {
     return {
       //  toupdateinstance: toupdateinstance,

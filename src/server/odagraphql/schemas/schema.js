@@ -1,4 +1,4 @@
-const{UserRootQuery } =require('./userQuery').toinit();
+/* const{UserRootQuery } =require('./userQuery').toinit();
 const{createUserMutation} =require('./userMutation').toinit();
 const {GraphQLSchema} = require('graphql');
 
@@ -16,3 +16,4 @@ return {
 module.exports={
     toinit:schema.toinit
 };
+ */

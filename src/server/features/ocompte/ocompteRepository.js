@@ -22,7 +22,7 @@ const ocompteRepository = (function () {
   const getByid$ = function (requestparamid) {
     return getodaByid$(Ocompte, togetocompte, requestparamid, getobjOcompte);
   };
-  const toCreateOComptedata$ = function (requestBody,) {
+  const toCreateOComptedata$ = function (requestBody) {
     return svctoInitCustomInstance$(Ocompte, requestBody,toInitializeFinalInstance);
   };
   const insertOCompte$ = function (arr) {

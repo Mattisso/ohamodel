@@ -1,10 +1,10 @@
-const graphql = require('graphql');
+/* const graphql = require('graphql');
 const {oCompte, oReference, User} = require('../../omodels/modelsSchema/index').toinit();
 const {UserType}=require('../schemas/userSchema').toinit();
 const {OcompteType, OreferenceType}=require('../schemas/ocompteSchema').toinit();
 
 const {GraphQLObjectType,GraphQLString,GraphQLID
-    ,GraphQLSchema,GraphQLList, GraphQLNonNull} = graphql;
+    ,GraphQLSchema,GraphQLList, GraphQLNonNull} = graphql; */
 /* 
 const UserType = new GraphQLObjectType({
     name: 'User',
@@ -45,7 +45,7 @@ const OcompteType = new GraphQLObjectType({
 
     })
 });
-*/
+*//* 
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
@@ -182,3 +182,4 @@ module.exports = new GraphQLSchema({
     query: RootQuery,
     mutation:Mutation
 });
+ */

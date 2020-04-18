@@ -1,4 +1,4 @@
-
+/* 
 const {GraphQLObjectType, GraphQLString, GraphQLID,  GraphQLList, GraphQLNonNull,  GraphQLInt, GraphQLBoolean} = require('graphql');
 //const {User} = require('../../omodels/modelsSchema/index').toinit();
 
@@ -446,3 +446,4 @@ const objectSchemaTypes = (function () {
 module.exports = {
 	toinit: objectSchemaTypes.toinit
 }
+ */

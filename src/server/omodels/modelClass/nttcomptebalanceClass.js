@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 const mongoose = require('mongoose'),
 ObjectId = mongoose.SchemaTypes.ObjectId;
 //const {toapicreateinstance}=require('../../sharedkernel/odainstance/toOdaInstance').toinit()
@@ -41,7 +41,7 @@ const nttcomptebalanceClass=(function(){
 			0
 		}
 
-	}
+	};
 
 	
 class nttcomptebalanceClass {

@@ -1,4 +1,4 @@
-const graphql = require('graphql');
+/* const graphql = require('graphql');
 const {GraphQLObjectType,GraphQLString,GraphQLID,GraphQLList} = graphql;
 const ocompteSchema=(function(){
 
@@ -60,4 +60,4 @@ const OreferenceType = new GraphQLObjectType({
     })()
     module.exports={
       toinit:ocompteSchema.toinit
-    }
+    } */

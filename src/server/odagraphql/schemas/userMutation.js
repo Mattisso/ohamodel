@@ -1,4 +1,4 @@
-const {UserType}=require('./userSchema').toinit();
+/* const {UserType}=require('./userSchema').toinit();
 const graphql = require('graphql');
 const { GraphQLObjectType,  GraphQLString,   GraphQLNonNull} = graphql;
 const {User} = require('../../omodels/modelsSchema/index').toinit();
@@ -46,3 +46,4 @@ toinit:toinit
 module.exports = {
   toinit: userMutation.toinit
 };
+ */

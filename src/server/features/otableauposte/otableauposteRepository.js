@@ -39,7 +39,7 @@ const toCreateotableaupostedata$ = function (requestBody) {
 const insertotableauposte$ = function (arr) {
  return svcodasave$(arr);
 };
-const toUpdateotableaupostedata$ = function (requestBody,) {
+const toUpdateotableaupostedata$ = function (requestBody) {
  return svctoUpdateInstance$(requestBody, toUpdateOstableauposte);
 };
 

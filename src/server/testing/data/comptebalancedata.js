@@ -7,7 +7,7 @@ const comptebalancedata = (function () {
     "OreferenceKey": "5aee0efe23b8a2227003e6ef",
     "nttcomptebalancedetails": [
       {
-       
+
         "IntitulCompte": "Ninivie",
         "NumCompte": "767676",
         "SoldeDebit": 44829579
@@ -37,9 +37,9 @@ const comptebalancedata = (function () {
     ]
 
   };
-  const editData = 
+  const editData =
     {"id":"5e0550a0136de77cec5295fe","OreferenceKey":"5dbac518aa1fc24648be9879","OtableauposteKey":"5dbac521aa1fc24648be9ae2","OexercComptaKey":"5dbac506aa1fc24648be97d1","totalSoldeCredit":397975679,"totalSoldeDebit":0,"CreatedOn":"2019-12-27T00:30:24.829Z","ModifiedOn":"2019-12-27T00:30:24.829Z","CreatedBy":"Admin","ModifiedBy":"Admin","nttcomptebalancedetails":[{"nttcomptebalanceDetailKey":"5e0550a3136de77cec529622"},{"nttcomptebalanceDetailKey":"5e0550a3136de77cec529623"},{"nttcomptebalanceDetailKey":"5e0550a3136de77cec529624"},{"nttcomptebalanceDetailKey":"5e0550a3136de77cec529625"},{"nttcomptebalanceDetailKey":"5e0550a3136de77cec529626"},{"nttcomptebalanceDetailKey":"5e0550a3136de77cec529627"},{"nttcomptebalanceDetailKey":"5e0550a3136de77cec529628"},{"nttcomptebalanceDetailKey":"5e0550a3136de77cec529629"},
-  
+
    {
 
     "IntitulCompte": "mensahvi",
@@ -54,7 +54,7 @@ const comptebalancedata = (function () {
     "SoldeDebit": 65643312,
     "SoldeCredit": 0,
   } ],"fullDescription":"CA - Capital","tableauLongName":"Bilan Passif","oExercComptaId":"2006"
-}
+};
 
   const arrcomptebalanceData= [
     {

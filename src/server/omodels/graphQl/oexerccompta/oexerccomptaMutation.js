@@ -5,7 +5,7 @@ const {oExercCompta} = require('../../modelsSchema/index').toinit();
 
 
 
-const OexerccomptaMutation = (function () {
+const oexerccomptaMutation = (function () {
 	const toCreateOexerccompta = {
 		type: oExercComptaType,
 		args: {},
@@ -42,5 +42,5 @@ const OexerccomptaMutation = (function () {
 	};
 })();
 module.exports = {
-	toinit: OexerccomptaMutation.toinit
+	toinit: oexerccomptaMutation.toinit
 };

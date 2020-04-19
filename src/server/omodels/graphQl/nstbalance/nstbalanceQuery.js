@@ -16,23 +16,23 @@ const nstbalanceQuery = (function () {
 		resolve(parent, args, context, info) {
 			return nstBalance.findById(args.id);
 		}
-	}
+	};
 	const getnstbalances = {
 		type: new GraphQLList(nstBalanceType),
 		resolve(parent, args, context, info) {
 			return nstBalance.find({});
 		}
-	}
+	};
 	function toinit() {
 		return {
 			getnstbalance: getnstbalance,
 			getnstbalances: getnstbalances,
-		}
+		};
 	}
 	return {
 		toinit: toinit
-	}
+	};
 })();
 module.exports = {
 	toinit: nstbalanceQuery.toinit
-}
+};

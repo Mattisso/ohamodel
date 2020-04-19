@@ -88,9 +88,9 @@ return {
   } ,
 
   complete: function()  {
-  return `Observer got a complete notification ` // console.log('Observer got a complete notification');
+  return `Observer got a complete notification `; // console.log('Observer got a complete notification');
   }
-}
+};
 
   };
    const getapideleteObserver = function (req, res) {

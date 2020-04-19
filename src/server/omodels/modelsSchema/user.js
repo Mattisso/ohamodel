@@ -174,13 +174,13 @@ UserSchema.statics.getAuthenticated = function (username, password, cb) {
       return {
         User: User
       //  UserType:UserType
-      }
+      };
     }
     return {
       toinit: toinit
-    }
+    };
   })();
   module.exports = {
     toinit: user.toinit
-  }
+  };
 

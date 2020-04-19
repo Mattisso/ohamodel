@@ -10,7 +10,7 @@ const NstbalanceMutation = (function () {
 			let nstbalance = new nstBalance({});
 			return nstbalance.save();
 		}
-	}
+	};
 	const toUpdateNstbalance = {
 		type: nstBalanceType,
 		args: {},
@@ -18,27 +18,27 @@ const NstbalanceMutation = (function () {
 			let nstbalance = new nstBalance({});
 			return nstbalance.save();
 		}
-	}
-	const toCreateNstbalance = {
+	};
+	const toDeleteNstbalance = {
 		type: nstBalanceType,
 		args: {},
 		resolve(parent, args, context, info) {
 			let nstbalance = new nstBalance({});
 			return nstbalance.save();
 		}
-	}
+	};
 
 	function toinit() {
 		return {
 			toCreateNstbalance: toCreateNstbalance,
 			toUpdateNstbalance: toUpdateNstbalance,
 			toDeleteNstbalance: toDeleteNstbalance,
-		}
+		};
 	}
 	return {
 		toinit: toinit
-	}
-})()
+	};
+})();
 module.exports = {
 	toinit: NstbalanceMutation.toinit
-}
+};

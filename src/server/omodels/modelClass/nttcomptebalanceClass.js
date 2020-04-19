@@ -43,10 +43,10 @@ const nttcomptebalanceClass=(function(){
 
 	};
 
-	
+
 class nttcomptebalanceClass {
-	
-	constructor(OexercComptaKey, OtableauposteKey, OreferenceKey, totalSoldeDebit = 0, totalSoldeCredit = 0, amntNet = 0) {
+
+	constructor(OexercComptaKey, OtableauposteKey, OreferenceKey, totalSoldeDebit = 0, totalSoldeCredit = 0, amntNet = 0,nttcomptebalancedetails=[]) {
 
 		this._OexercComptaKey = OexercComptaKey;
 		this._OtableauposteKey = OtableauposteKey;
@@ -104,7 +104,7 @@ class nttcomptebalanceClass {
 		return this;
 	}
 
-	 addBalanceDetail(obj) {
+	addBalanceDetail(obj) {
 				return  getdetailsData.push(
 			({
 				"nttcomptebalanceKey":this.id,
@@ -112,48 +112,48 @@ class nttcomptebalanceClass {
 				"IntitulCompte": obj.IntitulCompte,
 				"SoldeCredit": replaceNullToZero(obj.SoldeCredit),
 				"SoldeDebit": replaceNullToZero(obj.SoldeDebit)
-			}) 
-			
+			})
+
 				);
-		};
-		
+		}
+
 	getData() {
 			//const odasum =getodaAggreateData(nttcomptebalancedetails);
 			//console.log(getdetailsData)
 			return {
-				
+
 				"isActive": this.isActive,
 				'_id': this._id,
 				'OexercComptaKey': this.OexercComptaKey,
 				'OtableauposteKey': this.OtableauposteKey,
 				'OreferenceKey': this.OreferenceKey,
-				'totalSoldeDebit': getTotalSoldedebit(getdetailsData), 
+				'totalSoldeDebit': getTotalSoldedebit(getdetailsData),
 				'totalSoldeCredit': getTotalSoldecredit( getdetailsData),
-					'DetailCount': getTotalCount(odaremoveDupnumcompte(getdetailsData)), 
-				'id': this.id,    
+					'DetailCount': getTotalCount(odaremoveDupnumcompte(getdetailsData)),
+				'id': this.id,
 				'nttcomptebalancedetails': odaremoveDupnumcompte(getdetailsData.slice())
 			};
-		};
- 
+		}
+
 get nttcomptebalancedetails() {
 		return this._nttcomptebalancedetails;
-	} 
+	}
 	set nttcomptebalancedetails(nttcomptebalancedetails) {
 		this._nttcomptebalancedetails = nttcomptebalancedetails?0: nttcomptebalancedetails;
 		return this;
-	}  
+	}
 
-	
+
 hasitem (obj) {
   return this.nttcomptebalancedetails.indexOf(obj) !== -1;
-};
+}
 
-removeItem (obj) {
+/* removeItem (obj) {
   var itemIndex = nttcomptebalancedetails.indexOf(obj);
   if (itemIndex !== -1) {
     return   nttcomptebalancedetails.splice(itemIndex, 1);
   }
-};
+}; */
 
 addcomptebalancedetail() {
 return   getdetailsData.push({
@@ -163,7 +163,7 @@ return   getdetailsData.push({
     "SoldeDebit": "",
     "SoldeCredit":""
   });
-};
+}
 }
 
 
@@ -173,12 +173,12 @@ return   getdetailsData.push({
             modelObject: modelObject,
             nttcomptebalanceClass: nttcomptebalanceClass,
          //   toInitCompteBalanceInstance:toInitCompteBalanceInstance
-        }
+        };
     }
     return {
         toinit:toinit
-    }
+    };
 })();
 module.exports={
     toinit:nttcomptebalanceClass.toinit
-}
+};

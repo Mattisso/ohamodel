@@ -10,7 +10,7 @@ const getRootSubscriptions=  {
   toNewUser:toNewUser
 
 
-}
+};
 
 
 function toinit(){
@@ -18,12 +18,12 @@ function toinit(){
     getRootSubscriptions:getRootSubscriptions
    // getmutation:getmutation
 
-  }
+  };
 }
 return {
   toinit:toinit
-}
-})()
+};
+})();
 module.exports={
   toinit:subscriptions.toinit
-}
+};

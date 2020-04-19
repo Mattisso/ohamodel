@@ -22,11 +22,11 @@ const StaticOexercice = (function () {
       'ExercicePrev': getPreviousYearObject.oExercComptaId,
       'OexercComptaPrevKey': getPreviousYearObject.id
     };
-    const finalobj = _.assign({}, currentYearObj, PreviousYearObj)
+    const finalobj = _.assign({}, currentYearObj, PreviousYearObj);
       return finalobj;
-  
+
   };
-  
+
   const toOexercice= function (o) {
    return ({
     "oExerciceEncour": o.oExerciceEncour,
@@ -34,15 +34,15 @@ const StaticOexercice = (function () {
     "OexercComptaEncourKey":  o.OexercComptaEncourKey,
     "OexercComptaPrevKey":o.OexercComptaPrevKey
    });
-  }; 
+  };
 
   let toCreateModel = null;
   function BuildOexercice(model,body, fn) {
     let toacreateinstance=fn;
-    toCreateModel =toacreateinstance(model,body,toOexercice);    
+    toCreateModel =toacreateinstance(model,body,toOexercice);
     const arr = addItem(toCreateModel);
     return odareduceArray(arr);
-  }            
+  }
         function toInitOexerciceInstance(model,body,fn) {
           const getCreatedModel = BuildOexercice(model,body,fn);
           return getCreatedModel.slice();

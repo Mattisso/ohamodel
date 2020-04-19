@@ -8,7 +8,7 @@ const { togetolevel, getobjolevel } = require('../olevel/staticOlevel').toinit()
 const { Observable } = require('rxjs');
 const { getodaindex$, odaindex, getodaByid$ } = require('../../SharedKernel/odaservice/dataservices').toinit();
 const { svcodasave$, svcodaApiDel$, svcodaSearchBy } = require('../../SharedKernel/odaservice/odaservice').toinit();
-const {svcodasave$,svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$,svcapiupdate$}=require('../../sharedkernel/odainstance/index').toinit();
+const {svctoUpdateInstance$, toInitCustomInstance,svctoInitCustomInstance$,svcapiupdate$}=require('../../sharedkernel/odainstance/index').toinit();
 const oreportdetailRepository = (function () {
 
   const toInitializeFinalInstance = function (model, body) {
@@ -38,7 +38,7 @@ const oreportdetailRepository = (function () {
     return svcodasave$(arr);
   };
   const toUpdateoreportdetaildata$ = function (requestBody) {
-    return svctoUpdateInstance$(requestBody,requestparamid, toUpdateoreportdetail);
+    return svctoUpdateInstance$(requestBody, toUpdateoreportdetail);
   };
 
   const editoreportdetail$ = function (body, requestparamid) {

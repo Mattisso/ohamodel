@@ -3,7 +3,7 @@
 const graphql = require('graphql');
 const {nstBalance} = require('../../modelsSchema/index').toinit();
 const {nstBalanceType}=require('./nstbalanceSchema').toinit();
-const { GraphQLObjectType,  GraphQLID,  GraphQLList} = graphql;
+const { GraphQLID,  GraphQLList} = graphql;
 
 const nstbalanceQuery = (function () {
 	const getnstbalance = {

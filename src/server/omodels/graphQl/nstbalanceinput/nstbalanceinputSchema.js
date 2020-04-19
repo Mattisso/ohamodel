@@ -12,7 +12,7 @@ const nstbalanceinputSchema=(function(){
         type: GraphQLInt
       },
       CompteNumber: {
-        type: GraphQLInt
+        type: GraphQLString
       },
       SoldeCredit: {
         type: GraphQLInt

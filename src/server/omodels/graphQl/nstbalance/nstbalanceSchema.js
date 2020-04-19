@@ -1,9 +1,6 @@
 const graphql = require('graphql');
-const { GraphQLObjectType,  GraphQLString,  GraphQLID} = graphql;
-const {oReference} = require('../../modelsSchema/index').toinit();
-// const {OreferenceType}= require('../oreference/oreferenceSchema').toinit();
+const { GraphQLObjectType,  GraphQLString,  GraphQLID, GraphQLInt} = graphql;
 const nstbalanceSchema = (function () {
-
 	const nstBalanceType = new GraphQLObjectType({
 			name: 'nstBalance',
 			fields: () => ({
@@ -11,10 +8,10 @@ const nstbalanceSchema = (function () {
 					type: GraphQLID
 				},
 				SoldeCredit: {
-					type: GraphQLString
+					type: GraphQLInt
 				},
 				SoldeDebit: {
-					type: GraphQLString
+					type: GraphQLInt
 				},
 				NumCompte: {
 					type: GraphQLString

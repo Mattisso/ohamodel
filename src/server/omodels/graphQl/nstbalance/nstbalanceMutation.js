@@ -2,8 +2,9 @@ const {nstBalanceType}=require('./nstbalanceSchema').toinit();
 const graphql = require('graphql');
 const { GraphQLObjectType,  GraphQLString,   GraphQLNonNull} = graphql;
 const {nstBalance} = require('../../modelsSchema/index').toinit();
-const NstbalanceMutation = (function () {
-	const toCreateNstbalance = {
+const {tonttbalance}=require('../../../features/nttbalance/staticNttbalance').toinit();
+const nstbalanceMutation = (function () {
+	const toCreateNstBalance = {
 		type: nstBalanceType,
 		args: {},
 		resolve(parent, args, context, info) {
@@ -11,7 +12,7 @@ const NstbalanceMutation = (function () {
 			return nstbalance.save();
 		}
 	};
-	const toUpdateNstbalance = {
+	const toUpdateNstBalance = {
 		type: nstBalanceType,
 		args: {},
 		resolve(parent, args, context, info) {
@@ -19,7 +20,7 @@ const NstbalanceMutation = (function () {
 			return nstbalance.save();
 		}
 	};
-	const toDeleteNstbalance = {
+	const toDeleteNstBalance = {
 		type: nstBalanceType,
 		args: {},
 		resolve(parent, args, context, info) {
@@ -27,12 +28,11 @@ const NstbalanceMutation = (function () {
 			return nstbalance.save();
 		}
 	};
-
 	function toinit() {
 		return {
-			toCreateNstbalance: toCreateNstbalance,
-			toUpdateNstbalance: toUpdateNstbalance,
-			toDeleteNstbalance: toDeleteNstbalance,
+			toCreateNstBalance: toCreateNstBalance,
+			toUpdateNstBalance: toUpdateNstBalance,
+			toDeleteNstBalance: toDeleteNstBalance,
 		};
 	}
 	return {
@@ -40,5 +40,5 @@ const NstbalanceMutation = (function () {
 	};
 })();
 module.exports = {
-	toinit: NstbalanceMutation.toinit
+	toinit: nstbalanceMutation.toinit
 };

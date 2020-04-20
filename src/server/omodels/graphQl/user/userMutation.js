@@ -15,13 +15,7 @@ const userMutation=(function(){
       },
       password: {
         type: GraphQLString
-      },
-      loginAttempts: {
-        type: GraphQLString
-      },
-      lockUntil: {
-        type: GraphQLString
-      },
+      }    
     },
     resolve(parent, args, context, info) {
       let user = new User({ username: args.username,

@@ -150,24 +150,24 @@ export type NstBalance = {
 export type NstBalanceInput = {
    __typename?: 'nstBalanceInput';
   id?: Maybe<Scalars['ID']>;
+  NumCompte: Scalars['String'];
+  IntitulCompte: Scalars['String'];
   SoldeDebit?: Maybe<Scalars['Int']>;
   CompteNumber?: Maybe<Scalars['String']>;
   SoldeCredit?: Maybe<Scalars['Int']>;
-  IntitulCompte?: Maybe<Scalars['String']>;
-  NumCompte?: Maybe<Scalars['String']>;
 };
 
 export type NttBalance = {
    __typename?: 'nttBalance';
   id?: Maybe<Scalars['ID']>;
-  SoldeCredit?: Maybe<Scalars['Int']>;
-  SoldeDebit?: Maybe<Scalars['Int']>;
-  NumCompte?: Maybe<Scalars['String']>;
-  IntitulCompte?: Maybe<Scalars['String']>;
-  OcompteKey?: Maybe<Scalars['String']>;
-  OreferenceKey?: Maybe<Scalars['String']>;
   OtableauposteKey?: Maybe<Scalars['String']>;
   OexercComptaKey?: Maybe<Scalars['String']>;
+  OcompteKey?: Maybe<Scalars['String']>;
+  OreferenceKey?: Maybe<Scalars['String']>;
+  NumCompte?: Maybe<Scalars['String']>;
+  IntitulCompte?: Maybe<Scalars['String']>;
+  SoldeDebit?: Maybe<Scalars['Int']>;
+  SoldeCredit?: Maybe<Scalars['Int']>;
 };
 
 export type NttCompteBalance = {
@@ -243,9 +243,10 @@ export type Olevel = {
 export type OReference = {
    __typename?: 'oReference';
   id?: Maybe<Scalars['ID']>;
-  RefCode?: Maybe<Scalars['String']>;
   Description?: Maybe<Scalars['String']>;
   fullDescription?: Maybe<Scalars['String']>;
+  RefCode?: Maybe<Scalars['String']>;
+  ocomptes?: Maybe<Scalars['String']>;
 };
 
 export type OReportDetail = {
@@ -305,6 +306,87 @@ export type Mutation = {
   toCreateNstBalance?: Maybe<NstBalance>;
   toUpdateNstBalance?: Maybe<NstBalance>;
   toDeleteNstBalance?: Maybe<NstBalance>;
+  toCreateNstBalanceInput?: Maybe<NstBalanceInput>;
+  toUpdateNstBalanceInput?: Maybe<NstBalanceInput>;
+  toDeleteNstBalanceInput?: Maybe<NstBalanceInput>;
+  toCreateNttBalance?: Maybe<NttBalance>;
+  toUpdateNttBalance?: Maybe<NttBalance>;
+  toDeleteNttBalance?: Maybe<NttBalance>;
+  toCreateNttCompteBalance?: Maybe<NttCompteBalance>;
+  toUpdateNttCompteBalance?: Maybe<NttCompteBalance>;
+  toDeleteNttCompteBalance?: Maybe<NttCompteBalance>;
+  toCreateNttCompteBalanceDetail?: Maybe<NttCompteBalanceDetail>;
+  toUpdateNttCompteBalanceDetail?: Maybe<NttCompteBalanceDetail>;
+  toDeleteNttCompteBalanceDetail?: Maybe<NttCompteBalanceDetail>;
+  toCreateOcompte?: Maybe<Ocompte>;
+  toUpdateOcompte?: Maybe<Ocompte>;
+  toDeleteOcompte?: Maybe<Ocompte>;
+  toCreateOcompteReference?: Maybe<OcompteReference>;
+  toUpdateOcompteReference?: Maybe<OcompteReference>;
+  toDeleteOcompteReference?: Maybe<OcompteReference>;
+  toCreateOExercCompta?: Maybe<OExercCompta>;
+  toUpdateOExercCompta?: Maybe<OExercCompta>;
+  toDeleteOExercCompta?: Maybe<OExercCompta>;
+  toCreateOExercice?: Maybe<OExercice>;
+  toUpdateOExercice?: Maybe<OExercice>;
+  toDeleteOExercice?: Maybe<OExercice>;
+  toCreateOlevel?: Maybe<Olevel>;
+  toUpdateOlevel?: Maybe<Olevel>;
+  toDeleteOlevel?: Maybe<Olevel>;
+  toCreateOReference?: Maybe<OReference>;
+  toUpdateOReference?: Maybe<OReference>;
+  toDeleteOReference?: Maybe<OReference>;
+  toCreateOReportDetail?: Maybe<OReportDetail>;
+  toUpdateOReportDetail?: Maybe<OReportDetail>;
+  toDeleteOReportDetail?: Maybe<OReportDetail>;
+  toCreateOReportHeader?: Maybe<OReportHeader>;
+  toUpdateOReportHeader?: Maybe<OReportHeader>;
+  toDeleteOReportHeader?: Maybe<OReportHeader>;
+  toCreateOStableauPoste?: Maybe<OStableauPoste>;
+  toUpdateOStableauPoste?: Maybe<OStableauPoste>;
+  toDeleteOStableauPoste?: Maybe<OStableauPoste>;
+  toCreateOStblArea?: Maybe<OStblArea>;
+  toUpdateOStblArea?: Maybe<OStblArea>;
+  toDeleteOStblArea?: Maybe<OStblArea>;
+  toCreateOTableauPoste?: Maybe<OTableauPoste>;
+  toUpdateOTableauPoste?: Maybe<OTableauPoste>;
+  toDeleteOTableauPoste?: Maybe<OTableauPoste>;
+  toCreateUser?: Maybe<User>;
+  toUpdateUser?: Maybe<User>;
+  toDeleteUser?: Maybe<User>;
+};
+
+
+export type MutationToCreateNstBalanceInputArgs = {
+  NumCompte: Scalars['String'];
+  IntitulCompte: Scalars['String'];
+  SoldeCredit?: Maybe<Scalars['Int']>;
+  SoldeDebit?: Maybe<Scalars['Int']>;
+};
+
+
+export type MutationToUpdateNstBalanceInputArgs = {
+  id?: Maybe<Scalars['ID']>;
+  NumCompte: Scalars['String'];
+  IntitulCompte: Scalars['String'];
+  SoldeCredit?: Maybe<Scalars['Int']>;
+  SoldeDebit?: Maybe<Scalars['Int']>;
+};
+
+
+export type MutationToCreateNttCompteBalanceDetailArgs = {
+  nttcomptebalanceKey?: Maybe<Scalars['String']>;
+  NumCompte?: Maybe<Scalars['String']>;
+  IntitulCompte?: Maybe<Scalars['Int']>;
+  SoldeDebit?: Maybe<Scalars['Int']>;
+  SoldeCredit?: Maybe<Scalars['Int']>;
+};
+
+
+export type MutationToCreateUserArgs = {
+  username?: Maybe<Scalars['String']>;
+  role?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
 };
 
 export type Subscription = {

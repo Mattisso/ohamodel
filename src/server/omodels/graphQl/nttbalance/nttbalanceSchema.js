@@ -7,16 +7,10 @@ const nttbalanceSchema = (function () {
 				id: {
 					type: GraphQLID
 				},
-				SoldeCredit: {
-					type: GraphQLInt
-				},
-				SoldeDebit: {
-					type: GraphQLInt
-				},
-				NumCompte: {
+				OtableauposteKey: {
 					type: GraphQLString
 				},
-				IntitulCompte: {
+				OexercComptaKey: {
 					type: GraphQLString
 				},
 				OcompteKey: {
@@ -25,11 +19,17 @@ const nttbalanceSchema = (function () {
 				OreferenceKey: {
 					type: GraphQLString
 				},
-				OtableauposteKey: {
+				NumCompte: {
 					type: GraphQLString
 				},
-				OexercComptaKey: {
+				IntitulCompte: {
 					type: GraphQLString
+				},
+				SoldeDebit: {
+					type: GraphQLInt
+				},
+				SoldeCredit: {
+					type: GraphQLInt
 				},
 			})
 		});

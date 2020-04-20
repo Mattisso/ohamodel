@@ -4,7 +4,6 @@ const graphql = require('graphql');
 const {nttBalance} = require('../../modelsSchema/index').toinit();
 const {nttBalanceType}=require('./nttbalanceSchema').toinit();
 const { GraphQLID,  GraphQLList} = graphql;
-
 const nttbalanceQuery = (function () {
 	const getnttbalance = {
 		type: nttBalanceType,

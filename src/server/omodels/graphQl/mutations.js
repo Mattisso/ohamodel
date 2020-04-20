@@ -1,5 +1,5 @@
 const  {toCreateNstBalance,toUpdateNstBalance,toDeleteNstBalance}=require('./nstbalance/nstbalanceMutation').toinit();
-/* const  {toCreateNstBalanceInput,toUpdateNstBalanceInput,toDeleteNstBalanceInput}=require('./nstbalanceinput/nstbalanceinputMutation').toinit();
+const  {toCreateNstBalanceInput,toUpdateNstBalanceInput,toDeleteNstBalanceInput}=require('./nstbalanceinput/nstbalanceinputMutation').toinit();
 const  {toCreateNttBalance,toUpdateNttBalance,toDeleteNttBalance}=require('./nttbalance/nttbalanceMutation').toinit();
 const  {toCreateNttCompteBalance,toUpdateNttCompteBalance,toDeleteNttCompteBalance}=require('./nttcomptebalance/nttcomptebalanceMutation').toinit();
 const  {toCreateNttCompteBalanceDetail,toUpdateNttCompteBalanceDetail,toDeleteNttCompteBalanceDetail}=require('./nttcomptebalancedetail/nttcomptebalancedetailMutation').toinit();
@@ -14,13 +14,13 @@ const  {toCreateOReportHeader,toUpdateOReportHeader,toDeleteOReportHeader}=requi
 const  {toCreateOStableauPoste,toUpdateOStableauPoste,toDeleteOStableauPoste}=require('./ostableauposte/ostableauposteMutation').toinit();
 const  {toCreateOStblArea,toUpdateOStblArea,toDeleteOStblArea}=require('./ostblarea/ostblareaMutation').toinit();
 const  {toCreateOTableauPoste,toUpdateOTableauPoste,toDeleteOTableauPoste}=require('./otableauposte/otableauposteMutation').toinit();
-const  {toCreateUser,toUpdateUser,toDeleteUser}=require('./user/userMutation').toinit(); */
+const  {toCreateUser,toUpdateUser,toDeleteUser}=require('./user/userMutation').toinit();
 const mutations = (function () {
   const togetRootMutation = {
     toCreateNstBalance: toCreateNstBalance,
     toUpdateNstBalance: toUpdateNstBalance,
     toDeleteNstBalance: toDeleteNstBalance,
-    /*toCreateNstBalanceInput: toCreateNstBalanceInput,
+    toCreateNstBalanceInput: toCreateNstBalanceInput,
     toUpdateNstBalanceInput: toUpdateNstBalanceInput,
     toDeleteNstBalanceInput: toDeleteNstBalanceInput,
     toCreateNttBalance: toCreateNttBalance,
@@ -67,7 +67,7 @@ const mutations = (function () {
     toDeleteOTableauPoste: toDeleteOTableauPoste,
     toCreateUser: toCreateUser,
     toUpdateUser: toUpdateUser,
-    toDeleteUser: toDeleteUser*/
+    toDeleteUser: toDeleteUser
   };
   function toinit() {
     return {

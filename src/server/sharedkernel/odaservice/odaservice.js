@@ -16,8 +16,8 @@ const  odaservice = (function () {
     return odasave(option);
   };
 
-  const svcodaDelete=function(option) {
-    return odaDelete(option);
+  const svcodaDelete=function(model, item) {
+    return odaDelete(model, item);
   };
 
   const svcodaSearchBy=function(model,obj) {

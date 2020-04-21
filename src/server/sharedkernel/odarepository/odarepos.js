@@ -8,9 +8,7 @@ const { odaByarg} = require('../odaFiltered').toinit();
 
 const odarepos=(function(){
   function SearchByid(model, ObjParams) {
-    const getquery = model.findOne({
-        "_id": ObjParams
-      }, {});
+    const getquery = model.findById(ObjParams);
     return getquery;
   }
   const odasaveObject = function (ArgOne) {
@@ -113,11 +111,11 @@ const odarepos=(function(){
 
   };
 
-  const odaDelete = function (arr) {
-    if (inArray(arr) === false) {
-    return odaDeleteOne(arr);
-    } else if (inArray(arr) === true) {
-    return odaDeleteMany(arr);
+  const odaDelete = function (model, item) {
+    if (inArray(item) === false) {
+    return odaDeleteOne(model, item);
+    } else if (inArray(item) === true) {
+    return odaDeleteMany(model, item);
     } else {
     return;
     }

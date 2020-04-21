@@ -7,7 +7,7 @@ const { GraphQLObjectType,  GraphQLString,   GraphQLNonNull, GraphQLInt,GraphQLI
 
 const nstbalanceinputMutation = (function () {
 	const toCreateNstBalanceInput = {
-		type: nstBalanceInputType,	
+		type: nstBalanceInputType,
 		args: { 		NumCompte: {
 			type: new GraphQLNonNull(GraphQLString)
 		},
@@ -17,11 +17,11 @@ const nstbalanceinputMutation = (function () {
 		SoldeCredit: {
 			type: GraphQLInt
 		}	,
-			
+
 			SoldeDebit: {
 			type: GraphQLInt
 		}
-	
+
 	},
 		resolve(parent, args, context, info) {
 			let nstbalanceinput = new nstBalanceInput(toBalanceinput(args));
@@ -42,7 +42,7 @@ const nstbalanceinputMutation = (function () {
 		SoldeCredit: {
 			type: GraphQLInt
 		}	,
-		 SoldeDebit: {
+  SoldeDebit: {
 			type: GraphQLInt
 		}
 	},

@@ -82,6 +82,17 @@ const toInitializeInstance = (function () {
 
   };
 
+  const toapiOdaCreate = function (model,requestBody, fn) {
+      try {
+        return fn(model,requestBody);
+
+      } catch (err) {
+      return new Error(err);
+      }
+
+
+  };
+
   const toapiOdaChildCreate$ = function (model,requestBody,requestparamid, fn) {
     return Observable.create(function (observer) {
       try {
@@ -108,6 +119,10 @@ const svctoInitCustomInstance$= function(model,requestBody,fn){
 return toapiOdaCreate$(model, requestBody,fn);
 };
 
+
+const svctoInitCustomInstance= function(model,requestBody,fn){
+  return toapiOdaCreate(model, requestBody,fn);
+  };
 const svctoInitializeChildInstance$ = function (model,requestBody,requestparamid) {
   return toapiOdaChildCreate$(model, requestBody, requestparamid,toInitializeChildInstance);
 };
@@ -120,7 +135,8 @@ const svctoInitializeChildInstance$ = function (model,requestBody,requestparamid
       toapicreateChildinstance:toInitializeChildInstance,
       toapicreateinstance:toapicreateinstance,
       svctoInitCustomInstance$:svctoInitCustomInstance$,
-      toInitCustomInstance:toInitCustomInstance
+      toInitCustomInstance:toInitCustomInstance,
+      svctoInitCustomInstance:svctoInitCustomInstance
 
     };
   }

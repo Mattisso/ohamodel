@@ -3,8 +3,8 @@
 "use strict";
 const nstbalanceinputdata = (function () {
   const createData = {
-    "NumCompte": "102010",
-    "IntitulCompte": "Dotation BENIN",
+    "NumCompte": "77777",
+    "IntitulCompte": "efoe",
     "SoldeCredit": 44829579,
     "SoldeDebit": 0
   };

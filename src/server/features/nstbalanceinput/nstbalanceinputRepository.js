@@ -4,7 +4,7 @@ const async = require('async');
 const  {nstBalanceInput} = require('../../omodels/modelsSchema/index').toinit();
 const {togetnstbalanceinput, toBalanceinput,toUpdateBalanceinput, getobjBalanceinput,toInitNstBalanceinputInstance}=require('./staticNstbalanceinput').toinit();
 const {odaByarg,getodafilter} =require('../../SharedKernel/odaFiltered').toinit();
-const { svcodasave, svcodasave$, svcodaApiDel$,svcodaSearchBy}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const { svcodasave, svcodasave$, svcodaApiDel$,svcodaSearchBy,svcodaDelete}=require('../../SharedKernel/odaservice/odaservice').toinit();
 const { Observable } = require('rxjs');
 const {getAllocomptes } = require('../ocompte/index').toinit();
 const {getodaindex$, odaindex,getodaByid$,toOdaUpdate$, toOdaCreate$}=require('../../SharedKernel/odaservice/dataservices').toinit();
@@ -53,6 +53,9 @@ const nstbalanceinputRepository = (function () {
     return svcodaApiDel$(nstBalanceInput, requestparamid);
   };
 
+  const deleteBalanceInput = function (requestparamid) {
+    return svcodaDelete(nstBalanceInput, requestparamid);
+  };
   const getloadnstbalanceinputs = function (callback) {
     let _arr = [];
     return odaindex(nstBalanceInput, togetnstbalanceinput, function (err, nstbalanceinputs) {
@@ -120,6 +123,7 @@ const nstbalanceinputRepository = (function () {
       toUpdateBalanceinputdata$: toUpdateBalanceinputdata$,
       editBalanceInput$: editBalanceInput$,
       deleteBalanceInput$: deleteBalanceInput$ ,
+      deleteBalanceInput:deleteBalanceInput,
       //    toDeleteBalanceinputdata$: toDeleteBalanceinputdata$,
       odasearchby: odasearchby,
       toCreateBalanceinputdata:toCreateBalanceinputdata,

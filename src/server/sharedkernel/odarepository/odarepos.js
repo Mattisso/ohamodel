@@ -7,6 +7,12 @@ const { inArray,  isValid} = require('../odaUtility').toinit();
 const { odaByarg} = require('../odaFiltered').toinit();
 
 const odarepos=(function(){
+  function SearchByid(model, ObjParams) {
+    const getquery = model.findOne({
+        "_id": ObjParams
+      }, {});
+    return getquery;
+  }
   const odasaveObject = function (ArgOne) {
     try {
       ArgOne.save(function (err) {
@@ -50,9 +56,76 @@ const odarepos=(function(){
     return;
     }
   };
+  const odaDeleteOne = function (model, requestparamid) {
+    /// const option=('_id',requestparamid);
+      try {
+        if (isValid(requestparamid) === true) {
+          SearchByid(model, requestparamid)
+          .exec(function (err, data) {
+            if (err) {
+              return new Error(err);
+            } else {
+              data.deleteOne(function (err) {
+                if (err) {
+               return new Error(err);
+                }
+              });
+            }
+          });
+        }
+
+        setTimeout(() => {
+          return ((`item id ${JSON.stringify(requestparamid)} was  Deleted`));
+        }, 100);
+
+      } catch (err) {
+     return new Error (err);
+      }
+
+  };
+  const odaDeleteMany = function (model, ArgOne) {
+      try {
+        if (isValid(ArgOne) === true && inArray(ArgOne) === true && ArgOne.length > 0) {
+          forEach(ArgOne, function (elm) {
+            SearchByid(model, elm.id)
+            .exec(function (err, data) {
+              if (err) {
+                return new Error(err);
+              } else {
+                data.deleteOne(function (err) {
+                  if (err) {
+                    new Error(err);
+                  }
+                });
+              }
+            });
+          });
+        }
+
+        setTimeout(() => {
+          return ((` ${JSON.stringify((ArgOne.length))} records Deleted`));
+        }, 100);
+
+      } catch (err) {
+        return new Error(err);
+      }
+
+
+  };
+
+  const odaDelete = function (arr) {
+    if (inArray(arr) === false) {
+    return odaDeleteOne(arr);
+    } else if (inArray(arr) === true) {
+    return odaDeleteMany(arr);
+    } else {
+    return;
+    }
+  };
   function toinit(){
     return {
-      odasave:odasave
+      odasave:odasave,
+      odaDelete:odaDelete
     };
   }
   return {

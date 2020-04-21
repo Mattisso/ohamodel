@@ -1,7 +1,7 @@
 /* eslint-disable  no-console */
 /* eslint-disable no-unused-vars */
 
-const {getnstbalanceinputes$,getByid$,toCreateBalanceinputdata$,insertBalanceInput,editBalanceInput$,toUpdateBalanceinputdata$,deleteBalanceInput$,odasearchby,getloadnstbalanceinputs$,getloadnstbalanceinputs, toCreateBalanceinputdata, savebalanceInput} = require('./nstbalanceinputRepository').toinit();
+const {getnstbalanceinputes$,getByid$,toCreateBalanceinputdata$,insertBalanceInput,editBalanceInput$,toUpdateBalanceinputdata$,deleteBalanceInput$,odasearchby,getloadnstbalanceinputs$,getloadnstbalanceinputs, toCreateBalanceinputdata, savebalanceInput, deleteBalanceInput} = require('./nstbalanceinputRepository').toinit();
 const { concatMap } = require('rxjs/operators');
 
 
@@ -38,17 +38,17 @@ const getbyid$=function(id){
     }));
      };
 
-    /*  const deletenstbalanceinput$ = function(body) {
-      return toDeleteBalanceinputdata$(body).pipe(concatMap(function (x) {
-        return deleteBalanceInput$(x);
-      }));
-       }; */
 
        const deletenstbalanceinput$ = function(requestparamid) {
 return deleteBalanceInput$(requestparamid);
 
          };
 
+
+       const deletenstbalanceinput = function(requestparamid) {
+        return deleteBalanceInput(requestparamid);
+
+                 };
   function toinit() {
     return {
       index$:index$(),
@@ -59,7 +59,8 @@ return deleteBalanceInput$(requestparamid);
       odasearchby:odasearchBy,
       getloadnstBalanceinputs$:getloadnstBalanceinputs$(),
       getloadnstBalanceinputs:getloadnstBalanceinputs,
-      insert:insertnstbalanceinput
+      toInsert:insertnstbalanceinput,
+      toDelete:deletenstbalanceinput
 
     };
   }

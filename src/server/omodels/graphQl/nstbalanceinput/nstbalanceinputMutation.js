@@ -3,6 +3,7 @@ const {nstBalanceInput} = require('../../modelsSchema/index').toinit();
 const {toBalanceinput, toUpdateBalanceinput}=require('../../../features/nstbalanceinput/staticNstbalanceinput').toinit();
 const graphql = require('graphql');
 const { GraphQLObjectType,  GraphQLString,   GraphQLNonNull, GraphQLInt,GraphQLID} = graphql;
+const {insert}=require('../../../features/nstbalanceinput/index').toinit();
 
 
 const nstbalanceinputMutation = (function () {
@@ -24,8 +25,8 @@ const nstbalanceinputMutation = (function () {
 
 	},
 		resolve(parent, args, context, info) {
-			let nstbalanceinput = new nstBalanceInput(toBalanceinput(args));
-			return nstbalanceinput.save();
+		//	let nstbalanceinput = new nstBalanceInput(toBalanceinput(args));
+			return insert(toBalanceinput(args));
 		}
 	};
 	const toUpdateNstBalanceInput = {

@@ -1,7 +1,7 @@
 "use strict";
-const {odaupdate$, odasave$, odaseedUsersave$,odaDel$,odaLoadupdate$,odaSearchBy}=require('../odarepository/odarepository').toinit();
+const {odaupdate$, odasave$, odaseedUsersave$,odaDel$,odaSearchBy}=require('../odarepository/odarepository').toinit();
 
-const {odasave}=require('../odarepository/odarepos').toinit();
+const {odasave, odaDelete}=require('../odarepository/odarepos').toinit();
 const {odaApiBulkDel$, odaApisave$,odapiDel$}=require('../odarepository/odaApirepository').toinit();
 
 const {isValid } = require('../odaUtility').toinit();
@@ -12,9 +12,12 @@ const  odaservice = (function () {
     return odasave$(option);
   };
 
-
   const svcodasave=function(option) {
     return odasave(option);
+  };
+
+  const svcodaDelete=function(option) {
+    return odaDelete(option);
   };
 
   const svcodaSearchBy=function(model,obj) {
@@ -49,7 +52,8 @@ const  odaservice = (function () {
       svcodaApiBulkDel$:svcodaApiBulkDel$,
       svcodaApiDel$:svcodaApiDel$,
       svcodaSearchBy:svcodaSearchBy,
-      svcodasave:svcodasave
+      svcodasave:svcodasave,
+      svcodaDelete:svcodaDelete
 
     };
   }

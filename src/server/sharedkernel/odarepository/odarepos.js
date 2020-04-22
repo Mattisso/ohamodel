@@ -120,6 +120,7 @@ const odarepos=(function(){
     return;
     }
   };
+  
   function toinit(){
     return {
       odasave:odasave,

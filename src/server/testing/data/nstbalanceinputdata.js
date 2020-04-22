@@ -40,16 +40,13 @@ const nstbalanceinputdata = (function () {
   ];
 
   const editData = {
-    "id": "5cf172b4764e844eac931b80",
-    "NumCompte": "102010",
-    "IntitulCompte": "Dotation BENIN",
-    "SoldeCredit": 44829579,
+    "id": "5e9e4549afa98510c8aaed07",
+    "NumCompte": "89999",
+    "IntitulCompte": "Daniel",
+    "SoldeCredit": 200988888,
     "SoldeDebit": 0,
     "CompteNumber": "1020",
-    "CreatedOn": "2019-05-31T18:30:12.955Z",
-    "ModifiedOn": "2019-05-31T18:30:12.955Z",
-    "CreatedBy": "Admin",
-    "ModifiedBy": "Admin"
+
   };
   function toinit() {
     return {

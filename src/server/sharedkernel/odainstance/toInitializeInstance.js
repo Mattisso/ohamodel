@@ -12,10 +12,7 @@ const toInitializeInstance = (function () {
       const _getdata = toapicreateinstance(model, requestBody, fn);
         arrArg =_getdata.slice();
          return arrArg;
-     /*  return {
-        DetailCount: _getdata.length,
-        arrArg: _getdata.slice()
-      }; */
+    
     }
     else  if (inArray(requestBody) === false) {
       const _getdata = toapicreateinstance(model, requestBody, fn);
@@ -23,13 +20,11 @@ const toInitializeInstance = (function () {
         arrArg.push(_getdata);
         arrArg =arrArg.slice();
         return arrArg;
-      /*   if (isValid(arrArg.length) === true) {
-          DetailCount = arrArg.length;
-        }
-      return {
-        DetailCount: DetailCount,
-        arrArg: arrArg.slice()
-      }; */
+
+    }
+    else {
+      return new Error(
+  ` missing some arguments`);
     }
 
   }

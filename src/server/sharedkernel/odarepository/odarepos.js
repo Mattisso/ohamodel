@@ -120,11 +120,84 @@ const odarepos=(function(){
     return;
     }
   };
-  
+
+  const odaApiupdateObj = function (model, body) {
+    let _arr = [],
+    result = {};
+      try {
+        if (isValid(body) === true) {
+          SearchByid(model, body.id)
+          .exec(function (err, data) {
+            if (err) {
+              return new Error(err);
+            } else {
+              if (isValid(body) === true) {
+                result = merge(data, body);
+                result.save(function (err) {
+                  if (err) {
+                    return new Error(err);
+                  }
+                });
+              }
+            }
+          });
+          _arr.push(body);
+        }
+        setTimeout(() => {
+          return ((`Finished  in updating ${_arr.length} records`));
+        }, 100);
+
+      } catch (err) {
+       return new Error(err);
+      }
+  };
+  const odaApiupdateArray = function (model, ArgOne) {
+    let _arr = [],
+    result = {};
+      try {
+        forEach(ArgOne, function (elm) {
+          SearchByid(model, elm.id)
+          .exec(function (err, data) {
+            if (err) {
+              return new Error(err);
+            } else {
+              result = merge(data, elm);
+              result.save(function (err) {
+                if (err) {
+                  return new Error(err);
+                }
+              });
+            }
+          });
+          _arr.push(elm);
+        });
+
+        setTimeout(() => {
+          return ((`Finished  in updating ${_arr.length} out of ${JSON.stringify(ArgOne.length)||_arr.length} records`));
+        }, 100);
+
+      } catch (err) {
+        return new Error(err);
+      }
+
+  };
+  const odaApiupdate = function (model, ArgOne) {
+    if (inArray(ArgOne) === true) {
+      return odaApiupdateArray(model, ArgOne);
+    } else if (inArray(ArgOne) === false) {
+      return odaApiupdateObj(model, ArgOne);
+    } else {
+      return;
+    }
+
+  };
+
   function toinit(){
     return {
       odasave:odasave,
-      odaDelete:odaDelete
+      odaDelete:odaDelete,
+      odaApiupdate:odaApiupdate
+
     };
   }
   return {

@@ -4,7 +4,7 @@ const async = require('async');
 const  {nstBalanceInput} = require('../../omodels/modelsSchema/index').toinit();
 const {togetnstbalanceinput, toBalanceinput,toUpdateBalanceinput, getobjBalanceinput,toInitNstBalanceinputInstance}=require('./staticNstbalanceinput').toinit();
 const {odaByarg,getodafilter} =require('../../SharedKernel/odaFiltered').toinit();
-const { svcodasave, svcodasave$, svcodaApiDel$,svcodaSearchBy,svcodaDelete}=require('../../SharedKernel/odaservice/odaservice').toinit();
+const { svcodasave, svcodasave$, svcodaApiDel$,svcodaSearchBy,svcodaDelete, svcodaUpdate}=require('../../SharedKernel/odaservice/odaservice').toinit();
 const { Observable } = require('rxjs');
 const {getAllocomptes } = require('../ocompte/index').toinit();
 const {getodaindex$, odaindex,getodaByid$}=require('../../SharedKernel/odaservice/dataservices').toinit();
@@ -54,6 +54,11 @@ const nstbalanceinputRepository = (function () {
 
   const editBalanceInput$ = function (body, requestparamid) {
     return svcapiupdate$(nstBalanceInput, body, requestparamid);
+  };
+
+
+  const editBalanceInput = function (body) {
+    return svcodaUpdate(nstBalanceInput, body);
   };
   const odasearchby = function (body) {
     return svcodaSearchBy(nstBalanceInput, body);
@@ -138,7 +143,8 @@ const nstbalanceinputRepository = (function () {
       odasearchby: odasearchby,
       toCreateBalanceinputdata:toCreateBalanceinputdata,
       savebalanceInput:savebalanceInput,
-      toUpdateFinalInstance:toUpdateFinalInstance
+      toUpdateFinalInstance:toUpdateFinalInstance,
+      editBalanceInput:editBalanceInput
 
 
     };

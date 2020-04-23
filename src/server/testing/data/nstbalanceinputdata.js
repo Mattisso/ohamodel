@@ -40,9 +40,9 @@ const nstbalanceinputdata = (function () {
   ];
 
   const editData = {
-    "id": "5e9e4549afa98510c8aaed07",
+    "id": "5e9e454cafa98510c8aaed08",
     "NumCompte": "89999",
-    "IntitulCompte": "Daniel",
+    "IntitulCompte": "cyrille",
     "SoldeCredit": 200988888,
     "SoldeDebit": 0,
     "CompteNumber": "1020",

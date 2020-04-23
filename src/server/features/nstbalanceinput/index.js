@@ -4,7 +4,7 @@ const { combineLatest, Observable, pipe, concat } = require('rxjs');
 const  { concatMap, map  } =require('rxjs/operators');
 const {result$} =require('./LoadNstbalanceinput').toinit();
 // const {getloadnstbalanceinputs$} =require('./nstbalanceinputRepository').toinit();
-const {index$,getbyid$,insert$,update$,delete$,odasearchby,getloadnstBalanceinputs$, toInsert, toDelete} =require('./nstbalanceinputCtrl').toinit();
+const {index$,getbyid$,insert$,update$,delete$,odasearchby,getloadnstBalanceinputs$, toInsert, toDelete, toUpdate} =require('./nstbalanceinputCtrl').toinit();
 
 var index = (function () {
 
@@ -21,7 +21,8 @@ var index = (function () {
       odasearchby:odasearchby,
       getloadnstBalanceinputs$:getloadnstBalanceinputs$,
       toInsert:toInsert,
-      toDelete:toDelete
+      toDelete:toDelete,
+      toUpdate:toUpdate
 
     };
   }

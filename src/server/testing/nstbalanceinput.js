@@ -5,7 +5,7 @@ const {nstBalanceInput}=require('../omodels/modelsSchema/index').toinit();
 const { combineLatest, Observable, of, pipe, from ,concat} = require('rxjs');
 const { filter, map, tap, pluck, take, find, distinct, shareReplay } = require('rxjs/operators');
 const {getloadnstbalanceinputs, getloadnstbalanceinputs$, toCreateBalanceinputdata, toUpdateBalanceinputdata}=require('../features/nstbalanceinput/nstbalanceinputRepository').toinit();
-const {toInsert,toDelete}=require('../features/nstbalanceinput/index').toinit();
+const {toInsert,toDelete, toUpdate}=require('../features/nstbalanceinput/index').toinit();
 const {toInitCustomInstance, toapicreateinstance,svctoInitCustomInstance$}=require('../sharedkernel/odainstance/toInitializeInstance').toinit();
 const {getTotalCount, getTotalSoldedebit, getTotalSoldecredit}=require('../SharedKernel/odaStats').toinit();
 const {odaremoveDupnumcompte,addItem} = require('../Sharedkernel/odaUtility').toinit();
@@ -21,7 +21,7 @@ const {getstreamdata$, odagetObserver,getapistreamdata$,getapiObserver}=require(
 
     // console.log(toCreateBalanceinputdata(createData));
 function getnewdata(){
-return  toUpdateBalanceinputdata(editData);
+return  toUpdate(editData);
 // console.log(data);
 }
     console.log(getnewdata());

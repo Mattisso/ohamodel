@@ -374,6 +374,11 @@ export type MutationToUpdateNstBalanceInputArgs = {
 };
 
 
+export type MutationToDeleteNstBalanceInputArgs = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+
 export type MutationToCreateNttCompteBalanceDetailArgs = {
   nttcomptebalanceKey?: Maybe<Scalars['String']>;
   NumCompte?: Maybe<Scalars['String']>;
@@ -392,6 +397,24 @@ export type MutationToCreateUserArgs = {
 export type Subscription = {
    __typename?: 'subscription';
   toNewUser?: Maybe<User>;
+  toNewNstbalanceInput?: Maybe<NstBalanceInput>;
+};
+
+
+export type SubscriptionToNewUserArgs = {
+  username?: Maybe<Scalars['String']>;
+  role?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
+};
+
+
+export type SubscriptionToNewNstbalanceInputArgs = {
+  id?: Maybe<Scalars['ID']>;
+  NumCompte?: Maybe<Scalars['String']>;
+  IntitulCompte?: Maybe<Scalars['String']>;
+  SoldeDebit?: Maybe<Scalars['Int']>;
+  CompteNumber?: Maybe<Scalars['String']>;
+  SoldeCredit?: Maybe<Scalars['Int']>;
 };
 
 

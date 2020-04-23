@@ -1,9 +1,13 @@
 const {toNewUser}=require('./user/userSubscription').toinit();
+const {toNewNstbalanceInput}=require('./nstbalanceinput/nstbalanceinputSubscription').toinit();
+
 
 const subscriptions=(function(){
 
 const getRootSubscriptions=  {
-  toNewUser:toNewUser
+  toNewUser:toNewUser,
+  toNewNstbalanceInput:toNewNstbalanceInput
+
 
 
 };

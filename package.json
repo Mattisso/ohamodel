@@ -39,7 +39,7 @@
     "xlsx": "^0.15.6"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^1.13.2",
+    "@graphql-codegen/cli": "^1.21.8",
     "@graphql-codegen/typescript": "^1.13.2",
     "@graphql-codegen/typescript-apollo-angular": "^1.13.2",
     "@graphql-codegen/typescript-operations": "^1.13.2",
